@@ -1,0 +1,34 @@
+.nav {
+  /* display: inline-block; */
+  border: 1px solid gray;
+  /* height: 20%; */
+}
+
+.logo,
+.signIn,
+.signUp {
+  display: inline-block;
+  border: 1px solid gray;
+  margin: 20px;
+}
+
+/* 
+.logo {
+  display: inline-block;
+  border: 1px solid gray;
+}
+
+.title {
+  display: inline-block;
+  border: 1px solid gray;
+}
+
+.signIn {
+  display: inline-block;
+  border: 1px solid gray;
+}
+
+.signUp {
+  display: inline-block;
+  border: 1px solid gray;
+} */
