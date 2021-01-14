@@ -1,0 +1,22 @@
+.first-phrase {
+  font-size: 1em;
+  text-align: center;
+}
+.second-phrase {
+  font-size: 2em;
+  text-align: center;
+}
+
+.sign-up-form {
+  border: 3px solid gray;
+  /* display: inline-flex; */
+  display: flex;
+  flex-direction: column;
+}
+#user-name,
+#user-id,
+#user-password {
+  /* display: block; */
+  border: none;
+  border-bottom: 3px solid gray;
+}
