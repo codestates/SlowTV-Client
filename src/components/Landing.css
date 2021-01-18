@@ -1,0 +1,42 @@
+.below_navbar {
+    display: grid;
+    grid-template-columns: 40px 50px auto 50px 40px;
+    grid-template-rows: 25% 100px auto;
+}
+
+/* .landing_home .landing_bottom {
+    width: 1200px;
+    height: 800px;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size: 100% auto;
+} */
+
+.start_btn {
+    grid-column-start: 2;
+    grid-column-end: five;
+    grid-row-start:row1-start;
+    grid-row-end: 3;
+    border-radius: 50px;
+    background: gray;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    width: 200px;
+    height: 130px;
+    text-align: center;
+}
+
+.start_link {
+    text-decoration: none;
+    border-radius: 50px;
+    background: gray;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: five;
+    grid-row-start:row1-start;
+    grid-row-end: 3;
+    /* width: 200px;링크는 사이즈가 안먹히나..    height: 140px; */
+}
