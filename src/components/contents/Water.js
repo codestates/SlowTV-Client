@@ -1,7 +1,7 @@
 import React from "react";
 import Side from "../Side";
 import "./Water.css";
-import { fakeData } from "../../Fakedata.js";
+import { fakeData } from "../Fake/Fakedata.js";
 
 const Water = ({ id, handleOnClick, history }) => {
   // console.log("🚀 ~ file: Water.js ~ line 9 ~ Water ~ id>>>", id);

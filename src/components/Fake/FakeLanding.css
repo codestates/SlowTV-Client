@@ -22,7 +22,7 @@ body {
   transform-style: preserve-3d;
 }
 
-.navbar {
+.test-navbar {
   position: fixed;
   top: 0;
   left: 0;
