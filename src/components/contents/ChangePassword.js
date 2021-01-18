@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Side from "../Side";
-import FakeNav from "../FakeNav";
+import FakeNav from "../Fake/FakeNav";
 import "./Profile.css";
 
 const ChangePassword = ({ history }) => {
