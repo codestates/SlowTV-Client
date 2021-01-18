@@ -1,40 +1,44 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+
 import "./Side.css";
 const Side = () => {
   return (
-    // <div className="side_bar">
-    <div className="category_lists">
-      {/* <ul className="category_lists"> */}
+    <div className="side-links">
       <ul>
         <li>
-          <Link className="category" to="/">
-            Home
+          <Link className="side-Link" to="/contents">
+            Contents
           </Link>
         </li>
         <li>
-          <Link className="category" to="/">
-            ex)Season
+          <Link className="side-Link" to="/contents/water">
+            Water
           </Link>
         </li>
         <li>
-          <Link className="category" to="/">
-            ex)Water
+          <Link className="side-Link" to="/contents/fire">
+            Fire
           </Link>
         </li>
         <li>
-          <Link className="category" to="/">
-            ex)Fire
+          <Link className="side-Link" to="/contents/snow">
+            Snow
           </Link>
         </li>
         <li>
-          <Link className="category" to="/">
+          <Link className="side-Link" to="/contents/grass">
+            Grass
+          </Link>
+        </li>
+        <li>
+          <Link className="side-Link" to="/contents/favorite">
             Favorite
           </Link>
         </li>
         <li>
-          <Link className="category" to="/">
-            Profie
+          <Link className="side-Link" to="/contents/profile">
+            Profile
           </Link>
         </li>
       </ul>
@@ -42,4 +46,4 @@ const Side = () => {
   );
 };
 
-export default Side;
+export default withRouter(Side);

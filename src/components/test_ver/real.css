@@ -36,7 +36,6 @@
 /* 오른쪽 사이드바 */
 .test-links {
   /* border: 5px solid red; */
-  /* margin-top: 10px; */
   margin-right: 10px;
   position: absolute;
   width: 20%;
@@ -50,15 +49,13 @@
 
 ul {
   /* list-style: none; */
-  /* margin-top: 90px; */
-  /* margin-top: 40%; */
 }
 
 .test-links a {
   /* border: 5px solid blue; */
   text-decoration: none;
   color: #eee;
-  padding: 0.5rem 0;
+  padding: 0.7rem 0;
   display: inline-block;
   font-size: 1rem;
   font-weight: 300;
@@ -306,14 +303,5 @@ ul {
     /* border: 5px solid red; */
     perspective: 2000px;
   }
-  ul {
-    /* margin: 0px; */
-  }
-  .test-links a {
-    padding: 0.7rem 0;
-
-    /* animation: hide 0.5s forwards ease; */
-  }
-
   /* 이미지 크기 */
 }

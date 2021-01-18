@@ -1,34 +1,28 @@
 .nav {
-  /* display: inline-block; */
-  border: 1px solid gray;
-  /* height: 20%; */
+  width: 100%;
+  height: 90px;
+  border: 5px solid gray;
 }
 
-.logo,
-.signIn,
-.signUp {
+.test-logo,
+.test-signIn,
+.test-signUp {
   display: inline-block;
-  border: 1px solid gray;
-  margin: 20px;
+  /* border: 1px solid gray; */
+  margin: 30px;
+  font-size: 20px;
 }
 
-/* 
-.logo {
-  display: inline-block;
-  border: 1px solid gray;
+.test-logo {
+  /* border: 1px solid gray; */
 }
 
-.title {
-  display: inline-block;
-  border: 1px solid gray;
+.test-signIn {
+  float: right;
+  /* border: 1px solid gray; */
 }
 
-.signIn {
-  display: inline-block;
-  border: 1px solid gray;
+.test-signUp {
+  float: right;
+  /* border: 1px solid gray; */
 }
-
-.signUp {
-  display: inline-block;
-  border: 1px solid gray;
-} */
