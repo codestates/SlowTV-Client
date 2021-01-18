@@ -4,6 +4,7 @@ import Landing from "./components/Landing";
 import Contents from "./components/Contents";
 import VideoPlayer from "./components/VideoPlayer";
 import Login from "./components/Login"; //모달 구현 완료시 삭제예정
+import SignUp from "./components/SignUp";
 
 const App = () => {
   return (
