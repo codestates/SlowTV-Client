@@ -3,9 +3,12 @@ import React from "react";
 import ContentsContainer from "./containers/ContentsContainer";
 // import VideoPlayer from "./components/VideoPlayer";
 import VideoPlayerContainer from "./containers/VideoPlayerContainer";
+
+import { Route } from "react-router-dom";
+import Landing from "./components/Landing";
+import VideoPlayer from "./components/VideoPlayer";
+import Login from "./components/Login"; //모달 구현 완료시 삭제예정
 import SignUp from "./components/SignUp";
-// import Season from "./components/contents/Season";
-import SeasonCounter from "./containers/ContentsContainer";
 
 // 물,불,눈,풀
 // import Water from "./components/contents/Water";
@@ -25,8 +28,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const App = () => {
   return (
     <Router>
-      <Route path="/" component={FakeLanding} exact />
-      <Route path="/videoplayer" component={VideoPlayerContainer} />
+      //<Route path="/" component={FakeLanding} exact />
+      //<Route path="/videoplayer" component={VideoPlayerContainer} />
       {/* <Route path="/signup" component={SignUp} /> */}
       <Route path="/contents" component={ContentsContainer} exact />
       <Route path="/contents/season" component={SeasonCounter} />
@@ -47,6 +50,9 @@ const App = () => {
         path="/contents/profile/change-password"
         component={ChangePassword}
       />
+       <Route exact path="/" component={Landing} />
+      <Route path="/watch" component={VideoPlayer} />
+      <Route path="/login" component={Login} />
     </Router>
   );
 };
