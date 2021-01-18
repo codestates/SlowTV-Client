@@ -1,0 +1,430 @@
+/* 미정 */
+/* 햄버거 */
+.hamburger {
+  /* display: none; */
+  position: absolute;
+  top: 30px;
+  right: 42px;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 3px;
+  transition: all 0.4s ease;
+}
+
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-3px, 6px);
+}
+.toggle .line2 {
+  opacity: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-3px, -6px);
+}
+/* 햄버거 끝 */
+
+/* rotateY 버전 */
+/* 13인치 기준 */
+/* 최대 width :1025px */
+
+.category_page {
+  background-color: #212021;
+  border: 5px solid red;
+  height: 100vh;
+}
+
+/* 비디오 리스트 */
+.video_list {
+  border: 5px solid gray;
+  margin-top: 40px;
+  perspective: 3000px;
+  width: 100%;
+  height: 50vh;
+
+  /* position: relative; */
+  /* padding-left: 60px; */
+}
+img {
+  width: 100%;
+  height: 100%;
+  /* -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(250, 250, 250, 0.4))); */
+  border-left-width: 1px;
+  border-left: 3px solid gray;
+  border-radius: 20px;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.5)));
+}
+
+.test1 {
+  display: inline-block;
+  /* border: 6px solid red; */
+  width: 300px;
+  height: 200px;
+  transform: rotateY(45deg);
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  left: 0px;
+  transition: all ease 1s;
+  z-index: 1;
+}
+
+.test2 {
+  display: inline-block;
+  /* border: 6px solid orange; */
+  width: 300px;
+  height: 250px;
+  transform: rotateY(45deg);
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  left: 20px;
+  transition: all ease 1s;
+  z-index: 2;
+}
+.test3 {
+  display: inline-block;
+  /* border: 6px solid yellow; */
+  width: 300px;
+  height: 300px;
+  transform: rotateY(45deg);
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 60px;
+  transition: all ease 1s;
+  z-index: 3;
+}
+.test4 {
+  display: inline-block;
+  /* border: 6px solid green; */
+  width: 300px;
+  height: 350px;
+  transform: rotateY(45deg);
+  position: absolute;
+  top: 40px;
+  bottom: 20;
+  left: 130px;
+  transition: all ease 1s;
+  z-index: 4;
+}
+.test5 {
+  display: inline-block;
+  /* border: 6px solid blue; */
+  width: 700px;
+  height: 400px;
+  transform: rotateY(45deg);
+  position: absolute;
+  top: 20px;
+  bottom: 0;
+  left: 230px;
+  transition: all ease 1s;
+  z-index: 5;
+}
+.test5:hover {
+  transform: rotateY(0deg);
+  /* border: 5px solid red; */
+}
+
+.test6 {
+  display: inline-block;
+  border: 6px solid blue;
+  width: 700px;
+  height: 400px;
+  transform: rotateY(45deg);
+  position: absolute;
+  top: 20px;
+  bottom: 0;
+  left: 230px;
+  transition: all ease 1s;
+  z-index: 5;
+}
+.test6:hover {
+  transform: rotateY(0deg);
+  /* border: none; */
+}
+
+.shape {
+  border: 3px solid blue;
+  border-bottom: 100px solid red;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  height: 0;
+  width: 100px;
+  /* transform: rotate(90deg); */
+}
+
+/* 사다리꼴 */
+.shape2 {
+  border: 3px solid blue;
+  border-left: 250px solid blue;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  height: 100px;
+  /* width: 100px; */
+  margin: 30px;
+  /* transform: rotate(90deg); */
+}
+
+/* test */
+.test_thumbnail1 {
+  display: inline-block;
+  border: 3px solid red;
+}
+.test_thumbnail1_img {
+  border: 10px solid red;
+  /* border-radius: 30px; */
+  cursor: pointer;
+  transform: rotateY(45deg);
+  /* grid-row-start: 1;
+      grid-row-end: 2; */
+  /* grid-column-start: 1; */
+  /* grid-column-end: 2; */
+}
+.test_thumbnail2_img {
+  border: 10px solid red;
+  /* border-radius: 30px; */
+  cursor: pointer;
+  transform: rotateY(45deg);
+  /* grid-row-start: 1;
+      grid-row-end: 2; */
+  /* grid-column-start: 1; */
+  /* grid-column-end: 2; */
+}
+
+/* 썸네일 */
+
+.thumbnail1 {
+  border: 3px solid red;
+  /* border-radius: 30px; */
+  cursor: pointer;
+  transform: rotateY(45deg);
+  /* grid-row-start: 1;
+      grid-row-end: 2; */
+  /* grid-column-start: 1; */
+  /* grid-column-end: 2; */
+}
+
+.thumbnail2 {
+  border: 3px solid orange;
+  cursor: pointer;
+  transform: rotateY(45deg);
+  /* grid-row-start: 1;
+      grid-row-end: 2; */
+  /* grid-column-start: 2; */
+  /* grid-column-end: 3; */
+}
+.thumbnail3 {
+  border: 3px solid yellow;
+  cursor: pointer;
+  /* grid-row-start: 1;
+      grid-row-end: 2; */
+  /* grid-column-start: 3; */
+  /* grid-column-end: 4; */
+}
+.thumbnail4 {
+  border: 3px solid green;
+  cursor: pointer;
+  /* grid-row-start: 1;
+      grid-row-end: 2; */
+  /* grid-column-start: 4; */
+  /* grid-column-end: 5; */
+}
+.thumbnail5 {
+  /* border: 3px solid blue; */
+  cursor: pointer;
+  /* grid-row-start: 1;
+      grid-row-end: 2; */
+}
+.thumbnail6 {
+  /* border: 3px solid navy; */
+  cursor: pointer;
+  /* grid-row-start: 1;
+      grid-row-end: 2; */
+}
+.thumbnail7 {
+  /* border: 3px solid purple; */
+  cursor: pointer;
+  /* grid-row-start: 1;
+      grid-row-end: 2; */
+}
+.thumbnail8 {
+  /* border: 3px solid red; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+.thumbnail9 {
+  /* border: 3px solid black; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+.thumbnail10 {
+  /* border: 3px solid black; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+.thumbnail11 {
+  /* border: 3px solid black; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+.thumbnail12 {
+  /* border: 3px solid black; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+
+.thumbnail1_img,
+.thumbnail2_img {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  /* position: relative; */
+}
+
+.thumbnail3_img,
+.thumbnail4_img,
+.thumbnail5_img,
+.thumbnail6_img,
+.thumbnail7_img,
+.thumbnail8_img,
+.thumbnail9_img,
+.thumbnail10_img,
+.thumbnail11_img,
+.thumbnail12_img {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+}
+
+.thumbnail_title {
+  border: 1px solid gray;
+  font-size: 30px;
+  /* position: absolute; */
+}
+
+/* 1300 넘으면 *************************************/
+@media screen and (min-width: 1300px) {
+  .video_list {
+    /* border: 5px solid red; */
+    display: grid;
+    grid-gap: 10px;
+    margin-top: 40px;
+    padding-left: 60px;
+    /* 가로 크기 조절 */
+    width: 80%;
+    /* 오른쪽 여백 너무 많이 남음. 
+        근데 width 더 키우면 화면 넘침 해결법 찾기*/
+  }
+}
+
+/* 960보다 작으면 */
+@media screen and (max-width: 960px) {
+  .video_list {
+    border: 5px solid red;
+    display: grid;
+    grid-gap: 10px;
+    margin-top: 40px;
+    /* padding-left: 60px; */
+    /* 가로 크기 조절 */
+    width: 70%;
+  }
+
+  /* 썸네일 */
+  .thumbnail1 {
+    border: 3px solid black;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    /* grid-column-start: 1; */
+    /* grid-column-end: 3; */
+  }
+
+  .thumbnail2 {
+    border: 3px solid black;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    /* grid-column-start: 3; */
+    /* grid-column-end: 5; */
+  }
+  .thumbnail3 {
+    border: 3px solid black;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    cursor: pointer;
+  }
+  .thumbnail4 {
+    border: 3px solid black;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    cursor: pointer;
+  }
+  .thumbnail5 {
+    border: 3px solid black;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    cursor: pointer;
+  }
+  .thumbnail6 {
+    border: 3px solid black;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    cursor: pointer;
+  }
+  .thumbnail7 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail8 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail9 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail10 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail11 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail12 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+  .thumbnail1_img,
+  .thumbnail2_img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .thumbnail3_img,
+  .thumbnail4_img,
+  .thumbnail5_img,
+  .thumbnail6_img,
+  .thumbnail7_img,
+  .thumbnail8_img,
+  .thumbnail9_img,
+  .thumbnail10_img,
+  .thumbnail11_img,
+  .thumbnail12_img {
+    width: 20px;
+    height: 20px;
+  }
+}

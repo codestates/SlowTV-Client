@@ -1,0 +1,251 @@
+/* 동일한 크기 버전 */
+/* 13인치 기준 */
+/* 최대 width :1025px */
+
+/* 비디오 리스트 */
+.video_list {
+  /* border: 5px solid red; */
+  /* border-radius: 30px; */
+  display: grid;
+  /* grid-template-columns: auto auto auto auto; */
+  grid-gap: 10px;
+  /* grid-gap: 30px; */
+  /* background-color: #2196f3; */
+  margin-top: 40px;
+  padding-left: 60px;
+  width: 70%;
+  grid-template-columns: repeat(7, 200px);
+}
+
+/* 썸네일 */
+
+.thumbnail1 {
+  border: 3px solid red;
+  /* border-radius: 30px; */
+  cursor: pointer;
+  /* grid-row-start: 1;
+  grid-row-end: 2; */
+  /* grid-column-start: 1; */
+  /* grid-column-end: 2; */
+}
+
+.thumbnail2 {
+  border: 3px solid orange;
+  cursor: pointer;
+  /* grid-row-start: 1;
+  grid-row-end: 2; */
+  /* grid-column-start: 2; */
+  /* grid-column-end: 3; */
+}
+.thumbnail3 {
+  border: 3px solid yellow;
+  cursor: pointer;
+  /* grid-row-start: 1;
+  grid-row-end: 2; */
+  /* grid-column-start: 3; */
+  /* grid-column-end: 4; */
+}
+.thumbnail4 {
+  border: 3px solid green;
+  cursor: pointer;
+  /* grid-row-start: 1;
+  grid-row-end: 2; */
+  /* grid-column-start: 4; */
+  /* grid-column-end: 5; */
+}
+.thumbnail5 {
+  /* border: 3px solid blue; */
+  cursor: pointer;
+  /* grid-row-start: 1;
+  grid-row-end: 2; */
+}
+.thumbnail6 {
+  /* border: 3px solid navy; */
+  cursor: pointer;
+  /* grid-row-start: 1;
+  grid-row-end: 2; */
+}
+.thumbnail7 {
+  /* border: 3px solid purple; */
+  cursor: pointer;
+  /* grid-row-start: 1;
+  grid-row-end: 2; */
+}
+.thumbnail8 {
+  /* border: 3px solid red; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+.thumbnail9 {
+  /* border: 3px solid black; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+.thumbnail10 {
+  /* border: 3px solid black; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+.thumbnail11 {
+  /* border: 3px solid black; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+.thumbnail12 {
+  /* border: 3px solid black; */
+  cursor: pointer;
+  /* grid-row-start: 2; */
+  /* grid-row-end: 3; */
+}
+
+.thumbnail1_img,
+.thumbnail2_img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  /* position: relative; */
+}
+
+.thumbnail3_img,
+.thumbnail4_img,
+.thumbnail5_img,
+.thumbnail6_img,
+.thumbnail7_img,
+.thumbnail8_img,
+.thumbnail9_img,
+.thumbnail10_img,
+.thumbnail11_img,
+.thumbnail12_img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.thumbnail_title {
+  border: 1px solid gray;
+  font-size: 30px;
+  /* position: absolute; */
+}
+
+/* 1300 넘으면 */
+@media screen and (min-width: 1300px) {
+  .video_list {
+    /* border: 5px solid red; */
+    display: grid;
+    grid-gap: 10px;
+    margin-top: 40px;
+    padding-left: 60px;
+    /* 가로 크기 조절 */
+    width: 80%;
+    /* 오른쪽 여백 너무 많이 남음. 
+    근데 width 더 키우면 화면 넘침 해결법 찾기*/
+  }
+}
+
+/* 960보다 작으면 */
+@media screen and (max-width: 960px) {
+  .video_list {
+    border: 5px solid red;
+    display: grid;
+    grid-gap: 10px;
+    margin-top: 40px;
+    /* padding-left: 60px; */
+    /* 가로 크기 조절 */
+    width: 70%;
+  }
+
+  /* 썸네일 */
+  .thumbnail1 {
+    border: 3px solid black;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    /* grid-column-start: 1; */
+    /* grid-column-end: 3; */
+  }
+
+  .thumbnail2 {
+    border: 3px solid black;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    /* grid-column-start: 3; */
+    /* grid-column-end: 5; */
+  }
+  .thumbnail3 {
+    border: 3px solid black;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    cursor: pointer;
+  }
+  .thumbnail4 {
+    border: 3px solid black;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    cursor: pointer;
+  }
+  .thumbnail5 {
+    border: 3px solid black;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    cursor: pointer;
+  }
+  .thumbnail6 {
+    border: 3px solid black;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    cursor: pointer;
+  }
+  .thumbnail7 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail8 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail9 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail10 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail11 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .thumbnail12 {
+    border: 3px solid black;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+  .thumbnail1_img,
+  .thumbnail2_img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .thumbnail3_img,
+  .thumbnail4_img,
+  .thumbnail5_img,
+  .thumbnail6_img,
+  .thumbnail7_img,
+  .thumbnail8_img,
+  .thumbnail9_img,
+  .thumbnail10_img,
+  .thumbnail11_img,
+  .thumbnail12_img {
+    width: 100%;
+    height: 100%;
+  }
+}

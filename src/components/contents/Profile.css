@@ -1,0 +1,104 @@
+/* 전체 */
+.profile-page {
+  border: 3px solid red;
+  height: 100vh;
+}
+
+.profile {
+  border: 3px solid blue;
+  /* margin: 300px; */
+  width: 50%;
+  float: left;
+}
+
+/* 이름  *********************************/
+/* 이름 변경 버튼 */
+.change-name-btn {
+  margin: 10px;
+  border: 3px solid gray;
+}
+
+/* 이름 변경 div */
+.div-change-name {
+  margin: 10px;
+  border: 3px solid red;
+}
+
+/* 이름 변경 폼 */
+.form-change-name {
+  margin: 10px;
+  border: 3px solid blue;
+}
+
+/* div Current Username : Coding Kim */
+.div-current-username {
+  margin: 10px;
+  border: 3px solid red;
+}
+/* Current Username : Coding Kim */
+.current-username {
+  margin: 10px;
+  display: inline;
+  border: 3px solid blue;
+}
+.form-new-user-name {
+  margin: 10px;
+  display: inline;
+  border: 3px solid red;
+}
+
+#new-user-name {
+  margin: 10px;
+  display: inline;
+  border: 3px solid blue;
+}
+
+.update-btn {
+  border: 3px solid blue;
+}
+
+/* 비밀번호 ********************************/
+/* 비밀번호 변경 버튼 */
+.change-password-btn {
+  margin: 10px;
+  border: 3px solid gray;
+}
+
+/* 비밀번호 div */
+.div-change-password {
+  margin: 10px;
+  border: 3px solid red;
+}
+
+/* 비밀번호 변경 폼 */
+.form-change-password {
+  margin: 10px;
+  border: 3px solid blue;
+}
+
+.div-old-user-password,
+.div-new-user-password,
+.div-confirm-user-password,
+.div-update-btn {
+  margin: 10px;
+  border: 3px solid blue;
+}
+
+label {
+  border: 3px solid green;
+}
+
+#old-user-password {
+  border: 3px solid green;
+  display: block;
+}
+
+#new-user-password {
+  border: 3px solid green;
+  display: block;
+}
+
+#confirm-user-password {
+  border: 3px solid green;
+  display: block;
+}
