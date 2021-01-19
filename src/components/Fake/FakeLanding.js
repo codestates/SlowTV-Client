@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import Side from "./Side";
+import Side from "../Side";
 import FakeNav from "./FakeNav";
 import "./FakeLanding.css";
-import { fakeData } from "../Fakedata.js";
+import { fakeData } from "./Fakedata.js";
 
 const FakeLanding = ({ id, handleOnClick, history }) => {
   const testHandleOnClick = () => {
@@ -16,7 +16,7 @@ const FakeLanding = ({ id, handleOnClick, history }) => {
         {/* <FakeNav />
         <Side /> */}
         <div className="container">
-          <div className="navbar">
+          <div className="test-navbar">
             <div className="menu">
               <h3 className="logo">
                 Slow<span>TV</span>

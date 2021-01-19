@@ -56,7 +56,7 @@ const Contents = ({ id, handleOnClick, history }) => {
   return (
     <div>
       <div className="container">
-        <div className="navbar">
+        <div className="content-navbar">
           <h3 className="logo1" onClick={handleGoHome}>
             SLOW<span>TV</span>
           </h3>

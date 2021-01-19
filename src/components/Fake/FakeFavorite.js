@@ -2,8 +2,8 @@ import React from "react";
 import Side from "../Side";
 // import FakeNav from "../FakeNav";
 import Hmaburger from "../test_ver/Hamburger.js";
-import "./Water.css";
-import { fakeData } from "../../Fakedata.js";
+import "../contents/Water.css";
+import { fakeData } from "./Fakedata.js";
 
 const Contents = ({ id, handleOnClick, history }) => {
   // console.log("🚀 ~ file: Contents.js ~ line 9 ~ Contents ~ id>>>", id);

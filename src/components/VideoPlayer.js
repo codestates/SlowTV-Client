@@ -2,7 +2,7 @@
 
 import React from "react";
 import "./VideoPlayer.css";
-import { fakeData } from "../Fakedata.js";
+import { fakeData } from "./Fake/Fakedata.js";
 import { Link } from "react-router-dom";
 
 const VideoPlayer = ({ id }) => {

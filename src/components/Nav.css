@@ -1,22 +1,42 @@
 .navbar {
-    width: 100%;
-    height: 8%;
-    margin: 0 auto;
-    /* background-color: goldenrod; */
-    background-color: rgba(255,255,255,0.5);
+  /* border: solid greenyellow; */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 8%;
+  margin: 0;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 2px;
-    overflow: hidden;
+.logo-img {
+  width: 15%;
+  height: 90%;
 }
 
-li {
-    float: left;
-    text-align: center;
-    font-weight: bold;
-    padding: 14px 16px;
+.nav-wrapper {
+  margin: 0;
+  padding: 2px;
+  /* overflow: hidden; */
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  float: left;
 }
 
+.nav-btns {
+  width : 200px;
+	height : 100px;
+	border : 2px solid black;
+	margin : 0 auto;
+	padding : 5px;
+	display : flex;
+	justify-content : space-between;
+  align-items: center;
+}
+
+.nav-register-btn {
+
+}
+
+.nav-login-btn {
+
+}
