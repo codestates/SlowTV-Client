@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-// 페이크
+// 페이크 파일
 import FakeLanding from "./components/Fake/FakeLanding";
 import FakeFavorite from "./components/Fake/FakeFavorite";
 // 랜딩
@@ -18,10 +17,11 @@ import Snow from "./components/contents/Snow";
 import Grass from "./components/contents/Grass";
 // 컨텐츠 - 즐겨찾기
 import Favorite from "./components/Fake/FakeFavorite";
-// 컨텐츠 - 프로필
+// 컨텐츠 - 프로필 모달 버전
 import ProfileContainer from "./containers/ProfileContainer";
-import ChangeUsername from "./components/contents/ChangeUsername";
-import ChangePassword from "./components/contents/ChangePassword";
+// 컨텐츠 - 프로필 모달 페에지 이동 버전
+// import ChangeUsername from "./components/contents/ChangeUsername";
+// import ChangePassword from "./components/contents/ChangePassword";
 // 비디오 플레이어
 import VideoPlayerContainer from "./containers/VideoPlayerContainer";
 import VideoPlayer from "./components/VideoPlayer";
@@ -46,21 +46,24 @@ const App = () => {
       <Route path="/contents/grass" component={Grass} />
       {/* 컨텐츠- 즐겨찾기 */}
       {/* <Route path="/contents/favorite" component={Favorite} /> *********/}
-      {/* 컨텐츠 - 프로필 */}
+      {/* 컨텐츠 - 프로필 모달 버전 */}
       <Route path="/contents/profile" component={ProfileContainer} exact />
+      {/* 컨텐츠 - 프로필 페이지 이동 버전*/}
       {/* 컨텐츠 - 프로필 - 이름 변경 */}
-      <Route
+      {/* <Route
         path="/contents/profile/change-username"
         component={ChangeUsername}
-      />
+      /> */}
       {/* 컨텐츠 - 프로필 - 비밀번호 변경********************************************/}
-      <Route
+      {/* <Route
         path="/contents/profile/change-password"
         component={ChangePassword}
-      />
+      /> */}
       {/* 비디오 플레이어 *********************************************************/}
       <Route path="/watch" component={VideoPlayerContainer} />
       {/* <Route path="/watch" component={VideoPlayer} /> */}
+      {/* test *********************************************************/}
+      {/* <Route path="/test" component={ThumbnailsContainer} /> */}
     </Router>
   );
 };

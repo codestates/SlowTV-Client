@@ -1,14 +1,22 @@
 import React from "react";
+
+import { Link, withRouter } from "react-router-dom";
+
 import "./FakeNav.css";
 
-const Nav = () => {
+const Nav = ({ history }) => {
+  const handleGoHome = () => {
+    history.push("/");
+  };
   return (
-    <div className="test-nav">
-      <div className="test-logo">Logo</div>
-      <div className="test-signIn">Sign In</div>
-      <div className="test-signUp">Sign Up</div>
+    <div className="fake-navbar">
+      {/* <span className="fake-logo1" onClick={handleGoHome}> */}
+      <span className="fake-test-logo" onClick={handleGoHome}>
+        {/* SLOW<span className="fake-span-tv">TV</span> */}
+        SLOWTV
+      </span>
     </div>
   );
 };
 
-export default Nav;
+export default withRouter(Nav);

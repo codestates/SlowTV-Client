@@ -54,15 +54,15 @@ const mapDispatchToProps = (dispatch) => ({
   },
   // 이름 텍스트 변경 // 한 글자 바뀌면 바로 디스패치 되는 문제 발생.
   hadleOnChangeName: (e) => {
-    e.preventDefault();
     console.log("e.target.value>>>", e.target.value);
     dispatch(changedName(e));
+    e.preventDefault();
   },
   // 비밀번호 텍스트 변경 // 한 글자 바뀌면 바로 디스패치 되는 문제 발생.
   hadleOnChangePassword: (e) => {
-    e.preventDefault();
     console.log("e.target.value>>>", e.target.value);
     dispatch(changedPassword(e));
+    e.preventDefault();
   },
 });
 

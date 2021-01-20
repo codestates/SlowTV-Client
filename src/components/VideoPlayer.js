@@ -13,13 +13,13 @@ const VideoPlayer = ({ id }) => {
       <div>
         <Link to="/contents">contents</Link>
       </div>
-      {/* <iframe className="player" src={a[0].snippet.url}></iframe> */}
-      <iframe
+      <iframe className="player" src={a[0].snippet.url}></iframe>
+      {/* <iframe
         className="player"
         // autoplay=1 자동 재생 안됨
         src="https://drive.google.com/file/d/1k7p4nsKV5HIaAHot9-nRJOjwUs_z3yRm/preview"
         // src="https://drive.google.com/file/d/19KUgHPQ_TX70y74ftW7tKLC1bAm6foqv/preview"
-      ></iframe>
+      ></iframe> */}
 
       {/* 이것도 되긴 함 */}
       {/* <embed src="https://drive.google.com/file/d/1k7p4nsKV5HIaAHot9-nRJOjwUs_z3yRm/preview"></embed> */}

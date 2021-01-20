@@ -1,40 +1,68 @@
 /* 전체 div */
 .water-page {
   /* border: 5px solid red; */
-  width: 96%;
-  margin: 0 auto;
-  /* test */
-  /* 배경 */
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
-  background-color: #485461;
-  background-image: linear-gradient(135deg, #485461 0%, #28313b 74%);
-  overflow-x: hidden;
-  transform-style: preserve-3d;
+  background-color: #212021;
+  /* margin: 0 auto; */
+  /* background-color: #485461; */
+  /* background-image: linear-gradient(135deg, #485461 0%, #28313b 74%); */
+  /* overflow-x: hidden; */
+  /* transform-style: preserve-3d; */
 }
 /* 비디오 리스트 */
 .water-list {
-  /* margin-top: 3%; */
-  margin: 5%;
-  margin-top: 7%;
+  /* margin-top: 5%; */
+  margin-left: 3%;
+  /* margin: 5%; */
+  /* margin-top: 7%; */
   /* border: 5px solid blue; */
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  /* grid-gap: 10px; */
-  grid-gap: 1%;
+  /* grid-template-columns: auto auto auto auto; */
+  grid-gap: 10px;
+  /* grid-gap: 1%; */
+  /* grid-gap: 30px; */
+  /* background-color: #2196f3; */
+  /* margin-top: 40px; */
+  /* padding-left: 60px; */
+  width: 85%;
+  height: 90%;
+  /* grid-template-columns: repeat(4, 13.43%); */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(7, 6.5%); */
+  grid-template-rows: repeat(7, 36%);
+}
+
+/* 사이드 바 열렸을 때 비디오 리스트 */
+.small-water-list {
+  /* margin-top: 5%; */
+  margin-left: 3%;
+  /* margin: 5%; */
+  /* margin-top: 7%; */
+  /* border: 5px solid blue; */
+  display: grid;
+  /* grid-template-columns: auto auto auto auto; */
+  grid-gap: 10px;
+  /* grid-gap: 1%; */
   /* grid-gap: 30px; */
   /* background-color: #2196f3; */
   /* margin-top: 40px; */
   /* padding-left: 60px; */
   width: 75%;
-  grid-template-columns: repeat(7, 13.43%);
+  height: 90%;
+  /* grid-template-columns: repeat(4, 13.43%); */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(7, 6.5%); */
+  grid-template-rows: repeat(7, 36%);
 }
 
 .thumbnail-img {
   /* border: 3px solid blue; */
   width: 100%;
   height: 100%;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   transition-property: width, height;
   transition-duration: 1s, 1s;
@@ -124,4 +152,31 @@
 
   /* grid-row-start: 2; */
   /* grid-row-end: 3; */
+}
+
+/* width 1400 넘으면 ************************************************/
+@media screen and (min-width: 1400px) {
+  /* 비디오 리스트 */
+  .water-list {
+    /* margin-top: 5%; */
+    /* margin-left: 3%; */
+    /* margin: 5%; */
+    /* margin-top: 7%; */
+    /* border: 5px solid blue; */
+    /* display: grid; */
+    /* grid-template-columns: auto auto auto auto; */
+    /* grid-gap: 10px; */
+    /* grid-gap: 1%; */
+    /* grid-gap: 30px; */
+    /* background-color: #2196f3; */
+    /* margin-top: 40px; */
+    /* padding-left: 60px; */
+    /* width: 85%; */
+    /* height: 90%; */
+    /* grid-template-columns: repeat(4, 13.43%); */
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    /* grid-template-columns: repeat(4, 1fr); */
+    /* grid-template-rows: repeat(7, 6.5%); */
+    /* grid-template-rows: repeat(7, 29%); */
+  }
 }
