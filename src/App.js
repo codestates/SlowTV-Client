@@ -30,10 +30,10 @@ const App = () => {
   return (
     <Router>
       {/* 페이크 */}
-      <Route path="/" component={FakeLanding} exact />
+      {/* <Route path="/" component={FakeLanding} exact /> */}
       <Route path="/contents/favorite" component={FakeFavorite} />
       {/* 랜딩  ************************************************************/}
-      {/* <Route exact path="/" component={Landing} /> */}
+      <Route exact path="/" component={Landing} />
       {/* 로그인 - 회원가입 ***************************************************/}
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
