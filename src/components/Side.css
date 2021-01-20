@@ -1,41 +1,93 @@
-/* 오른쪽 사이드바 */
-.side-links {
-  /* border: 5px solid red; */
-  margin-right: 10px;
+/* 햄버거  */
+.hamburger {
+  /* display: none; */
   position: absolute;
-  width: 20%;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 8%;
+  right: 20%;
 }
 
-ul {
-  /* list-style: none; */
+.burger div {
+  /* 햄버거 세줄  */
+  /* border: 3px solid black; */
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 3px;
+  transition: all 0.4s ease;
+}
+
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-3px, 6px);
+}
+.toggle .line2 {
+  opacity: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-3px, -6px);
+}
+
+/* 오른쪽 사이드바 */
+.opne-side-links {
+  /* border: 2px solid red; */
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #635f63;
+  width: 20%;
+  height: 100vh;
+}
+
+/* 오른쪽 사이드바 */
+.close-side-links {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100vh;
+}
+
+.side-category {
+  /* 왜 안보이지? */
+  /* background-color: white; */
+  /* border: 5px solid blue; */
+  /* width: 100%; */
+  /* height: 100vh; */
+}
+
+.side-ul {
+  /* border: 5px solid blue; */
+  position: absolute;
+  margin-top: 30%;
+  right: 0%;
+  /* width: 130%; */
+  font-size: 1.5em;
+  /* font-weight: 300; */
+  top: 200%;
+  text-decoration: none;
+  color: #eee;
 }
 
 .side-links a {
   /* border: 5px solid blue; */
   text-decoration: none;
-  color: #eee;
+  /* color: #eee; */
   /* padding: 0.7rem 0; */
-  padding: 0.5rem 0;
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: 0.3;
+  /* padding: 0.5rem 0; */
+  /* display: inline-block; */
+  /* font-size: 1rem; */
+  /* font-weight: 300; */
+  /* text-transform: uppercase; */
+  /* letter-spacing: 1px; */
+  /* transition: 0.3; */
   /* opacity: 1; */
-  transform: translateY(10px);
+  /* transform: translateY(10px); */
   /* animation: hide 0.5s forwards ease; */
 }
 
 .side-links a:hover {
-  color: #fff;
-  font-weight: 350;
+  /* color: #fff; */
+  /* font-weight: 3530; */
 }
 
 .container .side-links a {
@@ -64,11 +116,24 @@ ul {
   }
 }
 
-/* width 1200 넘으면 */
+/* width 1200 넘으면 ************************************************/
 @media screen and (min-width: 1200px) {
+  .img_list {
+    /* border: 5px solid red; */
+  }
   /* 오른쪽 사이드 바 폰트 크기 */
-  .side-links a {
-    font-size: 1.5rem;
-    padding: 0.7rem 0;
+  .test-links a {
+    /* font-size: 1.3rem; */
+    /* border: 5px solid blue; */
+  }
+}
+
+/* width 1400 넘으면 ***********************************************/
+@media screen and (min-width: 1400px) {
+  .test-links a {
+    /* padding: 0.7rem 0; */
+    /* font-size: 1.5rem; */
+    /* border: 5px solid red; */
+    /* animation: hide 0.5s forwards ease; */
   }
 }

@@ -1,3 +1,5 @@
+// ! 현재 사용 안함.
+// 나중에 컨텐트 페이지에서 각 카테고리 대표 이미지(가운데 큰 티비 모양 카드) 클릭하면 해당 카테고리로 이동하게끔 만들기
 import React from "react";
 import Contents from "../components/Contents";
 import { connect } from "react-redux";
@@ -11,13 +13,12 @@ const mapStateToProps = (state) => ({
   id: state.contents.id,
 });
 
-const mapDispatchToProps = (dispatch, props) => ({
+const mapDispatchToProps = (dispatch, { history }) => ({
+  // 나중에 컨텐트 페이지에서 각 카테고리 대표 이미지(가운데 큰 티비 모양 카드) 클릭하면 해당 카테고리로 이동하게끔 만들기
   handleOnClick: (e) => {
-    // 각 영상 아이디 얻어냄
     const id = e.target.attributes.value.value;
-    // console.log("🚀 ~ file: ContentsContainer.js ~ line 23 ~ id", id);
     dispatch(click(id));
-    props.history.push("/videoplayer");
+    history.push("/watch");
   },
 });
 

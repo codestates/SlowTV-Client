@@ -1,34 +1,83 @@
-/* 전체 */
+/* 페이지 전체 **********************************/
 .profile-page {
-  border: 3px solid red;
+  /* border: 3px solid gray; */
+  background-color: #212021;
   height: 100vh;
+  /* height: 100%; */
+  margin: 0;
+  position: relative;
 }
 
-.profile {
-  border: 3px solid blue;
-  /* margin: 300px; */
-  width: 50%;
-  float: left;
+.test-profile-page {
+  /* border: 3px solid gray; */
+}
+
+/* 모달 틀 **********************************/
+
+/* 모달 틀 Profile부터 Logged in as ~~까지*/
+.div-modal-btn-list {
+  /* position: fixed; */
+  border: 3px solid red;
+  position: absolute;
+  width: 30%;
+  height: 70%;
+  top: 15%;
+  left: 33%;
+}
+
+/* 타이틀 profile */
+.title-profile {
+  /* border: 3px solid gray; */
+  height: 15%;
+  color: white;
+  /* 화면 커지면 크게 */
+  font-size: 1.5em;
+}
+
+/* 로그인한 유저 계정 */
+.logged-in-user {
+  color: white;
+}
+
+/* 모달 각 버튼 */
+.div-modal-btn {
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: black;
+  margin: 10px;
+  height: 13%;
+  /* width: 100%; */
+}
+
+/*  Username, Password..  */
+
+.div-modal-btn-text {
+  margin: 10px;
+  color: white;
+  height: 100%;
+  border: 1px solid gray;
+  /* align-items: center; */
 }
 
 /* 이름  *********************************/
-/* 이름 변경 버튼 */
-.change-name-btn {
-  margin: 10px;
-  border: 3px solid gray;
-}
 
 /* 이름 변경 div */
-.div-change-name {
-  margin: 10px;
-  border: 3px solid red;
+.div-open-change-name {
+  background-color: black;
+  position: absolute;
+  top: 20%;
+  left: 28%;
+  width: 40%;
+  height: 70%;
+  border: 5px solid white;
 }
 
 /* 이름 변경 폼 */
-.form-change-name {
+/* .open-change-name {
+  position: absolute;
   margin: 10px;
   border: 3px solid blue;
-}
+} */
 
 /* div Current Username : Coding Kim */
 .div-current-username {
@@ -37,16 +86,20 @@
 }
 /* Current Username : Coding Kim */
 .current-username {
+  color: white;
   margin: 10px;
   display: inline;
   border: 3px solid blue;
 }
-.form-new-user-name {
+.div-new-user-name {
   margin: 10px;
   display: inline;
   border: 3px solid red;
 }
 
+.label-new-user-name {
+  color: white;
+}
 #new-user-name {
   margin: 10px;
   display: inline;
@@ -58,16 +111,16 @@
 }
 
 /* 비밀번호 ********************************/
-/* 비밀번호 변경 버튼 */
-.change-password-btn {
-  margin: 10px;
-  border: 3px solid gray;
-}
 
 /* 비밀번호 div */
-.div-change-password {
-  margin: 10px;
-  border: 3px solid red;
+.div-open-change-password {
+  /* background-color: black; */
+  position: absolute;
+  top: 20%;
+  left: 28%;
+  width: 40%;
+  height: 70%;
+  border: 5px solid white;
 }
 
 /* 비밀번호 변경 폼 */
@@ -101,4 +154,19 @@ label {
 #confirm-user-password {
   border: 3px solid green;
   display: block;
+}
+
+/* width 1300 넘으면 ***********************************************/
+
+@media screen and (min-width: 1300px) {
+  /* 타이틀 profile */
+  .title-profile {
+    /* 화면 커지면 크게 */
+    /* font-size: 1.5em; */
+    font-size: 1.8em;
+  }
+}
+
+/* height 529px(맥북 13인치 최대 보다 작으면 */
+@media screen and (min-height: 530px) {
 }

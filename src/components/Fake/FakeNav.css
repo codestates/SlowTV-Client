@@ -1,28 +1,46 @@
-.test-.nav {
+/* 로고 있는 헤더 네브바 */
+.fake-navbar {
+  /* border: 5px solid red; */
+  /* position: fixed; */
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 90px;
-  border: 5px solid gray;
+  /* height: 3rem; */
 }
 
-.test-logo,
-.test-signIn,
-.test-signUp {
-  display: inline-block;
-  /* border: 1px solid gray; */
-  margin: 30px;
-  font-size: 20px;
+/* SLOWTV 로고 */
+.fake-logo1,
+.fake-test-logo,
+.fake-signIn,
+.fake-signUp {
+  /* border: 5px solid #000000; */
+  color: #fff;
+  /* color: black; */
+  margin-top: 0px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 4rem;
+  cursor: pointer;
+}
+.fake-logo1,
+.fake-test-logo {
+  margin-left: 50px;
 }
 
-.test-logo {
-  /* border: 1px solid gray; */
+.fake-signIn {
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
-.test-signIn {
+/* SLOWTV 로고 */
+
+.fake-span-tv {
+  font-weight: 300;
+}
+
+.fake-signIn,
+.fake-signUp {
   float: right;
-  /* border: 1px solid gray; */
-}
-
-.test-signUp {
-  float: right;
-  /* border: 1px solid gray; */
 }

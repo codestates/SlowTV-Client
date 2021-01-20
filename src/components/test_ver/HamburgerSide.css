@@ -1,46 +1,47 @@
 /* 오른쪽 사이드바 */
-.test-links {
+.opne-hamburger-side-links {
   /* border: 5px solid red; */
-  /* margin-top: 10px; */
-  margin-right: 10px;
-  position: absolute;
-  width: 20%;
+  /* margin-right: 20px; */
+  /* position: absolute; */
+  /* width: 30%; */
   right: 0;
-  top: 0;
-  height: 100vh;
+  /* top: 0; */
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 ul {
   /* list-style: none; */
-  /* margin-top: 90px; */
-  /* margin-top: 40%; */
+  /* border: 3px solid red; */
+  /* margin: 10px; */
 }
 
-.test-links a {
+.opne-hamburger-side-links a {
   /* border: 5px solid blue; */
   text-decoration: none;
   color: #eee;
+  /* padding: 0.7rem 0; */
   padding: 0.5rem 0;
   display: inline-block;
-  font-size: 1rem;
+  /* font-size: 1rem; */
+  font-size: 0.8rem;
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   transition: 0.3;
   /* opacity: 1; */
   transform: translateY(10px);
   /* animation: hide 0.5s forwards ease; */
 }
 
-.test-links a:hover {
+.opne-hamburger-side-links a:hover {
   color: #fff;
-  font-weight: 350;
+  font-weight: 3530;
 }
 
-.container .test-links a {
+.container .side-links a {
   /* animation: appear 0.5s forwards ease var(--i); */
 }
 
@@ -65,6 +66,7 @@ ul {
     transform: translateY(10px);
   }
 }
+
 /* width 1200 넘으면 ************************************************/
 @media screen and (min-width: 1200px) {
   .img_list {
@@ -73,23 +75,16 @@ ul {
   /* 오른쪽 사이드 바 폰트 크기 */
   .test-links a {
     font-size: 1.3rem;
+    /* border: 5px solid blue; */
   }
 }
 
 /* width 1400 넘으면 ***********************************************/
 @media screen and (min-width: 1400px) {
-  .img_list {
-    /* border: 5px solid red; */
-    perspective: 2000px;
-  }
-  ul {
-    /* margin: 0px; */
-  }
   .test-links a {
     padding: 0.7rem 0;
     font-size: 1.5rem;
+    /* border: 5px solid red; */
     /* animation: hide 0.5s forwards ease; */
   }
-
-  /* 이미지 크기 */
 }

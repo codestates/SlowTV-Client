@@ -289,18 +289,18 @@ ul {
   }
 }
 
-/* width 1200 넘으면 */
+/* width 1200 넘으면 ************************************************/
 @media screen and (min-width: 1200px) {
   .img_list {
     /* border: 5px solid red; */
   }
   /* 오른쪽 사이드 바 폰트 크기 */
   .test-links a {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
 
-/* width 1200 넘으면 ***********************************************/
+/* width 1400 넘으면 ***********************************************/
 @media screen and (min-width: 1400px) {
   .img_list {
     /* border: 5px solid red; */
@@ -311,7 +311,7 @@ ul {
   }
   .test-links a {
     padding: 0.7rem 0;
-
+    font-size: 1.5rem;
     /* animation: hide 0.5s forwards ease; */
   }
 

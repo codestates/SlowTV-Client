@@ -1,36 +1,27 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./Contents.css";
-// import Side from "./Side";
+import FakeSide from "./Fake/FakeSide";
 // import { fakeData } from "../Fakedata.js";
-// 왜 안돼?
-// import imgSlowTv1 from "../images/slowtv1.jpeg";
-// import imgSlowTv2 from "../images/slowtv2.jpeg";
 
-const Contents = ({ id, handleOnClick, history }) => {
-  console.log("🚀 ~ file: Contents.js ~ line 11 ~ Contents ~ id", id);
-
-  // 햄버거 사용 시
-  // const testHandleOnClick = () => {
-  //   const container = document.querySelector(".container");
-  //   container.classList.toggle("active");
-  // };
-
+const Contents = ({ history }) => {
+  // 상태 변경 함수가 아니라서 일단 컨테이너 파일이 아닌 프레젠테이셔널 파일에서 작성했습니다
   // SLOW TV 로고 누르면 홈으로
   const handleGoHome = () => {
     history.push("/");
   };
 
-  // 슬라이드 이미지 누르면 순서 변경 함수
+  // 상태 변경 함수가 아니라서 일단 컨테이너 파일이 아닌 프레젠테이셔널 파일에서 작성했습니다
+  // 슬라이드 이미지 누르면 클래스 이름 변경을 통해 css적용이 바뀌고 순서 변경이 되게 만드는 함수
   const handleOnChange = (e) => {
-    console.log("e.target.attributes>>>", e.target);
-
+    // console.log("e.target.attributes>>>", e.target);
     // let className = Number(e.target.attributes.value.value);
     // console.log(
     //   "🚀 ~ file: Contents.js ~ line 19 ~ handleOnChange ~ className",
     //   className
     // );
 
+    // 카드 순서
     // 5->1
     let prevtest5 = document.querySelector(".div-img-five");
     prevtest5.className = "div-img-one";
@@ -120,48 +111,10 @@ const Contents = ({ id, handleOnClick, history }) => {
         </div>
         {/* test */}
         {/* <Side /> */}
-        <div className="test-links">
-          <ul>
-            <li>
-              <Link className="test-Link" to="/">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link className="test-Link" to="/contents/water">
-                Water
-              </Link>
-            </li>
-            <li>
-              <Link className="test-Link" to="/contents/fire">
-                Fire
-              </Link>
-            </li>
-            <li>
-              <Link className="test-Link" to="/contents/snow">
-                Snow
-              </Link>
-            </li>
-            <li>
-              <Link className="test-Link" to="/contents/grass">
-                Grass
-              </Link>
-            </li>
-            <li>
-              <Link className="test-Link" to="/contents/favorite">
-                Favorite
-              </Link>
-            </li>
-            <li>
-              <Link className="test-Link" to="/contents/profile">
-                Profile
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <FakeSide />
       </div>
     </div>
   );
 };
 
-export default withRouter(Contents);
+export default Contents;
