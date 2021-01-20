@@ -14,10 +14,11 @@ const Nav = () => {
         </div>
         <div className="nav-btns">
           <span className="nav-register-btn">Register</span>
-          <span className="nav-login-btn">Login</span>
-        </div>
+          < className="nav-login-btn" onClick={() => setIsModalShow(true)}>Login</button>
+        {/* <button className="nav-login-btn" onClick={() => setIsModalShow(true)}>Login</button> */}
       </div>
     </div>
+    </div >
   );
 };
 

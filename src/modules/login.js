@@ -6,7 +6,7 @@ const LOGIN_FAILED = "login/LOGIN_FAILED";
 
 // 액션 생성 함수 만들기
 // 버튼 클릭
-export const clickedLoginBtn = () => ({ type: LOGIN });
+export const clickedLogin = () => ({ type: LOGIN, payload });
 
 // 로그인 실행
 export const getLogin = (userId) => ({
@@ -16,20 +16,23 @@ export const getLogin = (userId) => ({
         isLoading: true, //성공시 LOGIN_SUCCESS
     }
 });
-export const changedPassword = (e) => ({
+
+export const  = (e) => ({
     type: CHANGEPASSWORD,
     payload: e.target.value,
 });
 
 // 초기 상태 --> 로그인 success가 되면 islogin: true, 
 const initialState = {
-    isLogin: false,
+    isLoggedin: false,
+    email: '',
+    password: '',
 };
 
 // 리듀서
 function login(state = initialState, action) {
     switch (action.type) {
-        case CHANGENAMEBTN:
+        case LOGIN
             return {
                 isClickedChangeNameBtn: !state.isClickedChangeNameBtn,
             };
