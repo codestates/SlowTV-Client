@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import "./Landing.css";
 
-const LandingPage = () => {
+const LandingPage = (props) => {
   return (
     <div className="landing-page">
-
       <div className="nav-container">
         <div className="overlay">
-          <Nav />
+          <Nav handleResponseSuccess={props.handleResponseSuccess} isLoggedin={props.isLoggedin} />
           <Link className="start-link" to="/contents">
             Get Started
           </Link>
@@ -26,8 +25,19 @@ const LandingPage = () => {
       </div>
 
       <div className="landing-middle">
-        {/* <LandingVideos /> */}
-        <video className="landing-video1"></video>
+        <div className="video1-container">
+          <div className="video1-text">Enjoy in your room, listening to the sound of waves and the relaxing crackling bonfire sounds.</div>
+          <iframe className="video1" src="https://drive.google.com/file/d/1a1o7aFcOYbnROTmSHjdYvG6Ii5HLh3Mw/preview" frameBorder="0" allow="autoplay; encrypted-media" title="video" />
+        </div>
+        <div className="video2-container">
+          <iframe className="video2" src="https://drive.google.com/file/d/1a1o7aFcOYbnROTmSHjdYvG6Ii5HLh3Mw/preview" frameBorder="0" allow="autoplay; encrypted-media" title="video" />
+          <div className="video2-text">What do you listen to on the way to work every morning?</div>
+        </div>
+        <div className="">
+          <iframe className="video3" src="https://drive.google.com/file/d/1a1o7aFcOYbnROTmSHjdYvG6Ii5HLh3Mw/preview" frameBorder="0" allow="autoplay; encrypted-media" title="video" />
+        </div>
+        {/* <LandingVideos />
+        <video className="landing-video1"></video> */}
       </div>
 
       <div className="landing-bottom">
@@ -41,7 +51,7 @@ const LandingPage = () => {
 // const LandingVideos = () => {
 //   return (
 //     <div className="landing_video">
-//       <video>video</video>
+//       <video src="https://drive.google.com/file/d/1a1o7aFcOYbnROTmSHjdYvG6Ii5HLh3Mw/preview" type="video/mp4" />
 //     </div>
 //   )
 // }

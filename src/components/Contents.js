@@ -4,7 +4,7 @@ import "./Contents.css";
 import FakeSide from "./Fake/FakeSide";
 // import { fakeData } from "../Fakedata.js";
 
-const Contents = ({ history }) => {
+const Contents = ({ history }, props) => {
   // 상태 변경 함수가 아니라서 일단 컨테이너 파일이 아닌 프레젠테이셔널 파일에서 작성했습니다
   // SLOW TV 로고 누르면 홈으로
   const handleGoHome = () => {
@@ -111,10 +111,10 @@ const Contents = ({ history }) => {
         </div>
         {/* test */}
         {/* <Side /> */}
-        <FakeSide />
+        <FakeSide isLoggedin={props.isLoggedin} />
       </div>
     </div>
   );
 };
 
-export default Contents;
+export default withRouter(Contents);
