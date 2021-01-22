@@ -5,20 +5,22 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { applyMiddleware, createStore } from "redux";
-import rootReducer from "./modules";
+// import rootReducer from "./modules";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createLogger } from "redux-logger";
 import ReduxThunk from "redux-thunk";
 
-const logger = createLogger();
+// const logger = createLogger();
 
-const store = createStore(rootReducer, applyMiddleware(logger, ReduxThunk));
+// const store = createStore(rootReducer, applyMiddleware(logger, ReduxThunk));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter><App /></BrowserRouter>
-  </Provider>,
+  // <Provider store={store}>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  // </Provider>,
   document.getElementById("root")
 );
 
