@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import SideContainer from "../../containers/SideContainer";
+
 import FakeSide from "../Fake/FakeSide";
 import FakeNav from "../Fake/FakeNav";
 // import ThumbnailsContainer from "../../containers/ThumbnailsContainer";
