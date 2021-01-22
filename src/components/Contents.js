@@ -4,12 +4,12 @@ import "./Contents.css";
 import FakeSide from "./Fake/FakeSide";
 // import { fakeData } from "../Fakedata.js";
 
-const Contents = ({ history }) => {
+const Contents = (props) => {
   // 상태 변경 함수가 아니라서 일단 컨테이너 파일이 아닌 프레젠테이셔널 파일에서 작성했습니다
   // SLOW TV 로고 누르면 홈으로
-  const handleGoHome = () => {
-    history.push("/");
-  };
+  // const handleGoHome = () => {
+  //   history.push("/");
+  // };
 
   // 상태 변경 함수가 아니라서 일단 컨테이너 파일이 아닌 프레젠테이셔널 파일에서 작성했습니다
   // 슬라이드 이미지 누르면 클래스 이름 변경을 통해 css적용이 바뀌고 순서 변경이 되게 만드는 함수
@@ -48,9 +48,9 @@ const Contents = ({ history }) => {
     <div>
       <div className="container">
         <div className="content-navbar">
-          <h3 className="logo1" onClick={handleGoHome}>
+          {/* <h3 className="logo1" onClick={handleGoHome}> */}
             SLOW<span>TV</span>
-          </h3>
+          {/* </h3> */}
         </div>
 
         {/* test */}
@@ -111,10 +111,10 @@ const Contents = ({ history }) => {
         </div>
         {/* test */}
         {/* <Side /> */}
-        <FakeSide />
+        <FakeSide a={props.a} />
       </div>
     </div>
   );
 };
 
-export default Contents;
+export default withRouter(Contents);
