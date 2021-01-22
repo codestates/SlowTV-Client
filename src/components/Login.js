@@ -12,8 +12,8 @@ class Login extends React.Component {
       errorMessage: "",
     };
     this.handleInputValue = this.handleInputValue.bind(this);
-    // this.githubLoginHandler = this.githubLoginHandler(this);
-    // this.GITHUB_LOGIN_URL = 'https://github.com/login/oauth/authorize?client_id=value'
+    this.githubLoginHandler = this.githubLoginHandler(this);
+    this.GITHUB_LOGIN_URL = 'https://github.com/login/oauth/authorize?client_id=value'
   }
 
   // githubLoginHandler() {
