@@ -3,7 +3,8 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import "./FakeSide.css";
-const FakeSide = ({ history }) => {
+const FakeSide = (props) => {
+  // const FakeSide = ({ history }, props) => {
   //  const handleOnClick = (e) => {
   //     console.log("e.target.value>>>>", e.target.value);
   //    if (e.target.value) {
@@ -41,18 +42,23 @@ const FakeSide = ({ history }) => {
             Grass
           </Link>
         </li>
-        <li>
-          <Link className="test-Link" to="/contents/favorite">
-            Favorite
+        {props.a === false ?
+          <>
+            <li>
+              <Link className="test-Link" to="/contents/favorite">
+                Favorite
           </Link>
-        </li>
-        <li>
-          <Link className="test-Link" to="/contents/profile">
-            Profile
+            </li>
+            <li>
+              <Link className="test-Link" to="/contents/profile">
+                Profile
           </Link>
-        </li>
+            </li>
+          </>
+          : <></>
+        }
       </ul>
-    </div>
+    </div >
   );
 };
 

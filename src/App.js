@@ -54,7 +54,7 @@ class App extends React.Component {
         < Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         {/* 컨텐츠 ************************************************************/}
-        <Route exact path="/contents" render={() => <Contents isLoggedin={this.state.isLoggedin} />} />
+        <Route exact path="/contents" render={() => <Contents a={this.state.isLoggedin} />} />
         {/* <Route path="/contents" component={ContentsContainer} exact /> */}
         {/* 컨텐츠 - 물,불,눈,풀 */}
         < Route path="/contents/water" component={WaterContainer} />
