@@ -97,3 +97,4 @@ export default LandingPage;
 
 //export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
 // export default connect(mapStateToProps 리덕스 state값 연결, mapDispatchToProps 액션 생성 함수 연결)(ProfileContainer);
+
