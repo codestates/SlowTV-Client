@@ -5,14 +5,14 @@ import { Link, withRouter } from "react-router-dom";
 import "./FakeSide.css";
 const FakeSide = (props) => {
   // const FakeSide = ({ history }, props) => {
-  //  const handleOnClick = (e) => {
-  //     console.log("e.target.value>>>>", e.target.value);
-  //    if (e.target.value) {
-  //      history.push(`/contents/${e.target.value}`);
-  //    } else {
-  //      history.push("/");
-  //    }
-  //  };
+  // const handleOnClick = (e) => {
+  //   console.log("e.target.value>>>>", e.target.value);
+  //   if (e.target.value) {
+  //     history.push(`/contents/${e.target.value}`);
+  //   } else {
+  //     history.push("/");
+  //   }
+  // };
 
   return (
     <div className="test-links">
@@ -42,24 +42,40 @@ const FakeSide = (props) => {
             Grass
           </Link>
         </li>
-        {props.a === false ?
-          <>
-            <li>
-              <Link className="test-Link" to="/contents/favorite">
-                Favorite
+        <li>
+          <Link className="test-Link" to="/contents/favorites" videoData={props.videoData}>
+            Favorites
           </Link>
-            </li>
-            <li>
-              <Link className="test-Link" to="/contents/profile">
-                Profile
+        </li>
+        <li>
+          <Link className="test-Link" to="/contents/profile">
+            Profile
           </Link>
-            </li>
-          </>
-          : <></>
-        }
+        </li>
       </ul>
     </div >
   );
 };
 
 export default withRouter(FakeSide);
+
+
+// {props.isLoggedin === true ?
+//   <>
+//     <li>
+//       <Link className="test-Link" to="/contents/favorites">
+//         Favorites
+//   </Link>
+//     </li>
+//     <li>
+//       <Link className="test-Link" to="/contents/profile">
+//         Profile
+//   </Link>
+//     </li>
+//   </>
+//   : <></>
+// }
+// </ul>
+// </div >
+// );
+// };

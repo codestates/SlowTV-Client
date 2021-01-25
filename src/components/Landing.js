@@ -11,6 +11,7 @@ const LandingPage = (props) => {
           <Nav
             handleResponseSuccess={props.handleResponseSuccess}
             isLoggedin={props.isLoggedin}
+            handleLoggedin={props.handleLoggedin}
           />
           <>
             <Link className="start-link" to="/contents">
@@ -90,6 +91,3 @@ const LandingPage = (props) => {
 // }
 
 export default LandingPage;
-
-//export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
-// export default connect(mapStateToProps 리덕스 state값 연결, mapDispatchToProps 액션 생성 함수 연결)(ProfileContainer);
