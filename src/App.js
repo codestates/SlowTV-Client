@@ -40,8 +40,13 @@ class App extends React.Component {
       isLoggedin: false,
       videoData: null,
       email: "",
-      nickname: ""
-    }
+      nickname: "",
+      isModalOpen: "",
+      userInfo: "",
+      isClickedSignInToggle: "",
+      videoId: "",
+      isLogoutModalOpen: false,
+    };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleGetUserInfo = this.handleGetUserInfo.bind(this);
   }
@@ -92,6 +97,32 @@ class App extends React.Component {
       })
   }
 
+  handleOpenModal = () => { };
+  handleSignInToggle = () => { };
+  handleVideoId = () => { };
+
+  handleLogout = () => {
+    axios
+      .post("https://server.slowtv24.com/logout", null, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          isLoggedin: false,
+        });
+        this.handleLogoutModalClose();
+      })
+      .catch((err) => err);
+  };
+
+  handleLogoutModalOpen = () => {
+    this.setState({ isLogoutModalOpen: true });
+  };
+  handleLogoutModalClose = () => {
+    this.setState({ isLogoutModalOpen: false });
+  };
+
   handleResponseSuccess() {
     this.setState({
       isLoggedin: true,
@@ -116,6 +147,11 @@ class App extends React.Component {
               handleGetUserInfo={this.handleGetUserInfo}
               email={this.state.email}
               nickname={this.state.nickname}
+
+              handleLogout={this.handleLogout}
+              handleLogoutModalOpen={this.handleLogoutModalOpen}
+              handleLogoutModalClose={this.handleLogoutModalClose}
+              isLogoutModalOpen={this.state.isLogoutModalOpen}
             />
           )}
         />
@@ -130,6 +166,7 @@ class App extends React.Component {
             nickname={this.state.nickname}
           />
         )} />
+        {/* <Route path="/login" component={Login} /> */}
         <Route path="/signup" component={SignUp} />
         {/* 컨텐츠 ************************************************************/}
         <Route
@@ -159,7 +196,7 @@ class App extends React.Component {
       /> */}
         {/* 비디오 플레이어 *********************************************************/}
         <Route path="/watch" component={VideoPlayer} />
-      </Router>
+      </Router >
     );
   }
 }

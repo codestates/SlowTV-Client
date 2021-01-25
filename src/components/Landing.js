@@ -16,6 +16,11 @@ const LandingPage = (props) => {
             handleGetUserInfoSocial={props.handleGetUserInfoSocial}
             email={props.email}
             nickname={props.nickname}
+
+            handleLogout={props.handleLogout}
+            handleLogoutModalOpen={props.handleLogoutModalOpen}
+            handleLogoutModalClose={props.handleLogoutModalClose}
+            isLogoutModalOpen={props.isLogoutModalOpen}
           />
           <>
             <Link className="start-link" to="/contents">

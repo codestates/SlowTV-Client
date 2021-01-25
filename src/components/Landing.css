@@ -61,7 +61,6 @@
   -webkit-box-flex: 0;
   flex: 0 1 auto;
   padding: 0 3rem 0 0;
-  z-index: 3;
 }
 .video1 {
   margin-top: 50px;
@@ -88,7 +87,6 @@
   -webkit-box-flex: 0;
   flex: 0 1 auto;
   padding: 0 3rem 0 0;
-  z-index: 3;
 }
 .video2 {
   margin-top: 50px;
@@ -116,7 +114,6 @@
   -webkit-box-flex: 0;
   flex: 0 1 auto;
   padding: 0 3rem 0 0;
-  z-index: 3;
 }
 .video3 {
   margin-top: 50px;
