@@ -9,6 +9,8 @@ const ProfileContainer = ({
   isModalClicked,
   isLoggedIn,
   clickLogout,
+  githubAccessToken,
+  googleAccessToken,
 }) => {
   return (
     <Profile
@@ -17,6 +19,8 @@ const ProfileContainer = ({
       isModalClicked={isModalClicked}
       isLoggedIn={isLoggedIn}
       clickLogout={clickLogout}
+      githubAccessToken={githubAccessToken}
+      googleAccessToken={googleAccessToken}
     />
   );
 };
@@ -26,6 +30,8 @@ const mapStateToProps = (state) => ({
   nickname: state.login.nickname,
   isModalClicked: state.modal.isModalClicked,
   isLoggedIn: state.login.isLoggedIn,
+  githubAccessToken: state.login.githubAccessToken,
+  googleAccessToken: state.login.googleAccessToken,
 });
 
 const mapDispatchToProps = (dispatch) => ({

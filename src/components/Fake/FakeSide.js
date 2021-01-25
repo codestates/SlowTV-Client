@@ -4,25 +4,43 @@ import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 
 import "./FakeSide.css";
-const FakeSide = ({ history, handleOnClickCategory, videoData }) => {
+const FakeSide = ({
+  history,
+  handleOnClickCategory,
+  videoData,
+  isLoggedIn,
+  closeModal,
+}) => {
   // ! 페이보릿 제외한 영상 카테고리
   const handleGoCategory = async (e) => {
     const category = e.target.attributes.value.value;
-    const video = await axios(`https://mayweather24.com/category/${category}`, {
-      withCredentials: true,
-    });
-    // console.log(
-    //   "🚀 ~ file: FakeSide.js ~ line 15 ~ handleGoCategory ~ video",
-    //   video.data.contents
-    // );
-    handleOnClickCategory(video.data.contents);
+    if (category === "profile") {
+      closeModal();
+    } else {
+      const video = await axios(
+        `https://mayweather24.com/category/${category}`,
+        {
+          withCredentials: true,
+        }
+      );
+      // console.log(
+      //   "🚀 ~ file: FakeSide.js ~ line 15 ~ handleGoCategory ~ video",
+      //   video.data.contents
+      // );
+      handleOnClickCategory(video.data.contents);
+      closeModal();
+      history.push(`/contents/${category}`);
+    }
   };
 
   // ! 페이보릿 카테고리
   const handleGoFavorites = async (e) => {
+    // ! 게스트인 경우, 페이보릿 아무 것도 없음
+    if (!isLoggedIn) {
+      handleOnClickCategory(null);
+    }
+    // ! 로그인한 경우
     const category = e.target.attributes.value.value;
-
-    // https://mayweather24.com 우선 여기서 이용 부탁드려요.
     console.log("페이보릿 클릭");
     const favorites = await axios(`https://mayweather24.com/${category}`, {
       withCredentials: true,
@@ -36,7 +54,7 @@ const FakeSide = ({ history, handleOnClickCategory, videoData }) => {
       favorites.data.userFavorites
     );
     console.log("2");
-    if (favorites.data.userFavorites) {
+    if (isLoggedIn && favorites.data.userFavorites) {
       handleOnClickCategory(favorites.data.userFavorites);
     } else {
       handleOnClickCategory(null);
@@ -63,32 +81,32 @@ const FakeSide = ({ history, handleOnClickCategory, videoData }) => {
           </Link>
         </li>
         <li>
-          <Link className="side_Link" to="/contents/water">
-            <div value="water" onClick={handleGoCategory}>
-              Water
-            </div>
-          </Link>
+          {/* <Link className="side_Link" to="/contents/water"> */}
+          <div value="water" onClick={handleGoCategory}>
+            Water
+          </div>
+          {/* </Link> */}
         </li>
         <li>
-          <Link className="side_Link" to="/contents/fire">
-            <div value="fire" onClick={handleGoCategory}>
-              Fire
-            </div>
-          </Link>
+          {/* <Link className="side_Link" to="/contents/fire"> */}
+          {/* <div value="fire" onClick={handleGoCategory}> */}
+          Fire
+          {/* </div> */}
+          {/* </Link> */}
         </li>
         <li>
-          <Link className="side_Link" to="/contents/snow">
-            <div value="snow" onClick={handleGoCategory}>
-              Snow
-            </div>
-          </Link>
+          {/* <Link className="side_Link" to="/contents/snow"> */}
+          {/* <div value="snow" onClick={handleGoCategory}> */}
+          Snow
+          {/* </div> */}
+          {/* </Link> */}
         </li>
         <li>
-          <Link className="side_Link" to="/contents/grass">
-            <div value="grass" onClick={handleGoCategory}>
-              Grass
-            </div>
-          </Link>
+          {/* <Link className="side_Link" to="/contents/grass"> */}
+          {/* <div value="grass" onClick={handleGoCategory}> */}
+          Grass
+          {/* </div> */}
+          {/* </Link> */}
         </li>
         <li>
           <Link className="side_Link" to="/contents/favorites">
@@ -99,7 +117,9 @@ const FakeSide = ({ history, handleOnClickCategory, videoData }) => {
         </li>
         <li>
           <Link className="side_Link" to="/contents/profile">
-            Profile
+            <div value="profile" onClick={handleGoCategory}>
+              Profile
+            </div>
           </Link>
         </li>
       </ul>

@@ -1,3 +1,4 @@
+// 원래 페이보릿.js
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 // import SideContainer from "../../containers/SideContainer";
@@ -7,14 +8,13 @@ import ModalContainer from "../containers/ModalContainer";
 // import ThumbnailsContainer from "../../containers/ThumbnailsContainer";
 // import HamburgerContainer from "../../containers/SideContainer";
 import "../components/contents/Water.css";
-
-// import { ICON_NAME } from "react-icons/TYPE
-// 즐겨찾기 전 손가락, 별 둘 둥 하나 선택
-import { AiOutlineLike } from "react-icons/ai";
-import { BsStar } from "react-icons/bs";
-// 즐겨찾기 후
-import { AiFillLike } from "react-icons/ai";
-import { BsStarFill } from "react-icons/bs";
+import FavoritesEntry from "./FavoritesEntry";
+// import FavoriteEntryContainer from "../containers/FavoritesEntryContainer";
+import Test from "./test.js";
+import axios from "axios";
+import "./Favorites.css";
+import outlineLike from "../img/OutlineLike.png";
+import fillLike from "../img/FillLike.png";
 
 const Favorites = ({
   id,
@@ -28,26 +28,140 @@ const Favorites = ({
   addFavorites,
   isAddFavoirtes,
   isLoggedIn,
+  handleOnClickCategory,
 }) => {
-  console.log("🚀 ~ file: Favorites.js ~ line 31 ~ videoData", videoData);
+  // console.log("🚀 ~ file: Favorites.js ~ line 31 ~ videoData", videoData);
   // ! 썸네일 클릭 시 비디오 아이디 구하기 -> 비디오 플레이어에서 해당 아이디 영상 재생
-  const getVideoId = (e) => {
-    const id = e.target.attributes.value.value;
-    console.log("🚀 ~ file: Water.js ~ line 36 ~ getVideoId ~ id", id);
-    clickThumbnail(id);
+  // const getVideoId = (e) => {
+  //   const id = e.target.attributes.value.value;
+  //   console.log("🚀 ~ file: Water.js ~ line 36 ~ getVideoId ~ id", id);
+  //   clickThumbnail(id);
+  // };
+
+  // ! 즐겨찾기 수정 후 비디오 새로고침
+  const handleGoCategory = async (e) => {
+    // const category = e.target.attributes.value.value;
+    const video = await axios(`https://mayweather24.com/favorites`, {
+      withCredentials: true,
+    });
+    console.log(
+      "🚀 ~ file: FakeSide.js ~ line 15 ~ handleGoCategory ~ video",
+      video.data.userFavorites
+    );
+    handleOnClickCategory(video.data.userFavorites);
   };
+
+  // ! 썸네일 클릭 시 비디오 아이디 구하기 -> 비디오 플레이어에서 해당 아이디 영상 재생
+  const getVideoData = async (e) => {
+    const videoId = e.target.attributes.value.value; // ! 제거 시 여기서 에러
+    const id = videoId.split(" ")[0];
+    const isAdded = videoId.split(" ")[1];
+
+    // ! 썸네일 클릭 시 -> 영상 재생
+    if (!isAdded) {
+      clickThumbnail(id);
+    } else if (isLoggedIn && isAdded) {
+      // ! 추가
+      const video = videoData.filter((data) => data.id === Number(id));
+      if (isAdded === "undefined") {
+        const favorites = await axios.post(
+          "https://mayweather24.com/add-favorite",
+          {
+            link: video[0].contentlink,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(
+          "🚀 ~ file: Water.js ~ line 50 ~ getVideoData ~ favorites",
+          favorites
+        );
+
+        handleGoCategory();
+      } else if (isLoggedIn && isAdded) {
+        // ! 제거
+        const favorites = await axios.post(
+          "https://mayweather24.com/delete-favorite",
+          {
+            link: video[0].contentlink,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(
+          "🚀 ~ file: Water.js ~ line 50 ~ getVideoData ~ favorites",
+          favorites
+        );
+
+        handleGoCategory();
+      }
+    } else if (!isLoggedIn) {
+      // 얼럿 말고 직접 만들기
+      alert("로그인 시 사용 가능합니다 맨 마지막 분기.");
+    }
+  };
+
+  // ! videoData mapping
+  let videoList = null;
+  if (videoData) {
+    console.log("🚀 ~ file: Favorites.js ~ line 47 ~ videoData", videoData);
+    videoList = videoData.map((video) => (
+      <div className="favorites_page_thumbnail" key={video.id}>
+        {console.log("🚀 ~ file: Favorites.js ~ line 146 ~ video", video)}
+        <div
+          className="favorites_page_thumbnail__btn_box"
+          // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
+          value={video.id}
+          onClick={getVideoData}
+        >
+          <div
+            className="favorites_page_thumbnail__btn"
+            value={`${video.id} ${video.isFavorite}`}
+          >
+            {video.isFavorite ? (
+              <img
+                className="water_page_thumbnail__btn_icon"
+                src={fillLike}
+                alt="fillLike"
+                value={`${video.id} ${video.isFavorite}`}
+              ></img>
+            ) : (
+              <img
+                className="water_page_thumbnail__btn_icon"
+                src={outlineLike}
+                alt="outlineLike"
+                value={`${video.id} ${video.isFavorite}`}
+              ></img>
+            )}
+          </div>
+        </div>
+        <img
+          className="favorites_page_thumbnail_img"
+          src={video.thumbnail}
+          alt="undefined thumbnail"
+          // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
+          // onClick={getVideoId}
+          // value={video.id}
+        ></img>
+      </div>
+    ));
+  }
+
   return (
-    <div className="water_page">
+    <div className="favorites_page">
+      {/* //! 비디오 데이터 없으면 */}
       {!videoData ? (
         isLoggedIn ? (
-          <div className="loaded_water_page">
+          <div className="loaded_favorites_page">
             <NavContainer />
             <FakeSideContainer />
             {isModalClicked ? <ModalContainer /> : <div></div>}
             <div>아직 추가한 즐겨찾기가 없습니다.</div>
           </div>
         ) : (
-          <div className="loaded_water_page">
+          <div className="loaded_favorites_page">
             <NavContainer />
             <FakeSideContainer />
             {isModalClicked ? <ModalContainer /> : <div></div>}
@@ -55,209 +169,17 @@ const Favorites = ({
           </div>
         )
       ) : (
-        <div className="loaded_water_page">
+        <div className="loaded_favorites_page">
+          {/* //! 비디오 데이터 있을 때, 페이보릿이 몇 개인지 모르기 때문에 맵으로 뿌려줘야 할 듯 */}
           {/* <Nav /> */}
           <NavContainer />
           <FakeSideContainer />
           {isModalClicked ? <ModalContainer /> : <div></div>}
+          {/* <Test /> */}
           {/* 썸네일 컨테이너 */}
-          <div className="water_page_container">
-            <div className="water_page_small_size_lists">
-              {/* thumbnail x 12 */}
-              {/* 1 */}
-              <div className="water_page_thumbnail_1">
-                <div
-                  className="water_page_thumbnail__btn_box"
-                  // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-                  value={videoData[0].id}
-                  onClick={getVideoId}
-                >
-                  <button className="water_page_thumbnail__btn">
-                    {videoData[0].isFavorite ? (
-                      <AiFillLike className="water_page_thumbnail__btn_icon" />
-                    ) : (
-                      <AiOutlineLike className="water_page_thumbnail__btn_icon" />
-                    )}
-                  </button>
-                </div>
-                <img
-                  className="water_page_thumbnail_img"
-                  src={videoData[0].thumbnail}
-                  alt="undefined thumbnail"
-                  // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-                  // onClick={getVideoId}
-                  // value={videoData[0].id}
-                ></img>
-              </div>
-              {/* 2 */}
-              <div className="water_page_thumbnail_2">
-                <div
-                  className="water_page_thumbnail__btn_box"
-                  // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-                  value={videoData[1].id}
-                  onClick={getVideoId}
-                >
-                  <button className="water_page_thumbnail__btn">
-                    {videoData[1].isFavorite ? (
-                      <AiFillLike className="water_page_thumbnail__btn_icon" />
-                    ) : (
-                      <AiOutlineLike className="water_page_thumbnail__btn_icon" />
-                    )}
-                  </button>
-                </div>
-                <img
-                  alt="undefined thumbnail"
-                  className="water_page_thumbnail_img"
-                  src={videoData[1].thumbnail}
-                  // onClick={getVideoId}
-                  // value={videoData[1].id}
-                ></img>
-              </div>
-              {/* 3 */}
-              <div className="water_page_thumbnail_3">
-                <div
-                  className="water_page_thumbnail__btn_box"
-                  // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-                  value={videoData[2].id}
-                  onClick={getVideoId}
-                >
-                  <button className="water_page_thumbnail__btn">
-                    {videoData[2].isFavorite ? (
-                      <AiFillLike className="water_page_thumbnail__btn_icon" />
-                    ) : (
-                      <AiOutlineLike className="water_page_thumbnail__btn_icon" />
-                    )}
-                  </button>
-                </div>
-                <img
-                  className="water_page_thumbnail_img"
-                  src={videoData[2].thumbnail}
-                  alt="undefined thumbnail"
-                  // onClick={getVideoId}
-                  // value={videoData[2].id}
-                ></img>
-              </div>
-              {/* 4 */}
-              <div className="water_page_thumbnail_4">
-                <div
-                  className="water_page_thumbnail__btn_box"
-                  // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-                  value={videoData[3].id}
-                  onClick={getVideoId}
-                >
-                  <button className="water_page_thumbnail__btn">
-                    {videoData[3].isFavorite ? (
-                      <AiFillLike className="water_page_thumbnail__btn_icon" />
-                    ) : (
-                      <AiOutlineLike className="water_page_thumbnail__btn_icon" />
-                    )}
-                  </button>
-                </div>
-                <img
-                  className="water_page_thumbnail_img"
-                  src={videoData[3].thumbnail}
-                  alt="undefined thumbnail"
-                  // onClick={getVideoId}
-                  // value={videoData[3].id}
-                ></img>
-              </div>
-              {/* 5 */}
-              <div className="water_page_thumbnail_5">
-                <div
-                  className="water_page_thumbnail__btn_box"
-                  // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-                  value={videoData[4].id}
-                  onClick={getVideoId}
-                >
-                  <button className="water_page_thumbnail__btn">
-                    {videoData[4].isFavorite ? (
-                      <AiFillLike className="water_page_thumbnail__btn_icon" />
-                    ) : (
-                      <AiOutlineLike className="water_page_thumbnail__btn_icon" />
-                    )}
-                  </button>
-                </div>
-                <img
-                  className="water_page_thumbnail_img"
-                  src={videoData[4].thumbnail}
-                  alt="undefined thumbnail"
-                  // onClick={getVideoId}
-                  // value={videoData[4].id}
-                ></img>
-              </div>
-              {/* 6 */}
-              <div className="water_page_thumbnail_6">
-                <div
-                  className="water_page_thumbnail__btn_box"
-                  // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-                  value={videoData[5].id}
-                  onClick={getVideoId}
-                >
-                  <button className="water_page_thumbnail__btn">
-                    {videoData[5].isFavorite ? (
-                      <AiFillLike className="water_page_thumbnail__btn_icon" />
-                    ) : (
-                      <AiOutlineLike className="water_page_thumbnail__btn_icon" />
-                    )}
-                  </button>
-                </div>
-                <img
-                  className="water_page_thumbnail_img"
-                  src={videoData[5].thumbnail}
-                  alt="undefined thumbnail"
-                  // onClick={getVideoId}
-                  // value={videoData[5].id}
-                ></img>
-              </div>
-              {/* 7 */}
-              <div className="water_page_thumbnail_7">
-                <div
-                  className="water_page_thumbnail__btn_box"
-                  // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-                  value={videoData[6].id}
-                  onClick={getVideoId}
-                >
-                  <button className="water_page_thumbnail__btn">
-                    {videoData[6].isFavorite ? (
-                      <AiFillLike className="water_page_thumbnail__btn_icon" />
-                    ) : (
-                      <AiOutlineLike className="water_page_thumbnail__btn_icon" />
-                    )}
-                  </button>
-                </div>
-                <img
-                  className="water_page_thumbnail_img"
-                  src={videoData[6].thumbnail}
-                  alt="undefined thumbnail"
-                  // onClick={getVideoId}
-                  // value={videoData[6].id}
-                ></img>
-              </div>
-              {/* 8 */}
-              <div className="water_page_thumbnail_8">
-                <div
-                  className="water_page_thumbnail__btn_box"
-                  // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-                  value={videoData[7].id}
-                  onClick={getVideoId}
-                >
-                  <button className="water_page_thumbnail__btn">
-                    {videoData[7].isFavorite ? (
-                      <AiFillLike className="water_page_thumbnail__btn_icon" />
-                    ) : (
-                      <AiOutlineLike className="water_page_thumbnail__btn_icon" />
-                    )}
-                  </button>
-                </div>
-                <img
-                  className="water_page_thumbnail_img"
-                  src={videoData[7].thumbnail}
-                  alt="undefined thumbnail"
-                  // onClick={getVideoId}
-                  // value={videoData[7].id}
-                ></img>
-              </div>
-            </div>
+          <div className="favorites_page_container">
+            {/* thumbnail x 12 */}
+            <div className="water_page_small_size_lists">{videoList}</div>
           </div>
           {/* 썸네일 컨테이너 끝 */}
         </div>

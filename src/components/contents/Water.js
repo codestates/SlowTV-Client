@@ -52,32 +52,18 @@ const Water = ({
 
   // ! 썸네일 클릭 시 비디오 아이디 구하기 -> 비디오 플레이어에서 해당 아이디 영상 재생
   const getVideoData = async (e) => {
-    console.log(
-      "🚀 ~ file: Water.js ~ line 60 ~ getVideoData ~ e",
-      e.target.attributes.value.value
-      //.value.value
-    );
     const videoId = e.target.attributes.value.value;
+    const id = videoId.split(" ")[0];
+    const isAdded = videoId.split(" ")[1];
 
-    if (typeof videoId === Number) {
-      // clickThumbnail(videoId);
-      console.log(
-        "🚀 ~ file: Water.js ~ line 42 ~ getVideoData ~ videoId",
-        videoId
-      );
-    } else if (isLoggedIn && typeof videoId !== Number) {
-      const id = videoId.split(" ")[0];
-      console.log("🚀 ~ file: Water.js ~ line 57 ~ getVideoData ~ id", id);
-      const isAdded = videoId.split(" ")[1];
-      console.log(
-        "🚀 ~ file: Water.js ~ line 59 ~ getVideoData ~ isAdded",
-        isAdded
-      );
+    if (!isAdded) {
+      clickThumbnail(id);
+    } else if (isLoggedIn && isAdded) {
       // ! 추가
       const video = videoData.filter((data) => data.id === Number(id));
       if (isAdded === "undefined") {
         const favorites = await axios.post(
-          "https://mayweather24.com/addfavorite",
+          "https://mayweather24.com/add-favorite",
           {
             link: video[0].contentlink,
           },
@@ -89,12 +75,12 @@ const Water = ({
           "🚀 ~ file: Water.js ~ line 50 ~ getVideoData ~ favorites",
           favorites
         );
-        // setRefresh("added");
+
         handleGoCategory();
-      } else {
+      } else if (isLoggedIn && isAdded) {
         // ! 제거
         const favorites = await axios.post(
-          "https://mayweather24.com/deletefavorite",
+          "https://mayweather24.com/delete-favorite",
           {
             link: video[0].contentlink,
           },
@@ -106,13 +92,12 @@ const Water = ({
           "🚀 ~ file: Water.js ~ line 50 ~ getVideoData ~ favorites",
           favorites
         );
-        // ! 임시 새로고침 용
-        // setRefresh("deleted");
+
         handleGoCategory();
       }
-    } else if (!isLoggedIn && typeof videoId !== Number) {
+    } else if (!isLoggedIn) {
       // 얼럿 말고 직접 만들기
-      alert("로그인 시 사용 가능합니다.");
+      alert("로그인 시 사용 가능합니다 맨 마지막 분기.");
     }
   };
 

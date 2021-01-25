@@ -7,9 +7,10 @@ import ModalContainer from "../containers/ModalContainer";
 import { Link, withRouter } from "react-router-dom";
 import "./Landing.css";
 
-const Landing = ({ history, isLoggedIn, isModalClicked }) => {
+const Landing = ({ history, isLoggedIn, isModalClicked, closeModal }) => {
   // ! 컨텐츠로 이동
   const handleGetStarted = () => {
+    closeModal();
     history.push("/contents");
   };
 

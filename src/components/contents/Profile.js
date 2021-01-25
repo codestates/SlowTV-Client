@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 // import Side from "../Side";
-import FakeSide from "../Fake/FakeSide";
+import FakeSideContainer from "../../containers/FakeSideContainer";
 import NavContainer from "../../containers/NavContainer";
 import ModalContainer from "../../containers/ModalContainer";
 import "./Profile.css";
@@ -18,6 +18,8 @@ const Profile = ({
   isModalClicked,
   isLoggedIn,
   clickLogout,
+  githubAccessToken,
+  googleAccessToken,
 }) => {
   // New name
   const [newNameInputValue, setNewNameInputValue] = useState("");
@@ -108,9 +110,11 @@ const Profile = ({
   //test
 
   const consoleTest = (e) => {
-    const route = e.target.attributes.value.value;
-    // console.log(   "🚀 route",   route );
-    history.push(`/contents/profile/${route}`);
+    if (!githubAccessToken && !googleAccessToken) {
+      const route = e.target.attributes.value.value;
+      // console.log(   "🚀 route",   route );
+      history.push(`/contents/profile/${route}`);
+    }
   };
 
   const handleLogout = async () => {
@@ -136,7 +140,7 @@ const Profile = ({
   return (
     <div className="profile_page">
       <NavContainer />
-      <FakeSide />
+      <FakeSideContainer />
       {isModalClicked ? <ModalContainer /> : <div></div>}
       {/* 프로필 시작 */}
       {isLoggedIn ? (
@@ -147,7 +151,7 @@ const Profile = ({
             <div className="profile_page_current_user_id">ID :</div>
             <div className="profile_page_current_user_id_value">{email}</div>
           </div>
-          {/* User naem */}
+          {/* // !User naem */}
           <div
             className="profile_page_box_username"
             onClick={consoleTest}
@@ -168,26 +172,29 @@ const Profile = ({
             {/* <div className="profile_page_change_username">New Username :</div> */}
             {/* <input className="profile_page_change_username_value"></input> */}
           </div>
-          {/* User PW */}
-          <div
-            className="profile_page_box_user_password"
-            onClick={consoleTest}
-            value="update-password"
-          >
+          {/* // ! User PW */}
+          {githubAccessToken || googleAccessToken ? null : (
             <div
-              className="profile_page_change_user_password"
+              className="profile_page_box_user_password"
+              onClick={consoleTest}
               value="update-password"
             >
-              New Password :
+              <div
+                className="profile_page_change_user_password"
+                value="update-password"
+              >
+                New Password :
+              </div>
+              <div
+                className="profile_page_change_user_password_value"
+                value="update-password"
+              >
+                12345678
+              </div>
             </div>
-            <div
-              className="profile_page_change_user_password_value"
-              value="update-password"
-            >
-              12345678
-            </div>
-          </div>
-          {/* Logout Btn */}
+          )}
+
+          {/* // !Logout Btn */}
           <div className="profile_page_box_logout_btn">
             <button className="profile_page_logout_btn" onClick={handleLogout}>
               Logout

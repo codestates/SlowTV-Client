@@ -4,7 +4,8 @@ import "./Modal.css";
 import axios from "axios";
 
 const Modal = ({
-  setIsClicked,
+  openModal,
+  closeModal,
   isLoggedIn,
   clickSignIn,
   clickLogout,
@@ -12,15 +13,37 @@ const Modal = ({
   changeNickName,
   email,
   nickname,
+  handleOnClickCategory,
+  githubAccessToken,
+  googleAccessToken,
+  getGithubAccessToken,
+  getGoogleAccessToken,
+  changeSignUp,
   history,
 }) => {
+  // ! 소셜 로그인
+  // ! GitHub OAuth URL // ! client id 변수 처리 하기
+  const GITHUB_LOGIN_URL =
+    "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
+  const githubLoginHandler = () => {
+    window.location.assign(GITHUB_LOGIN_URL);
+    const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
+    const isCategory = url.pathname.split("/")[1];
+    const nowPage = url.pathname.split("/")[2];
+    // 여기서 실행해봤자 안 됨.
+    history.push("/");
+  };
+  // ! Google OAuth URL // scope는 스페이스로 구분
+  const GOOGLE_LOGIN_URL =
+    "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/login&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
+  const googleLoginHandler = () => {
+    window.location.assign(GOOGLE_LOGIN_URL);
+  };
+
+  // ! 모달창 로그인 시 인풋
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
   const [usernameInputValue, setUsernameInputValue] = useState("");
-
-  // 회원가입 버튼 누르고 새로고침 안되서 임시용
-  const [refresh, setRefresh] = useState("");
-
   const handleInputValue = (key) => (e) => {
     if (key === "email") {
       setEmailInputValue(e.target.value);
@@ -34,28 +57,8 @@ const Modal = ({
     }
   };
 
-  // ! postUserInfo
-  // https://server.slowtv24.com/userinfo
-  // https://mayweather24.com/userinfo
-  const handleGetUserInfo = async () => {
-    // const userInfo = await axios("https://server.slowtv24.com/userinfo", {
-    const userInfoData = await axios("https://mayweather24.com/userinfo", {
-      withCredentials: true,
-    });
-    console.log(
-      "🚀 ~ file: Login.js ~ line 69 ~ handleGetUserInfo ~ userInfoData?!?",
-      userInfoData.data.userInfo
-    );
-    changeEmail(userInfoData.data.userInfo.email);
-    changeNickName(userInfoData.data.userInfo.nickname);
-    setIsClicked();
-    // history.push("/contents");
-  };
-
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
-    console.log("emailInputValue", emailInputValue);
-    console.log("passwordInputValue", passwordInputValue);
     const signIn = await axios.post(
       // "https://server.slowtv24.com/login",
       "https://mayweather24.com/login",
@@ -67,23 +70,76 @@ const Modal = ({
         withCredentials: true,
       }
     );
-    console.log(
-      "🚀 ~ file: Login.js ~ line 51 ~ clickSignInBtn ~ signIn",
-      signIn
-    );
+
     if (signIn.data !== undefined) {
       clickSignIn();
       handleGetUserInfo();
+      // ! 비디오 데이터 새로 가져오기 추가, 아래 로그아웃과 같은 문제임, 현재 유알엘 그대로 가져오기
+      const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
+      const isCategory = url.pathname.split("/")[1];
+      const nowPage = url.pathname.split("/")[2];
+
+      if (nowPage !== "profile" && nowPage !== "favorites") {
+        const video = await axios(
+          `https://mayweather24.com/category/${nowPage}`,
+          {
+            withCredentials: true,
+          }
+        );
+        handleOnClickCategory(video.data.contents);
+        // closeModal();
+      } else if (nowPage === "favorites") {
+        const video = await axios(`https://mayweather24.com/${nowPage}`, {
+          withCredentials: true,
+        });
+        console.log(
+          "🚀 ~ file: Modal.js ~ line 91 ~ clickSignInBtn ~ video",
+          video
+        );
+        handleOnClickCategory(video.data.userFavorites);
+      }
+      // closeModal();
+    }
+  };
+
+  // ! 유저 정보 업데이트
+  const handleGetUserInfo = async () => {
+    // const userInfo = await axios("https://server.slowtv24.com/userinfo", {
+    const userInfoData = await axios("https://mayweather24.com/userinfo", {
+      withCredentials: true,
+    });
+    changeEmail(userInfoData.data.userInfo.email);
+    changeNickName(userInfoData.data.userInfo.nickname);
+    closeModal();
+  };
+
+  // ! 로그아웃 후 비디오 즐겨찾기 새로고침
+  const handleGoCategory = async (e) => {
+    // ! 지금은 Water지만 유알엘 따와서 해당 페이지에 그대로 남아있게 하기
+    // const category = e.target.attributes.value.value;
+    const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
+    // const isCategory = url.pathname.split("/")[1];
+    const nowPage = url.pathname.split("/")[2];
+
+    if (nowPage !== "profile" && nowPage !== "favorites") {
+      const video = await axios(
+        `https://mayweather24.com/category/${nowPage}`,
+        {
+          withCredentials: true,
+        }
+      );
+      // 카테코리 클릭 효과 -> 비디오 업데이트
+      handleOnClickCategory(video.data.contents);
+    } else if (nowPage === "favorites") {
+      handleOnClickCategory(null);
     }
   };
 
   //! 로그아웃
   const handleLogout = async () => {
-    console.log("핸들로그아웃");
-
     const logout = await axios.post(
-      "https://mayweather24.com/logout",
       // "https://server.slowtv24.com/logout",
+      "https://mayweather24.com/logout",
       null,
       {
         withCredentials: true,
@@ -95,11 +151,17 @@ const Modal = ({
     );
     // if (logout !== undefined) {
     clickLogout();
+    getGithubAccessToken(null);
+    getGoogleAccessToken(null);
+    changeEmail(null);
+    changeNickName(null);
+    handleGoCategory();
     // }
   };
 
-  // Sign Up 버튼 클릭시 페이지로 이동
+  // ! Sign Up 버튼 클릭시 페이지로 이동
   const handleGoSignUpPage = () => {
+    changeSignUp();
     history.push("/login");
   };
 
@@ -110,6 +172,15 @@ const Modal = ({
       {isLoggedIn ? (
         // ! 로그인 시 모달창 아이콘 클릭
         <div className="modal_is_logged_in">
+          {/* //! 모달창 종료 버튼 */}
+          <div className="modal_is_logged_in_close_btn_box">
+            <button
+              className="modal_is_logged_in_close_btn"
+              onClick={closeModal}
+            >
+              x
+            </button>
+          </div>
           {/* // ! 유저 이름 */}
           {nickname ? (
             <div className="modal_my_profile_username">Hi, {nickname}</div>
@@ -143,6 +214,15 @@ const Modal = ({
       ) : (
         // !비회원이 모달 클릭한 경우
         <div className="modal_is_not_logged_in">
+          {/* //! 모달창 종료 버튼 */}
+          <div className="modal_is_not_logged_in_close_btn_box">
+            <button
+              className="modal_is_not_logged_in_close_btn"
+              onClick={closeModal}
+            >
+              x
+            </button>
+          </div>
           <div className="modal_my_profile_greeting">Welcome Slow TV</div>
           {/* ID box */}
           <div className="modal_my_profile_box_user_id">
@@ -188,11 +268,11 @@ const Modal = ({
             {/* Google */}
             <div>
               {/* 아이콘으로 대체 예정 */}
-              <button>Google</button>
+              <button onClick={googleLoginHandler}>Google</button>
             </div>
             {/* GitHub */}
             <div>
-              <button>GitHub</button>
+              <button onClick={githubLoginHandler}>GitHub</button>
             </div>
           </div>
         </div>

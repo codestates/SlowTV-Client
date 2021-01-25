@@ -2,8 +2,9 @@ import React from "react";
 import Favorites from "../components/Favorites";
 import { clickThumbnail, addFavorites } from "../modules/water";
 import { connect } from "react-redux";
+import { clickCategory } from "../modules/fakeside";
 
-const FakeSideContainer = ({
+const FavoritesContainer = ({
   id,
   handleOnClick,
   isClicked,
@@ -14,6 +15,7 @@ const FakeSideContainer = ({
   addFavorites,
   isAddFavoirtes,
   isLoggedIn,
+  handleOnClickCategory,
 }) => {
   return (
     <Favorites
@@ -26,6 +28,7 @@ const FakeSideContainer = ({
       addFavorites={addFavorites}
       isAddFavoirtes={isAddFavoirtes}
       isLoggedIn={isLoggedIn}
+      handleOnClickCategory={handleOnClickCategory}
     />
   );
 };
@@ -49,6 +52,9 @@ const mapDispatchToProps = (dispatch, props) => ({
   addFavorites: () => {
     dispatch(addFavorites());
   },
+  handleOnClickCategory: (category) => {
+    dispatch(clickCategory(category));
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FakeSideContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritesContainer);

@@ -3,7 +3,7 @@ import React from "react";
 import Water from "../components/contents/Water";
 import { connect } from "react-redux";
 import { clickThumbnail, addFavorites } from "../modules/water";
-import { setIsClicked } from "../modules/modal";
+import { openModal } from "../modules/modal";
 import { clickCategory } from "../modules/fakeside";
 
 const WaterContainer = ({

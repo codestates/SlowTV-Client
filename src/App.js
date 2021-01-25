@@ -16,6 +16,7 @@ import Snow from "./components/contents/Snow";
 import Grass from "./components/contents/Grass";
 // 컨텐츠 - 즐겨찾기
 import FavoritesContainer from "./containers/FavoritesContainer";
+import FavoritesEntryContainer from "./containers/FavoritesEntryContainer";
 // 컨텐츠 - 프로필
 import ProfileContainer from "./containers/ProfileContainer";
 // 컨텐츠 - 프로필 - 이름 변경
@@ -43,6 +44,7 @@ const App = () => {
       <Route path="/contents/grass" component={Grass} />
       {/* 컨텐츠- 즐겨찾기 */}
       <Route path="/contents/favorites" component={FavoritesContainer} />
+      {/* <Route path="/contents/favorites" component={FavoritesEntryContainer} /> */}
       {/* 컨텐츠 - 프로필 */}
       <Route path="/contents/profile" component={ProfileContainer} exact />
       {/* 컨텐츠 - 프로필 - 이름 변경 */}

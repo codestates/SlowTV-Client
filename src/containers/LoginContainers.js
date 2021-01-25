@@ -26,6 +26,8 @@ const LoginContainers = ({
   getGoogleAccessToken,
   changeNickName,
   changeEmail,
+  email,
+  nickname,
   // changePassword,
 }) => {
   return (
@@ -41,6 +43,8 @@ const LoginContainers = ({
       getGoogleAccessToken={getGoogleAccessToken}
       changeNickName={changeNickName}
       changeEmail={changeEmail}
+      email={email}
+      nickname={nickname}
       // changePassword={changePassword}
     />
   );

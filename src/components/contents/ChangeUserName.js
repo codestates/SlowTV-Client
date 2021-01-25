@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import FakeSide from "../Fake/FakeSide";
 import NavContainer from "../../containers/NavContainer";
 import ModalContainer from "../../containers/ModalContainer";
 import "./ChangeUserName.css";
 import axios from "axios";
+import FakeSideContainer from "../../containers/FakeSideContainer";
 
 const ChangeUserName = ({
   history,
@@ -32,7 +32,7 @@ const ChangeUserName = ({
         newName
       );
       const updateName = await axios.post(
-        "https://mayweather24.com/editprofile",
+        "https://mayweather24.com/edit-profile",
         // "https://server.slowtv24.com/editprofile",
         {
           nickname: newName,
@@ -57,7 +57,7 @@ const ChangeUserName = ({
   return (
     <div>
       <NavContainer />
-      <FakeSide />
+      <FakeSideContainer />
       {isModalClicked ? <ModalContainer /> : <div></div>}
       {!isLoggedIn ? (
         <div>go login</div>

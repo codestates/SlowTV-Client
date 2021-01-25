@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../components/Nav";
 import { connect } from "react-redux";
-import { setIsClicked } from "../modules/modal";
+import { openModal } from "../modules/modal";
 
 const NavContainer = ({ isLoggedIn, handleOnClickModal }) => {
   return (
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   handleOnClickModal: () => {
-    dispatch(setIsClicked());
+    dispatch(openModal());
   },
 });
 

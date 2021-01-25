@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import FakeSide from "../Fake/FakeSide";
+import FakeSideContainer from "../../containers/FakeSideContainer";
 import NavContainer from "../../containers/NavContainer";
 import ModalContainer from "../../containers/ModalContainer";
 import "./ChangeUserPassword.css";
@@ -40,7 +40,7 @@ const ChangeUserPassword = ({
   const handleUpdateBtn = async () => {
     if (newPassword === confirmPassword) {
       const updateBtn = await axios.post(
-        "https://mayweather24.com/editprofile",
+        "https://mayweather24.com/edit-profile",
         {
           prevPassword,
           newPassword,
@@ -63,7 +63,7 @@ const ChangeUserPassword = ({
   return (
     <div>
       <NavContainer />
-      <FakeSide />
+      <FakeSideContainer />
       {isModalClicked ? <ModalContainer /> : null}
       {!isLoggedIn ? (
         <div>로그인 후 이용 가능</div>

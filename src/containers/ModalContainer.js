@@ -4,24 +4,37 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import {
   clickSignIn,
   clickLogout,
+  changeSignUp,
   changeEmail,
   changeNickName,
+  getGithubAccessToken,
+  getGoogleAccessToken,
 } from "../modules/login";
-import { setIsClicked } from "../modules/modal";
+import { clickCategory } from "../modules/fakeside";
+
+import { openModal, closeModal } from "../modules/modal";
 
 const ModalContainer = ({
   isLoggedIn,
   clickSignIn,
   clickLogout,
-  setIsClicked,
+  openModal,
+  closeModal,
   changeEmail,
   changeNickName,
   email,
   nickname,
+  handleOnClickCategory,
+  githubAccessToken,
+  googleAccessToken,
+  getGithubAccessToken,
+  getGoogleAccessToken,
+  changeSignUp,
 }) => {
   return (
     <Modal
-      setIsClicked={setIsClicked}
+      openModal={openModal}
+      closeModal={closeModal}
       isLoggedIn={isLoggedIn}
       clickSignIn={clickSignIn}
       clickLogout={clickLogout}
@@ -29,6 +42,12 @@ const ModalContainer = ({
       changeNickName={changeNickName}
       email={email}
       nickname={nickname}
+      handleOnClickCategory={handleOnClickCategory}
+      githubAccessToken={githubAccessToken}
+      googleAccessToken={googleAccessToken}
+      getGithubAccessToken={getGithubAccessToken}
+      getGoogleAccessToken={getGoogleAccessToken}
+      changeSignUp={changeSignUp}
     />
   );
 };
@@ -38,6 +57,8 @@ const mapStateToProps = (state) => ({
   isLoggedIn: state.login.isLoggedIn,
   email: state.login.email,
   nickname: state.login.nickname,
+  githubAccessToken: state.login.githubAccessToken,
+  googleAccessToken: state.login.googleAccessToken,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -47,16 +68,31 @@ const mapDispatchToProps = (dispatch) => ({
   },
   clickLogout: () => {
     dispatch(clickLogout());
+    dispatch(closeModal());
   },
-
-  setIsClicked: () => {
-    dispatch(setIsClicked());
+  changeSignUp: () => {
+    dispatch(changeSignUp());
+  },
+  openModal: () => {
+    dispatch(openModal());
+  },
+  closeModal: () => {
+    dispatch(closeModal());
   },
   changeEmail: (email) => {
     dispatch(changeEmail(email));
   },
   changeNickName: (nickname) => {
     dispatch(changeNickName(nickname));
+  },
+  handleOnClickCategory: (category) => {
+    dispatch(clickCategory(category));
+  },
+  getGithubAccessToken: (accessToken) => {
+    dispatch(getGithubAccessToken(accessToken));
+  },
+  getGoogleAccessToken: (accessToken) => {
+    dispatch(getGoogleAccessToken(accessToken));
   },
 });
 

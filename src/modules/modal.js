@@ -1,8 +1,11 @@
 // action
-const CLICK = "modal/CLICK";
+const OPENMDODAL = "modal/OPENMDODAL";
+const CLOSEMODAL = "modal/CLOSEMODAL";
 
 // action creator
-export const setIsClicked = () => ({ type: CLICK });
+// export const setIsClicked = () => ({ type: OPENMDODAL });
+export const openModal = () => ({ type: OPENMDODAL });
+export const closeModal = () => ({ type: CLOSEMODAL });
 
 // state, reducer
 const initialState = {
@@ -11,9 +14,15 @@ const initialState = {
 
 function modal(state = initialState, action) {
   switch (action.type) {
-    case CLICK:
+    case OPENMDODAL:
       return {
-        isModalClicked: !state.isModalClicked,
+        ...state,
+        isModalClicked: true,
+      };
+    case CLOSEMODAL:
+      return {
+        ...state,
+        isModalClicked: false,
       };
     default:
       return state;

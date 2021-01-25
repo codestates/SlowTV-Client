@@ -1,7 +1,10 @@
 /* 전체 */
 .contents_page {
   /* border: 3px solid gray; */
-  background-color: black;
+  /* background-color: black; */
+  /* background-color: #212021; */
+  /* background-color: #485461; */
+  /* background-image: linear-gradient(135deg, #485461 0%, #28313b 74%); */
 }
 
 /* 이미지들 이거로 위치 조정 */
@@ -168,7 +171,8 @@
 /* 카드 1 텍스트 */
 .contents_page_div_text_one {
   /* border: 6px solid blue; */
-  background-color: white;
+  background-color: #212021;
+  /* color: white; */
   transition: all ease 1s;
   z-index: 1;
   /* 퍼센트 */
@@ -177,12 +181,14 @@
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
   top: 30%;
-  left: 80%;
+  left: 85%;
 }
 /* 카드 2 텍스트 */
 .contents_page_div_text_two {
   /* border: 6px solid blue; */
-  background-color: white;
+
+  background-color: #212021;
+  /* color: white; */
   transition: all ease 1s;
   z-index: 2;
   /* 퍼센트 */
@@ -191,12 +197,13 @@
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
   top: 30%;
-  left: 80%;
+  left: 85%;
 }
 /* 카드 3 텍스트 */
 .contents_page_div_text_three {
   /* border: 6px solid blue; */
-  background-color: white;
+  background-color: #212021;
+  /* color: white; */
   transition: all ease 1s;
   z-index: 3;
   /* 퍼센트 */
@@ -205,13 +212,15 @@
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
   top: 30%;
-  left: 80%;
+  left: 85%;
 }
 
 /* 카드 4 텍스트 */
 .contents_page_div_text_four {
   /* border: 6px solid blue; */
-  background-color: white;
+
+  background-color: #212021;
+  /* color: white; */
   transition: all ease 1s;
   z-index: 4;
   /* 퍼센트 */
@@ -220,14 +229,15 @@
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
   top: 30%;
-  left: 80%;
+  left: 85%;
 }
 
 /* 카드 5 텍스트 */
 
 .contents_page_div_text_five {
   /* border: 6px solid blue; */
-  background-color: white;
+  background-color: #212021;
+  /* color: white; */
   transition: all ease 1s;
   z-index: 5;
   /* 퍼센트 */
@@ -236,21 +246,22 @@
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
   top: 30%;
-  left: 82%;
+  left: 85%;
 }
 
 .contents_page_text {
   /* animation: fadeIn 3s;
   animation-direction: left; */
   /* border: 6px solid blue; */
-  color: black;
-  font-family: "Courier";
+  background-color: #212021;
+  color: white;
+  /* font-family: "Courier"; */
   font-size: 2vmax;
   margin: 10px 0 0 10px;
   white-space: nowrap;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   animation: type 3.5s steps(60, end);
 }
 
