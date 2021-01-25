@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./Contents.css";
-import FakeSide from "./Fake/FakeSide";
+import Side from "./Side";
+import FakeSide from "./Fake/FakeSide"
 // import { fakeData } from "../Fakedata.js";
 
 const Contents = (props) => {
@@ -110,8 +111,8 @@ const Contents = (props) => {
           </div>
         </div>
         {/* test */}
-        {/* <Side /> */}
-        <FakeSide a={props.a} />
+        <FakeSide isLoggedin={props.isLoggedin} videoData={props.videoData} />
+        {/* <Side a={props.a} /> */}
       </div>
     </div>
   );
