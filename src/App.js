@@ -37,9 +37,27 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLoggedin: false,
-    };
+      email: "",
+      nickname:""
+    }
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
+    this.handleGetUserInfo = this.handleGetUserInfo.bind(this);
   }
+
+  // [완료]로그인 이후->서버에  유저정보 요청 -> App.js 의 상태 : email, nickname 바꿈(상태 끌어올리기)
+handleGetUserInfo(){  //경로 -> App.js -> Landing.js -> Nav.js -> Login.js
+  axios
+  .get(
+    "https://mayweather24.com/userinfo",
+    { withCredentials:true }
+  ).then((res)=>{
+    console.log('/userinfo', res.data)
+    this.setState({
+      email: res.data.userInfo.email,
+      nickname: res.data.userInfo.nickname
+    })
+  })
+}
 
   handleResponseSuccess() {
     this.setState({
@@ -60,11 +78,22 @@ class App extends React.Component {
             <Landing
               handleResponseSuccess={this.handleResponseSuccess}
               isLoggedin={this.state.isLoggedin}
+              handleGetUserInfo={this.handleGetUserInfo}
+              email={this.state.email}
+              nickname={this.state.nickname}
             />
           )}
         />
         {/* 로그인 - 회원가입 ***************************************************/}
-        <Route path="/login" component={Login} />
+        <Route path="/login" render={() => (
+            <Login
+              handleResponseSuccess={this.handleResponseSuccess}
+              isLoggedin={this.state.isLoggedin}
+              handleGetUserInfo={this.handleGetUserInfo}
+              email={this.state.email}
+              nickname={this.state.nickname}
+            />
+          )} />
         <Route path="/signup" component={SignUp} />
         {/* 컨텐츠 ************************************************************/}
         <Route

@@ -29,7 +29,14 @@ class Nav extends React.Component {
               <div>
                 <span className="nav-register-btn">Register</span>
                 <button type="button" onClick={this.handleModalOpen}>Login</button>
-                <Login isOpen={this.state.isModalOpen} handleResponseSuccess={this.props.handleResponseSuccess} />
+                <Login 
+                  isOpen={this.state.isModalOpen}
+                  isLoggedin={this.props.isLoggedin}
+                  handleResponseSuccess={this.props.handleResponseSuccess}
+                  handleGetUserInfo={this.props.handleGetUserInfo}
+                  email={this.props.email}
+                  nickname={this.props.nickname}
+                />
               </div>
               :
               <button>Logout</button>
