@@ -37,27 +37,44 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLoggedin: false,
-      email: "",
-      nickname:""
-    }
+      isModalOpen: "",
+      userInfo: "",
+      isClickedSignInToggle: "",
+      videoData: "",
+      videoId: "",
+      isLogoutModalOpen: false,
+    };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
-    this.handleGetUserInfo = this.handleGetUserInfo.bind(this);
   }
 
-  // [완료]로그인 이후->서버에  유저정보 요청 -> App.js 의 상태 : email, nickname 바꿈(상태 끌어올리기)
-handleGetUserInfo(){  //경로 -> App.js -> Landing.js -> Nav.js -> Login.js
-  axios
-  .get(
-    "https://mayweather24.com/userinfo",
-    { withCredentials:true }
-  ).then((res)=>{
-    console.log('/userinfo', res.data)
-    this.setState({
-      email: res.data.userInfo.email,
-      nickname: res.data.userInfo.nickname
-    })
-  })
-}
+  handleLoggedIn = () => {};
+  handleOpenModal = () => {};
+  handleGetUserInfo = () => {};
+  handleSignInToggle = () => {};
+  handleVideoData = () => {};
+  handleVideoId = () => {};
+
+  handleLogout = () => {
+    axios
+      .post("https://server.slowtv24.com/logout", null, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          isLoggedin: false,
+        });
+        this.handleLogoutModalClose();
+      })
+      .catch((err) => err);
+  };
+
+  handleLogoutModalOpen = () => {
+    this.setState({ isLogoutModalOpen: true });
+  };
+  handleLogoutModalClose = () => {
+    this.setState({ isLogoutModalOpen: false });
+  };
 
   handleResponseSuccess() {
     this.setState({
@@ -78,22 +95,15 @@ handleGetUserInfo(){  //경로 -> App.js -> Landing.js -> Nav.js -> Login.js
             <Landing
               handleResponseSuccess={this.handleResponseSuccess}
               isLoggedin={this.state.isLoggedin}
-              handleGetUserInfo={this.handleGetUserInfo}
-              email={this.state.email}
-              nickname={this.state.nickname}
+              handleLogout={this.handleLogout}
+              handleLogoutModalOpen={this.handleLogoutModalOpen}
+              handleLogoutModalClose={this.handleLogoutModalClose}
+              isLogoutModalOpen={this.state.isLogoutModalOpen}
             />
           )}
         />
         {/* 로그인 - 회원가입 ***************************************************/}
-        <Route path="/login" render={() => (
-            <Login
-              handleResponseSuccess={this.handleResponseSuccess}
-              isLoggedin={this.state.isLoggedin}
-              handleGetUserInfo={this.handleGetUserInfo}
-              email={this.state.email}
-              nickname={this.state.nickname}
-            />
-          )} />
+        <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         {/* 컨텐츠 ************************************************************/}
         <Route
