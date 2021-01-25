@@ -1,141 +1,47 @@
-/* * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-} */
-
-/* 로고 있는 헤더 네브바 */
-.content-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3rem;
-  /* border: 5px solid red; */
-}
-
-/* SLOWTV 로고 */
-.logo1 {
-  /* border: 5px solid red; */
-  color: #fff;
-  margin-top: 0px;
-  margin-left: 50px;
-  font-size: 1.1remn;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  line-height: 4rem;
-  cursor: pointer;
-}
-
-/* SLOWTV 로고 */
-.logo1 span {
-  font-weight: 300;
-}
-
-/* 오른쪽 사이드바 */
-.test-links {
-  /* border: 5px solid red; */
-  /* margin-top: 10px; */
-  margin-right: 10px;
-  position: absolute;
-  width: 20%;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-ul {
-  /* list-style: none; */
-  /* margin-top: 90px; */
-  /* margin-top: 40%; */
-}
-
-.test-links a {
-  /* border: 5px solid blue; */
-  text-decoration: none;
-  color: #eee;
-  padding: 0.5rem 0;
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: 0.3;
-  /* opacity: 1; */
-  transform: translateY(10px);
-  /* animation: hide 0.5s forwards ease; */
-}
-
-.test-links a:hover {
-  color: #fff;
-  font-weight: 350;
-}
-
-.container .test-links a {
-  /* animation: appear 0.5s forwards ease var(--i); */
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-
-@keyframes hide {
-  from {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+/* 전체 */
+.contents_page {
+  /* border: 3px solid gray; */
+  background-color: black;
 }
 
 /* 이미지들 이거로 위치 조정 */
-.contents {
-  /* border: 5px solid red; */
-  margin-top: 8%;
+.contents_page_container {
+  border: 3px solid red;
+  height: 100%;
+  width: 80%;
+  float: left;
 }
 
-.img_list {
-  /* border: 5px solid red; */
-  /* margin-top: 60px; */
-  /* float: left; */
+/* 이미지 담고 있는 div */
+.contents_page_img_list {
+  float: left;
+  width: 80%;
+  height: 100%;
+  /* border: 3px solid blue; */
+  /* 원근감 이거로도 크기 결정 됨. */
   perspective: 1500px;
-
-  /* width: 100%; */
-  /* 이게 이미지 모양 조절 해줌 왤까? */
-  height: 50vh;
+  /* 보더 하면 줄이기 */
+  /* width: 75%; */
+  /* 슬라이드 이미지 전체 위치 조절 */
+  /* margin-top: 60px; */
+  /* 이 div의 헤이트에 따라 이미지 헤이트도 결정 됨. */
 }
 
-.content-img {
-  /* border: solid 5px navy;
-    width: 100%;
-    height: 100%; */
+/* 이미지 태그 */
+.contents_page_img {
+  /* border: solid 5px navy; */
   width: 100%;
   height: 100%;
-  border-left-width: 1px;
-  /* border-left: 3px solid gray; */
   border-radius: 15px;
-  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.5)));
+  border-left: 3px solid gray;
+  border-left-width: 1px;
+  /* 그림자 반사 효과 */
+  /* -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.5))); */
 }
-
-.div-img-one {
-  /* display: inline-block; */
+/* 이미지 1 풀 */
+.contents_page_div_img_one {
   /* border: 6px solid red; */
   transform: rotateY(45deg);
-  position: absolute;
-  bottom: 0;
   transition: all ease 1s;
   z-index: 1;
   /* 자주 바꾸는 거 */
@@ -145,45 +51,39 @@ ul {
   top: 150px;
   left: 20px; */
   /* 퍼센트 */
-  width: 50%;
-  height: 20%;
-  top: 57%;
+  width: 45%;
+  height: 15%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 44%;
   left: 9.3%;
-
-  border-left: 3px solid gray;
-  border-radius: 15px;
 }
-
-.div-img-two {
-  display: inline-block;
+/* 이미지 1 눈 */
+.contents_page_div_img_two {
   /* border: 6px solid orange; */
   transform: rotateY(45deg);
-  position: absolute;
-  bottom: 0;
   transition: all ease 1s;
   z-index: 2;
+
   /* 자주 바꾸는 거 */
   /* 픽셀 */
-  width: 500px;
+  /* width: 500px;
   height: 130px;
   top: 135px;
-  left: 33px;
+  left: 33px; */
   /* 퍼센트 */
-  width: 50%;
-  height: 35%;
-  top: 50%;
+  width: 45%;
+  height: 25%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 39%;
   left: 10%;
-
-  border-left: 3px solid gray;
-  border-radius: 15px;
 }
 
-.div-img-three {
-  display: inline-block;
+/* 이미지 3 불 */
+.contents_page_div_img_three {
   /* border: 6px solid yellow; */
   transform: rotateY(45deg);
-  position: absolute;
-  bottom: 0;
   transition: all ease 1s;
   z-index: 3;
   /* 자주 바꾸는 거 */
@@ -193,21 +93,18 @@ ul {
   top: 110px;
   left: 60px; */
   /* 퍼센트 */
-  width: 50%;
-  height: 48%;
-  top: 43%;
+  width: 45%;
+  height: 35%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 33%;
   left: 11%;
-
-  border-left: 3px solid gray;
-  border-radius: 12px;
 }
 
-.div-img-four {
-  /* display: inline-block; */
+/* 이미지 4 물 */
+.contents_page_div_img_four {
   /* border: 6px solid green; */
   transform: rotateY(45deg);
-  position: absolute;
-  bottom: 20;
   transition: all ease 1s;
   z-index: 4;
   /* 자주 바꾸는 거 */
@@ -217,16 +114,16 @@ ul {
   top: 70px;
   left: 100px; */
   /* 퍼센트 */
-  width: 50%;
-  height: 75%;
-  top: 30%;
+  width: 45%;
+  height: 45%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 28%;
   left: 14%;
-
-  border-left: 3px solid gray;
-  border-radius: 15px;
 }
 
-.div-img-five {
+/* 이미지 5 로고 */
+.contents_page_div_img_five {
   /* 미디어쿼리 테스트용 */
   /* transform: rotateY(0deg);
   width: 70%;
@@ -234,13 +131,9 @@ ul {
   border-left: none; */
   /* 미디어쿼리 테스트용 끝 */
   /* 미디어쿼리 테스트용 잠깐 끔*/
-  transform: rotateY(45deg);
 
-  /* display: inline-block; */
   /* border: 6px solid blue; */
-
-  position: absolute;
-  bottom: 10px;
+  transform: rotateY(45deg);
   transition: all ease 1s;
   z-index: 5;
   /* 자주 바꾸는 거 */
@@ -250,29 +143,133 @@ ul {
   top: 10px;
   left: 180px; */
   /* 퍼센트 */
-  width: 50%;
-  height: 125%;
-  top: 5%;
+  width: 60%;
+  height: 60%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 20%;
   left: 20%;
-
-  border-left: 3px solid gray;
-  border-radius: 15px;
 }
 
-.div-img-five:hover {
+/* 이미지 5 맨 앞 호버시 */
+.contents_page_div_img_five:hover {
   transform: rotateY(0deg);
+  border-left: none;
+  transition: all ease 1s;
   /* width: 580px; */
   /* width: 70%; */
   /* left: 40%; */
-  border-left: none;
-  transition: all ease 1s;
   /* border: none; */
   /* height: 380px; */
   /* opacity: 0; */
   /* border: 5px solid red; */
 }
 
-/* 미디어쿼리 */
+/* 카드 1 텍스트 */
+.contents_page_div_text_one {
+  /* border: 6px solid blue; */
+  background-color: white;
+  transition: all ease 1s;
+  z-index: 1;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 30%;
+  left: 80%;
+}
+/* 카드 2 텍스트 */
+.contents_page_div_text_two {
+  /* border: 6px solid blue; */
+  background-color: white;
+  transition: all ease 1s;
+  z-index: 2;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 30%;
+  left: 80%;
+}
+/* 카드 3 텍스트 */
+.contents_page_div_text_three {
+  /* border: 6px solid blue; */
+  background-color: white;
+  transition: all ease 1s;
+  z-index: 3;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 30%;
+  left: 80%;
+}
+
+/* 카드 4 텍스트 */
+.contents_page_div_text_four {
+  /* border: 6px solid blue; */
+  background-color: white;
+  transition: all ease 1s;
+  z-index: 4;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 30%;
+  left: 80%;
+}
+
+/* 카드 5 텍스트 */
+
+.contents_page_div_text_five {
+  /* border: 6px solid blue; */
+  background-color: white;
+  transition: all ease 1s;
+  z-index: 5;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 30%;
+  left: 82%;
+}
+
+.contents_page_text {
+  /* animation: fadeIn 3s;
+  animation-direction: left; */
+  /* border: 6px solid blue; */
+  color: black;
+  font-family: "Courier";
+  font-size: 2vmax;
+  margin: 10px 0 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  animation: type 3.5s steps(60, end);
+}
+
+@keyframes type {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 미디어쿼리 **********************************************************/
 
 /* 맥북 13인치 최대창이 기본갑 */
 /* width 1024px(맥북 13인치 최대)보다 작으면 */
@@ -296,7 +293,7 @@ ul {
   }
   /* 오른쪽 사이드 바 폰트 크기 */
   .test-links a {
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
   }
 }
 
@@ -304,14 +301,14 @@ ul {
 @media screen and (min-width: 1400px) {
   .img_list {
     /* border: 5px solid red; */
-    perspective: 2000px;
+    /* perspective: 2000px; */
   }
   ul {
     /* margin: 0px; */
   }
   .test-links a {
-    padding: 0.7rem 0;
-    font-size: 1.5rem;
+    /* padding: 0.7rem 0; */
+    /* font-size: 1.5rem; */
     /* animation: hide 0.5s forwards ease; */
   }
 

@@ -50,15 +50,4 @@ const SignUp = ({ history }) => {
   );
 };
 
-// test
 export default withRouter(SignUp);
-// export default SignUp;
-
-/* 
-1. 로그인 할 때 submit 아래 회원가입 링크
-        <div>
-          New to SlowTV?
-          <Link>Create an account.</Link>
-          </div>
-2. 처음부터 Sign Up 버튼 눌렀을 때
-*/

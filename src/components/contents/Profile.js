@@ -5,33 +5,20 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 // import Side from "../Side";
 import FakeSide from "../Fake/FakeSide";
-import FakeNav from "../Fake/FakeNav";
+import NavContainer from "../../containers/NavContainer";
+import ModalContainer from "../../containers/ModalContainer";
 import "./Profile.css";
+import axios from "axios";
 // import ChangeUsername from "./ChangeUsername";
 
 const Profile = ({
-  // name,
-  // password,
-  // hadleOnChangeName,
-  // hadleOnChangePassword,
-  handleOnClickNameBtn,
-  handleOnClickPasswordBtn,
-  isClickedChangeNameBtn,
-  isClickedChangePasswordBtn,
+  history,
+  email,
+  nickname,
+  isModalClicked,
+  isLoggedIn,
+  clickLogout,
 }) => {
-  // console.log("🚀 ~ file: Profile.js ~ line 21 ~ password", password);
-  // console.log("🚀 ~ file: Profile.js ~ line 21 ~ name", name);
-  // const [isClickedUBtn, setIsClickedUBtn] = useState(false);
-  // const [isClickedPWBtn, setIsClickedPWBtn] = useState(false);
-  // const handleOnClickUBtn = () => {
-  //   setIsClickedPWBtn(false);
-  //   setIsClickedUBtn(!isClickedUBtn);
-  // };
-  // const handleOnClickPWbtn = () => {
-  //   setIsClickedUBtn(false);
-  //   setIsClickedPWBtn(!isClickedPWBtn);
-  // };
-
   // New name
   const [newNameInputValue, setNewNameInputValue] = useState("");
   // Old PW
@@ -118,160 +105,100 @@ const Profile = ({
   // 1. 이전 비밀번호가 맞는지 -> 서버에서
   // 2. new 와 cofirm이 일치하는지 -> 클라이언트에서
 
+  //test
+
+  const consoleTest = (e) => {
+    const route = e.target.attributes.value.value;
+    // console.log(   "🚀 route",   route );
+    history.push(`/contents/profile/${route}`);
+  };
+
+  const handleLogout = async () => {
+    console.log("핸들로그아웃");
+
+    const logout = await axios.post(
+      "https://mayweather24.com/logout",
+      // "https://server.slowtv24.com/logout",
+      null,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(
+      "🚀 ~ file: Modal.js ~ line 86 ~ handleLogout ~ logout",
+      logout
+    );
+    // if (logout !== undefined) {
+    clickLogout();
+    // }
+  };
+
   return (
-    <div className="profile-page">
-      <FakeNav />
-      {/* <Side /> */}
+    <div className="profile_page">
+      <NavContainer />
       <FakeSide />
-
-      <div className="test-profile-page">
-        {/* 모달 버튼 큰 틀*******************************************************/}
-        <div className="div-modal-btn-list">
-          <div className="title-profile">Profile</div>
-
-          {/* Username 네모 칸********************************************************/}
-          <div className="div-modal-btn">
-            <div className="div-modal-btn-text" onClick={handleOnClickNameBtn}>
-              Username
-            </div>
+      {isModalClicked ? <ModalContainer /> : <div></div>}
+      {/* 프로필 시작 */}
+      {isLoggedIn ? (
+        <div className="profile_page_container">
+          <div className="profile_page_title">Profile</div>
+          {/* User ID */}
+          <div className="profile_page_box_user_id">
+            <div className="profile_page_current_user_id">ID :</div>
+            <div className="profile_page_current_user_id_value">{email}</div>
           </div>
-          {/* Password 네모 칸********************************************************/}
-          <div className="div-modal-btn">
+          {/* User naem */}
+          <div
+            className="profile_page_box_username"
+            onClick={consoleTest}
+            value="update-username"
+          >
             <div
-              className="div-modal-btn-text"
-              onClick={handleOnClickPasswordBtn}
+              className="profile_page_current_username"
+              value="update-username"
             >
-              Password
+              Current Username :
             </div>
-          </div>
-          {/* Background 네모 칸 ********************************************************/}
-          <div className="div-modal-btn">
             <div
-              className="div-modal-btn-text"
-              onClick={handleOnClickPasswordBtn}
+              className="profile_page_current_username_value"
+              value="update-username"
             >
-              ex Backgoround
+              {nickname}
             </div>
+            {/* <div className="profile_page_change_username">New Username :</div> */}
+            {/* <input className="profile_page_change_username_value"></input> */}
           </div>
-          {/* Language 네모 칸 ********************************************************/}
-          <div className="div-modal-btn">
+          {/* User PW */}
+          <div
+            className="profile_page_box_user_password"
+            onClick={consoleTest}
+            value="update-password"
+          >
             <div
-              className="div-modal-btn-text"
-              onClick={handleOnClickPasswordBtn}
+              className="profile_page_change_user_password"
+              value="update-password"
             >
-              ex Dark mode
+              New Password :
             </div>
-          </div>
-          {/* Logout 네모 칸 ********************************************************/}
-          <div className="div-modal-btn">
             <div
-              className="div-modal-btn-text"
-              onClick={handleOnClickPasswordBtn}
+              className="profile_page_change_user_password_value"
+              value="update-password"
             >
-              ex Logout
+              12345678
             </div>
           </div>
-          {/* Logged in user ********************************************************/}
-          <div className="logged-in-user">
-            Logged in as: kimcoding@icloud.com
-            {/* 이름은 동적 셋팅 */}
+          {/* Logout Btn */}
+          <div className="profile_page_box_logout_btn">
+            <button className="profile_page_logout_btn" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         </div>
-        {isClickedChangeNameBtn ? (
-          // 이름 변경 버튼 클릭 했을 때 *******************************************************
-          <div className="div-open-change-name">
-            {/* <div className="open-change-name"> */}
-            <button onClick={handleOnClickNameBtn}>x</button>
-            <div className="div-current-username">
-              <div className="current-username">Current Username :</div>
-              <div className="current-username">Coding Kim</div>
-            </div>
-            <form
-              className="form-new-user-name"
-              onSubmit={handleChangeUsername}
-            >
-              <div className="div-new-user-name">
-                <label className="label-new-user-name" htmlFor="new-user-name">
-                  New Username
-                </label>
-                <input
-                  id="new-user-name"
-                  type="text"
-                  onChange={handleNameInputValue("newUsername")}
-                  autoFocus
-                  required
-                ></input>
-                <button className="update-btn" onSubmit={handleChangeUsername}>
-                  Update
-                </button>
-              </div>
-            </form>
-            {/* </div> */}
-          </div>
-        ) : (
-          <div></div>
-        )}
-        {isClickedChangePasswordBtn ? (
-          // 비밀번호 변경 버튼 클릭 했을 때 *******************************************************
-          <div>
-            <div className="div-open-change-password">
-              {/*  비밀번호 변경 모달 끄는 버튼 ********************************************************/}
-              <button className="" onClick={handleOnClickPasswordBtn}>
-                x
-              </button>
-              {/* 비밀번호 변경 폼 **************************************************************/}
-              <form
-                className="form-change-password"
-                onSubmit={handleUpdatePassword}
-              >
-                <div className="form-change-password"></div>
-                {/* //! 이전 비밀번호 ********************************************************/}
-                <div className="div-old-user-password">
-                  <label htmlFor="old-user-password">Old Password </label>
-                  <input
-                    id="old-user-password"
-                    type="password"
-                    onChange={handleOldPasswordInputValue("oldPassword")}
-                  ></input>
-                </div>
-                {/* //! 바꿀 비밀번호 ********************************************************/}
-                <div className="div-new-user-password">
-                  <label htmlFor="new-user-password">New Password </label>
-                  <input
-                    id="new-user-password"
-                    type="password"
-                    onChange={handleNewPasswordInputValue("newPassword")}
-                  ></input>
-                </div>
-                {/* //! 바꿀 비밀번호 확인 ********************************************************/}
-                <div className="div-confirm-user-password">
-                  <label htmlFor="confirm-user-password">
-                    Confirm Password
-                  </label>
-                  <input
-                    id="confirm-user-password"
-                    type="password"
-                    onChange={handleConfirmPasswordInputValue(
-                      "confirmPassword"
-                    )}
-                  ></input>
-                </div>
-                {/* //! 업데이트 버튼 ********************************************************/}
-                <div className="div-update-btn">
-                  <button
-                    className="update-btn"
-                    onSubmit={handleUpdatePassword}
-                  >
-                    Update
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
+      ) : (
+        <div>로그인 후 이용 가능합니다.</div>
+      )}
+
+      {/* end */}
     </div>
   );
 };

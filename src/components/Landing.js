@@ -1,54 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Nav from "./Nav";
+import React, { useEffect } from "react";
+// 비로그인 시
+import LandingNavContainers from "../containers/LandingNavContainers";
+// 로그인 시
+import NavContainer from "../containers/NavContainer";
+import ModalContainer from "../containers/ModalContainer";
+import { Link, withRouter } from "react-router-dom";
 import "./Landing.css";
 
-const LandingPage = () => {
+const Landing = ({ history, isLoggedIn, isModalClicked }) => {
+  // ! 컨텐츠로 이동
+  const handleGetStarted = () => {
+    history.push("/contents");
+  };
+
   return (
-    <div className="landing-page">
-
-      <div className="nav-container">
-        <div className="overlay">
-          <Nav />
-          <Link className="start-link" to="/contents">
-            Get Started
-          </Link>
-          <div className="inner">
-            <h2 className="msg-title">Hi, slow!</h2>
-            <h3 className="msg-intro1">Exclusive collection of nature videos</h3>
-            <h3 className="msg-intro2">Watch anywhere. Relax anytime.</h3>
-          </div>
+    <div className="landing_page">
+      {isLoggedIn ? <NavContainer /> : <LandingNavContainers />}
+      {isModalClicked ? <ModalContainer /> : <div></div>}
+      {/* body */}
+      <div className="landing_page_container">
+        <div className="landing_page_introduce_title">Find Your Calm</div>
+        <div className="landing_page_introduce_body">
+          Sleep more, Stress less, Live better.
         </div>
+        <button className="btn" onClick={handleGetStarted}>
+          Get started
+        </button>
       </div>
-
-      <div className="landing-home">
-        <div></div>
-      </div>
-
-      <div className="landing-middle">
-        {/* <LandingVideos /> */}
-        <video className="landing-video1"></video>
-      </div>
-
-      <div className="landing-bottom">
-        <div ></div>
-      </div>
-
-    </div >
+    </div>
   );
 };
 
-// const LandingVideos = () => {
-//   return (
-//     <div className="landing_video">
-//       <video>video</video>
-//     </div>
-//   )
-// }
-
-export default LandingPage;
-
-
-//export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
-// export default connect(mapStateToProps 리덕스 state값 연결, mapDispatchToProps 액션 생성 함수 연결)(ProfileContainer);
-
+export default withRouter(Landing);

@@ -1,12 +1,9 @@
-// ! test중이라 Water에서만 사용하지만 추후 파일명도 변경해서 Water, Fire, Snow, Grass 모두에서 사용하게 끔 만들기
 import React from "react";
-import Water from "../components/contents/Water";
-import { connect } from "react-redux";
+import Favorites from "../components/Favorites";
 import { clickThumbnail, addFavorites } from "../modules/water";
-import { setIsClicked } from "../modules/modal";
-import { clickCategory } from "../modules/fakeside";
+import { connect } from "react-redux";
 
-const WaterContainer = ({
+const FakeSideContainer = ({
   id,
   handleOnClick,
   isClicked,
@@ -17,10 +14,9 @@ const WaterContainer = ({
   addFavorites,
   isAddFavoirtes,
   isLoggedIn,
-  handleOnClickCategory,
 }) => {
   return (
-    <Water
+    <Favorites
       id={id}
       handleOnClick={handleOnClick}
       isClicked={isClicked}
@@ -30,8 +26,6 @@ const WaterContainer = ({
       addFavorites={addFavorites}
       isAddFavoirtes={isAddFavoirtes}
       isLoggedIn={isLoggedIn}
-      handleOnClickCategory={handleOnClickCategory}
-      // handleOnClickModal={handleOnClickModal}
     />
   );
 };
@@ -55,9 +49,6 @@ const mapDispatchToProps = (dispatch, props) => ({
   addFavorites: () => {
     dispatch(addFavorites());
   },
-  handleOnClickCategory: (category) => {
-    dispatch(clickCategory(category));
-  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WaterContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FakeSideContainer);

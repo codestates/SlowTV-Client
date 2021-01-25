@@ -1,43 +1,52 @@
-/* 전체 div */
+/* 페이지 전체 */
 .water-page {
-  /* border: 5px solid red; */
-  height: 100vh;
-  width: 100%;
-  background-color: #212021;
-  /* margin: 0 auto; */
-  /* background-color: #485461; */
-  /* background-image: linear-gradient(135deg, #485461 0%, #28313b 74%); */
-  /* overflow-x: hidden; */
-  /* transform-style: preserve-3d; */
+  /* 모달 정가운데 배치 위해 상위에서 작업 */
+  /* width: 100%; */
+  /* height: 100%; */
+  /* background: #000; */
+  /* position: relative; */
 }
-/* 비디오 리스트 */
-.water-list {
-  /* margin-top: 5%; */
-  margin-left: 3%;
-  /* margin: 5%; */
-  /* margin-top: 7%; */
+
+.loaded_water_page {
+  border: 3px solid gray;
+  width: 100%;
+  height: 100%;
+}
+
+/* 썸네일 담은 컨테이너 */
+.water_page_container {
+  float: left;
+  border: 5px solid red;
+  height: 100%;
+  width: 80%;
+}
+
+/* 햄버거 열었을 때 작은 사이즈 썸네일*/
+.water_page_small_size_lists {
   /* border: 5px solid blue; */
   display: grid;
-  /* grid-template-columns: auto auto auto auto; */
-  grid-gap: 10px;
-  /* grid-gap: 1%; */
-  /* grid-gap: 30px; */
-  /* background-color: #2196f3; */
-  /* margin-top: 40px; */
-  /* padding-left: 60px; */
+  grid-gap: 2%;
+  /* grid-gap: 10px; */
+
+  /* 그리드 전체 위치 조정 */
+  padding-left: 60px;
+  margin-top: 10px;
+
   width: 85%;
   height: 90%;
+
+  /* background-color: #2196f3; */
   /* grid-template-columns: repeat(4, 13.43%); */
   /* grid-template-columns: 1fr 1fr 1fr; */
-  grid-template-columns: repeat(3, 1fr);
   /* grid-template-rows: repeat(7, 6.5%); */
-  grid-template-rows: repeat(7, 36%);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(7, 32%);
 }
 
 /* 사이드 바 열렸을 때 비디오 리스트 */
-.small-water-list {
+.water_page_small_size {
   /* margin-top: 5%; */
-  margin-left: 3%;
+  /* margin-left: 3%; */
   /* margin: 5%; */
   /* margin-top: 7%; */
   /* border: 5px solid blue; */
@@ -58,8 +67,8 @@
   grid-template-rows: repeat(7, 36%);
 }
 
-.thumbnail-img {
-  /* border: 3px solid blue; */
+.water_page_thumbnail_img {
+  border: 3px solid blue;
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -68,20 +77,60 @@
   transition-duration: 1s, 1s;
 }
 
-.thumbnail-img:hover {
+.water_page_thumbnail_img:hover {
   border: 3px solid white;
 }
 
 /* 썸네일 */
 
-.thumbnail-1 {
+.water_page_thumbnail_1 {
   /* grid-row-start: 1;
   grid-row-end: 2; */
   /* grid-column-start: 1; */
   /* grid-column-end: 2; */
+  /* width: 100%; */
+  /* height: 100%; */
+}
+/* //! 클릭 시 영상으로 이동 */
+.water_page_thumbnail__btn_box {
+  border: 3px solid blue;
+  position: absolute;
+  width: 21.7%;
+  height: 29%;
+  /* top: 25%; */
+  /* left: 20%; */
+}
+.water_page_thumbnail__btn {
+  z-index: 9;
+  /* border: 3px solid red; */
+  /* border: none; */
+  /* border-color: white; */
+  border-radius: 50%;
+  /* background-color: transparent !important; */
+  background-color: white;
+  /* background-image: none !important; */
+  /* border-color: transparent; */
+  opacity: 0.7;
+  /* border: none; */
+  /* color: #ffffff; */
+  color: black;
+  position: absolute;
+  font-size: 1vmax;
+  width: 10%;
+  height: 13%;
+  top: 83%;
+  left: 89%;
+}
+.water_page_thumbnail__btn_icon {
+  width: 60%;
+  /* border: 3px solid red; */
+  height: 60%;
+  opacity: 0.8;
+  margin-top: 10%;
+  margin-left: 20%;
 }
 
-.thumbnail-2 {
+.water_page_thumbnail_2 {
   /* border: 3px solid orange; */
 
   /* grid-row-start: 1;
@@ -89,7 +138,7 @@
   /* grid-column-start: 2; */
   /* grid-column-end: 3; */
 }
-.thumbnail-3 {
+.water_page_thumbnail_3 {
   /* border: 3px solid yellow; */
 
   /* grid-row-start: 1;
@@ -97,7 +146,7 @@
   /* grid-column-start: 3; */
   /* grid-column-end: 4; */
 }
-.thumbnail-4 {
+.water_page_thumbnail_4 {
   /* border: 3px solid green; */
 
   /* grid-row-start: 1;
@@ -105,49 +154,49 @@
   /* grid-column-start: 4; */
   /* grid-column-end: 5; */
 }
-.thumbnail-5 {
+.water_page_thumbnail_5 {
   /* border: 3px solid blue; */
 
   /* grid-row-start: 1;
     grid-row-end: 2; */
 }
-.thumbnail-6 {
+.water_page_thumbnail_6 {
   /* border: 3px solid navy; */
 
   /* grid-row-start: 1;
     grid-row-end: 2; */
 }
-.thumbnail-7 {
+.water_page_thumbnail_7 {
   /* border: 3px solid purple; */
 
   /* grid-row-start: 1;
     grid-row-end: 2; */
 }
-.thumbnail-8 {
+.water_page_thumbnail_8 {
   /* border: 3px solid red; */
 
   /* grid-row-start: 2; */
   /* grid-row-end: 3; */
 }
-.thumbnail-9 {
+.water_page_thumbnail_9 {
   /* border: 3px solid black; */
 
   /* grid-row-start: 2; */
   /* grid-row-end: 3; */
 }
-.thumbnail-10 {
+.water_page_thumbnail_10 {
   /* border: 3px solid black; */
 
   /* grid-row-start: 2; */
   /* grid-row-end: 3; */
 }
-.thumbnail-11 {
+.water_page_thumbnail_11 {
   /* border: 3px solid black; */
 
   /* grid-row-start: 2; */
   /* grid-row-end: 3; */
 }
-.thumbnail-12 {
+.water_page_thumbnail_12 {
   /* border: 3px solid black; */
 
   /* grid-row-start: 2; */

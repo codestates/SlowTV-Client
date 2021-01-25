@@ -1,31 +1,25 @@
 import React from "react";
-import Profile from "../components/contents/Profile";
+import ChangeUserPassword from "../components/contents/ChangeUserPassword";
 import { connect } from "react-redux";
 import { clickLogout } from "../modules/login";
 
-const ProfileContainer = ({
-  email,
-  nickname,
-  isModalClicked,
+const ChangeUserPasswordContainer = ({
   isLoggedIn,
+  isModalClicked,
   clickLogout,
 }) => {
   return (
-    <Profile
-      email={email}
-      nickname={nickname}
-      isModalClicked={isModalClicked}
+    <ChangeUserPassword
       isLoggedIn={isLoggedIn}
+      isModalClicked={isModalClicked}
       clickLogout={clickLogout}
     />
   );
 };
 
 const mapStateToProps = (state) => ({
-  email: state.login.email,
-  nickname: state.login.nickname,
-  isModalClicked: state.modal.isModalClicked,
   isLoggedIn: state.login.isLoggedIn,
+  isModalClicked: state.modal.isModalClicked,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -34,4 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ChangeUserPasswordContainer);

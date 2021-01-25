@@ -1,0 +1,129 @@
+/* 전체 페이지 */
+.change_name_page {
+  /* border: 1px solid red; */
+  width: 30%;
+  height: 50%;
+  position: absolute;
+  top: 10%;
+  left: 28%;
+  /* float: left; */
+}
+
+/* ! 뒤로가기 버튼과 Change Name 타이틀 */
+
+/* ? 뒤로가기 버튼 */
+.change_name_page_back_btn {
+  /* border: 1px solid red; */
+  display: inline;
+  float: left;
+  width: 8%;
+  height: 100%;
+}
+
+/* ? Change Name 타이틀 */
+.change_name_page_title {
+  border: 2px solid gray;
+  width: 100%;
+  height: 8%;
+}
+
+/* Change Name Text*/
+.change_name_page_title_value {
+  /* border: 1px solid gray; */
+  display: inline;
+  float: right;
+  /* text-align: center; */
+
+  font-size: 1.7vmax;
+  width: 66%;
+  height: 100%;
+}
+
+/* ! 타이틀 밑에 아래 정보 바꾸는 네모 칸 전체 */
+.change_name_page_box {
+  border: 1px solid gray;
+  margin-top: 8%;
+  width: 100%;
+  height: 100%;
+}
+
+/* ! current Username box */
+.change_name_page_current_name_box {
+  border-bottom: 1px solid gray;
+  margin-top: 7%;
+  /* width: 100%; */
+  width: 80%;
+  margin-left: 5%;
+  height: 8%;
+  /* text-align: center; */
+}
+/* ? Current name */
+.change_name_page_current_name_box_title {
+  /* border: 1px solid gray; */
+  display: inline;
+  width: 100%;
+  height: 100%;
+  font-size: 1vmax;
+}
+/* ? Current name value*/
+.change_name_page_current_name_value {
+  /* border: 1px solid gray; */
+  display: inline;
+  margin-top: 2%;
+  margin-left: 4%;
+  /* border-bottom: 1px solid gray; */
+  font-size: 1.5vmax;
+}
+
+/* ! New Name box  */
+.change_name_page_new_name_box {
+  border: 3px solid blue;
+  border-bottom: 1px solid gray;
+  margin-top: 7%;
+  width: 80%;
+  margin-left: 5%;
+  height: 8%;
+  /* text-align: center; */
+}
+/* ? New name :  */
+.change_name_page_new_name_box_title {
+  border: 1px solid red;
+  display: inline;
+  width: 20%;
+  /* height: 100%; */
+  font-size: 1vmax;
+}
+/* ? New name input 감싸는 디브  */
+.change_name_page_new_name_input_box {
+  border: 1px solid gray;
+  display: inline;
+  margin-top: 2%;
+  margin-left: 4%;
+  /* border-bottom: 1px solid gray; */
+  font-size: 1.5vmax;
+  width: 70%;
+}
+/* ? New name input  */
+.change_name_page_new_name_input {
+  width: 70%;
+  /* height: 90%;s */
+  font-size: 1.5vmax;
+  border: none;
+  /* border-bottom: 1px solid gray; */
+  outline: none;
+}
+
+/* ! div update btn  */
+.change_name_page_update_div {
+  text-align: center;
+  margin-top: 35%;
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 8%;
+}
+/* ?  update btn  */
+.change_name_page_update_btn {
+  /* width: 25%; */
+  width: 80%;
+  height: 100%;
+}

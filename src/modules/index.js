@@ -1,15 +1,18 @@
 import { combineReducers } from "redux";
-import contents from "./contents";
-import profile from "./profile";
+import fakeside from "./fakeside";
 import hamburger from "./hamburger";
-// import thumbnails from "./thumbnails";
+import landingNav from "./landingNav";
 import login from "./login";
+import modal from "./modal";
+import water from "./water";
 
 const rootReducer = combineReducers({
-  contents,
-  profile,
+  fakeside,
   hamburger,
+  landingNav,
   login,
+  modal,
+  water,
 });
 
 export default rootReducer;
