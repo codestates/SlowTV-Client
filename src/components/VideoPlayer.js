@@ -1,5 +1,6 @@
 // 새로고침해도 상태 가지고 있게 만들기
-
+/*eslint-disable*/ 
+// 2번줄은 eslint를 죽이는 기능
 import React from "react";
 import "./VideoPlayer.css";
 import { fakeData } from "./Fake/Fakedata.js";

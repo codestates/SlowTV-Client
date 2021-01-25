@@ -11,6 +11,10 @@ const LandingPage = (props) => {
           <Nav
             handleResponseSuccess={props.handleResponseSuccess}
             isLoggedin={props.isLoggedin}
+            handleGetUserInfo={props.handleGetUserInfo}
+            handleGetUserInfoSocial={props.handleGetUserInfoSocial}
+            email={props.email}
+              nickname={props.nickname}
           />
           <>
             <Link className="start-link" to="/contents">
