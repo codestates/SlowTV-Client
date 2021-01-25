@@ -39,40 +39,58 @@ class App extends React.Component {
     this.state = {
       isLoggedin: false,
       videoData: null,
-    };
+      email: "",
+      nickname: ""
+    }
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
+    this.handleGetUserInfo = this.handleGetUserInfo.bind(this);
   }
 
-  handleLoggedin = (email, password, errorMessage) => {
-    if (!email || !password) {
-      this.setState({
-        errorMessage: "Please check your email and password again.",
-      });
-    } else {
-      axios
-        .post(
-          "https://server.slowtv24.com/login",
-          // "https://server.slowtv24.com/login",
-          { email: email, password: password },
-          { withCredentials: true }
-        )
-        .then((res) => {
-          console.log("login post res>>>", res);
-          // console.log("data.nickname>>", res.data.nickname)
-          this.handleResponseSuccess();
-          // this.props.setUserInfo(res);
-          axios.get("https://server.slowtv24.com/favorites",
-            { withCredentials: true })
-            .then((data) => {
-              // console.log("axios favorites data.userfavorite >>>", data.data.userFavorites)
-              this.setState({
-                videoData: data.data.userFavorites
-              })
-            })
+  // handleLoggedin = (email, password, errorMessage) => {
+  //   if (!email || !password) {
+  //     this.setState({
+  //       errorMessage: "Please check your email and password again.",
+  //     });
+  //   } else {
+  //     axios
+  //       .post(
+  //         "https://server.slowtv24.com/login",
+  //         // "https://server.slowtv24.com/login",
+  //         { email: email, password: password },
+  //         { withCredentials: true }
+  //       )
+  //       .then((res) => {
+  //         console.log("login post res>>>", res);
+  //         // console.log("data.nickname>>", res.data.nickname)
+  //         this.handleResponseSuccess();
+  //         // this.props.setUserInfo(res);
+  //         axios.get("https://server.slowtv24.com/favorites",
+  //           { withCredentials: true })
+  //           .then((data) => {
+  //             // console.log("axios favorites data.userfavorite >>>", data.data.userFavorites)
+  //             this.setState({
+  //               videoData: data.data.userFavorites
+  //             })
+  //           })
+  //       })
+  //       .catch((err) => alert(err));
+  //   }
+  // };
+
+  // [완료]로그인 이후->서버에  유저정보 요청 -> App.js 의 상태 : email, nickname 바꿈(상태 끌어올리기)
+  handleGetUserInfo() {  //경로 -> App.js -> Landing.js -> Nav.js -> Login.js
+    axios
+      .get(
+        "https://mayweather24.com/userinfo",
+        { withCredentials: true }
+      ).then((res) => {
+        console.log('/userinfo', res.data)
+        this.setState({
+          email: res.data.userInfo.email,
+          nickname: res.data.userInfo.nickname
         })
-        .catch((err) => alert(err));
-    }
-  };
+      })
+  }
 
   handleResponseSuccess() {
     this.setState({
@@ -94,13 +112,24 @@ class App extends React.Component {
             <Landing
               handleResponseSuccess={this.handleResponseSuccess}
               isLoggedin={this.state.isLoggedin}
-              handleLoggedin={this.handleLoggedin}
+              // handleLoggedin={this.handleLoggedin}
+              handleGetUserInfo={this.handleGetUserInfo}
+              email={this.state.email}
+              nickname={this.state.nickname}
             />
           )}
         />
         {/* 로그인 - 회원가입 ***************************************************/}
         <Route path="/login" render={() => (
-          <Login isLoggedin={this.state.isLoggedin} videoData={this.state.videoData} handleLoggedin={this.handleLoggedin} handleResponseSuccess={this.handleResponseSuccess} />)} />
+          // <Login isLoggedin={this.state.isLoggedin} videoData={this.state.videoData} handleLoggedin={this.handleLoggedin} handleResponseSuccess={this.handleResponseSuccess} />)} />
+          <Login
+            handleResponseSuccess={this.handleResponseSuccess}
+            isLoggedin={this.state.isLoggedin}
+            handleGetUserInfo={this.handleGetUserInfo}
+            email={this.state.email}
+            nickname={this.state.nickname}
+          />
+        )} />
         <Route path="/signup" component={SignUp} />
         {/* 컨텐츠 ************************************************************/}
         <Route

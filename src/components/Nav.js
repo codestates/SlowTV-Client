@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import "./Nav.css";
 import logo from "../tvlogo.png";
 import Login from "./Login"
+import axios from "axios";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -14,6 +15,14 @@ class Nav extends React.Component {
 
   handleModalOpen = () => {
     this.setState({ isModalOpen: true });
+  }
+
+  handleLogout = () => {
+    axios.post("https://server.slowtv24.com/logout", null,
+      { withCredentials: true })
+      .then((res) => {
+        console.log("logout res>>>", res)
+      })
   }
 
   render() {
@@ -29,14 +38,22 @@ class Nav extends React.Component {
               <div>
                 <span className="nav-register-btn">Register</span>
                 <button type="button" onClick={this.handleModalOpen}>Login</button>
-                <Login
+                {/* <Login
                   isOpen={this.state.isModalOpen}
                   handleResponseSuccess={this.props.handleResponseSuccess}
                   handleLoggedin={this.props.handleLoggedin}
+                /> */}
+                <Login
+                  isOpen={this.state.isModalOpen}
+                  isLoggedin={this.props.isLoggedin}
+                  handleResponseSuccess={this.props.handleResponseSuccess}
+                  handleGetUserInfo={this.props.handleGetUserInfo}
+                  email={this.props.email}
+                  nickname={this.props.nickname}
                 />
               </div>
               :
-              <button>Logout</button>
+              <button onClick={this.handleLogout}>Logout</button>
             }
           </div>
         </div>
