@@ -10,7 +10,11 @@ const LandingPage = (props) => {
         <div className="overlay">
           <Nav
             handleResponseSuccess={props.handleResponseSuccess}
+            handleLogout={props.handleLogout}
             isLoggedin={props.isLoggedin}
+            handleLogoutModalOpen={props.handleLogoutModalOpen}
+            handleLogoutModalClose={props.handleLogoutModalClose}
+            isLogoutModalOpen={props.isLogoutModalOpen}
           />
           <>
             <Link className="start-link" to="/contents">

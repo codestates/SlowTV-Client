@@ -37,9 +37,44 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLoggedin: false,
+      isModalOpen: "",
+      userInfo: "",
+      isClickedSignInToggle: "",
+      videoData: "",
+      videoId: "",
+      isLogoutModalOpen: false,
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
   }
+
+  handleLoggedIn = () => {};
+  handleOpenModal = () => {};
+  handleGetUserInfo = () => {};
+  handleSignInToggle = () => {};
+  handleVideoData = () => {};
+  handleVideoId = () => {};
+
+  handleLogout = () => {
+    axios
+      .post("https://server.slowtv24.com/logout", null, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          isLoggedin: false,
+        });
+        this.handleLogoutModalClose();
+      })
+      .catch((err) => err);
+  };
+
+  handleLogoutModalOpen = () => {
+    this.setState({ isLogoutModalOpen: true });
+  };
+  handleLogoutModalClose = () => {
+    this.setState({ isLogoutModalOpen: false });
+  };
 
   handleResponseSuccess() {
     this.setState({
@@ -60,6 +95,10 @@ class App extends React.Component {
             <Landing
               handleResponseSuccess={this.handleResponseSuccess}
               isLoggedin={this.state.isLoggedin}
+              handleLogout={this.handleLogout}
+              handleLogoutModalOpen={this.handleLogoutModalOpen}
+              handleLogoutModalClose={this.handleLogoutModalClose}
+              isLogoutModalOpen={this.state.isLogoutModalOpen}
             />
           )}
         />
