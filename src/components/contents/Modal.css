@@ -1,3 +1,7 @@
+.Modal_page_Link {
+  text-decoration: none;
+  color: black;
+}
 /* ! 모달창 전체 *************************************/
 .modal {
   position: absolute;
@@ -44,19 +48,16 @@
 
 /* ! 로그인 - 유저이름 Hi, username **************************************/
 .modal_my_profile_username {
-  border: 3px solid black;
+  /* border: 3px solid black; */
   text-align: center;
   align-items: center;
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin-top: 7%;
   height: 10%;
   font-size: 2.3vmax;
-  /* width: 100%; */
 }
 
 /* ! 로그인 - 디브 유저 이미지  **************************************/
 .modal_my_profile_div_user_img {
-  border: 2px solid black;
   width: 40%;
   height: 22%;
   /* text-align: center; */
@@ -65,19 +66,22 @@
   /* 마진 오토랑 중복 안됨 */
   /* margin-top: 5%; */
 }
-.modal_my_profile_div_center_user_img {
-  /* margin: auto; */
-}
 
 /* ! 로그인 - 유저 이미지  **************************************/
 .modal_my_profile_user_img {
-  width: 100%;
+  width: 90%;
   height: 100%;
+  border: 1px solid gray;
+  border-radius: 10rem;
 }
 
 /* Change Name 버튼 **************************************/
 .modal_my_profile_change_username_btn {
   border: 2px solid black;
+  /* border-radius: 10px; */
+  /* width: 100%; */
+  width: 80%;
+  margin: auto;
   text-align: center;
   margin-top: 13%;
   height: 10%;
@@ -87,6 +91,8 @@
 /* Change Password 버튼 **************************************/
 .modal_my_profile_change_password_btn {
   border: 2px solid black;
+  width: 80%;
+  margin: auto;
   text-align: center;
   margin-top: 10%;
   height: 10%;
@@ -96,6 +102,8 @@
 /* Logout  버튼 **************************************/
 .modal_my_profile_logout_btn {
   border: 2px solid black;
+  width: 80%;
+  margin: auto;
   text-align: center;
   margin-top: 10%;
   height: 10%;

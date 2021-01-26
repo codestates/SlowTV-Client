@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import FakeSideContainer from "../../containers/FakeSideContainer";
 import NavContainer from "../../containers/NavContainer";
+import SideRemoteControlContainer from "../../containers/SideRemoteControlContainer";
 import ModalContainer from "../../containers/ModalContainer";
 import "./ChangeUserPassword.css";
+import cancel from "../../img/cancel.png";
 import axios from "axios";
 
 const ChangeUserPassword = ({
@@ -40,7 +41,8 @@ const ChangeUserPassword = ({
   const handleUpdateBtn = async () => {
     if (newPassword === confirmPassword) {
       const updateBtn = await axios.post(
-        "https://mayweather24.com/edit-profile",
+        // "https://mayweather24.com/edit-profile"
+        "https://server.slowtv24.com/edit-profile",
         {
           prevPassword,
           newPassword,
@@ -49,33 +51,34 @@ const ChangeUserPassword = ({
           withCredentials: true,
         }
       );
-      console.log(
-        "🚀 ~ file: ChangeUserPassword.js ~ line 46 ~ handleUpdateBtn ~ updateBtn",
-        updateBtn
-      );
       clickLogout();
-      history.push("/");
+      // history.push("/"); // 로그인이 제대로 안 풀림
+      window.location.assign("https://localhost:3000");
     } else {
       setSameNewAsConfrim(false);
     }
   };
 
   return (
-    <div>
+    <div className="change_password_page">
       <NavContainer />
-      <FakeSideContainer />
+      <SideRemoteControlContainer />
       {isModalClicked ? <ModalContainer /> : null}
       {!isLoggedIn ? (
         <div>로그인 후 이용 가능</div>
       ) : (
-        <div className="change_password_page">
+        <div className="change_password_page_container">
           {/* // !title */}
           <div className="change_password_page_title">
             <div
               className="change_password_page_back_btn"
               onClick={handleGoBack}
             >
-              x
+              <img
+                className="change_password_page_back_btn_icon"
+                src={cancel}
+                alt="cancel"
+              ></img>
             </div>
             <div className="change_password_page_title_value">
               Change Password
@@ -87,7 +90,7 @@ const ChangeUserPassword = ({
             <div className="change_password_page_old_name_box">
               {/* //? Old name: */}
               <div className="change_password_page_old_name_box_title">
-                Old name :
+                Old Password :
               </div>
               {/* //? input */}
               <div className="change_password_page_old_name_input_box">
@@ -101,7 +104,7 @@ const ChangeUserPassword = ({
             <div className="change_password_page_new_name_box">
               {/* //? New : */}
               <div className="change_password_page_new_name_box_title">
-                New name :
+                New Password :
               </div>
               {/* //? input */}
               <div className="change_password_page_new_name_input_box">
@@ -115,7 +118,7 @@ const ChangeUserPassword = ({
             <div className="change_password_page_confirm_name_box">
               {/* //? Confirm : */}
               <div className="change_password_page_confirm_name_box_title">
-                confirm name :
+                Confirm Password :
               </div>
               {/* //? input */}
               <div className="change_password_page_confirm_name_input_box">

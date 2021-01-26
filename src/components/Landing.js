@@ -9,13 +9,12 @@ import "./Landing.css";
 
 const Landing = ({
   history,
-  email,
-  nickname,
   isLoggedIn,
   isModalClicked,
+  nickname,
   closeModal,
 }) => {
-  // ! 컨텐츠로 이동
+  // ! Get Started 버튼 : 컨텐츠로 이동
   const handleGetStarted = () => {
     closeModal();
     history.push("/contents");
@@ -40,7 +39,8 @@ const Landing = ({
         <div className="landing_page_container">
           <div className="landing_page_introduce_title">Find Your Calm</div>
           <div className="landing_page_introduce_body">
-            Sleep more, Stress less, Live better.
+            If you're tired of your busy daily life, Feel the aesthetics of
+            slowness for a moment.
           </div>
           <button className="btn" onClick={handleGetStarted}>
             Get started

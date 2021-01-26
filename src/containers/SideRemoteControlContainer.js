@@ -1,7 +1,7 @@
 import React from "react";
 import SideRemoteControl from "../components/SideRemoteControl";
 import { connect } from "react-redux";
-import { clickCategory } from "../modules/fakeside";
+import { clickCategory, clickRemoteControl } from "../modules/fakeside";
 import { openModal, closeModal } from "../modules/modal";
 
 const SideRemoteControlContainer = ({
@@ -9,6 +9,8 @@ const SideRemoteControlContainer = ({
   handleOnClickCategory,
   isLoggedIn,
   closeModal,
+  clickRemoteControl,
+  isRemoteControlOn,
 }) => {
   return (
     <SideRemoteControl
@@ -16,6 +18,8 @@ const SideRemoteControlContainer = ({
       handleOnClickCategory={handleOnClickCategory}
       isLoggedIn={isLoggedIn}
       closeModal={closeModal}
+      isRemoteControlOn={isRemoteControlOn}
+      clickRemoteControl={clickRemoteControl}
     />
   );
 };
@@ -23,6 +27,7 @@ const SideRemoteControlContainer = ({
 const mapStateToProps = (state) => ({
   videoData: state.fakeside.videoData,
   isLoggedIn: state.login.isLoggedIn,
+  isRemoteControlOn: state.fakeside.isRemoteControlOn,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -31,6 +36,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   closeModal: () => {
     dispatch(closeModal());
+  },
+  clickRemoteControl: () => {
+    dispatch(clickRemoteControl());
   },
 });
 

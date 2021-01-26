@@ -13,13 +13,13 @@ const LandingNav = ({ history, changeSignIn, changeSignUp }) => {
         SLOW<span className="landing_nav_page_tv_in_logo">TV</span>
       </span>
       {/* Sign Up */}
-      <Link to="login">
+      <Link to="login" className="Link">
         <span className="landing_nav_page_Sign_Up" onClick={changeSignUp}>
           Sign Up
         </span>
       </Link>
       {/* Sign In */}
-      <Link to="login">
+      <Link to="login" className="Link">
         <span className="landing_nav_page_Sign_In" onClick={changeSignIn}>
           Sign In
         </span>

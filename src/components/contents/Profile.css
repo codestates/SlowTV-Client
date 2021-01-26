@@ -1,3 +1,8 @@
+.Profile_Link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* 페이지 전체 **********************************/
 .profile_page {
   /* border: 3px solid gray; */
@@ -9,57 +14,109 @@
 }
 
 .profile_page_container {
-  /* border: 5px solid gray; */
-  height: 100%;
-  width: 78%;
+  /* border: 0.5px solid red; */
+  height: 60%;
+  width: 38%;
   float: left;
+  margin-top: 5%;
+  margin-left: 25%;
+}
+
+/* 네모 박스 위 Profile */
+.profile_page_container_title {
+  color: white;
+  font-size: 2vmax;
+}
+
+.profile_page_inner_container {
+  border: 0.5px solid gray;
+  height: 90%;
+  width: 100%;
+  /* float: left; */
+  margin-top: 2%;
+  /* margin-left: 15%; */
   /* background-color: gray; */
 }
 
-/* 유저 아이디 *******************************/
+/* ! ID:유저 아이디 *******************************/
 .profile_page_box_user_id {
-  border: 1px solid gray;
+  border-bottom: 1px solid gray;
+  width: 60%;
+  height: 10%;
+  margin-top: 10%;
+  margin-left: 10%;
+  color: white;
+  font-size: 1.5vmax;
 }
 
 .profile_page_current_user_id {
   display: inline;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
 .profile_page_current_user_id_value {
   display: inline;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 /* 유저 이름 *******************************/
 .profile_page_box_username {
-  border: 1px solid gray;
+  border-bottom: 1px solid gray;
+  width: 60%;
+  height: 10%;
+  margin-top: 5%;
+  margin-left: 10%;
+  color: white;
+  font-size: 1.5vmax;
 }
 
 .profile_page_current_username {
   display: inline;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
 .profile_page_current_username_value {
   display: inline;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
 /* 유저 비밀번호 *******************************/
 
 .profile_page_box_user_password {
-  border: 1px solid gray;
+  border-bottom: 1px solid gray;
+  width: 60%;
+  height: 10%;
+  margin-top: 5%;
+  margin-left: 10%;
+  color: white;
+  font-size: 1.5vmax;
 }
+
+.profile_page_box_username:hover,
+.profile_page_box_user_password:hover {
+  transition: all ease 0.5s;
+  font-size: 1.6vmax;
+}
+
 .profile_page_change_user_password {
   display: inline;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
 .profile_page_change_user_password_value {
   display: inline;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   -webkit-text-security: disc;
   /* -webkit-user-select: text; */
   /* -webkit-appearance: textfield; */
-  cursor: auto;
+}
+
+.profile_page_box_logout_btn {
+  /* border: 1px solid gray; */
+  /* height: 100%; */
+  margin-top: 18%;
+  margin-left: 78%;
+}
+.profile_page_logout_btn {
+  font-size: 1.2vmax;
+  color: black;
 }

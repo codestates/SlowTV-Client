@@ -2,44 +2,50 @@ import React from "react";
 import Favorites from "../components/Favorites";
 import { clickThumbnail, addFavorites } from "../modules/water";
 import { connect } from "react-redux";
-import { clickCategory } from "../modules/fakeside";
+import { clickCategory, clickRemoteControl } from "../modules/fakeside";
+import {
+  clickSignIn,
+  changeSignUp,
+  changeNickName,
+  changeEmail,
+  // changePassword,
+} from "../modules/login";
 
 const FavoritesContainer = ({
-  id,
-  handleOnClick,
-  isClicked,
+  isLoggedIn,
   isModalClicked,
-  handleOnClickModal,
   videoData,
   clickThumbnail,
-  addFavorites,
-  isAddFavoirtes,
-  isLoggedIn,
+  clickSignIn,
+  changeNickName,
+  changeEmail,
+  changeSignUp,
   handleOnClickCategory,
+  clickRemoteControl,
+  isRemoteControlOn,
 }) => {
   return (
     <Favorites
-      id={id}
-      handleOnClick={handleOnClick}
-      isClicked={isClicked}
+      isLoggedIn={isLoggedIn}
       isModalClicked={isModalClicked}
       videoData={videoData}
       clickThumbnail={clickThumbnail}
-      addFavorites={addFavorites}
-      isAddFavoirtes={isAddFavoirtes}
-      isLoggedIn={isLoggedIn}
+      clickSignIn={clickSignIn}
+      changeNickName={changeNickName}
+      changeEmail={changeEmail}
+      changeSignUp={changeSignUp}
       handleOnClickCategory={handleOnClickCategory}
+      isRemoteControlOn={isRemoteControlOn}
+      clickRemoteControl={clickRemoteControl}
     />
   );
 };
 
 const mapStateToProps = (state) => ({
-  id: state.water.id,
-  isClicked: state.hamburger.isClicked,
+  isLoggedIn: state.login.isLoggedIn,
   isModalClicked: state.modal.isModalClicked,
   videoData: state.fakeside.videoData,
-  isAddFavoirtes: state.water.isAddFavoirtes,
-  isLoggedIn: state.login.isLoggedIn,
+  isRemoteControlOn: state.fakeside.isRemoteControlOn,
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -49,11 +55,24 @@ const mapDispatchToProps = (dispatch, props) => ({
     dispatch(clickThumbnail(id));
     props.history.push("/watch");
   },
-  addFavorites: () => {
-    dispatch(addFavorites());
-  },
   handleOnClickCategory: (category) => {
     dispatch(clickCategory(category));
+  },
+  clickSignIn: () => {
+    // console.log("a");
+    dispatch(clickSignIn());
+  },
+  changeEmail: (email) => {
+    dispatch(changeEmail(email));
+  },
+  changeNickName: (nickname) => {
+    dispatch(changeNickName(nickname));
+  },
+  changeSignUp: () => {
+    dispatch(changeSignUp());
+  },
+  clickRemoteControl: () => {
+    dispatch(clickRemoteControl());
   },
 });
 

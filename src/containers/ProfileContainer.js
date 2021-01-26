@@ -1,7 +1,13 @@
 import React from "react";
 import Profile from "../components/contents/Profile";
 import { connect } from "react-redux";
-import { clickLogout } from "../modules/login";
+import {
+  clickLogout,
+  clickSignIn,
+  changeSignUp,
+  changeNickName,
+  changeEmail,
+} from "../modules/login";
 
 const ProfileContainer = ({
   email,
@@ -11,6 +17,10 @@ const ProfileContainer = ({
   clickLogout,
   githubAccessToken,
   googleAccessToken,
+  clickSignIn,
+  changeNickName,
+  changeEmail,
+  changeSignUp,
 }) => {
   return (
     <Profile
@@ -21,6 +31,10 @@ const ProfileContainer = ({
       clickLogout={clickLogout}
       githubAccessToken={githubAccessToken}
       googleAccessToken={googleAccessToken}
+      clickSignIn={clickSignIn}
+      changeNickName={changeNickName}
+      changeEmail={changeEmail}
+      changeSignUp={changeSignUp}
     />
   );
 };
@@ -37,6 +51,19 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   clickLogout: () => {
     dispatch(clickLogout());
+  },
+  clickSignIn: () => {
+    // console.log("a");
+    dispatch(clickSignIn());
+  },
+  changeEmail: (email) => {
+    dispatch(changeEmail(email));
+  },
+  changeNickName: (nickname) => {
+    dispatch(changeNickName(nickname));
+  },
+  changeSignUp: () => {
+    dispatch(changeSignUp());
   },
 });
 

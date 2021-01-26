@@ -9,12 +9,14 @@ const SideRemoteControl = ({
   videoData,
   isLoggedIn,
   closeModal,
+  isRemoteControlOn,
+  clickRemoteControl,
 }) => {
-  const [isOn, SetOn] = useState(false);
+  // const [isOn, SetOn] = useState(false);
 
-  const handleSetOn = () => {
-    SetOn(!isOn);
-  };
+  // const handleSetOn = () => {
+  // SetOn(!isOn);
+  // };
 
   //! GoHome
   const handleGoHome = () => {
@@ -35,7 +37,7 @@ const SideRemoteControl = ({
       history.push("/contents/profile");
     } else {
       const video = await axios(
-        `https://mayweather24.com/category/${category}`,
+        `https://server.slowtv24.com/category/${category}`,
         {
           withCredentials: true,
         }
@@ -53,74 +55,82 @@ const SideRemoteControl = ({
   // ! 페이보릿 카테고리
   const handleGoFavorites = async (e) => {
     // ! 게스트인 경우, 페이보릿 아무 것도 없음
+    const category = e.target.attributes.value.value;
     if (!isLoggedIn) {
       handleOnClickCategory(null);
-    }
-    // ! 로그인한 경우
-    const category = e.target.attributes.value.value;
-    console.log("페이보릿 클릭");
-    const favorites = await axios(`https://mayweather24.com/${category}`, {
-      withCredentials: true,
-    });
-    // const favorites = await axios(`https://mayweather24.com/favorite`, {
-    //   withCredentials: true,
-    // });
-    console.log("1");
-    console.log(
-      "🚀 ~ file: FakeSide.js ~ line 37 ~ handleGoFavorites ~ favorites",
-      favorites.data.userFavorites
-    );
-    console.log("2");
-    if (isLoggedIn && favorites.data.userFavorites) {
-      handleOnClickCategory(favorites.data.userFavorites);
+      closeModal();
+      history.push(`/contents/favorites`);
     } else {
-      handleOnClickCategory(null);
+      // ! 로그인한 경우
+      console.log("여기서 문제 발생 왜?");
+      const favorites = await axios("https://server.slowtv24.com/favorites", {
+        withCredentials: true,
+      });
+      console.log(
+        "🚀 ~ file: SideRemoteControl.js ~ line 66 ~ handleGoFavorites ~ favorites",
+        favorites
+      );
+      if (favorites.data.userFavorites) {
+        handleOnClickCategory(favorites.data.userFavorites);
+        history.push("/contents/favorites");
+      } else {
+        handleOnClickCategory(null);
+        history.push("/contents/favorites");
+      }
+      closeModal();
     }
-    history.push("/contents/favorites");
   };
   return (
     <div className="remote_control">
-      <div className={isOn ? "remote_control_box" : "remote_control_box2"}>
-        {isOn ? (
-          <div className="list_item" onClick={handleSetOn}>
+      <div
+        className={
+          isRemoteControlOn ? "remote_control_box" : "remote_control_box2"
+        }
+      >
+        {isRemoteControlOn ? (
+          <div className="list_item" onClick={clickRemoteControl}>
             On
           </div>
         ) : (
-          <div className="list_item2" onClick={handleSetOn}>
+          <div className="list_item2" onClick={clickRemoteControl}>
             Off
           </div>
         )}
 
         <div
-          className={isOn ? "list_item" : "list_item2"}
+          className={isRemoteControlOn ? "list_item" : "list_item2"}
           onClick={handleGoHome}
         >
           Home
         </div>
         <div
-          className={isOn ? "list_item" : "list_item2"}
+          className={isRemoteControlOn ? "list_item" : "list_item2"}
           onClick={handleGoContents}
         >
           Contents
         </div>
         <div
-          className={isOn ? "list_item" : "list_item2"}
+          className={isRemoteControlOn ? "list_item" : "list_item2"}
           value="water"
           onClick={handleGoCategory}
         >
           Water
         </div>
-        <div className={isOn ? "list_item" : "list_item2"}>Fire</div>
-        <div className={isOn ? "list_item" : "list_item2"}>Snow</div>
+        <div className={isRemoteControlOn ? "list_item" : "list_item2"}>
+          Fire
+        </div>
+        <div className={isRemoteControlOn ? "list_item" : "list_item2"}>
+          Snow
+        </div>
         <div
-          className={isOn ? "list_item" : "list_item2"}
+          className={isRemoteControlOn ? "list_item" : "list_item2"}
           value="favorites"
           onClick={handleGoFavorites}
         >
           Favorites
         </div>
         <div
-          className={isOn ? "list_item" : "list_item2"}
+          className={isRemoteControlOn ? "list_item" : "list_item2"}
           value="profile"
           onClick={handleGoCategory}
         >

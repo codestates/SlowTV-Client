@@ -1,16 +1,12 @@
-// Profile.js 하던거
-// 리듀서에서 가져온 props를 ChangeUsername, ChangePassword로 보내기
-
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-// import Side from "../Side";
-import FakeSideContainer from "../../containers/FakeSideContainer";
 import SideRemoteControlContainer from "../../containers/SideRemoteControlContainer";
 import NavContainer from "../../containers/NavContainer";
 import ModalContainer from "../../containers/ModalContainer";
 import "./Profile.css";
 import axios from "axios";
-// import ChangeUsername from "./ChangeUsername";
+import google from "../../img/google.png";
+import github from "../../img/github.png";
 
 const Profile = ({
   history,
@@ -21,121 +17,81 @@ const Profile = ({
   clickLogout,
   githubAccessToken,
   googleAccessToken,
+  clickSignIn,
+  changeNickName,
+  changeEmail,
+  changeSignUp,
 }) => {
-  // New name
-  const [newNameInputValue, setNewNameInputValue] = useState("");
-  // Old PW
-  const [oldPasswordInputValue, setOldPasswordInputValue] = useState("");
-  // New PW
-  const [newPasswordInputValue, setNewPasswordInputValue] = useState("");
-  // Confirm PW
-  const [confirmPasswordInputValue, setConfirmPasswordInputValue] = useState(
-    ""
-  );
-
-  // ! change username
-  // 1. 인풋 벨류 받아서 셋스테이트 하기
-  const handleNameInputValue = (key) => (e) => {
-    setNewNameInputValue({ [key]: e.target.value }); // 객체 리터럴, 객체에 동적으로 속성 추가 가능, [변수] ex)[key] 가 속성명(키)이 되어줌.
-    // 예전 문법에선 obj[key] 이렇게 객체 바깥에서 해야 했다면, ES2015 문법에서는 객체 리터럴 안에 동적 속성을 선언해도 됨.
-    // key에 email이 들어가면 email에 e.target.value 값이 들어감
-  };
-  // ! 2. 네트워크 요청할 값 스테이트를 비구조화
-  const { newUsername } = newNameInputValue;
-
-  //! 3. 폼에서 update 버튼 누르면 axios 보내고 바뀐 유저네임 값도 받음
-  const handleChangeUsername = (e) => {
-    console.log(
-      "🚀 ~ file: Profile.js ~ line 46 ~ handleChangeUsername ~ username",
-      newUsername
-    );
-    // axios.post/유저네임 바꾸는 api
-    // axios.get/유저네임 받기
-    // setState 유저 네임
-    e.preventDefault();
+  // ! Sign Up 버튼 클릭시 페이지로 이동
+  const handleGoSignUpPage = () => {
+    changeSignUp();
+    history.push("/login");
   };
 
-  // ! change PW
-  //! 1.인풋 벨류 받아서 셋스테이트 하기
-  //  1. old
-  const handleOldPasswordInputValue = (key) => (e) => {
-    setOldPasswordInputValue({ [key]: e.target.value }); // 객체 리터럴, 객체에 동적으로 속성 추가 가능, [변수] ex)[key] 가 속성명(키)이 되어줌.
-    // 예전 문법에선 obj[key] 이렇게 객체 바깥에서 해야 했다면, ES2015 문법에서는 객체 리터럴 안에 동적 속성을 선언해도 됨.
-    // key에 email이 들어가면 email에 e.target.value 값이 들어감
-  };
-  //  1. new
-  const handleNewPasswordInputValue = (key) => (e) => {
-    setNewPasswordInputValue({ [key]: e.target.value }); // 객체 리터럴, 객체에 동적으로 속성 추가 가능, [변수] ex)[key] 가 속성명(키)이 되어줌.
-    // 예전 문법에선 obj[key] 이렇게 객체 바깥에서 해야 했다면, ES2015 문법에서는 객체 리터럴 안에 동적 속성을 선언해도 됨.
-    // key에 email이 들어가면 email에 e.target.value 값이 들어감
-  };
-  //  1. confirm
-  const handleConfirmPasswordInputValue = (key) => (e) => {
-    setConfirmPasswordInputValue({ [key]: e.target.value }); // 객체 리터럴, 객체에 동적으로 속성 추가 가능, [변수] ex)[key] 가 속성명(키)이 되어줌.
-    // 예전 문법에선 obj[key] 이렇게 객체 바깥에서 해야 했다면, ES2015 문법에서는 객체 리터럴 안에 동적 속성을 선언해도 됨.
-    // key에 email이 들어가면 email에 e.target.value 값이 들어감
-  };
+  //! 게스트 -> 일반 로그인
+  const [emailInputValue, setEmailInputValue] = useState("");
+  const [passwordInputValue, setPasswordInputValue] = useState("");
 
-  // ! 2. 네트워크 요청할 값 스테이트를 비구조화
-  const { oldPassword } = oldPasswordInputValue;
-  const { newPassword } = newPasswordInputValue;
-  const { confirmPassword } = confirmPasswordInputValue;
-
-  // ! 3. 폼에서 update 버튼 누르면 axios 보내고 바뀐 유저네임 값도 받음
-  const handleUpdatePassword = (e) => {
-    console.log(
-      "🚀 ~ file: Profile.js ~ line 46 ~ handleChangeUsername ~ username",
-      oldPassword
-    );
-    console.log(
-      "🚀 ~ file: Profile.js ~ line 40 ~ newPasswordInputValue",
-      newPassword
-    );
-    console.log(
-      "🚀 ~ file: Profile.js ~ line 43 ~ confirmPasswordInputValue",
-      confirmPassword
-    );
-    if (newPassword === confirmPassword) {
-      console.log("비밀번호 일치 확인");
-      // axios.post/비밀번호 바꾸는 api
-      // 로그아웃 시키거나 안시키거나
-    }
-
-    e.preventDefault();
-  };
-
-  // ! 비밀번호 일치 확인
-  // 1. 이전 비밀번호가 맞는지 -> 서버에서
-  // 2. new 와 cofirm이 일치하는지 -> 클라이언트에서
-
-  //test
-
-  const consoleTest = (e) => {
-    if (!githubAccessToken && !googleAccessToken) {
-      const route = e.target.attributes.value.value;
-      // console.log(   "🚀 route",   route );
-      history.push(`/contents/profile/${route}`);
+  const handleInputValue = (key) => (e) => {
+    if (key === "email") {
+      setEmailInputValue(e.target.value);
+    } else if (key === "password") {
+      setPasswordInputValue(e.target.value);
     }
   };
 
+  // ! 로그인 버튼 클릭 -> isLoggedIn : true
+  const clickSignInBtn = async () => {
+    const signIn = await axios.post(
+      "https://server.slowtv24.com/login",
+      {
+        email: emailInputValue,
+        password: passwordInputValue,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+    if (signIn.data !== undefined) {
+      clickSignIn();
+      handleGetUserInfo();
+    }
+  };
+
+  // ! 로그인 후 유저정보 상태 값에 넣기
+  const handleGetUserInfo = async () => {
+    const userInfo = await axios("https://server.slowtv24.com/userinfo", {
+      withCredentials: true,
+    });
+
+    changeEmail(userInfo.data.userInfo.email);
+    changeNickName(userInfo.data.userInfo.nickname);
+    history.push("/contents");
+  };
+
+  // ! GitHub OAuth URL // ! client id 변수 처리 하기
+  const GITHUB_LOGIN_URL =
+    "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
+  const githubLoginHandler = () => {
+    window.location.assign(GITHUB_LOGIN_URL);
+  };
+  // ! Google OAuth URL // scope는 스페이스로 구분
+  const GOOGLE_LOGIN_URL =
+    "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/login&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
+  const googleLoginHandler = () => {
+    window.location.assign(GOOGLE_LOGIN_URL);
+  };
+
+  // ! 로그아웃
   const handleLogout = async () => {
-    console.log("핸들로그아웃");
-
     const logout = await axios.post(
-      "https://mayweather24.com/logout",
-      // "https://server.slowtv24.com/logout",
+      "https://server.slowtv24.com/logout",
       null,
       {
         withCredentials: true,
       }
     );
-    console.log(
-      "🚀 ~ file: Modal.js ~ line 86 ~ handleLogout ~ logout",
-      logout
-    );
-    // if (logout !== undefined) {
     clickLogout();
-    // }
   };
 
   return (
@@ -146,64 +102,151 @@ const Profile = ({
       {/* 프로필 시작 */}
       {isLoggedIn ? (
         <div className="profile_page_container">
-          <div className="profile_page_title">Profile</div>
-          {/* User ID */}
-          <div className="profile_page_box_user_id">
-            <div className="profile_page_current_user_id">ID :</div>
-            <div className="profile_page_current_user_id_value">{email}</div>
-          </div>
-          {/* // !User naem */}
-          <div
-            className="profile_page_box_username"
-            onClick={consoleTest}
-            value="update-username"
-          >
-            <div
-              className="profile_page_current_username"
-              value="update-username"
-            >
-              Current Username :
+          <div className="profile_page_container_title">Profile</div>
+          <div className="profile_page_inner_container">
+            {/* //! User ID */}
+            <div className="profile_page_box_user_id">
+              <div className="profile_page_current_user_id">ID :</div>
+              <div className="profile_page_current_user_id_value">{email}</div>
             </div>
-            <div
-              className="profile_page_current_username_value"
-              value="update-username"
-            >
-              {nickname}
-            </div>
-            {/* <div className="profile_page_change_username">New Username :</div> */}
-            {/* <input className="profile_page_change_username_value"></input> */}
-          </div>
-          {/* // ! User PW */}
-          {githubAccessToken || googleAccessToken ? null : (
-            <div
-              className="profile_page_box_user_password"
-              onClick={consoleTest}
-              value="update-password"
+            {/* //! User naem */}
+            <Link
+              className="Profile_Link"
+              to="/contents/profile/update-username"
             >
               <div
-                className="profile_page_change_user_password"
-                value="update-password"
+                className="profile_page_box_username"
+                value="update-username"
               >
-                New Password :
+                <div
+                  className="profile_page_current_username"
+                  value="update-username"
+                >
+                  Current Username :
+                </div>
+                <div
+                  className="profile_page_current_username_value"
+                  value="update-username"
+                >
+                  {nickname}
+                </div>
               </div>
-              <div
-                className="profile_page_change_user_password_value"
-                value="update-password"
+            </Link>
+            {/* // ! User PW */}
+            {githubAccessToken || googleAccessToken ? null : (
+              <Link
+                className="Profile_Link"
+                to="/contents/profile/update-password"
               >
-                12345678
-              </div>
-            </div>
-          )}
+                <div
+                  className="profile_page_box_user_password"
+                  value="update-password"
+                >
+                  <div
+                    className="profile_page_change_user_password"
+                    value="update-password"
+                  >
+                    New Password :
+                  </div>
+                  <div
+                    className="profile_page_change_user_password_value"
+                    value="update-password"
+                  >
+                    12345678
+                  </div>
+                </div>
+              </Link>
+            )}
 
-          {/* // !Logout Btn */}
-          <div className="profile_page_box_logout_btn">
-            <button className="profile_page_logout_btn" onClick={handleLogout}>
-              Logout
-            </button>
+            {/* // !Logout Btn */}
+            <div className="profile_page_box_logout_btn">
+              <button
+                className="profile_page_logout_btn"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       ) : (
-        <div>로그인 후 이용 가능합니다.</div>
+        <div className="loaded_favorites_page">
+          <div className="loaded_favorites_page_guest_message">
+            <div>Please log in and use it.</div>
+            <p></p>
+            Slow TV helps you experience
+            <br></br>
+            the aesthetics of slowness,
+            <br></br>
+            tired of your busy daily life.
+          </div>
+
+          <div className="loaded_favorites_page_guest_sign_in_box">
+            {/* email */}
+            <div className="loaded_favorites_page_guest_sign_in_email_box">
+              <input
+                className="loaded_favorites_page_guest_sign_in_email_input"
+                onChange={handleInputValue("email")}
+              ></input>
+            </div>
+            {/* password */}
+            <div className="loaded_favorites_page_guest_sign_in_password_box">
+              <input
+                className="loaded_favorites_page_guest_sign_in_password"
+                onChange={handleInputValue("password")}
+              ></input>
+            </div>
+            {/* sign in */}
+            <div className="loaded_favorites_page_guest_sign_in_sign_in_box">
+              <button
+                className="loaded_favorites_page_guest_sign_in_btn"
+                onClick={clickSignInBtn}
+              >
+                Sign In
+              </button>
+            </div>
+            {/* //! social  */}
+            <div className="loaded_favorites_page_guest_sign_in_social_box">
+              {/* //! google */}
+              <div className="loaded_favorites_page_guest_sign_in_social_google_box">
+                <button
+                  className="loaded_favorites_page_guest_sign_in_social_google_btn"
+                  onClick={googleLoginHandler}
+                >
+                  <img
+                    className="loaded_favorites_page_guest_sign_in_social_google_img"
+                    src={google}
+                    alt="google"
+                  ></img>
+                </button>
+              </div>
+              {/* //! github */}
+              <div className="loaded_favorites_page_guest_sign_in_social_github_box">
+                <button
+                  className="loaded_favorites_page_guest_sign_in_social_github_btn"
+                  onClick={githubLoginHandler}
+                >
+                  <img
+                    className="loaded_favorites_page_guest_sign_in_social_githu_img"
+                    src={github}
+                    alt="githu"
+                  ></img>
+                </button>
+              </div>
+            </div>
+            {/* //! hr */}
+            <div className="loaded_favorites_page_guest_sign_in_box_hr"></div>
+            {/* //! sign up */}
+            <div className="loaded_favorites_page_guest_sign_in_sign_up_box">
+              <button
+                className="loaded_favorites_page_guest_sign_up_btn"
+                onClick={handleGoSignUpPage}
+              >
+                Create New Account
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* end */}

@@ -13,7 +13,7 @@
   right: 15%;
   width: 8%;
   height: 60%;
-  transition: all 1s linear;
+  transition: all 0.8s linear;
   transform: rotate(-35deg) skew(20deg, 5deg);
 }
 
@@ -39,7 +39,7 @@
   background: #ff6e42;
   color: #fffcfb;
   transform: translate(0.9em, -0.9em);
-  transition: all 1s linear;
+  transition: all 0.25s linear;
   box-shadow: -2em 2em 0 #e1e1e1;
 }
 
@@ -104,7 +104,7 @@
   right: 3%;
   width: 10%;
   height: 80%;
-  transition: all 1s linear;
+  transition: all 0.8s linear;
   transform: rotate(0deg) skew(0deg, 0deg);
 }
 

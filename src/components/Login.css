@@ -1,6 +1,7 @@
 /* 페이지 전체 */
 .login_page {
   /* border: 5px solid gray; */
+  background-color: #212021;
   height: 100%;
 }
 

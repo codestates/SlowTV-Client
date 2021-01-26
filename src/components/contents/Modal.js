@@ -5,6 +5,7 @@ import axios from "axios";
 import cancel from "../../img/cancel.png";
 import google from "../../img/google.png";
 import github from "../../img/github.png";
+import SLOW1 from "../../img/SLOW2.jpeg";
 
 const Modal = ({
   openModal,
@@ -63,8 +64,7 @@ const Modal = ({
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
     const signIn = await axios.post(
-      // "https://server.slowtv24.com/login",
-      "https://mayweather24.com/login",
+      "https://server.slowtv24.com/login",
       {
         email: emailInputValue,
         password: passwordInputValue,
@@ -84,7 +84,7 @@ const Modal = ({
 
       if (nowPage !== "profile" && nowPage !== "favorites") {
         const video = await axios(
-          `https://mayweather24.com/category/${nowPage}`,
+          `https://server.slowtv24.com/category/${nowPage}`,
           {
             withCredentials: true,
           }
@@ -92,7 +92,7 @@ const Modal = ({
         handleOnClickCategory(video.data.contents);
         // closeModal();
       } else if (nowPage === "favorites") {
-        const video = await axios(`https://mayweather24.com/${nowPage}`, {
+        const video = await axios(`https://server.slowtv24.com/${nowPage}`, {
           withCredentials: true,
         });
         console.log(
@@ -108,7 +108,7 @@ const Modal = ({
   // ! 유저 정보 업데이트
   const handleGetUserInfo = async () => {
     // const userInfo = await axios("https://server.slowtv24.com/userinfo", {
-    const userInfoData = await axios("https://mayweather24.com/userinfo", {
+    const userInfoData = await axios("https://server.slowtv24.com/userinfo", {
       withCredentials: true,
     });
     changeEmail(userInfoData.data.userInfo.email);
@@ -126,7 +126,7 @@ const Modal = ({
 
     if (nowPage !== "profile" && nowPage !== "favorites") {
       const video = await axios(
-        `https://mayweather24.com/category/${nowPage}`,
+        `https://server.slowtv24.com/category/${nowPage}`,
         {
           withCredentials: true,
         }
@@ -142,7 +142,7 @@ const Modal = ({
   const handleLogout = async () => {
     const logout = await axios.post(
       // "https://server.slowtv24.com/logout",
-      "https://mayweather24.com/logout",
+      "https://server.slowtv24.com/logout",
       null,
       {
         withCredentials: true,
@@ -197,16 +197,27 @@ const Modal = ({
 
           {/* //! 유저 이미지 */}
           <div className="modal_my_profile_div_user_img">
-            <img className="modal_my_profile_user_img" alt="user_img"></img>
+            <img
+              className="modal_my_profile_user_img"
+              src={github}
+              // src={SLOW1}
+              alt="user_img"
+            ></img>
           </div>
           {/* 이름 변경 버튼 */}
-          <Link to="/contents/profile/update-username">
+          <Link
+            className="Modal_page_Link"
+            to="/contents/profile/update-username"
+          >
             <div className="modal_my_profile_change_username_btn">
               Change Name
             </div>
           </Link>
           {/* 비밀번호 변경 버튼 */}
-          <Link to="/contents/profile/update-password">
+          <Link
+            className="Modal_page_Link"
+            to="/contents/profile/update-password"
+          >
             <div
               className="modal_my_profile_change_password_btn"
               // onClick={assignChangeNamePage}

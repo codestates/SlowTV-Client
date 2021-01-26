@@ -23,6 +23,10 @@ const Login = ({
   nickname,
   history,
 }) => {
+  const [emailInputValue, setEmailInputValue] = useState("");
+  const [passwordInputValue, setPasswordInputValue] = useState("");
+  const [usernameInputValue, setUsernameInputValue] = useState("");
+
   // ! GitHub OAuth URL // ! client id 변수 처리 하기
   const GITHUB_LOGIN_URL =
     "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
@@ -51,7 +55,7 @@ const Login = ({
     if (authorizationCode.length === 20) {
       const accessToken = await axios.post(
         // "https://server.slowtv24.com/callbackgit",
-        "https://mayweather24.com/callback-git",
+        "https://server.slowtv24.com/callback-git",
         {
           authorizationCode,
         },
@@ -68,7 +72,7 @@ const Login = ({
     else {
       const accessToken = await axios.post(
         // "https://server.slowtv24.com/callbackgoogle",
-        "https://mayweather24.com/callback-google",
+        "https://server.slowtv24.com/callback-google",
         {
           authorizationCode,
         },
@@ -101,10 +105,7 @@ const Login = ({
     } else if (googleAccessToken !== null) {
       // ! Google
       const googleUserInfo = await axios(
-        // "https://www.googleapis.com/oauth2/v1/userinfo?access_token=${this.state.googleAccessToken}"
-        // https://www.googleapis.com/oauth2/v1/userinfo?alt=json?access_token=엑세스토큰
         "https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
-        // "https://www.googleapis.com/auth/userinfo.profile",
         {
           headers: {
             Authorization: `Bearer ${googleAccessToken}`,
@@ -113,9 +114,7 @@ const Login = ({
       );
       changeEmail(googleUserInfo.data.email);
       changeNickName(googleUserInfo.data.name);
-      console.log("정보 업데이트 1");
       //! 로그인 페이지에서 로그인한 경우만 컨텐츠로 보내기, 나머지는 현재 페이지에 남아있게 하기
-      // history.push("/contents");
     }
   }, [githubAccessToken, googleAccessToken]);
 
@@ -123,17 +122,8 @@ const Login = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     if (githubAccessToken || googleAccessToken) {
-      console.log("정보 업데이트 2");
-      console.log(
-        "🚀 ~ file: Login.js ~ line 130 ~ getSocialSessionId ~ email",
-        email
-      );
-      console.log(
-        "🚀 ~ file: Login.js ~ line 131 ~ getSocialSessionId ~ nickname",
-        nickname
-      );
       const getSession = await axios.post(
-        "https://mayweather24.com/social-login",
+        "https://server.slowtv24.com/social-login",
         {
           email,
           nickname,
@@ -142,18 +132,10 @@ const Login = ({
           withCredentials: true,
         }
       );
-      console.log(
-        "🚀 ~ file: Login.js ~ line 134 ~ getSocialSessionId ~ getSession",
-        getSession
-      );
-      // ! 로그인 페이지 아니면 해당 페이지 유지하도록
+      // ! 로그인 페이지에서 로그인한 게 아니면 해당 페이지 유지하도록 리팩토링
       history.push("/contents");
     }
   }, [email, nickname]);
-
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
-  const [usernameInputValue, setUsernameInputValue] = useState("");
 
   // 회원가입 버튼 누르고 새로고침 안되서 임시용
   const [refresh, setRefresh] = useState("");
@@ -172,18 +154,12 @@ const Login = ({
   };
 
   // ! 유저 정보 등록
-  // https://server.slowtv24.com/userinfo
-  // https://mayweather24.com/userinfo
+
   // !일반 로그인
   const handleGetUserInfo = async () => {
-    // const userInfo = await axios("https://server.slowtv24.com/userinfo", {
-    const userInfo = await axios("https://mayweather24.com/userinfo", {
+    const userInfo = await axios("https://server.slowtv24.com/userinfo", {
       withCredentials: true,
     });
-    console.log(
-      "🚀 ~ file: Login.js ~ line 69 ~ handleGetUserInfo ~ userInfo.data.userInfo>>>>>",
-      userInfo.data.userInfo
-    ); // {email: "username1@google.com", nickname: "username1"}
     changeEmail(userInfo.data.userInfo.email);
     changeNickName(userInfo.data.userInfo.nickname);
     history.push("/contents");
@@ -191,11 +167,9 @@ const Login = ({
 
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
-    console.log("emailInputValue", emailInputValue);
-    console.log("passwordInputValue", passwordInputValue);
     const signIn = await axios.post(
       // "https://server.slowtv24.com/login",
-      "https://mayweather24.com/login",
+      "https://server.slowtv24.com/login",
       {
         email: emailInputValue,
         password: passwordInputValue,
@@ -203,10 +177,6 @@ const Login = ({
       {
         withCredentials: true,
       }
-    );
-    console.log(
-      "🚀 ~ file: Login.js ~ line 51 ~ clickSignInBtn ~ signIn",
-      signIn
     );
     if (signIn.data !== undefined) {
       clickSignIn();
@@ -216,9 +186,6 @@ const Login = ({
 
   // ! 회원가입
   const clickSignUp = async () => {
-    console.log("emailInputValue", emailInputValue);
-    console.log("passwordInputValue", passwordInputValue);
-    console.log("usernameInputValue", usernameInputValue);
     const signUp = await axios.post(
       "https://server.slowtv24.com/signup",
       {
@@ -230,13 +197,11 @@ const Login = ({
         withCredentials: true,
       }
     );
-    console.log("🚀 ~ file: Login.js ~ line 80 ~ clickSignUp ~ signUp", signUp);
     setRefresh("registered");
   };
 
   return (
     <div className="login_page">
-      {/* <Nav /> */}
       <LandingNavConatiner />
       {isClickedSignInBtn ? (
         <div className="login_box">

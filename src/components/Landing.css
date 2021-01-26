@@ -1,0 +1,12 @@
+.landing_page {
+  background-color: #212021;
+}
+
+/* 타이틀 */
+.landing_page_introduce_title {
+  color: white;
+}
+/* 소개글  */
+.landing_page_introduce_body {
+  color: white;
+}

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import NavContainer from "../../containers/NavContainer";
+import SideRemoteControlContainer from "../../containers/SideRemoteControlContainer";
 import ModalContainer from "../../containers/ModalContainer";
 import "./ChangeUserName.css";
+import cancel from "../../img/cancel.png";
 import axios from "axios";
-import FakeSideContainer from "../../containers/FakeSideContainer";
 
 const ChangeUserName = ({
   history,
@@ -32,8 +33,8 @@ const ChangeUserName = ({
         newName
       );
       const updateName = await axios.post(
-        "https://mayweather24.com/edit-profile",
-        // "https://server.slowtv24.com/editprofile",
+        // "https://mayweather24.com/edit-profile",
+        "https://server.slowtv24.com/edit-profile",
         {
           nickname: newName,
           // email: null,
@@ -55,18 +56,22 @@ const ChangeUserName = ({
   };
 
   return (
-    <div>
+    <div className="change_name_page">
       <NavContainer />
-      <FakeSideContainer />
+      <SideRemoteControlContainer />
       {isModalClicked ? <ModalContainer /> : <div></div>}
       {!isLoggedIn ? (
         <div>go login</div>
       ) : (
-        <div className="change_name_page">
+        <div className="change_name_page_container">
           {/* // !title */}
           <div className="change_name_page_title">
             <div className="change_name_page_back_btn" onClick={handleGoBack}>
-              x
+              <img
+                className="change_name_page_back_btn_icon"
+                src={cancel}
+                alt="cancel"
+              ></img>
             </div>
             <div className="change_name_page_title_value">Change Name</div>
           </div>

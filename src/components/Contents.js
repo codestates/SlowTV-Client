@@ -1,17 +1,11 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import FakeSideContainer from "../containers/FakeSideContainer";
-import SideRemoteControl from "./SideRemoteControl";
 import SideRemoteControlContainer from "../containers/SideRemoteControlContainer";
 import NavContainer from "../containers/NavContainer";
-// import Modal from "./contents/Modal";
 import ModalContainer from "../containers/ModalContainer";
-import "./Contents.css";
 import slowTvLogo1 from "../img/SLOW1.jpeg";
-import slowTvLogo2 from "../img/SLOW2.jpeg";
-// import { fakeData } from "../Fakedata.js";
+import "./Contents.css";
 
-const Contents = ({ history, isLoggedIn, isModalClicked }) => {
+const Contents = ({ isModalClicked }) => {
   // 슬라이드 이미지 누르면 클래스 이름 변경을 통해 css적용이 바뀌고 순서 변경이 되게 만드는 함수
   const handleOnChange = (e) => {
     // 카드 순서
@@ -21,29 +15,24 @@ const Contents = ({ history, isLoggedIn, isModalClicked }) => {
     // 텍스트 카드
     let prevtestText5 = document.querySelector(".contents_page_div_text_five");
     prevtestText5.className = "contents_page_div_text_one";
-
     // 4-> 5
-
     let prevtest4 = document.querySelector(".contents_page_div_img_four");
     prevtest4.className = "contents_page_div_img_five";
     // 텍스트 카드
     let prevtestText4 = document.querySelector(".contents_page_div_text_four");
     prevtestText4.className = "contents_page_div_text_five";
-
     // 3->4
     let prevtest3 = document.querySelector(".contents_page_div_img_three");
     prevtest3.className = "contents_page_div_img_four";
     // 텍스트 카드
     let prevtestText3 = document.querySelector(".contents_page_div_text_three");
     prevtestText3.className = "contents_page_div_text_four";
-
     // 2->3
     let prevtest2 = document.querySelector(".contents_page_div_img_two");
     prevtest2.className = "contents_page_div_img_three";
     // 텍스트 카드
     let prevtestText2 = document.querySelector(".contents_page_div_text_two");
     prevtestText2.className = "contents_page_div_text_three";
-
     // 1->2
     let prevtest1 = document.querySelector(".contents_page_div_img_one");
     prevtest1.className = "contents_page_div_img_two";
@@ -55,7 +44,6 @@ const Contents = ({ history, isLoggedIn, isModalClicked }) => {
   return (
     <div className="contents_page">
       <NavContainer />
-      {/* <FakeSideContainer /> */}
       <SideRemoteControlContainer />
       {/* 컨텐츠 페이지 시작 */}
       {/* 컨텐츠 페이지 컨테이너 */}
@@ -153,8 +141,6 @@ const Contents = ({ history, isLoggedIn, isModalClicked }) => {
         </div>
         {/* 이미지 끝 */}
       </div>
-      {/* <div className="content_page_test">testtest</div> */}
-      {/* <Side /> */}
     </div>
   );
 };

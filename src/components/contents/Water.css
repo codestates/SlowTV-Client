@@ -6,6 +6,7 @@
   /* background: #000; */
   /* position: relative; */
   background-color: #212021;
+  /* overflow: hidden; */
 }
 
 .loaded_water_page {
@@ -27,7 +28,7 @@
 .water_page_small_size_lists {
   /* border: 5px solid blue; */
   display: grid;
-  grid-gap: 2%;
+  grid-gap: 2.2%;
   /* grid-gap: 10px; */
 
   /* 그리드 전체 위치 조정 */
@@ -67,6 +68,12 @@
   grid-template-columns: repeat(3, 1fr);
   /* grid-template-rows: repeat(7, 6.5%); */
   grid-template-rows: repeat(7, 36%);
+}
+
+/* ! 각 썸네일 */
+.water_page_thumbnail {
+  border: 3px solid black;
+  border-radius: 5px;
 }
 
 .water_page_thumbnail_img {
@@ -120,8 +127,8 @@
   font-size: 1vmax;
   width: 10%;
   height: 13%;
-  top: 83%;
-  left: 89%;
+  top: 80%;
+  left: 86%;
 }
 .water_page_thumbnail__btn_icon {
   width: 60%;
@@ -130,79 +137,6 @@
   opacity: 0.8;
   margin-top: 10%;
   margin-left: 20%;
-}
-
-.water_page_thumbnail_2 {
-  /* border: 3px solid orange; */
-
-  /* grid-row-start: 1;
-    grid-row-end: 2; */
-  /* grid-column-start: 2; */
-  /* grid-column-end: 3; */
-}
-.water_page_thumbnail_3 {
-  /* border: 3px solid yellow; */
-
-  /* grid-row-start: 1;
-    grid-row-end: 2; */
-  /* grid-column-start: 3; */
-  /* grid-column-end: 4; */
-}
-.water_page_thumbnail_4 {
-  /* border: 3px solid green; */
-
-  /* grid-row-start: 1;
-    grid-row-end: 2; */
-  /* grid-column-start: 4; */
-  /* grid-column-end: 5; */
-}
-.water_page_thumbnail_5 {
-  /* border: 3px solid blue; */
-
-  /* grid-row-start: 1;
-    grid-row-end: 2; */
-}
-.water_page_thumbnail_6 {
-  /* border: 3px solid navy; */
-
-  /* grid-row-start: 1;
-    grid-row-end: 2; */
-}
-.water_page_thumbnail_7 {
-  /* border: 3px solid purple; */
-
-  /* grid-row-start: 1;
-    grid-row-end: 2; */
-}
-.water_page_thumbnail_8 {
-  /* border: 3px solid red; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
-}
-.water_page_thumbnail_9 {
-  /* border: 3px solid black; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
-}
-.water_page_thumbnail_10 {
-  /* border: 3px solid black; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
-}
-.water_page_thumbnail_11 {
-  /* border: 3px solid black; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
-}
-.water_page_thumbnail_12 {
-  /* border: 3px solid black; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
 }
 
 /* width 1400 넘으면 ************************************************/
