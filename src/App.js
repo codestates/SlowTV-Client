@@ -86,7 +86,7 @@ class App extends React.Component {
   handleGetUserInfo() {  //경로 -> App.js -> Landing.js -> Nav.js -> Login.js
     axios
       .get(
-        "https://mayweather24.com/userinfo",
+        "https://server.slowtv24.com/userinfo",
         { withCredentials: true }
       ).then((res) => {
         console.log('/userinfo', res.data)
@@ -129,6 +129,10 @@ class App extends React.Component {
     });
   }
 
+  handleOpenLogin = () => {
+    this.props.history.push("/login")
+  }
+
   render() {
     return (
       <Router>
@@ -152,6 +156,7 @@ class App extends React.Component {
               handleLogoutModalOpen={this.handleLogoutModalOpen}
               handleLogoutModalClose={this.handleLogoutModalClose}
               isLogoutModalOpen={this.state.isLogoutModalOpen}
+              handleOpenLogin={this.handleOpenLogin}
             />
           )}
         />
