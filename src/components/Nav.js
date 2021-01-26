@@ -18,6 +18,10 @@ class Nav extends React.Component {
     this.setState({ isModalOpen: true });
   };
 
+  handleModalClose= () => {
+    this.setState({ isModalOpen: false })
+  }
+
   render() {
     return (
       <div className="navbar">
@@ -38,6 +42,7 @@ class Nav extends React.Component {
                 /> */}
                 <Login
                   isOpen={this.state.isModalOpen}
+                  handleModalClose={this.handleModalClose}
                   handleResponseSuccess={this.props.handleResponseSuccess}
                   handleGetUserInfo={this.props.handleGetUserInfo}
                   isLoggedin={this.props.isLoggedin}
