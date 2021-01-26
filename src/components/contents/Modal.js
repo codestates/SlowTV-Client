@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./Modal.css";
 import axios from "axios";
+import cancel from "../../img/cancel.png";
+import google from "../../img/google.png";
+import github from "../../img/github.png";
 
 const Modal = ({
   openModal,
@@ -178,7 +181,11 @@ const Modal = ({
               className="modal_is_logged_in_close_btn"
               onClick={closeModal}
             >
-              x
+              <img
+                className="modal_is_logged_in_close_btn_img"
+                src={cancel}
+                alt="cancel"
+              ></img>
             </button>
           </div>
           {/* // ! 유저 이름 */}
@@ -220,7 +227,11 @@ const Modal = ({
               className="modal_is_not_logged_in_close_btn"
               onClick={closeModal}
             >
-              x
+              <img
+                className="modal_is_not_logged_in_close_btn_img"
+                src={cancel}
+                alt="cancel"
+              ></img>
             </button>
           </div>
           <div className="modal_my_profile_greeting">Welcome Slow TV</div>
@@ -254,26 +265,48 @@ const Modal = ({
               Sign In
             </button>
           </div>
+          {/* Social Login box */}
+          <div className="modal_my_profile_social_login_btn_box">
+            {/* Google */}
+            <div className="modal_my_profile_social_login_google_btn_box">
+              {/* 아이콘으로 대체 예정 */}
+              <button
+                className="modal_my_profile_social_login_google_btn"
+                onClick={googleLoginHandler}
+              >
+                <img
+                  className="modal_my_profile_social_login_google_btn_img"
+                  src={google}
+                  alt="google"
+                ></img>
+              </button>
+            </div>
+            {/* GitHub */}
+            <div className="modal_my_profile_social_login_github_btn_box">
+              <button
+                className="modal_my_profile_social_login_github_btn"
+                onClick={githubLoginHandler}
+              >
+                <img
+                  className="modal_my_profile_social_login_github_btn_img"
+                  src={github}
+                  alt="github"
+                ></img>
+              </button>
+            </div>
+          </div>
           {/* Sign Up box */}
-          <div className="modal_my_profile_sign_up_btn_box">
-            <button
+          <div
+            className="modal_my_profile_sign_up_btn_box"
+            onClick={handleGoSignUpPage}
+          >
+            {/* <button
               className="modal_my_profile_sign_up_btn"
               onClick={handleGoSignUpPage}
             >
-              Sign Up
-            </button>
-          </div>
-          {/* Social Login box */}
-          <div className="modal_my_profile_sign_in_btn_box">
-            {/* Google */}
-            <div>
-              {/* 아이콘으로 대체 예정 */}
-              <button onClick={googleLoginHandler}>Google</button>
-            </div>
-            {/* GitHub */}
-            <div>
-              <button onClick={githubLoginHandler}>GitHub</button>
-            </div>
+              Aren't you a member yet?
+            </button> */}
+            Aren't you a member yet?
           </div>
         </div>
       )}

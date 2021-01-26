@@ -1,11 +1,15 @@
 import React from "react";
 import Nav from "../components/Nav";
 import { connect } from "react-redux";
-import { openModal } from "../modules/modal";
+import { openModal, toggleModal } from "../modules/modal";
 
-const NavContainer = ({ isLoggedIn, handleOnClickModal }) => {
+const NavContainer = ({ isLoggedIn, handleOnClickModal, toggleModal }) => {
   return (
-    <Nav isLoggedIn={isLoggedIn} handleOnClickModal={handleOnClickModal} />
+    <Nav
+      isLoggedIn={isLoggedIn}
+      handleOnClickModal={handleOnClickModal}
+      toggleModal={toggleModal}
+    />
   );
 };
 
@@ -16,6 +20,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch, props) => ({
   handleOnClickModal: () => {
     dispatch(openModal());
+  },
+  toggleModal: () => {
+    dispatch(toggleModal());
   },
 });
 

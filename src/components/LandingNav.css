@@ -1,7 +1,10 @@
 /* 네브 바 */
 .landing_nav_page_navbar {
-  border: 3px solid orange;
-  /* margin: 3px; */
+  /* border: 2px solid gray; */
+  height: 4.5%;
+  /* background-color: #545254; */
+  /* background-color: #212021; */
+  border-bottom: 2px solid #545254;
 }
 
 /* 로고  */

@@ -21,9 +21,9 @@ const VideoPlayer = ({ id, videoData }) => {
   );
   return (
     <div className="video-player">
-      <div>
+      {/* <div>
         <Link to="/contents">contents</Link>
-      </div>
+      </div> */}
       <iframe
         className="player"
         src={video[0].contentlink}

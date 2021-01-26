@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 // import SideContainer from "../../containers/SideContainer";
-import FakeSideContainer from "../../containers/FakeSideContainer";
+// import FakeSideContainer from "../../containers/FakeSideContainer";
+import SideRemoteControlContainer from "../../containers/SideRemoteControlContainer";
+// import SideRemoteControl2Container from "../../containers/SideRemoteControl2Container";
 import NavContainer from "../../containers/NavContainer";
 import ModalContainer from "../../containers/ModalContainer";
 // import ThumbnailsContainer from "../../containers/ThumbnailsContainer";
@@ -109,7 +111,7 @@ const Water = ({
         <div className="loaded_water_page">
           {/* <Nav /> */}
           <NavContainer />
-          <FakeSideContainer />
+          <SideRemoteControlContainer />
           {isModalClicked ? <ModalContainer /> : <div></div>}
           {/* 썸네일 컨테이너 */}
           <div className="water_page_container">

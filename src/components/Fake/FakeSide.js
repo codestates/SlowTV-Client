@@ -2,7 +2,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
-
+// import "../SideRemoteControl.css";
 import "./FakeSide.css";
 const FakeSide = ({
   history,

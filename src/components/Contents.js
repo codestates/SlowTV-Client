@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import FakeSideContainer from "../containers/FakeSideContainer";
-// import Nav from "./Nav";
+import SideRemoteControl from "./SideRemoteControl";
+import SideRemoteControlContainer from "../containers/SideRemoteControlContainer";
 import NavContainer from "../containers/NavContainer";
 // import Modal from "./contents/Modal";
 import ModalContainer from "../containers/ModalContainer";
@@ -54,7 +55,8 @@ const Contents = ({ history, isLoggedIn, isModalClicked }) => {
   return (
     <div className="contents_page">
       <NavContainer />
-      <FakeSideContainer />
+      {/* <FakeSideContainer /> */}
+      <SideRemoteControlContainer />
       {/* 컨텐츠 페이지 시작 */}
       {/* 컨텐츠 페이지 컨테이너 */}
       {isModalClicked ? <ModalContainer /> : <div></div>}
@@ -119,25 +121,25 @@ const Contents = ({ history, isLoggedIn, isModalClicked }) => {
           {/* contents_page_div_img_one 텍스트*/}
           <div className="contents_page_div_text_one">
             <div className="contents_page_text">
-              Slow TV <br></br>Slow TV1
+              CH 1 Slow TV <br></br>Slow TV1
             </div>
           </div>
           {/* contents_page_div_img_two 텍스트*/}
           <div className="contents_page_div_text_two">
             <div className="contents_page_text">
-              Slow TV <br></br>Slow TV2
+              CH 2 Slow TV <br></br>Slow TV2
             </div>
           </div>
           {/* contents_page_div_img_three 텍스트*/}
           <div className="contents_page_div_text_three">
             <div className="contents_page_text">
-              Slow TV <br></br>Slow TV3
+              CH 3 Slow TV <br></br>Slow TV3
             </div>
           </div>
           {/* contents_page_div_img_four 텍스트*/}
           <div className="contents_page_div_text_four">
             <div className="contents_page_text">
-              Slow TV <br></br>Slow TV4
+              CH 4 Slow TV <br></br>Slow TV4
             </div>
           </div>
           {/* contents_page_div_img_five 텍스트*/}

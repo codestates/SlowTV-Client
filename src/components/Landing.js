@@ -7,7 +7,14 @@ import ModalContainer from "../containers/ModalContainer";
 import { Link, withRouter } from "react-router-dom";
 import "./Landing.css";
 
-const Landing = ({ history, isLoggedIn, isModalClicked, closeModal }) => {
+const Landing = ({
+  history,
+  email,
+  nickname,
+  isLoggedIn,
+  isModalClicked,
+  closeModal,
+}) => {
   // ! 컨텐츠로 이동
   const handleGetStarted = () => {
     closeModal();
@@ -19,15 +26,27 @@ const Landing = ({ history, isLoggedIn, isModalClicked, closeModal }) => {
       {isLoggedIn ? <NavContainer /> : <LandingNavContainers />}
       {isModalClicked ? <ModalContainer /> : <div></div>}
       {/* body */}
-      <div className="landing_page_container">
-        <div className="landing_page_introduce_title">Find Your Calm</div>
-        <div className="landing_page_introduce_body">
-          Sleep more, Stress less, Live better.
+      {nickname ? (
+        <div className="landing_page_container">
+          <div className="landing_page_introduce_title">Hi {nickname}</div>
+          <div className="landing_page_introduce_body">
+            유저인 경우 소개말 다르게
+          </div>
+          <button className="btn" onClick={handleGetStarted}>
+            Get started
+          </button>
         </div>
-        <button className="btn" onClick={handleGetStarted}>
-          Get started
-        </button>
-      </div>
+      ) : (
+        <div className="landing_page_container">
+          <div className="landing_page_introduce_title">Find Your Calm</div>
+          <div className="landing_page_introduce_body">
+            Sleep more, Stress less, Live better.
+          </div>
+          <button className="btn" onClick={handleGetStarted}>
+            Get started
+          </button>
+        </div>
+      )}
     </div>
   );
 };

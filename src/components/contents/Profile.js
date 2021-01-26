@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 // import Side from "../Side";
 import FakeSideContainer from "../../containers/FakeSideContainer";
+import SideRemoteControlContainer from "../../containers/SideRemoteControlContainer";
 import NavContainer from "../../containers/NavContainer";
 import ModalContainer from "../../containers/ModalContainer";
 import "./Profile.css";
@@ -140,7 +141,7 @@ const Profile = ({
   return (
     <div className="profile_page">
       <NavContainer />
-      <FakeSideContainer />
+      <SideRemoteControlContainer />
       {isModalClicked ? <ModalContainer /> : <div></div>}
       {/* 프로필 시작 */}
       {isLoggedIn ? (

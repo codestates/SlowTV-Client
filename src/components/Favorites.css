@@ -1,6 +1,7 @@
 /* 페이지 전체 */
-.favorites-page {
+.favorites_page {
   /* 모달 정가운데 배치 위해 상위에서 작업 */
+  background-color: #212021;
   /* width: 100%; */
   /* height: 100%; */
   /* background: #000; */
@@ -8,7 +9,7 @@
 }
 
 .loaded_favorites_page {
-  border: 3px solid gray;
+  /* border: 3px solid gray; */
   width: 100%;
   height: 100%;
 }

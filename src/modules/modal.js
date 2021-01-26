@@ -1,11 +1,13 @@
 // action
 const OPENMDODAL = "modal/OPENMDODAL";
 const CLOSEMODAL = "modal/CLOSEMODAL";
+const TOOGLEMODAL = "modal/TOOGLEMODAL";
 
 // action creator
 // export const setIsClicked = () => ({ type: OPENMDODAL });
 export const openModal = () => ({ type: OPENMDODAL });
 export const closeModal = () => ({ type: CLOSEMODAL });
+export const toggleModal = () => ({ type: TOOGLEMODAL });
 
 // state, reducer
 const initialState = {
@@ -23,6 +25,11 @@ function modal(state = initialState, action) {
       return {
         ...state,
         isModalClicked: false,
+      };
+    case TOOGLEMODAL:
+      return {
+        ...state,
+        isModalClicked: !state.isModalClicked,
       };
     default:
       return state;

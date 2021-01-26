@@ -147,7 +147,7 @@ const Login = ({
         getSession
       );
       // ! 로그인 페이지 아니면 해당 페이지 유지하도록
-      // history.push("/contents")
+      history.push("/contents");
     }
   }, [email, nickname]);
 

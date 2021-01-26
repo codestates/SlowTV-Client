@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 // import SideContainer from "../../containers/SideContainer";
 import FakeSideContainer from "../containers/FakeSideContainer";
+import SideRemoteControlContainer from "../containers/SideRemoteControlContainer";
 import NavContainer from "../containers/NavContainer";
 import ModalContainer from "../containers/ModalContainer";
 // import ThumbnailsContainer from "../../containers/ThumbnailsContainer";
@@ -156,14 +157,14 @@ const Favorites = ({
         isLoggedIn ? (
           <div className="loaded_favorites_page">
             <NavContainer />
-            <FakeSideContainer />
+            <SideRemoteControlContainer />
             {isModalClicked ? <ModalContainer /> : <div></div>}
             <div>아직 추가한 즐겨찾기가 없습니다.</div>
           </div>
         ) : (
           <div className="loaded_favorites_page">
             <NavContainer />
-            <FakeSideContainer />
+            <SideRemoteControlContainer />
             {isModalClicked ? <ModalContainer /> : <div></div>}
             <div>로그인 후 이용해 주세요.</div>
           </div>
@@ -173,7 +174,7 @@ const Favorites = ({
           {/* //! 비디오 데이터 있을 때, 페이보릿이 몇 개인지 모르기 때문에 맵으로 뿌려줘야 할 듯 */}
           {/* <Nav /> */}
           <NavContainer />
-          <FakeSideContainer />
+          <SideRemoteControlContainer />
           {isModalClicked ? <ModalContainer /> : <div></div>}
           {/* <Test /> */}
           {/* 썸네일 컨테이너 */}

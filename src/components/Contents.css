@@ -2,14 +2,14 @@
 .contents_page {
   /* border: 3px solid gray; */
   /* background-color: black; */
-  /* background-color: #212021; */
+  background-color: #212021;
   /* background-color: #485461; */
   /* background-image: linear-gradient(135deg, #485461 0%, #28313b 74%); */
 }
 
 /* 이미지들 이거로 위치 조정 */
 .contents_page_container {
-  border: 3px solid red;
+  /* border: 3px solid red; */
   height: 100%;
   width: 80%;
   float: left;
@@ -22,7 +22,7 @@
   height: 100%;
   /* border: 3px solid blue; */
   /* 원근감 이거로도 크기 결정 됨. */
-  perspective: 1500px;
+  perspective: 200em;
   /* 보더 하면 줄이기 */
   /* width: 75%; */
   /* 슬라이드 이미지 전체 위치 조절 */
@@ -58,8 +58,8 @@
   height: 15%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 44%;
-  left: 9.3%;
+  top: 39%;
+  left: 4.3%;
 }
 /* 이미지 1 눈 */
 .contents_page_div_img_two {
@@ -79,8 +79,8 @@
   height: 25%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 39%;
-  left: 10%;
+  top: 34%;
+  left: 5%;
 }
 
 /* 이미지 3 불 */
@@ -100,8 +100,8 @@
   height: 35%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 33%;
-  left: 11%;
+  top: 28%;
+  left: 6%;
 }
 
 /* 이미지 4 물 */
@@ -121,8 +121,8 @@
   height: 45%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 28%;
-  left: 14%;
+  top: 23%;
+  left: 9%;
 }
 
 /* 이미지 5 로고 */
@@ -150,8 +150,9 @@
   height: 60%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 20%;
-  left: 20%;
+  /* top: 20%; */
+  top: 15%;
+  left: 15%;
 }
 
 /* 이미지 5 맨 앞 호버시 */
@@ -170,6 +171,7 @@
 
 /* 카드 1 텍스트 */
 .contents_page_div_text_one {
+  /* display: none; */
   /* border: 6px solid blue; */
   background-color: #212021;
   /* color: white; */
@@ -180,11 +182,12 @@
   height: 40%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 30%;
-  left: 85%;
+  top: 20%;
+  left: 78%;
 }
 /* 카드 2 텍스트 */
 .contents_page_div_text_two {
+  /* display: none; */
   /* border: 6px solid blue; */
 
   background-color: #212021;
@@ -196,11 +199,12 @@
   height: 40%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 30%;
-  left: 85%;
+  top: 20%;
+  left: 78%;
 }
 /* 카드 3 텍스트 */
 .contents_page_div_text_three {
+  /* display: none; */
   /* border: 6px solid blue; */
   background-color: #212021;
   /* color: white; */
@@ -211,12 +215,13 @@
   height: 40%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 30%;
-  left: 85%;
+  top: 20%;
+  left: 78%;
 }
 
 /* 카드 4 텍스트 */
 .contents_page_div_text_four {
+  /* display: none; */
   /* border: 6px solid blue; */
 
   background-color: #212021;
@@ -228,13 +233,14 @@
   height: 40%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 30%;
-  left: 85%;
+  top: 20%;
+  left: 78%;
 }
 
 /* 카드 5 텍스트 */
 
 .contents_page_div_text_five {
+  /* display: none; */
   /* border: 6px solid blue; */
   background-color: #212021;
   /* color: white; */
@@ -245,8 +251,8 @@
   height: 40%;
   /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
   position: absolute;
-  top: 30%;
-  left: 85%;
+  top: 20%;
+  left: 78%;
 }
 
 .contents_page_text {

@@ -1,14 +1,15 @@
 /* 페이지 전체 */
-.water-page {
+.water_page {
   /* 모달 정가운데 배치 위해 상위에서 작업 */
   /* width: 100%; */
   /* height: 100%; */
   /* background: #000; */
   /* position: relative; */
+  background-color: #212021;
 }
 
 .loaded_water_page {
-  border: 3px solid gray;
+  /* border: 3px solid gray; */
   width: 100%;
   height: 100%;
 }
@@ -16,7 +17,8 @@
 /* 썸네일 담은 컨테이너 */
 .water_page_container {
   float: left;
-  border: 5px solid red;
+  /* border: 5px solid red; */
+  margin-top: 1%;
   height: 100%;
   width: 80%;
 }
@@ -68,7 +70,7 @@
 }
 
 .water_page_thumbnail_img {
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -93,7 +95,7 @@
 }
 /* //! 클릭 시 영상으로 이동 */
 .water_page_thumbnail__btn_box {
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   position: absolute;
   width: 21.7%;
   height: 29%;
