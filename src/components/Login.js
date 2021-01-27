@@ -178,25 +178,27 @@ class Login extends React.Component {
           {this.state.isBtnClicked === false ? (
             <div>
 {/*----------------------------------------------------- 로그인 페이지 */}
-              <div className="login">
-                <div className="login-half left">
-                <button className='loginClose' type="button" onClick={this.props.handleModalClose}>
-                    Close
-              </button>
+                <div className="login">
+                  <div className="login-half left">
+{/* 로그인 헤드라인 & 닫기 버튼*/}
+                    <button className='loginClose' type="button" onClick={this.props.handleModalClose}>
+                      X
+                    </button>
+                  <h1 className= "loginHead">Login</h1>
 {/* 이메일 입력창 */}
                   <input 
-                    className="userinfoInput"
+                    className="loginInput"
                     type="text"
-                    placeholder="Enter email address"
+                    placeholder="Email"
                     onChange={this.handleInputValue("email")}
                   />
                   <div>{/*줄바꿈을 위해서 추가*/}</div> 
 {/* 패스워드 입력창 */}
-                  <input className="userinfoInput"
+                  <input className="loginInput"
                     type="password"
-                    placeholder="Enter password"
+                    placeholder="Password"
                     onChange={this.handleInputValue("password")}
-                  />
+                    />
                   <div>{/*줄바꿈을 위해서 추가*/}</div> 
 {/* 로그인 버튼 */}
                   <button className='loginBtn' type="button" onClick={this.handleLogin}>
@@ -218,10 +220,12 @@ class Login extends React.Component {
                     onClick={this.handleGetGoogleAuthorizationCode.bind(this)}>
                     Login with Gmail
                 </button>
+{/* 회원가입 권유 문구 */}
+                <div className='signupRecommend'>Not a member?</div>
 {/* 회원 가입하러가기 버튼 */}
-                  <button className='signupBtn'
+                  <button className='signupBtnLogin'
                     onClick={this.handleisBtnClickedSignup}>
-                    Let's go to SignUp!
+                    Signup
                 </button>
                 <div>{this.state.errorMessage}</div>
                 </div>
@@ -232,33 +236,34 @@ class Login extends React.Component {
             <div className="login">
               <div className="login-half left">
               <button className='loginClose' type="button" onClick={this.props.handleModalClose}>
-                    Close
+                    X
               </button>
+              <h1 className= "signupHead">Signup</h1>
 {/* 이메일 입력창 */}
                 <input className="signupInput"
                   type="text"
-                  placeholder="Enter email address"
+                  placeholder="Email"
                   onChange={this.handleInputValue("email")}
                 />
                 <div>{/*줄바꿈을 위해서 추가*/}</div> 
 {/* 닉네임 입력창 */}
                 <input className="signupInput"
                   type="text"
-                  placeholder="Enter nickname"
+                  placeholder="Nickname"
                   onChange={this.handleInputValue("nickname")}
                 />
                 <div>{/*줄바꿈을 위해서 추가*/}</div> 
 {/* 비밀번호 입력창 */}
                 <input className="signupInput"
                   type="password"
-                  placeholder="Enter password"
+                  placeholder="Password"
                   onChange={this.handleInputValue("password")}
                 />
                 <div>{/*줄바꿈을 위해서 추가*/}</div> 
 {/* 비밀번호 재입력창 */}
                 <input className="signupInput"
                   type="password"
-                  placeholder="Check your password"
+                  placeholder="Confirm password"
                   onChange={this.handleInputValue("reconfirmPassword")}
                 />
 {/* 회원가입 버튼 */}
@@ -270,8 +275,10 @@ class Login extends React.Component {
               {/* <span className="login-or">OR</span> */}
               {/* <span className="bar bar-bottom"></span> */}
               <div className="login-half right">
+{/*로그인  환영 문구 */}
+<div className='loginRecommend'>Wellcome!</div>
 {/* 로그인 화면가기 버튼 */}
-                <button className='loginBtn' type="button"
+                <button className='loginInSignup' type="button"
                   onClick={this.handleisBtnClickedLogin}>
                   Login
                 </button>
