@@ -8,6 +8,7 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
+      reconfirmPassword:"",
       nickname: "",
       errorMessage: "",
       githubAccessToken: "",
@@ -20,31 +21,37 @@ class Login extends React.Component {
     this.GOOGLE_LOGIN_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/login&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com"
   }
   // SlowTV 서버로 authorization code 를 보내주고 토큰을 받으면  state 를 바꿔주는 함수------------------------------------------------------------------------------------------
-  getAccessToken = (authorizationCode) => {
-    axios.post(
-      'https://mayweather24.com/callback-google', { authorizationCode }
-    )
-      .then((res) => {
-        this.setState({
-          googleAccessToken: res.data.accessToken
-        })
-      })
-      .then((res) => { this.handleGetUserInfoSocial() })
-    // .then((res)=> {
-    // this.props.history.push("/login")
-    //   this.handleGetUserInfoSocial()})
-    // // 토큰으로 유저정보를 가져오는 것 까지 되었는데(구글) 상태 끌어올리기 못함
+  getAccessToken = async (authorizationCode) => {
+  let resgithub = await axios.post('https://server.slowtv24.com/callback-git',{ authorizationCode })
+  let githubT = resgithub.data.accessToken
+  if(githubT){
+    console.log('깃헙 엑세스토큰 가져오기 성공')
+    this.setState({
+      githubAccessToken:githubT
+    })
+    this.handleGetUserInfoSocial()
   }
+  let resgoogle = await axios.post('https://server.slowtv24.com/callback-google',{ authorizationCode })
+  let googleT = resgoogle.data.accessToken
+  if (googleT) {
+    this.setState({ 
+      googleAccessToken: googleT,
+    })
+    this.handleGetUserInfoSocial()
+  }
+}
+
   // 소셜로그인시 유저정보를 가져오는 함수(구글만 진행/ 상태 끌어올리기 못한 상태)----------------------------------------------------------------------------------
   handleGetUserInfoSocial = () => {
-    console.log('엑세스토큰', this.state.googleAccessToken)
+    if(this.state.googleAccessToken) {
+      console.log('구글 유저정보 가져오기 start')
     axios.get(
       `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${this.state.googleAccessToken}`
     )
       .then((res) => {
         console.log('엑세스 토큰으로 받아온 유저정보', res)
         return axios.post(
-          "https://mayweather24.com/social-login",
+          "https://server.slowtv24.com/social-login",
           { email: res.data.email, nickname: res.data.name },
           { withCredentials: true }
         )
@@ -55,12 +62,30 @@ class Login extends React.Component {
         this.props.handleGetUserInfo()
         this.props.history.push("/contents");
       })
-    //     let aaa = await axios.get(
-    //   "https://mayweather24.com/userinfo",
-    //   { withCredentials:true }
-    // )
-    //   console.log('/userinfo', aaa)
+    } else {
+      console.log('깃헙 유저정보 가져오기 start')
+      axios.get('https://api.github.com/user', {
+        headers: {
+          authorization: `token ${this.state.githubAccessToken}`,
+        }
+      })
+      .then((res)=> {
+        console.log('깃헙 유저 정보', res.data.login, res.data.html_url)
+        return axios.post(
+          "https://server.slowtv24.com/social-login",
+          { email: res.data.html_url, nickname: res.data.login },
+          { withCredentials: true }
+        )
+      }).then((res) => {
+        console.log('소셜로그인 API로 온 응답(세션포함)', res)
+        this.props.handleResponseSuccess();
+        console.log('소셜로그인시 this.props', this.props)
+        this.props.handleGetUserInfo()
+        this.props.history.push("/contents");
+      })
+    }
   }
+
   // 소셜로그인 버튼을 눌렀을 때 실행될  첫번째 함수 (사용자 동의를 구하는 페이지로 리디렉션)------------------------------------------------------------------------------------------
   handleGetGithubAuthorizationCode() {
     window.location.assign(this.GITHUB_LOGIN_URL);
@@ -97,12 +122,13 @@ class Login extends React.Component {
   };
   // 회원가입 요청 함수------------------------------------------------------------------------------------------
   handleSignUp = () => {
-    const { email, password, nickname } = this.state;
-    if (!email || !password || !nickname) {
+    const { email, nickname, password, reconfirmPassword } = this.state;
+    if (!email || !password || !nickname || !reconfirmPassword) {
       this.setState({
-        errorMessage: "Please check your email and password again.",
+        errorMessage: "You must fill in all blanks to proceed.",
       });
     } else {
+      if(  password === reconfirmPassword) {
       axios
         .post(
           "https://server.slowtv24.com/signup",
@@ -112,20 +138,28 @@ class Login extends React.Component {
         .then((res) => {
           this.handleisBtnClickedLogin()
         });
+    } else {
+      this.setState({
+        errorMessage: "Reconfirmation password mismatch",
+      });
     }
+  }
   };
-  // 회원가입 화면 전환 함수------------------------------------------------------------------------------------------
+  // 회원가입 -> 로그인 화면 전환 ------------------------------------------------------------------------------------------
   handleisBtnClickedLogin = () => {
     this.setState({
       isBtnClicked: false
     })
   }
-  // 로그인 화면 전환 함수------------------------------------------------------------------------------------------
+  // 로그인 -> 회원가입 화면 전환------------------------------------------------------------------------------------------
   handleisBtnClickedSignup = () => {
     this.setState({
       isBtnClicked: true
     })
   }
+
+  //로그인 창 닫기 버튼 클릭시------------------------------------------------------------------------------------------
+
   // 렌딩이 끝난뒤 주소뒤에  authorization code가 붙어 있다면 그 값을 인자로  Access Token 을 받아오는 함수 실행
   componentDidMount() {
     const url = new URL(window.location.href)
@@ -135,12 +169,6 @@ class Login extends React.Component {
       this.getAccessToken(authorizationCode)
     }
   }
-  // shouldComponentUpdate =() => {
-  //   return true;
-  // }
-  // componentWillUpdate =() => {
-  //   this.handleGetUserInfoSocial()
-  // }
   render() {
     return (
       <div>
@@ -149,76 +177,113 @@ class Login extends React.Component {
         ) : (<div>
           {this.state.isBtnClicked === false ? (
             <div>
-              <div className="login">
-                <div className="login-half left">
-                  <input
+{/*----------------------------------------------------- 로그인 페이지 */}
+                <div className="login">
+                  <div className="login-half left">
+{/* 로그인 헤드라인 & 닫기 버튼*/}
+                    <button className='loginClose' type="button" onClick={this.props.handleModalClose}>
+                      X
+                    </button>
+                  <h1 className= "loginHead">Login</h1>
+{/* 이메일 입력창 */}
+                  <input 
+                    className="loginInput"
                     type="text"
-                    placeholder="Enter email address"
+                    placeholder="Email"
                     onChange={this.handleInputValue("email")}
                   />
-                  <input
+                  <div>{/*줄바꿈을 위해서 추가*/}</div> 
+{/* 패스워드 입력창 */}
+                  <input className="loginInput"
                     type="password"
-                    placeholder="Enter password"
+                    placeholder="Password"
                     onChange={this.handleInputValue("password")}
-                  />
-                  <button type="button" onClick={this.handleLogin}>
+                    />
+                  <div>{/*줄바꿈을 위해서 추가*/}</div> 
+{/* 로그인 버튼 */}
+                  <button className='loginBtn' type="button" onClick={this.handleLogin}>
                     Login
               </button>
                 </div>
                 {/* <span className="bar bar-top"></span> */}
-                <span className="login-or">OR</span>
+                {/* <span className="login-or">OR</span> */}
                 {/* <span className="bar bar-bottom"></span> */}
                 <div className="login-half right">
-                  <button
+{/* 깃헙 소셜로그인 버튼 */}
+                  <button 
+                    className='loginBtn'
                     onClick={this.handleGetGithubAuthorizationCode.bind(this)}>
                     Login with GitHub
                 </button>
-                  <button
+{/* 구글 소셜로그인 버튼 */}
+                  <button className='loginBtn'
                     onClick={this.handleGetGoogleAuthorizationCode.bind(this)}>
                     Login with Gmail
                 </button>
-                  <button
+{/* 회원가입 권유 문구 */}
+                <div className='signupRecommend'>Not a member?</div>
+{/* 회원 가입하러가기 버튼 */}
+                  <button className='signupBtnLogin'
                     onClick={this.handleisBtnClickedSignup}>
-                    SignUp
+                    Signup
                 </button>
+                <div>{this.state.errorMessage}</div>
                 </div>
               </div>
             </div>
           ) : (<div>
+{/* -----------------------------------------------------회원가입 페이지 */}
             <div className="login">
               <div className="login-half left">
-                <input
+              <button className='loginClose' type="button" onClick={this.props.handleModalClose}>
+                    X
+              </button>
+              <h1 className= "signupHead">Signup</h1>
+{/* 이메일 입력창 */}
+                <input className="signupInput"
                   type="text"
-                  placeholder="Enter email address"
+                  placeholder="Email"
                   onChange={this.handleInputValue("email")}
                 />
-                <input
+                <div>{/*줄바꿈을 위해서 추가*/}</div> 
+{/* 닉네임 입력창 */}
+                <input className="signupInput"
                   type="text"
-                  placeholder="Enter nickname"
+                  placeholder="Nickname"
                   onChange={this.handleInputValue("nickname")}
                 />
-                <input
+                <div>{/*줄바꿈을 위해서 추가*/}</div> 
+{/* 비밀번호 입력창 */}
+                <input className="signupInput"
                   type="password"
-                  placeholder="Enter password"
+                  placeholder="Password"
                   onChange={this.handleInputValue("password")}
                 />
-                <input
+                <div>{/*줄바꿈을 위해서 추가*/}</div> 
+{/* 비밀번호 재입력창 */}
+                <input className="signupInput"
                   type="password"
-                  placeholder="Enter password"
-                  onChange={this.handleInputValue("password")}
+                  placeholder="Confirm password"
+                  onChange={this.handleInputValue("reconfirmPassword")}
                 />
-                <button type="button" onClick={this.handleSignUp}>
+{/* 회원가입 버튼 */}
+                <button className='signupBtn' type="button" onClick={this.handleSignUp}>
                   signUp
               </button>
               </div>
               {/* <span className="bar bar-top"></span> */}
-              <span className="login-or">OR</span>
+              {/* <span className="login-or">OR</span> */}
               {/* <span className="bar bar-bottom"></span> */}
               <div className="login-half right">
-                <button type="button"
+{/*로그인  환영 문구 */}
+<div className='loginRecommend'>Wellcome!</div>
+{/* 로그인 화면가기 버튼 */}
+                <button className='loginInSignup' type="button"
                   onClick={this.handleisBtnClickedLogin}>
                   Login
                 </button>
+{/* 유효성 검사 문구 */}
+                <div>{this.state.errorMessage}</div>
               </div>
             </div>
           </div>
@@ -230,38 +295,3 @@ class Login extends React.Component {
   }
 }
 export default withRouter(Login);
-// getAccessToken = async (authorizationCode) => {
-//   let resgithub = await axios.post('https://mayweather24.com/callbackgit',{ authorizationCode })
-//   let githubT = resgithub.data.accessToken
-//   if(githubT){
-//     this.setState({
-//       githubAccessToken:githubT
-//     })
-//   }
-//   let resgoogle = await axios.post('https://mayweather24.com/callbackgoogle',{ authorizationCode })
-//   let googleT = resgoogle.data.accessToken
-//   if (googleT) {
-//     this.setState({ 
-//       googleAccessToken: googleT,
-//     })
-//   }
-//    this.handleGetUserInfoSocial() // 토큰으로 유저정보를 가져오는 것 까지 되었는데(구글) 상태 끌어올리기 못함
-// }
-// // 소셜로그인시 유저정보를 가져오는 함수(구글만 진행/ 상태 끌어올리기 못한 상태)----------------------------------------------------------------------------------
-// handleGetUserInfoSocial = async () => {
-//   let res = await axios.get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${this.state.googleAccessToken}`)
-//   let userinfo = res.data
-//   console.log(userinfo.email)
-//   let socialInfo = await axios.post(
-//     "https://mayweather24.com/sociallogin",
-//     {email:userinfo.email, nickname: userinfo.name},
-//     {withCredentials:true}
-//     )
-//     this.props.handleGetUserInfo()
-// //     console.log('소셜로그인', socialInfo) 
-// //     let aaa = await axios.get(
-// //   "https://mayweather24.com/userinfo",
-// //   { withCredentials:true }
-// // )
-// //   console.log('/userinfo', aaa)
-// }

@@ -156,6 +156,10 @@ class App extends React.Component {
     });
   }
 
+  handleOpenLogin = () => {
+    this.props.history.push("/login")
+  }
+
   render() {
     return (
       <Router>
@@ -178,6 +182,7 @@ class App extends React.Component {
               handleLogoutModalOpen={this.handleLogoutModalOpen}
               handleLogoutModalClose={this.handleLogoutModalClose}
               isLogoutModalOpen={this.state.isLogoutModalOpen}
+              handleOpenLogin={this.handleOpenLogin}
             />
           )}
         />
