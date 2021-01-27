@@ -1,0 +1,360 @@
+/* 전체 */
+.contents_page {
+  /* border: 3px solid gray; */
+  /* background-color: black; */
+  background-color: #212021;
+  /* background-color: #485461; */
+  /* background-image: linear-gradient(135deg, #485461 0%, #28313b 74%); */
+}
+
+/* 이미지들 이거로 위치 조정 */
+.contents_page_container {
+  /* border: 3px solid red; */
+  height: 100%;
+  width: 80%;
+  float: left;
+}
+
+/* 이미지 담고 있는 div */
+.contents_page_img_list {
+  float: left;
+  width: 80%;
+  height: 100%;
+  /* border: 3px solid blue; */
+  /* 원근감 이거로도 크기 결정 됨. */
+  /* perspective: 300em; */
+  perspective: 3000px;
+  /* 보더 하면 줄이기 */
+  /* width: 75%; */
+  /* 슬라이드 이미지 전체 위치 조절 */
+  /* margin-top: 60px; */
+  /* 이 div의 헤이트에 따라 이미지 헤이트도 결정 됨. */
+}
+
+/* 이미지 태그 */
+.contents_page_img {
+  /* border: solid 5px navy; */
+  transition: all ease 1s;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  border: 1px solid black;
+  /* border-left-width: 5px; */
+  border-left: 4px solid black;
+  /* border-left-width: 1px; */
+  /* 그림자 반사 효과 */
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.5)));
+}
+/* 이미지 1 풀 */
+.contents_page_div_img_one {
+  /* border: 6px solid red; */
+  transform: rotateY(45deg);
+  transition: all ease 1s;
+  z-index: 1;
+  /* 자주 바꾸는 거 */
+  /* 픽셀 */
+  /* width: 500px;
+  height: 95px;
+  top: 150px;
+  left: 20px; */
+  /* 퍼센트 */
+  width: 45%;
+  height: 15%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 39%;
+  left: 4.3%;
+}
+/* 이미지 1 눈 */
+.contents_page_div_img_two {
+  /* border: 6px solid orange; */
+  transform: rotateY(45deg);
+  transition: all ease 1s;
+  z-index: 2;
+
+  /* 자주 바꾸는 거 */
+  /* 픽셀 */
+  /* width: 500px;
+  height: 130px;
+  top: 135px;
+  left: 33px; */
+  /* 퍼센트 */
+  width: 45%;
+  height: 25%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 34%;
+  left: 5%;
+}
+
+/* 이미지 3 불 */
+.contents_page_div_img_three {
+  /* border: 6px solid yellow; */
+  transform: rotateY(45deg);
+  transition: all ease 1s;
+  z-index: 3;
+  /* 자주 바꾸는 거 */
+  /* 픽셀 */
+  /* width: 500px;
+  height: 180px;
+  top: 110px;
+  left: 60px; */
+  /* 퍼센트 */
+  width: 45%;
+  height: 35%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 28%;
+  left: 6%;
+}
+
+/* 이미지 4 물 */
+.contents_page_div_img_four {
+  /* border: 6px solid green; */
+  transform: rotateY(45deg);
+  transition: all ease 1s;
+  z-index: 4;
+  /* 자주 바꾸는 거 */
+  /* 픽셀 */
+  /* width: 500px;
+  height: 260px;
+  top: 70px;
+  left: 100px; */
+  /* 퍼센트 */
+  width: 45%;
+  height: 45%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 23%;
+  left: 9%;
+}
+
+/* //! test */
+.contents_page_div_img_ready {
+  /* transform: rotateY(45deg); */
+  transition: all ease 1s;
+  z-index: 5;
+  /* 자주 바꾸는 거 */
+  /* 픽셀  */
+  /* width: 640px;
+  height: 360px;
+  top: 10px;
+  left: 180px; */
+  /* 퍼센트 */
+  width: 30%;
+  height: 30%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  /* top: 20%; */
+  top: 15%;
+  left: 5%;
+}
+
+/* 이미지 5 로고 */
+.contents_page_div_img_five {
+  /* 미디어쿼리 테스트용 */
+  /* transform: rotateY(0deg);
+  width: 70%;
+  left: 35%;
+  border-left: none; */
+  /* 미디어쿼리 테스트용 끝 */
+  /* 미디어쿼리 테스트용 잠깐 끔*/
+
+  /* border: 6px solid blue; */
+  transform: rotateY(45deg);
+  transition: all ease 1s;
+  z-index: 5;
+  /* 자주 바꾸는 거 */
+  /* 픽셀  */
+  /* width: 640px;
+  height: 360px;
+  top: 10px;
+  left: 180px; */
+  /* 퍼센트 */
+  width: 60%;
+  height: 60%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  /* top: 20%; */
+  top: 15%;
+  left: 15%;
+}
+
+/* 이미지 5 맨 앞 호버시 */
+.contents_page_div_img_five:hover {
+  transform: rotateY(0deg);
+  /* border-left: none; */
+  /* border: none; */
+  transition: all ease 1s;
+  /* width: 580px; */
+  /* width: 70%; */
+  /* left: 40%; */
+  /* border: none; */
+  /* height: 380px; */
+  /* opacity: 0; */
+  /* border: 5px solid red; */
+}
+
+/* 카드 1 텍스트 */
+.contents_page_div_text_one {
+  /* display: none; */
+  /* border: 6px solid blue; */
+  background-color: #212021;
+  /* color: white; */
+  transition: all ease 1s;
+  z-index: 1;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 20%;
+  left: 78%;
+}
+/* 카드 2 텍스트 */
+.contents_page_div_text_two {
+  /* display: none; */
+  /* border: 6px solid blue; */
+
+  background-color: #212021;
+  /* color: white; */
+  transition: all ease 1s;
+  z-index: 2;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 20%;
+  left: 78%;
+}
+/* 카드 3 텍스트 */
+.contents_page_div_text_three {
+  /* display: none; */
+  /* border: 6px solid blue; */
+  background-color: #212021;
+  /* color: white; */
+  transition: all ease 1s;
+  z-index: 3;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 20%;
+  left: 78%;
+}
+
+/* 카드 4 텍스트 */
+.contents_page_div_text_four {
+  /* display: none; */
+  /* border: 6px solid blue; */
+
+  background-color: #212021;
+  /* color: white; */
+  transition: all ease 1s;
+  z-index: 4;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 20%;
+  left: 78%;
+}
+
+/* 카드 5 텍스트 */
+
+.contents_page_div_text_five {
+  /* display: none; */
+  /* border: 6px solid blue; */
+  background-color: #212021;
+  /* color: white; */
+  transition: all ease 3s;
+  z-index: 5;
+  /* 퍼센트 */
+  width: 35%;
+  height: 40%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  top: 20%;
+  left: 78%;
+}
+
+.contents_page_text {
+  /* animation: fadeIn 3s;
+  animation-direction: left; */
+  /* border: 6px solid blue; */
+  background-color: #212021;
+  color: white;
+  /* font-family: "Courier"; */
+  font-size: 2vmax;
+  margin: 10px 0 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 90%;
+  height: 90%;
+  animation: type 3.5s steps(60, end);
+}
+
+@keyframes type {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 미디어쿼리 **********************************************************/
+
+/* 맥북 13인치 최대창이 기본갑 */
+/* width 1024px(맥북 13인치 최대)보다 작으면 */
+@media screen and (max-width: 1024px) {
+  .img_list {
+    /* border: 5px solid blue; */
+  }
+}
+
+/* height 529px(맥북 13인치 최대 보다 작으면 */
+@media screen and (max-height: 529px) {
+  .contents {
+    /* border: 5px solid red; */
+  }
+}
+
+/* width 1200 넘으면 ************************************************/
+@media screen and (min-width: 1200px) {
+  .img_list {
+    /* border: 5px solid red; */
+  }
+  /* 오른쪽 사이드 바 폰트 크기 */
+  .test-links a {
+    /* font-size: 1.3rem; */
+  }
+}
+
+/* width 1400 넘으면 ***********************************************/
+@media screen and (min-width: 1400px) {
+  .img_list {
+    /* border: 5px solid red; */
+    /* perspective: 2000px; */
+  }
+  ul {
+    /* margin: 0px; */
+  }
+  .test-links a {
+    /* padding: 0.7rem 0; */
+    /* font-size: 1.5rem; */
+    /* animation: hide 0.5s forwards ease; */
+  }
+
+  /* 이미지 크기 */
+}

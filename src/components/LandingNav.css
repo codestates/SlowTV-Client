@@ -1,0 +1,33 @@
+.Link {
+  text-decoration: none;
+  color: white;
+}
+/* 네브 바 */
+.landing_nav_page_navbar {
+  /* border: 2px solid gray; */
+  height: 4.5%;
+  /* background-color: #545254; */
+  /* background-color: #212021; */
+  border-bottom: 2px solid #545254;
+  color: white;
+}
+
+/* 로고  */
+.landing_nav_page_logo {
+  /* border: 3px solid orange; */
+  /* margin: 3px; */
+}
+
+/* 로그인 */
+.landing_nav_page_Sign_In {
+  /* border: 3px solid orange; */
+  margin-right: 13px;
+  float: right;
+}
+
+/* 회원가입 */
+.landing_nav_page_Sign_Up {
+  /* border: 3px solid orange; */
+  margin-right: 13px;
+  float: right;
+}
