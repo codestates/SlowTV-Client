@@ -15,10 +15,15 @@ class Logout extends React.Component {
         style={{ display: this.props.open ? "block" : "none" }}
       >
         {this.props.open ? (
-          <div>
-            <h1 className="modal_0">로그아웃 하시겠습니까?</h1>
+          <div className="modal_0">
+            <div className="modalTitle">are you sure you want to do that</div>
+            <div className="TitleLine"></div>
+            <div className="modaldeExplanation">
+              If you click Yes, you are logged out, and if you click No to go
+              back.
+            </div>
             <button className="modal_1" onClick={this.props.handleLogout}>
-              yes
+              Yes
             </button>
             <button
               className="modal_2"
