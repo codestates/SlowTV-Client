@@ -27,7 +27,7 @@ const LandingPage = (props) => {
               Get Started
             </Link>
             <div className="inner">
-              <h2 className="msg-title">Hi, slow!</h2>
+              <h2 className="msg-title">{props.nickname === "" ? ("Welcome to SlowTV") : (`Hi, ${props.nickname}`)}!</h2>
               <h3 className="msg-intro1">
                 Exclusive collection of nature videos
               </h3>
@@ -49,7 +49,7 @@ const LandingPage = (props) => {
           </div>
           <iframe
             className="video1"
-            src="https://drive.google.com/file/d/1a1o7aFcOYbnROTmSHjdYvG6Ii5HLh3Mw/preview"
+            src="https://drive.google.com/file/d/1HrF1a8Gw4QI2GYEyVHrPNyafwi10zaxP/preview"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             title="video"

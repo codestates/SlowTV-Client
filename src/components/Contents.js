@@ -111,7 +111,12 @@ const Contents = (props) => {
           </div>
         </div>
         {/* test */}
-        <FakeSide isLoggedin={props.isLoggedin} videoData={props.videoData} />
+        <FakeSide
+          isLoggedin={props.isLoggedin}
+          handlefavorites={props.handlefavorites}
+          favVideos={props.favVideos}
+          message={props.message}
+        />
         {/* <Side a={props.a} /> */}
       </div>
     </div>

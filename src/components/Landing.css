@@ -24,9 +24,9 @@
   border-radius: 25px;
   background-image: linear-gradient(
     to right,
-    #dd5e89 0%,
-    #f7bb97 51%,
-    #dd5e89 100%
+    #0f3c3f 0%,
+    #87cbf3 51%,
+    #111c41 100%
   );
 }
 .start-link:hover {

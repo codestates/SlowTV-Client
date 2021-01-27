@@ -1,18 +1,14 @@
-.fav-list-container {
-    background-color: rgb(29, 7, 39);
+.fav-page {
+    background: rgb(29, 7, 39);
     height: 100vh;
     width: 100%;
 }
 
-.fav-thumbnail-list {
-    list-style-type: none;
-    margin-left: 3%;
-    display: grid;
-    grid-gap: 10px;
-    width: 310px;
-    height: 230px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(7, 36%);
+.fav-video-checkbox {
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    padding: 20px;
 }
 
 .fav-thumbnail-img {
@@ -28,8 +24,27 @@
     border: 3px solid pink;
 }
 
+.fav-thumbnail-title {
+    border: 1px solid rgb(29, 7, 39);
+    display: flexbox;
+}
+
+.fav-remove-btn {
+    /* border: none; */
+    /* width: 32px; */
+    /* height: 32px; */
+    /* background-color: #eee; */
+    transition: all ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+/* .fav-remove-btn:hover {
+    border: 1px solid #888;
+    background-color: #ddd;
+} */
+/* 
 @media screen and (min-width: 1400px) {
     .fav-thumbnail-list {
 
     }
-}
+} */
