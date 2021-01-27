@@ -94,6 +94,10 @@ const Profile = ({
     clickLogout();
   };
 
+  const messageForSocial = () => {
+    alert("You can't change your profile at social login.");
+  };
+
   return (
     <div className="profile_page">
       <NavContainer />
@@ -109,14 +113,11 @@ const Profile = ({
               <div className="profile_page_current_user_id">ID :</div>
               <div className="profile_page_current_user_id_value">{email}</div>
             </div>
-            {/* //! User naem */}
-            <Link
-              className="Profile_Link"
-              to="/contents/profile/update-username"
-            >
+            {githubAccessToken || googleAccessToken ? (
               <div
-                className="profile_page_box_username"
+                className="profile_page_box_social_username"
                 value="update-username"
+                onClick={messageForSocial}
               >
                 <div
                   className="profile_page_current_username"
@@ -131,9 +132,53 @@ const Profile = ({
                   {nickname}
                 </div>
               </div>
-            </Link>
+            ) : (
+              // {/* //! User naem */}
+              <Link
+                className="Profile_Link"
+                to="/contents/profile/update-username"
+              >
+                <div
+                  className="profile_page_box_username"
+                  value="update-username"
+                >
+                  <div
+                    className="profile_page_current_username"
+                    value="update-username"
+                  >
+                    Current Username :
+                  </div>
+                  <div
+                    className="profile_page_current_username_value"
+                    value="update-username"
+                  >
+                    {nickname}
+                  </div>
+                </div>
+              </Link>
+            )}
+
             {/* // ! User PW */}
-            {githubAccessToken || googleAccessToken ? null : (
+            {githubAccessToken || googleAccessToken ? (
+              <div
+                className="profile_page_box_social_user_password"
+                value="update-password"
+                onClick={messageForSocial}
+              >
+                <div
+                  className="profile_page_change_user_password"
+                  value="update-password"
+                >
+                  New Password :
+                </div>
+                <div
+                  className="profile_page_change_user_password_value"
+                  value="update-password"
+                >
+                  12345678
+                </div>
+              </div>
+            ) : (
               <Link
                 className="Profile_Link"
                 to="/contents/profile/update-password"

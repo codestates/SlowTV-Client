@@ -2,17 +2,17 @@
 .login_page {
   /* border: 5px solid gray; */
   background-color: #212021;
+  width: 100%;
   height: 100%;
 }
 
 /* ! 로그인 - 로그인 박스 전체 */
 .login_box {
+  /* border: 3px solid black; */
+  /* border-radius: 3px; */
+  /* background-color: #adacad; */
   display: flex;
   justify-content: center;
-  /* -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center; */
-  /* border: 3px solid red; */
   height: 100%;
   position: absolute;
   top: 50%;
@@ -27,12 +27,11 @@
 
 /* ? 회원가입 -회원가입 박스 전체 */
 .sign_in_box {
+  /* border: 1px solid gray; */
+  /* background-color: #adacad; */
+  /* border-radius: 3px; */
   display: flex;
   justify-content: center;
-  /* -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center; */
-  /* border: 3px solid red; */
   height: 100%;
   position: absolute;
   top: 50%;
@@ -45,54 +44,57 @@
   margin-top: -16%;
 }
 
-/* ! 로그인 - 왼쪽 웰컴 카드 전체 */
+/* //! welcome back 왼쪽 */
 .login_box_left_welcome_card {
-  /* display: inline; */
-  /* float: left; */
-  border: 3px solid gray;
+  position: absolute;
+  left: 0%;
   width: 50%;
   height: 100%;
-  /* margin-top: 5%; */
+  /* ! 레지스터에서 로그인 돌아올 때 움직이게 해 줌 */
+  transition: all 0.6s linear;
+  border: 1px solid gray;
+  background-color: #adacad;
+  border-radius: 3px 0px 0px 3px;
+}
 
-  /* position: absolute; */
-  /* left: 0px; */
-  /* box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px,
-    rgb(0 0 0 / 5%) 0px 4px 6px -2px; */
-  /* transition: left 1s ease 0s, border-radius 1s ease 0s; */
-  /* border-radius: 15px 0px 0px 15px; */
-  /* overflow: hidden; */
+/* ! 슬라이드 로그인 - 오른쪽 로그인 폼 */
+.login_box_right_login_form {
+  position: absolute;
+  right: 0%;
+  width: 50%;
+  height: 100%;
+  transition: all 0.6s linear;
+  border: 1px solid gray;
+  background-color: #adacad;
+  border-radius: 0px 3px 3px 0px;
 }
 
 /* ? 회원가입 - 오른쪽 웰컴 카드 전체 */
 .sign_in_box_right_welcome_card {
   /* display: inline; */
   /* float: right; */
-  border: 3px solid gray;
+  border: 1px solid gray;
+  background-color: #adacad;
+  border-radius: 3px 0px 0px 3px;
   width: 50%;
   height: 100%;
-  /* margin-top: 5%; */
-  /* position: absolute; */
-  /* right: 0px; */
-  /* z-index: 999; */
-  /* box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px,
-    rgb(0 0 0 / 5%) 0px 4px 6px -2px; */
-  /* transition: right 1s ease 0s, border-radius 1s ease 0s; */
-  /* border-radius: 0px 15px 15px 0px; */
-  /* overflow: hidden; */
+  transition: all 0.6s linear;
+  transform: translateX(-100%);
 }
 
 /* ! 로그인 - Welcome Back! 문구 ****************************************/
 .login_box_left_welcome_card_phrase {
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   font-size: 2.3vmax;
   text-align: center;
   margin-top: 10%;
+  /* color: white; */
   /* height: 10%; */
 }
 
 /* ? 회원가입 -Welcome! 문구 ****************************************/
 .sign_in_box_right_welcome_card_phrase {
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   font-size: 2.3vmax;
   text-align: center;
   margin-top: 10%;
@@ -100,11 +102,21 @@
 }
 
 /*! 로그인 -Welcome Card img ****************************************/
-.login_box_left_welcome_card_img {
-  border: 1px solid gray;
+.login_box_left_welcome_card_img_box {
+  /* border: 1px solid gray; */
+  /* border-radius: 100px; */
   width: 100%;
   height: 50%;
+  text-align: center;
+
   margin-top: 8%;
+}
+
+.login_box_left_welcome_card_img {
+  border: 1px solid gray;
+  /* border-radius: 1000px; */
+  width: 50%;
+  height: 100%;
 }
 
 /* ? 회원가입 -Welcome Card img ****************************************/
@@ -121,7 +133,7 @@
 .login_box_left_welcome_card_register_div {
   height: 10%;
   text-align: center;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   margin-top: 10%;
 }
 /* ! btn */
@@ -130,7 +142,7 @@
   /* 버튼 테투리 */
   /* border: none; */
   border: 1px solid gray;
-  border-radius: 9999px;
+  border-radius: 3px;
   /* 세로 */
   /* height: 2.5rem; */
   height: 100%;
@@ -149,7 +161,7 @@
 .sign_in_box_right_welcome_card_login_div {
   height: 10%;
   text-align: center;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   margin-top: 10%;
 }
 /* ? btn */
@@ -158,7 +170,7 @@
   /* 버튼 테투리 */
   /* border: none; */
   border: 1px solid gray;
-  border-radius: 9999px;
+  /* border-radius: 9999px; */
   /* 세로 */
   /* height: 2.5rem; */
   height: 100%;
@@ -171,49 +183,24 @@
   color: rgb(79, 79, 79);
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 */
-.login_box_right_login_form {
-  /* display: inline; */
-  /* float: right; */
-  border: 3px solid gray;
-  width: 50%;
-  height: 100%;
-  /* margin-top: 5%; */
-  /* position: absolute; */
-  /* right: 0px; */
-  /* z-index: 999; */
-  /* box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px,
-    rgb(0 0 0 / 5%) 0px 4px 6px -2px; */
-  /* transition: right 1s ease 0s, border-radius 1s ease 0s; */
-  /* border-radius: 0px 15px 15px 0px; */
-  /* overflow: hidden; */
-}
-
 /* ? 회원가입 - 왼쪽 레지스터 폼 */
 .sign_in_box_left_register_form {
-  /* display: inline; */
-  /* float: left; */
-  border: 3px solid gray;
+  transition: all 0.6s linear;
+  transform: translateX(100%);
+  border: 1px solid gray;
+  background-color: #adacad;
+  /* border-radius: 3px; */
+  border-radius: 0px 3px 3px 0px;
   width: 50%;
   height: 100%;
-  /* margin-top: 5%; */
-
-  /* position: absolute; */
-  /* left: 0px; */
-  /* box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px,
-    rgb(0 0 0 / 5%) 0px 4px 6px -2px; */
-  /* transition: left 1s ease 0s, border-radius 1s ease 0s; */
-  /* border-radius: 15px 0px 0px 15px; */
-  /* overflow: hidden; */
 }
 
 /* ! 로그인 - 오른쪽 로그인 폼 타이틀 Login*/
 .login_box_right_login_form_title {
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
+  margin-top: 10%;
   font-size: 2vmax;
   text-align: center;
-  margin-top: 30%;
-  /* height: 10%; */
 }
 /* ? 회원가입 - 왼쪽 회원가입 폼 타이틀 Register*/
 .sign_box_left_register_form_title {
@@ -221,6 +208,7 @@
   font-size: 2vmax;
   text-align: center;
   margin-top: 10%;
+  /* color: white; */
   /* height: 10%; */
 }
 
@@ -284,16 +272,17 @@
 
 /* ! 로그인 - 오른쪽 로그인 폼 sign in 박스 */
 .login_box_right_login_form_sign_in_box {
-  border: 1px solid gray;
-  /* font-size: 2vmax; */
+  /* border: 1px solid gray; */
   text-align: center;
+  margin: auto;
   margin-top: 10%;
-  height: 6%;
+  height: 10%;
+  width: 60%;
 }
 
 /* ? 회원가입 - 왼쪽 회원가입 폼 sign in 박스 */
 .sign_in_box_left_register_form_register_box {
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   /* font-size: 2vmax; */
   text-align: center;
   margin-top: 10%;
@@ -303,6 +292,10 @@
 /* ! 로그인 - 오른쪽 로그인 폼 sign in 버튼 */
 .login_box_right_login_form_sign_in_box_btn {
   font-size: 1.1vmax;
+  border-radius: 3px;
+  border: 1px solid gray;
+  height: 100%;
+  width: 100%;
 }
 
 /* ? 회원가입 - 왼쪽 회원가입 폼 register 버튼 */
@@ -310,58 +303,81 @@
   font-size: 1.1vmax;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 */
-.login_box_right_login_form_OAuth_box {
-  border: 1px solid gray;
+/* ? 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 */
+.sign_in_box_left_register_form_OAuth_box {
+  /* border: 1px solid gray; */
   /* font-size: 2vmax; */
   text-align: center;
   margin-top: 6%;
   height: 6%;
 }
-
-/* ? 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 */
-.sign_in_box_left_register_form_OAuth_box {
-  border: 1px solid gray;
+/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 */
+.login_box_right_login_form_OAuth_box {
+  /* border: 3px solid gray; */
   /* font-size: 2vmax; */
   text-align: center;
+  margin: auto;
   margin-top: 6%;
-  height: 6%;
+  width: 40%;
+  height: 10%;
 }
 
 /* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 구글 div */
 .login_box_right_login_form_OAuth_box_google_div {
   display: inline;
+  /* border: 1px solid red; */
+  /* margin: auto; */
+  /* width: 100%; */
+  /* height: 100%; */
+}
+
+/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 깃허브 div */
+.login_box_right_login_form_OAuth_box_github_div {
+  display: inline;
+  /* border: 1px solid red; */
+  /* width: 100%; */
+  /* height: 100%; */
+}
+
+/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 구글 버튼 */
+.login_box_right_login_form_OAuth_box_google_btn {
+  /* display: inline; */
+  /* font-size: 1vmax; */
+  border-radius: 9999px;
+  width: 36%;
+  height: 100%;
+}
+
+/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 깃허브 버튼 */
+.login_box_right_login_form_OAuth_box_github_btn {
+  /* display: inline; */
+  /* font-size: 1.1vmax; */
+  border-radius: 9999px;
+  width: 36%;
+  height: 100%;
+}
+
+/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 구글 깃허브 이미지 */
+.login_box_right_login_form_OAuth_box_google_img,
+.login_box_right_login_form_OAuth_box_github_img {
+  /* display: inline; */
+  width: 100%;
+  height: 100%;
 }
 
 /* ? 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 구글 div */
 .sign_in_box_left_register_form_OAuth_box_google_div {
   display: inline;
 }
-
-/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 구글 버튼 */
-.login_box_right_login_form_OAuth_box_google_btn {
-  font-size: 1.1vmax;
-  height: 100%;
-}
 /* ? 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 구글 버튼 */
 .sign_in_box_left_register_form_OAuth_box_google_btn {
-  font-size: 1.1vmax;
+  font-size: 1vmax;
   height: 100%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 깃허브 div */
-.login_box_right_login_form_OAuth_box_github_div {
-  display: inline;
-}
 /* ? 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 깃허브 div */
 .sign_in_box_left_register_form_OAuth_box_github_div {
   display: inline;
-}
-
-/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 깃허브 버튼 */
-.login_box_right_login_form_OAuth_box_github_btn {
-  font-size: 1.1vmax;
-  height: 100%;
 }
 
 /* ? 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 깃허브 버튼 */

@@ -1,22 +1,10 @@
 // useEffect : 렌더링될 때 마다 특정 작업 수행
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
-// import SideContainer from "../../containers/SideContainer";
-import FakeSideContainer from "../../containers/FakeSideContainer";
 import NavContainer from "../../containers/NavContainer";
 import ModalContainer from "../../containers/ModalContainer";
-// import ThumbnailsContainer from "../../containers/ThumbnailsContainer";
-// import HamburgerContainer from "../../containers/SideContainer";
 import "./Water.css";
-import { contents } from "../Fake/Fakedata.js";
 import axios from "axios";
-// import { ICON_NAME } from "react-icons/TYPE
-// 즐겨찾기 전 손가락, 별 둘 둥 하나 선택
-import { AiOutlineLike } from "react-icons/ai";
-import { BsStar } from "react-icons/bs";
-// 즐겨찾기 후
-import { AiFillLike } from "react-icons/ai";
-import { BsStarFill } from "react-icons/bs";
 import outlineLike from "../../img/OutlineLike.png";
 import fillLike from "../../img/FillLike.png";
 

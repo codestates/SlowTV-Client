@@ -34,12 +34,14 @@
 /* 이미지 태그 */
 .contents_page_img {
   /* border: solid 5px navy; */
+  transition: all ease 1s;
+
   width: 100%;
   height: 100%;
   border-radius: 15px;
   border: 1px solid black;
-  border-left-width: 5px;
-  /* border-left: 5px solid black; */
+  /* border-left-width: 5px; */
+  border-left: 4px solid black;
   /* border-left-width: 1px; */
   /* 그림자 반사 효과 */
   -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.5)));
@@ -128,6 +130,27 @@
   left: 9%;
 }
 
+/* //! test */
+.contents_page_div_img_ready {
+  /* transform: rotateY(45deg); */
+  transition: all ease 1s;
+  z-index: 5;
+  /* 자주 바꾸는 거 */
+  /* 픽셀  */
+  /* width: 640px;
+  height: 360px;
+  top: 10px;
+  left: 180px; */
+  /* 퍼센트 */
+  width: 30%;
+  height: 30%;
+  /* 원하는 위치 지정, 기준은 가까운 부모 요소나 조상 중 position 속성이 relative인 요소 */
+  position: absolute;
+  /* top: 20%; */
+  top: 15%;
+  left: 5%;
+}
+
 /* 이미지 5 로고 */
 .contents_page_div_img_five {
   /* 미디어쿼리 테스트용 */
@@ -161,8 +184,8 @@
 /* 이미지 5 맨 앞 호버시 */
 .contents_page_div_img_five:hover {
   transform: rotateY(0deg);
-  border-left: none;
-  border: none;
+  /* border-left: none; */
+  /* border: none; */
   transition: all ease 1s;
   /* width: 580px; */
   /* width: 70%; */
@@ -248,7 +271,7 @@
   /* border: 6px solid blue; */
   background-color: #212021;
   /* color: white; */
-  transition: all ease 1s;
+  transition: all ease 3s;
   z-index: 5;
   /* 퍼센트 */
   width: 35%;

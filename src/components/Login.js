@@ -5,6 +5,8 @@ import { Link, withRouter } from "react-router-dom";
 import LandingNavConatiner from "../containers/LandingNavContainers";
 import "./Login.css";
 import axios from "axios";
+import google from "../img/google.png";
+import github from "../img/github.png";
 
 const Login = ({
   isClickedSignInBtn,
@@ -197,7 +199,13 @@ const Login = ({
         withCredentials: true,
       }
     );
-    setRefresh("registered");
+    console.log(
+      "🚀 ~ file: Login.js ~ line 214 ~ clickSignUp ~ signUp",
+      signUp
+    );
+    // setRefresh("registered");
+    // history.push("/login");
+    changeSignIn();
   };
 
   return (
@@ -205,15 +213,19 @@ const Login = ({
       <LandingNavConatiner />
       {isClickedSignInBtn ? (
         <div className="login_box">
-          {/* welcome back 왼쪽 */}
+          {/* //! welcome back 왼쪽 */}
           <div className="login_box_left_welcome_card">
             {/* //! Welcome Back! */}
             <div className="login_box_left_welcome_card_phrase">
               Welcome Back!
             </div>
             {/* //! 이미지 */}
-            <div className="login_box_left_welcome_card_img">
-              <img alt="Welcome back img"></img>
+            <div className="login_box_left_welcome_card_img_box">
+              <img
+                className="login_box_left_welcome_card_img"
+                src={github}
+                alt="Welcome back img"
+              ></img>
             </div>
             {/* //! 회원가입 이동 버튼 */}
             <div className="login_box_left_welcome_card_register_div">
@@ -265,7 +277,11 @@ const Login = ({
                   className="login_box_right_login_form_OAuth_box_google_btn"
                   onClick={googleLoginHandler}
                 >
-                  Google
+                  <img
+                    className="login_box_right_login_form_OAuth_box_google_img"
+                    src={google}
+                    alt="google"
+                  ></img>
                 </button>
               </div>
               {/* //? Github */}
@@ -274,7 +290,11 @@ const Login = ({
                   className="login_box_right_login_form_OAuth_box_github_btn"
                   onClick={githubLoginHandler}
                 >
-                  GitHub
+                  <img
+                    className="login_box_right_login_form_OAuth_box_github_img"
+                    src={github}
+                    alt="github"
+                  ></img>
                 </button>
               </div>
             </div>

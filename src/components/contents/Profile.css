@@ -59,7 +59,8 @@
   /* border: 1px solid gray; */
 }
 /* 유저 이름 *******************************/
-.profile_page_box_username {
+.profile_page_box_username,
+.profile_page_box_social_username {
   border-bottom: 1px solid gray;
   width: 60%;
   height: 10%;
@@ -81,7 +82,8 @@
 
 /* 유저 비밀번호 *******************************/
 
-.profile_page_box_user_password {
+.profile_page_box_user_password,
+.profile_page_box_social_user_password {
   border-bottom: 1px solid gray;
   width: 60%;
   height: 10%;
