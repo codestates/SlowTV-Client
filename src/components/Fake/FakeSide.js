@@ -43,7 +43,12 @@ const FakeSide = (props) => {
           </Link>
         </li>
         <li>
-          <Link className="test-Link" to="/contents/favorites" favorites={props.favorites} handlefavorites={props.handlefavorites} message={props.message} >
+          <Link className="test-Link" to="/contents/favorites"
+            favorites={props.favorites}
+            handlefavorites={props.handlefavorites}
+            message={props.message}
+            handleSeletedVideo={props.handleSeletedVideo}
+          >
             Favorites
           </Link>
         </li>

@@ -22,7 +22,7 @@ class Favorites extends React.Component {
     };
 
     handleRemove = () => {
-        if (this.props.favVidoes.length > 1) { //여기서 요청이 가나?
+        if (this.props.favVideos) { //여기서 요청이 가나?
             axios.post("https://server.slowtv24.com/delete-favorite",
                 { link: this.props.favVideos[0].contentlink },
                 { withCredentials: true })
@@ -48,23 +48,23 @@ class Favorites extends React.Component {
         return (
             <div id="fav-page">
                 <h1>Favorites</h1>
-                { this.props.favVideos !== null ?
+                { (this.props.favVideos) ?
                     (<div>
                         {this.props.favVideos.map(el => {
                             console.log("map el", el)
                             return (
-                                <div key={el.contentlink}>
-                                    <div>
+                                <div key={el.contentlink} onClick={() => { this.props.handleSeletedVideo(el.contentlink) }}>
+                                    <a href="/watch">
                                         <img className="fav-thumbnail-img" src={el.thumbnail} alt={el.contentname} />
-                                    </div>
+                                    </a>
                                     <div>
                                         <span className="fav-thumbnail-title">{el.contentname}</span>
-                                        {/* <button className="fav-remove-btn" onClick=>Remove</button> */}
+                                        {/* <button className="fav-remove-btn" onClick={this.handleRemove()}>Remove</button> */}
                                     </div>
                                 </div>
                             )
                         })}
-                        <button className="fav-remove-btn" onClick={this.handleRemove} title="You can remove only one video at a time from the top.">Remove</button>
+                        <button className="fav-remove-btn" title="You can remove only one video at a time from the top." onClick={this.handleRemove}>Remove</button>
                     </div>)
                     //즐겨찾기에 추가한 비디오가 없을 때
                     : (<div>
@@ -73,7 +73,7 @@ class Favorites extends React.Component {
                     </div>)
                 }
                 <button onClick={this.goBack}>Go back</button>
-            </div>)
+            </div >)
 
     }
 }

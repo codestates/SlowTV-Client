@@ -116,6 +116,7 @@ const Contents = (props) => {
           handlefavorites={props.handlefavorites}
           favVideos={props.favVideos}
           message={props.message}
+          handleSeletedVideo={props.handleSeletedVideo}
         />
         {/* <Side a={props.a} /> */}
       </div>

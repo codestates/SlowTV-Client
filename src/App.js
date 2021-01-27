@@ -37,8 +37,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLoggedin: false,
-      favVideos: null,
-      message: "",
+      favVideos: [],
       email: "",
       nickname: "",
       isModalOpen: "",
@@ -46,6 +45,7 @@ class App extends React.Component {
       isClickedSignInToggle: "",
       videoId: "",
       isLogoutModalOpen: false,
+      seletedVideoLink: ""
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleGetUserInfo = this.handleGetUserInfo.bind(this);
@@ -82,18 +82,24 @@ class App extends React.Component {
   //       .catch((err) => alert(err));
   //   }
   // };
-
+  handleSeletedVideo = (link) => {
+    this.setState({
+      seletedVideoLink: link
+    })
+    this.props.history.push("/watch")
+  }
 
   handlefavorites() {
     axios.get("https://server.slowtv24.com/favorites",
       { withCredentials: true })
       .then((data) => {
         console.log("APP axios favorites data.data >>>", data.data)
-        // if (data.data.userFavorites === undefined) {
-        //   this.setState({
-        //     favVideos: null
-        //   })
-        // }
+        if (data.data.messages) {
+          console.log("inside if data.data>>>.", data.data)
+          this.setState({
+            favVideos: []
+          })
+        }
         this.setState({
           favVideos: data.data.userFavorites
         })
@@ -197,7 +203,7 @@ class App extends React.Component {
               isLoggedin={this.state.isLoggedin}
               handlefavorites={this.handlefavorites}
               favVideos={this.state.favVideos}
-              message={this.state.message}
+              handleSeletedVideo={this.handleSeletedVideo}
             />}
         />
         {/* <Route path="/contents" component={ContentsContainer} exact /> */}
@@ -214,7 +220,7 @@ class App extends React.Component {
               isLoggedin={this.state.isLoggedin}
               handlefavorites={this.handlefavorites}
               favVideos={this.state.favVideos}
-              message={this.state.message}
+              handleSeletedVideo={this.handleSeletedVideo}
             />}
         />
         {/* 컨텐츠 - 프로필 */}
@@ -230,7 +236,10 @@ class App extends React.Component {
         component={ChangePassword}
       /> */}
         {/* 비디오 플레이어 *********************************************************/}
-        <Route path="/watch" component={VideoPlayer} />
+        <Route path="/watch" render={() =>
+          <VideoPlayer
+            seletedVideoLink={this.state.seletedVideoLink}
+          />} />
       </Router >
     );
   }

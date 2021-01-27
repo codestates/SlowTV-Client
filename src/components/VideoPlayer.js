@@ -58,7 +58,7 @@ class VideoPlayer extends React.Component {
           className="player"
           src="https://drive.google.com/file/d/1k7p4nsKV5HIaAHot9-nRJOjwUs_z3yRm/preview"
         ></iframe> */}
-        <iframe className="player" src={this.props.src}></iframe>
+        <iframe className="player" src={this.props.selectedVideoLink}></iframe>
         {/* 어디에서 상태를 내려받아야할지 모르겠음 컨텐츠 파일을 내려받은 뒤 상태 적용 */}
         {/* app.js  state에서 비디오 선택한 값을 내려받아서 비디오에 소스를 props로 넣어줌 */}
         <div className="backToTheContents">
