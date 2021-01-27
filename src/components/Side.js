@@ -3,10 +3,12 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import "./Side.css";
-const Side = ({ handleOnClick, isClicked }) => {
+const Side = ({ handleOnClick, isClicked }, a) => {
+  console.log("clicked >>", isClicked)
+
   return (
     // <i className={ isActive ? 'active' : 'notActive' }></i>
-    <div className={isClicked ? "opne-side-links" : "close-side-links"}>
+    <div className={isClicked ? "open-side-links" : "close-side-links"}>
       {/* 햄버거 메뉴 */}
       <div className="hamburger" onClick={handleOnClick}>
         <div className={!isClicked ? "burger" : "toggle burger"}>
@@ -17,48 +19,53 @@ const Side = ({ handleOnClick, isClicked }) => {
         {!isClicked ? (
           <div></div>
         ) : (
-          <div className="side-category">
-            <ul className="side-ul">
-              <li>
-                <Link className="side-link" to="/contents">
-                  Contents
+            <div className="side-category">
+              <ul className="side-ul">
+                <li>
+                  <Link className="side-link" to="/contents">
+                    Contents
                 </Link>
-              </li>
-              <li>
-                <Link className="side-link" to="/contents/water">
-                  Water
+                </li>
+                <li>
+                  <Link className="side-link" to="/contents/water">
+                    Water
                 </Link>
-              </li>
-              <li>
-                <Link className="side-link" to="/contents/fire">
-                  Fire
+                </li>
+                <li>
+                  <Link className="side-link" to="/contents/fire">
+                    Fire
                 </Link>
-              </li>
-              <li>
-                <Link className="side-link" to="/contents/snow">
-                  Snow
+                </li>
+                <li>
+                  <Link className="side-link" to="/contents/snow">
+                    Snow
                 </Link>
-              </li>
-              <li>
-                <Link className="side-link" to="/contents/grass">
-                  Grass
+                </li>
+                <li>
+                  <Link className="side-link" to="/contents/grass">
+                    Grass
                 </Link>
-              </li>
-              <li>
-                <Link className="side-link" to="/contents/favorite">
-                  Favorite
+                </li>
+                {a === false ?
+                  <>
+                    <li>
+                      <Link className="side-link" to="/contents/favorite">
+                        Favorite
                 </Link>
-              </li>
-              <li>
-                <Link className="side-link" to="/contents/profile">
-                  Profile
+                    </li>
+                    <li>
+                      <Link className="side-link" to="/contents/profile">
+                        Profile
                 </Link>
-              </li>
-            </ul>
-          </div>
-        )}
+                    </li>
+                  </>
+                  : <></>
+                }
+              </ul>
+            </div>
+          )}
       </div>
-    </div>
+    </div >
   );
 };
 

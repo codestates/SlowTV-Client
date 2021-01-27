@@ -2,20 +2,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import "./Landing.css";
+import Login from "./Login"
 
 const LandingPage = (props) => {
   return (
     <div className="landing-page">
       <div className="nav-container">
         <div className="overlay">
-          <Nav
+          {/* <Nav
             handleResponseSuccess={props.handleResponseSuccess}
-            handleLogout={props.handleLogout}
             isLoggedin={props.isLoggedin}
+            // handleLoggedin={props.handleLoggedin}
+            handleGetUserInfo={props.handleGetUserInfo}
+            handleGetUserInfoSocial={props.handleGetUserInfoSocial}
+            email={props.email}
+            nickname={props.nickname}
+
+            handleLogout={props.handleLogout}
             handleLogoutModalOpen={props.handleLogoutModalOpen}
             handleLogoutModalClose={props.handleLogoutModalClose}
             isLogoutModalOpen={props.isLogoutModalOpen}
-          />
+            handleOpenLogin={props.handleOpenLogin}
+          /> */}
           <>
             <Link className="start-link" to="/contents">
               Get Started
@@ -27,6 +35,21 @@ const LandingPage = (props) => {
               </h3>
               <h3 className="msg-intro2">Watch anywhere. Relax anytime.</h3>
             </div>
+            <Nav
+            handleResponseSuccess={props.handleResponseSuccess}
+            isLoggedin={props.isLoggedin}
+            // handleLoggedin={props.handleLoggedin}
+            handleGetUserInfo={props.handleGetUserInfo}
+            handleGetUserInfoSocial={props.handleGetUserInfoSocial}
+            email={props.email}
+            nickname={props.nickname}
+
+            handleLogout={props.handleLogout}
+            handleLogoutModalOpen={props.handleLogoutModalOpen}
+            handleLogoutModalClose={props.handleLogoutModalClose}
+            isLogoutModalOpen={props.isLogoutModalOpen}
+            handleOpenLogin={props.handleOpenLogin}
+          />
           </>
         </div>
       </div>
@@ -94,6 +117,3 @@ const LandingPage = (props) => {
 // }
 
 export default LandingPage;
-
-//export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
-// export default connect(mapStateToProps 리덕스 state값 연결, mapDispatchToProps 액션 생성 함수 연결)(ProfileContainer);

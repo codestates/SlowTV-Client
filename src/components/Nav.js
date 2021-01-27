@@ -18,6 +18,10 @@ class Nav extends React.Component {
     this.setState({ isModalOpen: true });
   };
 
+  handleModalClose= () => {
+    this.setState({ isModalOpen: false })
+  }
+
   render() {
     return (
       <div className="navbar">
@@ -30,30 +34,40 @@ class Nav extends React.Component {
             {this.props.isLoggedin === false ? (
               <div>
                 <span className="nav-register-btn">Register</span>
-                <button type="button" onClick={this.handleModalOpen}>
-                  Login
-                </button>
-                <Login
+                <button type="button" onClick={this.handleModalOpen}>Login</button>
+                {/* <Login
                   isOpen={this.state.isModalOpen}
                   handleResponseSuccess={this.props.handleResponseSuccess}
+                  handleLoggedin={this.props.handleLoggedin}
+                /> */}
+                <Login
+                  isOpen={this.state.isModalOpen}
+                  handleModalClose={this.handleModalClose}
+                  handleResponseSuccess={this.props.handleResponseSuccess}
+                  handleGetUserInfo={this.props.handleGetUserInfo}
+                  isLoggedin={this.props.isLoggedin}
+                  // handleLoggedin={props.handleLoggedin}
+                  // handleGetUserInfoSocial={this.props.handleGetUserInfoSocial}
+                  email={this.props.email}
+                  nickname={this.props.nickname}
                 />
               </div>
             ) : (
-              <div>
-                <button
-                  className="NavLogoutBTN"
-                  onClick={this.props.handleLogoutModalOpen}
-                >
-                  Logout
+                <div>
+                  <button
+                    className="NavLogoutBTN"
+                    onClick={this.props.handleLogoutModalOpen}
+                  >
+                    Logout
                 </button>
-                <Logout
-                  // open={this.props.isLoggedin}
-                  open={this.props.isLogoutModalOpen}
-                  handleLogoutModalClose={this.props.handleLogoutModalClose}
-                  handleLogout={this.props.handleLogout}
-                ></Logout>
-              </div>
-            )}
+                  <Logout
+                    // open={this.props.isLoggedin}
+                    open={this.props.isLogoutModalOpen}
+                    handleLogoutModalClose={this.props.handleLogoutModalClose}
+                    handleLogout={this.props.handleLogout}
+                  ></Logout>
+                </div>
+              )}
           </div>
         </div>
       </div>
@@ -62,3 +76,4 @@ class Nav extends React.Component {
 }
 
 export default Nav;
+
