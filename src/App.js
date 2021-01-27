@@ -1,3 +1,4 @@
+//dev2
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -45,7 +46,7 @@ class App extends React.Component {
       isClickedSignInToggle: "",
       videoId: "",
       isLogoutModalOpen: false,
-      seletedVideoLink: ""
+      seletedVideoLink: "",
     };
     this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
     this.handleGetUserInfo = this.handleGetUserInfo.bind(this);
@@ -84,49 +85,48 @@ class App extends React.Component {
   // };
   handleSeletedVideo = (link) => {
     this.setState({
-      seletedVideoLink: link
-    })
-    this.props.history.push("/watch")
-  }
+      seletedVideoLink: link,
+    });
+    this.props.history.push("/watch");
+  };
 
   handlefavorites() {
-    axios.get("https://server.slowtv24.com/favorites",
-      { withCredentials: true })
+    axios
+      .get("https://server.slowtv24.com/favorites", { withCredentials: true })
       .then((data) => {
-        console.log("APP axios favorites data.data >>>", data.data)
+        console.log("APP axios favorites data.data >>>", data.data);
         if (data.data.messages) {
-          console.log("inside if data.data>>>.", data.data)
+          console.log("inside if data.data>>>.", data.data);
           this.setState({
-            favVideos: []
-          })
+            favVideos: [],
+          });
         }
         this.setState({
-          favVideos: data.data.userFavorites
-        })
-      })
+          favVideos: data.data.userFavorites,
+        });
+      });
     // .catch((err) => {
     //   console.log(err)
     // })
   }
 
   // [완료]로그인 이후->서버에  유저정보 요청 -> App.js 의 상태 : email, nickname 바꿈(상태 끌어올리기)
-  handleGetUserInfo() {  //경로 -> App.js -> Landing.js -> Nav.js -> Login.js
+  handleGetUserInfo() {
+    //경로 -> App.js -> Landing.js -> Nav.js -> Login.js
     axios
-      .get(
-        "https://server.slowtv24.com/userinfo",
-        { withCredentials: true }
-      ).then((res) => {
-        console.log('/userinfo', res.data)
+      .get("https://server.slowtv24.com/userinfo", { withCredentials: true })
+      .then((res) => {
+        console.log("/userinfo", res.data);
         this.setState({
           email: res.data.userInfo.email,
-          nickname: res.data.userInfo.nickname
-        })
-      })
+          nickname: res.data.userInfo.nickname,
+        });
+      });
   }
 
-  handleOpenModal = () => { };
-  handleSignInToggle = () => { };
-  handleVideoId = () => { };
+  handleOpenModal = () => {};
+  handleSignInToggle = () => {};
+  handleVideoId = () => {};
 
   handleLogout = () => {
     axios
@@ -157,8 +157,8 @@ class App extends React.Component {
   }
 
   handleOpenLogin = () => {
-    this.props.history.push("/login")
-  }
+    this.props.history.push("/login");
+  };
 
   render() {
     return (
@@ -187,29 +187,33 @@ class App extends React.Component {
           )}
         />
         {/* 로그인 - 회원가입 ***************************************************/}
-        <Route path="/login" render={() => (
-          // <Login isLoggedin={this.state.isLoggedin} favorites={this.state.favorites} handleLoggedin={this.handleLoggedin} handleResponseSuccess={this.handleResponseSuccess} />)} />
-          <Login
-            handleResponseSuccess={this.handleResponseSuccess}
-            isLoggedin={this.state.isLoggedin}
-            handleGetUserInfo={this.handleGetUserInfo}
-            email={this.state.email}
-            nickname={this.state.nickname}
-          />
-        )} />
+        <Route
+          path="/login"
+          render={() => (
+            // <Login isLoggedin={this.state.isLoggedin} favorites={this.state.favorites} handleLoggedin={this.handleLoggedin} handleResponseSuccess={this.handleResponseSuccess} />)} />
+            <Login
+              handleResponseSuccess={this.handleResponseSuccess}
+              isLoggedin={this.state.isLoggedin}
+              handleGetUserInfo={this.handleGetUserInfo}
+              email={this.state.email}
+              nickname={this.state.nickname}
+            />
+          )}
+        />
         {/* <Route path="/login" component={Login} /> */}
         <Route path="/signup" component={SignUp} />
         {/* 컨텐츠 ************************************************************/}
         <Route
           exact
           path="/contents"
-          render={() =>
+          render={() => (
             <Contents
               isLoggedin={this.state.isLoggedin}
               handlefavorites={this.handlefavorites}
               favVideos={this.state.favVideos}
               handleSeletedVideo={this.handleSeletedVideo}
-            />}
+            />
+          )}
         />
         {/* <Route path="/contents" component={ContentsContainer} exact /> */}
         {/* 컨텐츠 - 물,불,눈,풀 */}
@@ -220,13 +224,14 @@ class App extends React.Component {
         {/* 컨텐츠- 즐겨찾기 */}
         <Route
           path="/contents/favorites"
-          render={() =>
+          render={() => (
             <Favorites
               isLoggedin={this.state.isLoggedin}
               handlefavorites={this.handlefavorites}
               favVideos={this.state.favVideos}
               handleSeletedVideo={this.handleSeletedVideo}
-            />}
+            />
+          )}
         />
         {/* 컨텐츠 - 프로필 */}
         <Route path="/contents/profile" component={Profile} exact />
@@ -241,11 +246,13 @@ class App extends React.Component {
         component={ChangePassword}
       /> */}
         {/* 비디오 플레이어 *********************************************************/}
-        <Route path="/watch" render={() =>
-          <VideoPlayer
-            seletedVideoLink={this.state.seletedVideoLink}
-          />} />
-      </Router >
+        <Route
+          path="/watch"
+          render={() => (
+            <VideoPlayer seletedVideoLink={this.state.seletedVideoLink} />
+          )}
+        />
+      </Router>
     );
   }
 }
