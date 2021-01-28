@@ -7,8 +7,8 @@ const VideoPlayerContainer = ({ id, videoData }) => {
 };
 
 const mapStateToProps = (state) => ({
-  id: state.water.id,
-  videoData: state.fakeside.videoData,
+  id: state.videoList.id,
+  videoData: state.sideRemoteControl.videoData,
 });
 
 export default connect(mapStateToProps)(VideoPlayerContainer);

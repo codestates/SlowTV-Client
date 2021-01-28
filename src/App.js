@@ -1,7 +1,6 @@
 //! for dev2
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// 페이크 파일
 
 // 랜딩
 import LandingContainer from "./containers/LandingContainer";
@@ -10,23 +9,17 @@ import LandingContainer from "./containers/LandingContainer";
 import LoginContainers from "./containers/LoginContainers";
 // 컨텐츠
 import ContentsContainer from "./containers/ContentsContainer";
-// 컨텐츠 - 물,불,눈,풀
-import WaterContainer from "./containers/WaterContainer";
-import Fire from "./components/contents/Fire";
-import Snow from "./components/contents/Snow";
-import Grass from "./components/contents/Grass";
+// 컨텐츠 - 비디오리스트 (물,불,눈,풀)
+import VideoListContainer from "./containers/VideoListContainer";
 // 컨텐츠 - 즐겨찾기
 import FavoritesContainer from "./containers/FavoritesContainer";
-import FavoritesEntryContainer from "./containers/FavoritesEntryContainer";
 // 컨텐츠 - 프로필
 import ProfileContainer from "./containers/ProfileContainer";
 // 컨텐츠 - 프로필 - 이름 변경
 import ChangeUserNameContainer from "./containers/ChangeUserNameContainer";
 import ChangeUserPasswordContainer from "./containers/ChangeUserPasswordContainer";
-
 // 비디오 플레이어
 import VideoPlayerContainer from "./containers/VideoPlayerContainer";
-import VideoPlayer from "./components/VideoPlayer";
 import "./App.css";
 
 const App = () => {
@@ -39,10 +32,10 @@ const App = () => {
       {/* 컨텐츠 ************************************************************/}
       <Route path="/contents" component={ContentsContainer} exact />
       {/* 컨텐츠 - 물,불,눈,풀 */}
-      <Route path="/contents/water" component={WaterContainer} />
-      <Route path="/contents/fire" component={Fire} />
-      <Route path="/contents/snow" component={Snow} />
-      <Route path="/contents/grass" component={Grass} />
+      <Route path="/contents/water" component={VideoListContainer} />
+      <Route path="/contents/fire" component={VideoListContainer} />
+      <Route path="/contents/snow" component={VideoListContainer} />
+      <Route path="/contents/grass" component={VideoListContainer} />
       {/* 컨텐츠- 즐겨찾기 */}
       <Route path="/contents/favorites" component={FavoritesContainer} />
       {/* <Route path="/contents/favorites" component={FavoritesEntryContainer} /> */}

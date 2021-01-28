@@ -7,6 +7,8 @@ import "./Profile.css";
 import axios from "axios";
 import google from "../../img/google.png";
 import github from "../../img/github.png";
+import emailIcon from "../../img/email-icon.png";
+import lock from "../../img/lock.png";
 
 const Profile = ({
   history,
@@ -32,13 +34,32 @@ const Profile = ({
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
 
+  //! 인풋 핸들링
   const handleInputValue = (key) => (e) => {
     if (key === "email") {
-      setEmailInputValue(e.target.value);
+      const emailValue = e.target.value.split("@");
+      if (emailValue.length !== 2) {
+        setEmailErrorMessage("Invalid email format");
+      } else {
+        setEmailErrorMessage(null);
+        setEmailInputValue(e.target.value);
+        console.log("emailInputValue값은?", emailInputValue);
+      }
     } else if (key === "password") {
-      setPasswordInputValue(e.target.value);
+      console.log(e.target.value.length);
+      if (e.target.value.length < 8) {
+        setPasswordErrorMessage("You must enter between 8 and 15 characters.");
+      } else {
+        setPasswordErrorMessage(null);
+        setPasswordInputValue(e.target.value);
+        console.log("passwordInputValue값은?", passwordInputValue);
+      }
     }
   };
+
+  // ! 일반 로그인 유효성 검사
+  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
 
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
@@ -227,21 +248,28 @@ const Profile = ({
           </div>
 
           <div className="loaded_favorites_page_guest_sign_in_box">
-            {/* email */}
+            {/* //! email */}
             <div className="loaded_favorites_page_guest_sign_in_email_box">
+              <div className="login_box_right_login_form_email_box_input_icon_box"></div>
               <input
                 className="loaded_favorites_page_guest_sign_in_email_input"
+                type="email"
+                autoComplete="on"
                 onChange={handleInputValue("email")}
+                autoFocus="ture"
               ></input>
             </div>
-            {/* password */}
+            {/* //! password */}
             <div className="loaded_favorites_page_guest_sign_in_password_box">
               <input
                 className="loaded_favorites_page_guest_sign_in_password"
+                type="password"
+                // minLength="8"
+                maxLength="15"
                 onChange={handleInputValue("password")}
               ></input>
             </div>
-            {/* sign in */}
+            {/* //! sign in */}
             <div className="loaded_favorites_page_guest_sign_in_sign_in_box">
               <button
                 className="loaded_favorites_page_guest_sign_in_btn"
@@ -250,33 +278,29 @@ const Profile = ({
                 Sign In
               </button>
             </div>
-            {/* //! social  */}
-            <div className="loaded_favorites_page_guest_sign_in_social_box">
-              {/* //! google */}
-              <div className="loaded_favorites_page_guest_sign_in_social_google_box">
-                <button
-                  className="loaded_favorites_page_guest_sign_in_social_google_btn"
-                  onClick={googleLoginHandler}
-                >
-                  <img
-                    className="loaded_favorites_page_guest_sign_in_social_google_img"
-                    src={google}
-                    alt="google"
-                  ></img>
-                </button>
+            {/* //! OAuth */}
+            <div className="favorites_login_box_right_login_form_OAuth_box">
+              {/* // ?Google */}
+              <div
+                className="login_box_right_login_form_OAuth_box_google_btn"
+                onClick={googleLoginHandler}
+              >
+                <img
+                  className="login_box_right_login_form_OAuth_box_google_img"
+                  src={google}
+                  alt="google"
+                ></img>
               </div>
-              {/* //! github */}
-              <div className="loaded_favorites_page_guest_sign_in_social_github_box">
-                <button
-                  className="loaded_favorites_page_guest_sign_in_social_github_btn"
-                  onClick={githubLoginHandler}
-                >
-                  <img
-                    className="loaded_favorites_page_guest_sign_in_social_githu_img"
-                    src={github}
-                    alt="githu"
-                  ></img>
-                </button>
+              {/* //? Github */}
+              <div
+                className="login_box_right_login_form_OAuth_box_github_btn"
+                onClick={githubLoginHandler}
+              >
+                <img
+                  className="login_box_right_login_form_OAuth_box_github_img"
+                  src={github}
+                  alt="github"
+                ></img>
               </div>
             </div>
             {/* //! hr */}
@@ -287,7 +311,7 @@ const Profile = ({
                 className="loaded_favorites_page_guest_sign_up_btn"
                 onClick={handleGoSignUpPage}
               >
-                Create New Account
+                Sign Up
               </button>
             </div>
           </div>

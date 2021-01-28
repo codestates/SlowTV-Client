@@ -6,13 +6,21 @@ import "./Nav.css";
 import user from "../img/user.png";
 import user2 from "../img/user2.png";
 
-const Nav = ({ history, isLoggedIn, handleOnClickModal, toggleModal }) => {
+const Nav = ({
+  history,
+  isLoggedIn,
+  closeModal,
+  handleOnClickModal,
+  toggleModal,
+}) => {
   // console.log(
   //   "🚀 ~ file: Nav.js ~ line 8 ~ Nav ~ handleOnClickModal",
   //   handleOnClickModal
   // );
   // console.log("🚀 ~ file: Nav.js ~ line 8 ~ Nav ~ isLoggedIn", isLoggedIn);
   const handleGoHome = () => {
+    // 모달 끄기
+    closeModal();
     history.push("/");
   };
 

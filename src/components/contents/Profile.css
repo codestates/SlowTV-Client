@@ -122,3 +122,16 @@
   font-size: 1.2vmax;
   color: black;
 }
+
+.loaded_favorites_page_guest_sign_in_email_box_error_message {
+  /* border: 1px solid black; */
+  width: 80%;
+  height: 8%;
+  margin: auto;
+  margin-top: 4%;
+  font-size: 0.6vmax;
+  color: white;
+  /* position: absolute; */
+  /* left: 10%; */
+  /* top: 30; */
+}

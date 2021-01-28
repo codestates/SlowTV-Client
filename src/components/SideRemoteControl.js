@@ -11,6 +11,9 @@ const SideRemoteControl = ({
   closeModal,
   isRemoteControlOn,
   clickRemoteControl,
+  isContentsPage,
+  goToAnotherPage,
+  movePage,
 }) => {
   // const [isOn, SetOn] = useState(false);
 
@@ -21,6 +24,7 @@ const SideRemoteControl = ({
   //! GoHome
   const handleGoHome = () => {
     closeModal();
+    goToAnotherPage();
     history.push("/");
   };
   // ! GoCotents
@@ -31,21 +35,22 @@ const SideRemoteControl = ({
 
   // ! 페이보릿 제외한 영상 카테고리
   const handleGoCategory = async (e) => {
+    // console.log("왜 안 돼 ??");
+    // console.log("왜 안 돼 ??");
     const category = e.target.attributes.value.value;
     if (category === "profile") {
+      goToAnotherPage();
       closeModal();
       history.push("/contents/profile");
     } else {
+      // ! Water~Grass
+      movePage(category);
       const video = await axios(
         `https://server.slowtv24.com/category/${category}`,
         {
           withCredentials: true,
         }
       );
-      // console.log(
-      //   "🚀 ~ file: FakeSide.js ~ line 15 ~ handleGoCategory ~ video",
-      //   video.data.contents
-      // );
       handleOnClickCategory(video.data.contents);
       closeModal();
       history.push(`/contents/${category}`);
@@ -54,6 +59,7 @@ const SideRemoteControl = ({
 
   // ! 페이보릿 카테고리
   const handleGoFavorites = async (e) => {
+    goToAnotherPage();
     // ! 게스트인 경우, 페이보릿 아무 것도 없음
     const category = e.target.attributes.value.value;
     if (!isLoggedIn) {
@@ -80,6 +86,9 @@ const SideRemoteControl = ({
       closeModal();
     }
   };
+
+  // ! 리모콘 목록 동적 셋팅 : 컨텐츠 페이지 경우에 - 컨텐츠 대신 Home, 나머지 페이지 경우 컨텐츠 버튼으로 대체
+
   return (
     <div className="remote_control">
       <div
@@ -87,6 +96,7 @@ const SideRemoteControl = ({
           isRemoteControlOn ? "remote_control_box" : "remote_control_box2"
         }
       >
+        {/* On OR Off */}
         {isRemoteControlOn ? (
           <div className="list_item" onClick={clickRemoteControl}>
             On
@@ -96,19 +106,23 @@ const SideRemoteControl = ({
             Off
           </div>
         )}
-
-        <div
-          className={isRemoteControlOn ? "list_item" : "list_item2"}
-          onClick={handleGoHome}
-        >
-          Home
-        </div>
-        <div
-          className={isRemoteControlOn ? "list_item" : "list_item2"}
-          onClick={handleGoContents}
-        >
-          Contents
-        </div>
+        {/* Home OR Contents */}
+        {isContentsPage ? (
+          <div
+            className={isRemoteControlOn ? "list_item" : "list_item2"}
+            onClick={handleGoHome}
+          >
+            Home
+          </div>
+        ) : (
+          <div
+            className={isRemoteControlOn ? "list_item" : "list_item2"}
+            onClick={handleGoContents}
+          >
+            Contents
+          </div>
+        )}
+        {/* Water */}
         <div
           className={isRemoteControlOn ? "list_item" : "list_item2"}
           value="water"
@@ -116,12 +130,31 @@ const SideRemoteControl = ({
         >
           Water
         </div>
-        <div className={isRemoteControlOn ? "list_item" : "list_item2"}>
+        {/* Fire */}
+        <div
+          className={isRemoteControlOn ? "list_item" : "list_item2"}
+          value="fire"
+          onClick={handleGoCategory}
+        >
           Fire
         </div>
-        <div className={isRemoteControlOn ? "list_item" : "list_item2"}>
+        {/* Sonw */}
+        <div
+          className={isRemoteControlOn ? "list_item" : "list_item2"}
+          value="snow"
+          onClick={handleGoCategory}
+        >
           Snow
         </div>
+        {/* Grass */}
+        <div
+          className={isRemoteControlOn ? "list_item" : "list_item2"}
+          value="grass"
+          onClick={handleGoCategory}
+        >
+          Grass
+        </div>
+        {/* Favorites */}
         <div
           className={isRemoteControlOn ? "list_item" : "list_item2"}
           value="favorites"
@@ -129,6 +162,7 @@ const SideRemoteControl = ({
         >
           Favorites
         </div>
+        {/* Profile */}
         <div
           className={isRemoteControlOn ? "list_item" : "list_item2"}
           value="profile"

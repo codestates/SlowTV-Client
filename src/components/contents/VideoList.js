@@ -7,20 +7,25 @@ import ModalContainer from "../../containers/ModalContainer";
 import axios from "axios";
 import outlineLike from "../../img/OutlineLike.png";
 import fillLike from "../../img/FillLike.png";
-import "./Water.css";
+import "./VideoList.css";
 
-const Water = ({
+const VideoList = ({
   isLoggedIn,
   isModalClicked,
   videoData,
   clickThumbnail,
   handleOnClickCategory,
+  goToAnotherPage,
+  nowPage,
 }) => {
   // ! 즐겨찾기 수정 후 비디오 새로고침
   const handleGoCategory = async (e) => {
-    const video = await axios(`https://server.slowtv24.com/category/water`, {
-      withCredentials: true,
-    });
+    const video = await axios(
+      `https://server.slowtv24.com/category/${nowPage}`,
+      {
+        withCredentials: true,
+      }
+    );
     handleOnClickCategory(video.data.contents); // videoData 상태 값에 비디오들 넣음
   };
 
@@ -130,6 +135,9 @@ const Water = ({
     ));
   }
 
+  useEffect(() => {
+    goToAnotherPage();
+  });
   return (
     <div className="water_page">
       {!videoData ? (
@@ -152,4 +160,4 @@ const Water = ({
   );
 };
 
-export default withRouter(Water);
+export default withRouter(VideoList);
