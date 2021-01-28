@@ -1,8 +1,11 @@
 import React from "react";
 import Favorites from "../components/Favorites";
-import { clickThumbnail, addFavorites } from "../modules/water";
+import { clickThumbnail, addFavorites } from "../modules/videoList";
 import { connect } from "react-redux";
-import { clickCategory, clickRemoteControl } from "../modules/fakeside";
+import {
+  clickCategory,
+  clickRemoteControl,
+} from "../modules/sideRemoteControl";
 import {
   clickSignIn,
   changeSignUp,
@@ -44,8 +47,8 @@ const FavoritesContainer = ({
 const mapStateToProps = (state) => ({
   isLoggedIn: state.login.isLoggedIn,
   isModalClicked: state.modal.isModalClicked,
-  videoData: state.fakeside.videoData,
-  isRemoteControlOn: state.fakeside.isRemoteControlOn,
+  videoData: state.sideRemoteControl.videoData,
+  isRemoteControlOn: state.sideRemoteControl.isRemoteControlOn,
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

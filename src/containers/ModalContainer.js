@@ -10,7 +10,7 @@ import {
   getGithubAccessToken,
   getGoogleAccessToken,
 } from "../modules/login";
-import { clickCategory } from "../modules/fakeside";
+import { clickCategory } from "../modules/sideRemoteControl";
 
 import { openModal, closeModal } from "../modules/modal";
 

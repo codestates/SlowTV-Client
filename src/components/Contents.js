@@ -5,7 +5,7 @@ import ModalContainer from "../containers/ModalContainer";
 import slowTvLogo1 from "../img/SLOW1.jpeg";
 import "./Contents.css";
 
-const Contents = ({ isModalClicked }) => {
+const Contents = ({ isModalClicked, isContentsPage, goToContentsPage }) => {
   // 슬라이드 이미지 누르면 클래스 이름 변경을 통해 css적용이 바뀌고 순서 변경이 되게 만드는 함수
   const handleOnChange = (e) => {
     // 카드 순서
@@ -42,12 +42,10 @@ const Contents = ({ isModalClicked }) => {
   };
 
   // ! 컨텐츠 카드들 트랜지션
-
-  const [isContentsPage, setIsContentsPage] = useState(false);
-
   useEffect(() => {
-    setIsContentsPage(true);
+    goToContentsPage();
   });
+
   return (
     <div className="contents_page">
       <NavContainer />

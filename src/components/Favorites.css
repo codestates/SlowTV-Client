@@ -37,6 +37,7 @@
 /* ! 게스트 로그인 박스 */
 .loaded_favorites_page_guest_sign_in_box {
   border: 3px solid gray;
+  border-radius: 3px;
   float: right;
   width: 20%;
   height: 40%;
@@ -50,8 +51,9 @@
 .loaded_favorites_page_guest_sign_in_email_box,
 .loaded_favorites_page_guest_sign_in_password_box,
 .loaded_favorites_page_guest_sign_in_sign_in_box {
-  /* border: 1px solid blue; */
-  margin: auto;
+  /* border: 3px solid blue; */
+  /* margin: auto; */
+  margin-left: 3%;
   margin-top: 4%;
   width: 90%;
   height: 13%;
@@ -60,7 +62,7 @@
 /* ! 소셜 로그인 박스 */
 .loaded_favorites_page_guest_sign_in_social_box {
   /* border: 3px solid red; */
-  margin: auto;
+  /* margin: auto; */
   margin-top: 8%;
   width: 30%;
   height: 10%;
@@ -95,6 +97,7 @@
   margin-top: 3%;
   width: 63%;
   height: 13%;
+  /* font-size: 1px; */
 }
 
 /* ! 게스트 로그인 박스 - 이메일 input */
@@ -102,6 +105,7 @@
 .loaded_favorites_page_guest_sign_in_email_input,
 .loaded_favorites_page_guest_sign_in_password {
   /* border: 1px solid blue; */
+
   width: 98%;
   height: 100%;
 }
@@ -140,7 +144,7 @@
 /* ! 게스트 로그인 박스 - 회원가입 버튼 */
 .loaded_favorites_page_guest_sign_up_btn {
   /* border: 1px solid blue; */
-  font-size: 0.9vmax;
+  font-size: 1px;
   width: 100%;
   height: 90%;
 }
@@ -267,102 +271,28 @@
   margin-left: 20%;
 }
 
-.favorites_page_thumbnail_2 {
-  /* border: 3px solid orange; */
-
-  /* grid-row-start: 1;
-      grid-row-end: 2; */
-  /* grid-column-start: 2; */
-  /* grid-column-end: 3; */
-}
-.favorites_page_thumbnail_3 {
-  /* border: 3px solid yellow; */
-
-  /* grid-row-start: 1;
-      grid-row-end: 2; */
-  /* grid-column-start: 3; */
-  /* grid-column-end: 4; */
-}
-.favorites_page_thumbnail_4 {
-  /* border: 3px solid green; */
-
-  /* grid-row-start: 1;
-      grid-row-end: 2; */
-  /* grid-column-start: 4; */
-  /* grid-column-end: 5; */
-}
-.favorites_page_thumbnail_5 {
-  /* border: 3px solid blue; */
-
-  /* grid-row-start: 1;
-      grid-row-end: 2; */
-}
-.favorites_page_thumbnail_6 {
-  /* border: 3px solid navy; */
-
-  /* grid-row-start: 1;
-      grid-row-end: 2; */
-}
-.favorites_page_thumbnail_7 {
-  /* border: 3px solid purple; */
-
-  /* grid-row-start: 1;
-      grid-row-end: 2; */
-}
-.favorites_page_thumbnail_8 {
-  /* border: 3px solid red; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
-}
-.favorites_page_thumbnail_9 {
-  /* border: 3px solid black; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
-}
-.favorites_page_thumbnail_10 {
-  /* border: 3px solid black; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
-}
-.favorites_page_thumbnail_11 {
-  /* border: 3px solid black; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
-}
-.favorites_page_thumbnail_12 {
-  /* border: 3px solid black; */
-
-  /* grid-row-start: 2; */
-  /* grid-row-end: 3; */
-}
-
 /* width 1400 넘으면 ************************************************/
-@media screen and (min-width: 1400px) {
-  /* 비디오 리스트 */
-  .favorites-list {
-    /* margin-top: 5%; */
+@media screen and (min-width: 800px) {
+  .loaded_favorites_page_guest_sign_in_email_box,
+  .loaded_favorites_page_guest_sign_in_password_box,
+  .loaded_favorites_page_guest_sign_in_sign_in_box {
+    /* border: 3px solid blue; */
+    background-color: black;
+    margin: auto;
     /* margin-left: 3%; */
-    /* margin: 5%; */
-    /* margin-top: 7%; */
-    /* border: 5px solid blue; */
-    /* display: grid; */
-    /* grid-template-columns: auto auto auto auto; */
-    /* grid-gap: 10px; */
-    /* grid-gap: 1%; */
-    /* grid-gap: 30px; */
-    /* background-color: #2196f3; */
-    /* margin-top: 40px; */
-    /* padding-left: 60px; */
-    /* width: 85%; */
-    /* height: 90%; */
-    /* grid-template-columns: repeat(4, 13.43%); */
-    /* grid-template-columns: 1fr 1fr 1fr; */
-    /* grid-template-columns: repeat(4, 1fr); */
-    /* grid-template-rows: repeat(7, 6.5%); */
-    /* grid-template-rows: repeat(7, 29%); */
+    margin-top: 4%;
+    width: 90%;
+    height: 13%;
   }
+}
+
+/* ! */
+
+.favorites_login_box_right_login_form_OAuth_box {
+  /* border: 3px solid gray; */
+  margin: auto;
+  text-align: center;
+  width: 40%;
+  height: 7%;
+  margin-top: 8%;
 }
