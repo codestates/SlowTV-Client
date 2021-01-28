@@ -6,6 +6,8 @@ import cancel from "../../img/cancel.png";
 import google from "../../img/google.png";
 import github from "../../img/github.png";
 import SLOW1 from "../../img/SLOW2.jpeg";
+import emailIcon from "../../img/email-icon.png";
+import passwordIcon from "../../img/lock.png";
 
 const Modal = ({
   openModal,
@@ -48,18 +50,36 @@ const Modal = ({
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
   const [usernameInputValue, setUsernameInputValue] = useState("");
+
+  //! 인풋 핸들링
   const handleInputValue = (key) => (e) => {
     if (key === "email") {
-      setEmailInputValue(e.target.value);
-      console.log("emailInputValue값은?", emailInputValue);
+      const emailValue = e.target.value.split("@");
+      if (emailValue.length !== 2) {
+        setEmailErrorMessage("Invalid email format");
+      } else {
+        setEmailErrorMessage(null);
+        setEmailInputValue(e.target.value);
+        console.log("emailInputValue값은?", emailInputValue);
+      }
     } else if (key === "password") {
-      setPasswordInputValue(e.target.value);
-      console.log("passwordInputValue값은?", passwordInputValue);
+      console.log(e.target.value.length);
+      if (e.target.value.length < 8) {
+        setPasswordErrorMessage("You must enter between 8 and 15 characters.");
+      } else {
+        setPasswordErrorMessage(null);
+        setPasswordInputValue(e.target.value);
+        console.log("passwordInputValue값은?", passwordInputValue);
+      }
     } else if (key === "username") {
       setUsernameInputValue(e.target.value);
       console.log("usernameInputValue값은?", usernameInputValue);
     }
   };
+
+  // ! 일반 로그인 유효성 검사
+  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
 
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
@@ -249,24 +269,60 @@ const Modal = ({
           {/* ID box */}
           <div className="modal_my_profile_box_user_id">
             <div className="modal_my_profile_div_user_id">ID</div>
-            <div className="modal_my_profile_input_user_id">
+            <div
+              className={
+                emailErrorMessage
+                  ? "login_box_right_login_form_email_box_error"
+                  : "login_box_right_login_form_email_box"
+              }
+            >
+              {/* inline */}
+              {/* <div className="login_box_right_login_form_email_box_input_icon_box"> */}
+              <img
+                className="login_box_right_login_form_email_box_input_icon"
+                src={emailIcon}
+                alt="emailIcon"
+              ></img>
+              {/* </div> */}
+              {/* inline */}
               <input
-                className="modal_my_profile_input"
+                className="login_box_right_login_form_email_box_input"
+                type="email"
+                autoComplete="on"
                 onChange={handleInputValue("email")}
+                autoFocus="ture"
               ></input>
             </div>
           </div>
+
           {/* PW box */}
           <div className="modal_my_profile_box_user_password">
             <div className="modal_my_profile_div_user_password">Password</div>
-            <div className="modal_my_profile_input_user_password">
+            {/* // */}
+            <div
+              className={
+                passwordErrorMessage
+                  ? "login_box_right_login_form_password_box_error"
+                  : "login_box_right_login_form_password_box"
+              }
+            >
+              {/* inline */}
+              {/* <div className="login_box_right_login_form_password_box_input_icon_box"> */}
+              <img
+                className="login_box_right_login_form_password_box_input_icon"
+                src={passwordIcon}
+                alt="passwordIcon"
+              ></img>
+              {/* </div> */}
+              {/* inline */}
               <input
-                className="modal_my_profile_input"
+                className="login_box_right_login_form_password_box_input"
                 type="password"
                 onChange={handleInputValue("password")}
               ></input>
             </div>
           </div>
+
           {/* Sign In box */}
           <div className="modal_my_profile_sign_in_btn_box">
             <button
@@ -276,37 +332,32 @@ const Modal = ({
               Sign In
             </button>
           </div>
-          {/* Social Login box */}
-          <div className="modal_my_profile_social_login_btn_box">
-            {/* Google */}
-            <div className="modal_my_profile_social_login_google_btn_box">
-              {/* 아이콘으로 대체 예정 */}
-              <button
-                className="modal_my_profile_social_login_google_btn"
-                onClick={googleLoginHandler}
-              >
-                <img
-                  className="modal_my_profile_social_login_google_btn_img"
-                  src={google}
-                  alt="google"
-                ></img>
-              </button>
+          {/* //! OAuth */}
+          <div className="login_box_right_login_form_OAuth_box">
+            {/* // ?Google */}
+            <div
+              className="login_box_right_login_form_OAuth_box_google_btn"
+              onClick={googleLoginHandler}
+            >
+              <img
+                className="login_box_right_login_form_OAuth_box_google_img"
+                src={google}
+                alt="google"
+              ></img>
             </div>
-            {/* GitHub */}
-            <div className="modal_my_profile_social_login_github_btn_box">
-              <button
-                className="modal_my_profile_social_login_github_btn"
-                onClick={githubLoginHandler}
-              >
-                <img
-                  className="modal_my_profile_social_login_github_btn_img"
-                  src={github}
-                  alt="github"
-                ></img>
-              </button>
+            {/* //? Github */}
+            <div
+              className="login_box_right_login_form_OAuth_box_github_btn"
+              onClick={githubLoginHandler}
+            >
+              <img
+                className="login_box_right_login_form_OAuth_box_github_img"
+                src={github}
+                alt="github"
+              ></img>
             </div>
           </div>
-          {/* Sign Up box */}
+          {/* //! Sign Up box */}
           <div
             className="modal_my_profile_sign_up_btn_box"
             onClick={handleGoSignUpPage}

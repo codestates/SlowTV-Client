@@ -1,18 +1,18 @@
 import { combineReducers } from "redux";
-import fakeside from "./fakeside";
-import hamburger from "./hamburger";
+import contents from "./contents";
 import landingNav from "./landingNav";
 import login from "./login";
 import modal from "./modal";
-import water from "./water";
+import sideRemoteControl from "./sideRemoteControl";
+import videoList from "./videoList";
 
 const rootReducer = combineReducers({
-  fakeside,
-  hamburger,
+  contents,
   landingNav,
   login,
   modal,
-  water,
+  sideRemoteControl,
+  videoList,
 });
 
 export default rootReducer;

@@ -1,24 +1,28 @@
-// ! test중이라 Water에서만 사용하지만 추후 파일명도 변경해서 Water, Fire, Snow, Grass 모두에서 사용하게 끔 만들기
 import React from "react";
-import Water from "../components/contents/Water";
+import VideoList from "../components/contents/VideoList";
 import { connect } from "react-redux";
-import { clickThumbnail } from "../modules/water";
-import { clickCategory } from "../modules/fakeside";
+import { clickThumbnail } from "../modules/videoList";
+import { clickCategory } from "../modules/sideRemoteControl";
+import { goToAnotherPage } from "../modules/contents";
 
-const WaterContainer = ({
+const VideoListContainer = ({
   isLoggedIn,
   isModalClicked,
   videoData,
   clickThumbnail,
   handleOnClickCategory,
+  goToAnotherPage,
+  nowPage,
 }) => {
   return (
-    <Water
+    <VideoList
       isLoggedIn={isLoggedIn}
       isModalClicked={isModalClicked}
       videoData={videoData}
       clickThumbnail={clickThumbnail}
       handleOnClickCategory={handleOnClickCategory}
+      goToAnotherPage={goToAnotherPage}
+      nowPage={nowPage}
     />
   );
 };
@@ -26,7 +30,8 @@ const WaterContainer = ({
 const mapStateToProps = (state) => ({
   isLoggedIn: state.login.isLoggedIn,
   isModalClicked: state.modal.isModalClicked,
-  videoData: state.fakeside.videoData,
+  videoData: state.sideRemoteControl.videoData,
+  nowPage: state.sideRemoteControl.nowPage,
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -38,6 +43,9 @@ const mapDispatchToProps = (dispatch, props) => ({
   handleOnClickCategory: (category) => {
     dispatch(clickCategory(category));
   },
+  goToAnotherPage: () => {
+    dispatch(goToAnotherPage());
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WaterContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(VideoListContainer);

@@ -1,8 +1,13 @@
 import React from "react";
 import SideRemoteControl from "../components/SideRemoteControl";
 import { connect } from "react-redux";
-import { clickCategory, clickRemoteControl } from "../modules/fakeside";
+import {
+  clickCategory,
+  clickRemoteControl,
+  movePage,
+} from "../modules/sideRemoteControl";
 import { openModal, closeModal } from "../modules/modal";
+import { goToAnotherPage } from "../modules/contents";
 
 const SideRemoteControlContainer = ({
   videoData,
@@ -11,6 +16,10 @@ const SideRemoteControlContainer = ({
   closeModal,
   clickRemoteControl,
   isRemoteControlOn,
+  isContentsPage,
+  goToAnotherPage,
+  movePage,
+  // nowPage,
 }) => {
   return (
     <SideRemoteControl
@@ -20,14 +29,20 @@ const SideRemoteControlContainer = ({
       closeModal={closeModal}
       isRemoteControlOn={isRemoteControlOn}
       clickRemoteControl={clickRemoteControl}
+      isContentsPage={isContentsPage}
+      goToAnotherPage={goToAnotherPage}
+      movePage={movePage}
+      // nowPage={nowPage}
     />
   );
 };
 
 const mapStateToProps = (state) => ({
-  videoData: state.fakeside.videoData,
+  videoData: state.sideRemoteControl.videoData,
   isLoggedIn: state.login.isLoggedIn,
-  isRemoteControlOn: state.fakeside.isRemoteControlOn,
+  isRemoteControlOn: state.sideRemoteControl.isRemoteControlOn,
+  isContentsPage: state.contents.isContentsPage,
+  // nowPage: state.sideRemoteControl.nowPage,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -39,6 +54,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   clickRemoteControl: () => {
     dispatch(clickRemoteControl());
+  },
+  goToAnotherPage: () => {
+    dispatch(goToAnotherPage());
+  },
+  movePage: (pageName) => {
+    dispatch(movePage(pageName));
   },
 });
 

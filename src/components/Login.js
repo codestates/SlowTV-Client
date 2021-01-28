@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
-// import Nav from "../components/Nav";
-// import LandingNav from "../components/LandingNav";
 import LandingNavConatiner from "../containers/LandingNavContainers";
 import "./Login.css";
 import axios from "axios";
 import google from "../img/google.png";
 import github from "../img/github.png";
+import emailIcon from "../img/email-icon.png";
+import passwordIcon from "../img/lock.png";
+import cancel from "../img/cancel.png";
+import user from "../img/user.png";
 
 const Login = ({
   isClickedSignInBtn,
@@ -25,10 +27,6 @@ const Login = ({
   nickname,
   history,
 }) => {
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
-  const [usernameInputValue, setUsernameInputValue] = useState("");
-
   // ! GitHub OAuth URL // ! client id 변수 처리 하기
   const GITHUB_LOGIN_URL =
     "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
@@ -142,17 +140,52 @@ const Login = ({
   // 회원가입 버튼 누르고 새로고침 안되서 임시용
   const [refresh, setRefresh] = useState("");
 
+  const [emailInputValue, setEmailInputValue] = useState("");
+  const [passwordInputValue, setPasswordInputValue] = useState("");
+  const [usernameInputValue, setUsernameInputValue] = useState("");
+
+  //! 인풋 핸들링
   const handleInputValue = (key) => (e) => {
     if (key === "email") {
-      setEmailInputValue(e.target.value);
-      console.log("emailInputValue값은?", emailInputValue);
+      const emailValue = e.target.value.split("@");
+      if (emailValue.length !== 2) {
+        setEmailErrorMessage("Invalid email format");
+      } else {
+        setEmailErrorMessage(null);
+        setEmailInputValue(e.target.value);
+        console.log("emailInputValue값은?", emailInputValue);
+      }
     } else if (key === "password") {
-      setPasswordInputValue(e.target.value);
-      console.log("passwordInputValue값은?", passwordInputValue);
+      console.log(e.target.value.length);
+      if (e.target.value.length < 8) {
+        setPasswordErrorMessage("You must enter between 8 and 15 character");
+      } else {
+        setPasswordErrorMessage(null);
+        setPasswordInputValue(e.target.value);
+        console.log("passwordInputValue값은?", passwordInputValue);
+      }
     } else if (key === "username") {
       setUsernameInputValue(e.target.value);
       console.log("usernameInputValue값은?", usernameInputValue);
     }
+  };
+
+  // ! 일반 로그인 유효성 검사
+  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
+
+  //! 로그인 - 회원가입 전환 시 에러 메시지 초기화
+
+  const handleChangeSignInBtn = () => {
+    setEmailErrorMessage(null);
+    setPasswordErrorMessage(null);
+    changeSignIn();
+  };
+
+  const handleChangeSignUpBtn = () => {
+    setEmailErrorMessage(null);
+    setPasswordErrorMessage(null);
+    changeSignUp();
   };
 
   // ! 유저 정보 등록
@@ -169,20 +202,22 @@ const Login = ({
 
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
-    const signIn = await axios.post(
-      // "https://server.slowtv24.com/login",
-      "https://server.slowtv24.com/login",
-      {
-        email: emailInputValue,
-        password: passwordInputValue,
-      },
-      {
-        withCredentials: true,
+    if (emailErrorMessage === null && passwordErrorMessage === null) {
+      const signIn = await axios.post(
+        // "https://server.slowtv24.com/login",
+        "https://server.slowtv24.com/login",
+        {
+          email: emailInputValue,
+          password: passwordInputValue,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      if (signIn.data !== undefined) {
+        clickSignIn();
+        handleGetUserInfo();
       }
-    );
-    if (signIn.data !== undefined) {
-      clickSignIn();
-      handleGetUserInfo();
     }
   };
 
@@ -205,7 +240,12 @@ const Login = ({
     );
     // setRefresh("registered");
     // history.push("/login");
-    changeSignIn();
+    handleChangeSignInBtn();
+    // changeSignIn();
+  };
+
+  const handleGoBack = () => {
+    history.goBack();
   };
 
   return (
@@ -213,7 +253,7 @@ const Login = ({
       <LandingNavConatiner />
       {isClickedSignInBtn ? (
         <div className="login_box">
-          {/* //! welcome back 왼쪽 */}
+          {/* //! 로그인 할 때 - welcome back 왼쪽 *************************/}
           <div className="login_box_left_welcome_card">
             {/* //! Welcome Back! */}
             <div className="login_box_left_welcome_card_phrase">
@@ -231,36 +271,107 @@ const Login = ({
             <div className="login_box_left_welcome_card_register_div">
               <button
                 className="login_box_left_welcome_card_register_btn"
-                onClick={changeSignUp}
+                // onClick={changeSignUp}
+                onClick={handleChangeSignUpBtn}
               >
                 Register
               </button>
             </div>
           </div>
-          {/* //! login form 오른쪽 */}
+          {/* //! 로그인할 때 - login form 오른쪽 ************************/}
           <div className="login_box_right_login_form">
+            <div
+              className="login_box_right_login_form_cancel_box"
+              onClick={handleGoBack}
+            >
+              <img
+                className="login_box_right_login_form_cancel_img"
+                src={cancel}
+                alt="cancel"
+              ></img>
+            </div>
             <div className="login_box_right_login_form_title">Login</div>
             {/* //! email */}
-            <div className="login_box_right_login_form_email_box">
+            <div className="login_box_right_login_form_email_box_title_div">
               <div className="login_box_right_login_form_email_box_title">
                 Email
               </div>
-              <input
-                className="login_box_right_login_form_email_box_input"
-                onChange={handleInputValue("email")}
-              ></input>
-            </div>
-            {/* //! PW */}
-            <div className="login_box_right_login_form_password_box">
-              <div className="login_box_right_login_form_password_box_title">
-                Password
+              {/* //! email icon */}
+              <div
+                className={
+                  emailErrorMessage
+                    ? "login_box_right_login_form_email_box_error"
+                    : "login_box_right_login_form_email_box"
+                }
+              >
+                {/* inline */}
+                {/* <div className="login_box_right_login_form_email_box_input_icon_box"> */}
+                <img
+                  className="login_box_right_login_form_email_box_input_icon"
+                  src={emailIcon}
+                  alt="emailIcon"
+                ></img>
+                {/* </div> */}
+                {/* inline */}
+                <input
+                  className="login_box_right_login_form_email_box_input"
+                  type="email"
+                  autoComplete="on"
+                  onChange={handleInputValue("email")}
+                  autoFocus="ture"
+                ></input>
               </div>
-              <input
-                className="login_box_right_login_form_password_box_input"
-                onChange={handleInputValue("password")}
-              ></input>
             </div>
-            {/* Sign in */}
+            {/* // ! email error message */}
+            <div
+              className={
+                emailErrorMessage
+                  ? "login_box_right_login_form_email_box_error_message"
+                  : "login_box_right_login_form_email_box_error_message_hidden"
+              }
+            >
+              Invalid email format
+            </div>
+            {/* //! PW ***********************************************/}
+            <div className="login_box_right_login_form_password_box_title_div">
+              <div className="login_box_right_login_form_password_box_title">
+                password
+              </div>
+              {/* //! password icon */}
+              <div
+                className={
+                  passwordErrorMessage
+                    ? "login_box_right_login_form_password_box_error"
+                    : "login_box_right_login_form_password_box"
+                }
+              >
+                {/* inline */}
+                {/* <div className="login_box_right_login_form_password_box_input_icon_box"> */}
+                <img
+                  className="login_box_right_login_form_password_box_input_icon"
+                  src={passwordIcon}
+                  alt="passwordIcon"
+                ></img>
+                {/* </div> */}
+                {/* inline */}
+                <input
+                  className="login_box_right_login_form_password_box_input"
+                  type="password"
+                  onChange={handleInputValue("password")}
+                ></input>
+              </div>
+            </div>
+            {/* // ! password error message */}
+            <div
+              className={
+                passwordErrorMessage
+                  ? "login_box_right_login_form_password_box_error_message"
+                  : "login_box_right_login_form_password_box_error_message_hidden"
+              }
+            >
+              You must enter between 8 and 15 character
+            </div>
+            {/* //! Sign in */}
             <div className="login_box_right_login_form_sign_in_box">
               <button
                 className="login_box_right_login_form_sign_in_box_btn"
@@ -272,107 +383,179 @@ const Login = ({
             {/* //! OAuth */}
             <div className="login_box_right_login_form_OAuth_box">
               {/* // ?Google */}
-              <div className="login_box_right_login_form_OAuth_box_google_div">
-                <button
-                  className="login_box_right_login_form_OAuth_box_google_btn"
-                  onClick={googleLoginHandler}
-                >
-                  <img
-                    className="login_box_right_login_form_OAuth_box_google_img"
-                    src={google}
-                    alt="google"
-                  ></img>
-                </button>
+              <div
+                className="login_box_right_login_form_OAuth_box_google_btn"
+                onClick={googleLoginHandler}
+              >
+                <img
+                  className="login_box_right_login_form_OAuth_box_google_img"
+                  src={google}
+                  alt="google"
+                ></img>
               </div>
               {/* //? Github */}
-              <div className="login_box_right_login_form_OAuth_box_github_div">
-                <button
-                  className="login_box_right_login_form_OAuth_box_github_btn"
-                  onClick={githubLoginHandler}
-                >
-                  <img
-                    className="login_box_right_login_form_OAuth_box_github_img"
-                    src={github}
-                    alt="github"
-                  ></img>
-                </button>
+              <div
+                className="login_box_right_login_form_OAuth_box_github_btn"
+                onClick={githubLoginHandler}
+              >
+                <img
+                  className="login_box_right_login_form_OAuth_box_github_img"
+                  src={github}
+                  alt="github"
+                ></img>
               </div>
             </div>
           </div>
         </div>
       ) : (
         <div className="sign_in_box">
-          {/* // ! register form 왼쪽 */}
-          <div className="sign_in_box_left_register_form">
-            <div className="sign_box_left_register_form_title">Register</div>
-            {/* Username */}
-            <div className="sign_in_box_left_register_form_username_box">
-              <div className="sign_in_box_left_register_form_username_box_title">
+          {/* // ! register form 오른쪽 **************************************/}
+          <div className="sign_in_box_right_register_form">
+            <div
+              className="login_box_right_login_form_cancel_box"
+              onClick={handleGoBack}
+            >
+              <img
+                className="login_box_right_login_form_cancel_img"
+                src={cancel}
+                alt="cancel"
+              ></img>
+            </div>
+            <div className="sign_box_right_register_form_title">Register</div>
+            {/* //! Username */}
+            <div className="login_box_right_login_form_email_box_title_div">
+              <div className="login_box_right_login_form_email_box_title">
                 Username
               </div>
-              <input
-                className="sign_in_box_left_register_form_username_box_input"
-                onChange={handleInputValue("username")}
-              ></input>
+              {/* //! email icon */}
+              <div className="login_box_right_login_form_email_box">
+                {/* inline */}
+                {/* <div className="login_box_right_login_form_email_box_input_icon_box"> */}
+                <img
+                  className="login_box_right_login_form_email_box_input_icon"
+                  src={user}
+                  alt="user"
+                ></img>
+                {/* </div> */}
+                {/* inline */}
+                <input
+                  className="login_box_right_login_form_email_box_input"
+                  type="email"
+                  autoComplete="on"
+                  onChange={handleInputValue("username")}
+                  autoFocus="ture"
+                ></input>
+              </div>
             </div>
-            {/* email */}
-            <div className="sign_in_box_left_register_form_email_box">
-              <div className="sign_in_box_left_register_form_email_box_title">
+            {/* //! email */}
+            <div className="login_box_right_login_form_email_box_title_div">
+              <div className="login_box_right_login_form_email_box_title">
                 Email
               </div>
-              <input
-                className="sign_in_box_left_register_form_email_box_input"
-                onChange={handleInputValue("email")}
-              ></input>
-            </div>
-            {/* PW */}
-            <div className="sign_in_box_left_register_form_password_box">
-              <div className="sign_in_box_left_register_form_password_box_title">
-                Password
+              {/* //! email icon */}
+              <div
+                className={
+                  emailErrorMessage
+                    ? "login_box_right_login_form_email_box_error"
+                    : "login_box_right_login_form_email_box"
+                }
+              >
+                {/* inline */}
+                {/* <div className="login_box_right_login_form_email_box_input_icon_box"> */}
+                <img
+                  className="login_box_right_login_form_email_box_input_icon"
+                  src={emailIcon}
+                  alt="emailIcon"
+                ></img>
+                {/* </div> */}
+                {/* inline */}
+                <input
+                  className="login_box_right_login_form_email_box_input"
+                  type="email"
+                  autoComplete="on"
+                  onChange={handleInputValue("email")}
+                  autoFocus="ture"
+                ></input>
               </div>
-              <input
-                className="sign_in_box_left_register_form_password_box_input"
-                onChange={handleInputValue("password")}
-              ></input>
             </div>
-            {/* Register */}
-            <div className="sign_in_box_left_register_form_register_box">
+            {/* // ! email error message */}
+            <div
+              className={
+                emailErrorMessage
+                  ? "login_box_right_login_form_email_box_error_message"
+                  : "login_box_right_login_form_email_box_error_message_hidden"
+              }
+            >
+              Invalid email format
+            </div>
+            {/* //! PW ***********************************************/}
+            <div className="login_box_right_login_form_password_box_title_div">
+              <div className="login_box_right_login_form_password_box_title">
+                password
+              </div>
+              {/* //! password icon */}
+              <div
+                className={
+                  passwordErrorMessage
+                    ? "login_box_right_login_form_password_box_error"
+                    : "login_box_right_login_form_password_box"
+                }
+              >
+                {/* inline */}
+                {/* <div className="login_box_right_login_form_password_box_input_icon_box"> */}
+                <img
+                  className="login_box_right_login_form_password_box_input_icon"
+                  src={passwordIcon}
+                  alt="passwordIcon"
+                ></img>
+                {/* </div> */}
+                {/* inline */}
+                <input
+                  className="login_box_right_login_form_password_box_input"
+                  type="password"
+                  onChange={handleInputValue("password")}
+                ></input>
+              </div>
+            </div>
+            {/* // ! password error message */}
+            <div
+              className={
+                passwordErrorMessage
+                  ? "login_box_right_login_form_password_box_error_message"
+                  : "login_box_right_login_form_password_box_error_message_hidden"
+              }
+            >
+              You must enter between 8 and 15 character
+            </div>
+
+            {/* //! Register */}
+            <div className="login_box_right_login_form_sign_in_box">
               <button
-                className="sign_in_box_left_register_form_register_box_btn"
+                className="login_box_right_login_form_sign_in_box_btn"
                 onClick={clickSignUp}
               >
                 Register
               </button>
             </div>
-            {/* OAuth */}
-            <div className="sign_in_box_left_register_form_OAuth_box">
-              <div className="sign_in_box_left_register_form_OAuth_box_google_div">
-                <button className="sign_in_box_left_register_form_OAuth_box_google_btn">
-                  Google
-                </button>
-              </div>
-              <div className="sign_in_box_left_register_form_OAuth_box_github_div">
-                <button className="sign_in_box_left_register_form_OAuth_box_github_btn">
-                  GitHub
-                </button>
-              </div>
-            </div>
-            {/* welcome card 오른쪽*/}
+
+            {/* //! welcome card 왼쪽 ***************************************/}
           </div>
-          <div className="sign_in_box_right_welcome_card">
+          <div className="sign_in_box_left_welcome_card">
             {/* //? Welcome! */}
-            <div className="sign_in_box_right_welcome_card_phrase">
-              Welcome!
-            </div>
+            <div className="sign_in_box_left_welcome_card_phrase">Welcome!</div>
             {/* //? 이미지 */}
-            <div className="sign_in_box_right_welcome_card_img">
-              <img alt="Welcome back img"></img>
+            <div className="sign_in_box_left_welcome_card_box">
+              <img
+                className="sign_in_box_left_welcome_card_img"
+                src={google}
+                alt="Welcome back img"
+              ></img>
             </div>
             {/* //? 로그인으로 이동 버튼 */}
-            <div className="sign_in_box_right_welcome_card_login_div">
+            <div className="sign_in_box_left_welcome_card_login_div">
               <button
-                className="sign_in_box_right_welcome_card_login_btn"
-                onClick={changeSignIn}
+                className="sign_in_box_left_welcome_card_login_btn"
+                onClick={handleChangeSignInBtn}
               >
                 Login
               </button>

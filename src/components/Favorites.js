@@ -10,6 +10,8 @@ import outlineLike from "../img/OutlineLike.png";
 import fillLike from "../img/FillLike.png";
 import google from "../img/google.png";
 import github from "../img/github.png";
+import emailIcon from "../img/email-icon.png";
+import lock from "../img/lock.png";
 
 const Favorites = ({
   history,
@@ -42,6 +44,10 @@ const Favorites = ({
       setPasswordInputValue(e.target.value);
     }
   };
+
+  // ! 일반 로그인 유효성 검사
+  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
 
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
@@ -224,79 +230,84 @@ const Favorites = ({
             <NavContainer />
             <SideRemoteControlContainer />
             {isModalClicked ? <ModalContainer /> : <div></div>}
-            <div className="loaded_favorites_page_guest_message">
-              <div>Please log in and use it.</div>
-              <p></p>
-              Slow TV helps you experience
-              <br></br>
-              the aesthetics of slowness,
-              <br></br>
-              tired of your busy daily life.
-            </div>
 
-            <div className="loaded_favorites_page_guest_sign_in_box">
-              {/* email */}
-              <div className="loaded_favorites_page_guest_sign_in_email_box">
-                <input
-                  className="loaded_favorites_page_guest_sign_in_email_input"
-                  onChange={handleInputValue("email")}
-                ></input>
+            <div className="loaded_favorites_page">
+              <div className="loaded_favorites_page_guest_message">
+                <div>Please log in and use it.</div>
+                <p></p>
+                Slow TV helps you experience
+                <br></br>
+                the aesthetics of slowness,
+                <br></br>
+                tired of your busy daily life.
               </div>
-              {/* password */}
-              <div className="loaded_favorites_page_guest_sign_in_password_box">
-                <input
-                  className="loaded_favorites_page_guest_sign_in_password"
-                  onChange={handleInputValue("password")}
-                ></input>
-              </div>
-              {/* sign in */}
-              <div className="loaded_favorites_page_guest_sign_in_sign_in_box">
-                <button
-                  className="loaded_favorites_page_guest_sign_in_btn"
-                  onClick={clickSignInBtn}
-                >
-                  Sign In
-                </button>
-              </div>
-              {/* //! social  */}
-              <div className="loaded_favorites_page_guest_sign_in_social_box">
-                {/* //! google */}
-                <div className="loaded_favorites_page_guest_sign_in_social_google_box">
+
+              <div className="loaded_favorites_page_guest_sign_in_box">
+                {/* //! email */}
+                <div className="loaded_favorites_page_guest_sign_in_email_box">
+                  <input
+                    className="loaded_favorites_page_guest_sign_in_email_input"
+                    type="email"
+                    autoComplete="on"
+                    onChange={handleInputValue("email")}
+                    autoFocus="ture"
+                  ></input>
+                </div>
+                {/* //! password */}
+                <div className="loaded_favorites_page_guest_sign_in_password_box">
+                  <input
+                    className="loaded_favorites_page_guest_sign_in_password"
+                    type="password"
+                    // minLength="8"
+                    maxLength="15"
+                    onChange={handleInputValue("password")}
+                  ></input>
+                </div>
+                {/* //! sign in */}
+                <div className="loaded_favorites_page_guest_sign_in_sign_in_box">
                   <button
-                    className="loaded_favorites_page_guest_sign_in_social_google_btn"
+                    className="loaded_favorites_page_guest_sign_in_btn"
+                    onClick={clickSignInBtn}
+                  >
+                    Sign In
+                  </button>
+                </div>
+                {/* //! OAuth */}
+                <div className="favorites_login_box_right_login_form_OAuth_box">
+                  {/* // ?Google */}
+                  <div
+                    className="login_box_right_login_form_OAuth_box_google_btn"
                     onClick={googleLoginHandler}
                   >
                     <img
-                      className="loaded_favorites_page_guest_sign_in_social_google_img"
+                      className="login_box_right_login_form_OAuth_box_google_img"
                       src={google}
                       alt="google"
                     ></img>
-                  </button>
-                </div>
-                {/* //! github */}
-                <div className="loaded_favorites_page_guest_sign_in_social_github_box">
-                  <button
-                    className="loaded_favorites_page_guest_sign_in_social_github_btn"
+                  </div>
+                  {/* //? Github */}
+                  <div
+                    className="login_box_right_login_form_OAuth_box_github_btn"
                     onClick={githubLoginHandler}
                   >
                     <img
-                      className="loaded_favorites_page_guest_sign_in_social_githu_img"
+                      className="login_box_right_login_form_OAuth_box_github_img"
                       src={github}
-                      alt="githu"
+                      alt="github"
                     ></img>
+                  </div>
+                </div>
+                {/* //! hr */}
+                <div className="loaded_favorites_page_guest_sign_in_box_hr"></div>
+                {/* //! sign up */}
+                <div className="loaded_favorites_page_guest_sign_in_sign_up_box">
+                  <button
+                    className="loaded_favorites_page_guest_sign_up_btn"
+                    onClick={handleGoSignUpPage}
+                  >
+                    Sign Up
                   </button>
                 </div>
-              </div>
-              {/* //! hr */}
-              <div className="loaded_favorites_page_guest_sign_in_box_hr"></div>
-              {/* //! sign up */}
-              <div className="loaded_favorites_page_guest_sign_in_sign_up_box">
-                <button
-                  className="loaded_favorites_page_guest_sign_up_btn"
-                  onClick={handleGoSignUpPage}
-                >
-                  Create New Account
-                </button>
               </div>
             </div>
           </div>
