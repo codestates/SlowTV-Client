@@ -80,48 +80,58 @@ const Modal = ({
   // ! 일반 로그인 유효성 검사
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
-    const signIn = await axios.post(
-      "https://server.slowtv24.com/login",
-      {
-        email: emailInputValue,
-        password: passwordInputValue,
-      },
-      {
-        withCredentials: true,
-      }
-    );
-
-    if (signIn.data !== undefined) {
-      clickSignIn();
-      handleGetUserInfo();
-      // ! 비디오 데이터 새로 가져오기 추가, 아래 로그아웃과 같은 문제임, 현재 유알엘 그대로 가져오기
-      const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
-      const isCategory = url.pathname.split("/")[1];
-      const nowPage = url.pathname.split("/")[2];
-
-      if (nowPage !== "profile" && nowPage !== "favorites") {
-        const video = await axios(
-          `https://server.slowtv24.com/category/${nowPage}`,
-          {
-            withCredentials: true,
-          }
-        );
-        handleOnClickCategory(video.data.contents);
-        // closeModal();
-      } else if (nowPage === "favorites") {
-        const video = await axios(`https://server.slowtv24.com/${nowPage}`, {
+    if (emailErrorMessage === null && passwordErrorMessage === null) {
+      const signIn = await axios.post(
+        "https://server.slowtv24.com/login",
+        {
+          email: emailInputValue,
+          password: passwordInputValue,
+        },
+        {
           withCredentials: true,
-        });
-        console.log(
-          "🚀 ~ file: Modal.js ~ line 91 ~ clickSignInBtn ~ video",
-          video
-        );
-        handleOnClickCategory(video.data.userFavorites);
+        }
+      );
+
+      // console.log(signIn);
+      // if (signIn === undefined) {
+      //   setErrorMessage("Please check your ID or password.");
+      // }
+
+      if (signIn.data !== undefined) {
+        clickSignIn();
+        handleGetUserInfo();
+        // ! 비디오 데이터 새로 가져오기 추가, 아래 로그아웃과 같은 문제임, 현재 유알엘 그대로 가져오기
+        const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
+        const isCategory = url.pathname.split("/")[1];
+        const nowPage = url.pathname.split("/")[2];
+
+        if (nowPage !== "profile" && nowPage !== "favorites") {
+          const video = await axios(
+            `https://server.slowtv24.com/category/${nowPage}`,
+            {
+              withCredentials: true,
+            }
+          );
+          handleOnClickCategory(video.data.contents);
+          // closeModal();
+        } else if (nowPage === "favorites") {
+          const video = await axios(`https://server.slowtv24.com/${nowPage}`, {
+            withCredentials: true,
+          });
+          console.log(
+            "🚀 ~ file: Modal.js ~ line 91 ~ clickSignInBtn ~ video",
+            video
+          );
+          handleOnClickCategory(video.data.userFavorites);
+        }
+        // closeModal();
       }
-      // closeModal();
+    } else {
+      setErrorMessage("Please check your ID or password.");
     }
   };
 
@@ -268,7 +278,7 @@ const Modal = ({
           <div className="modal_my_profile_greeting">Welcome Slow TV</div>
           {/* ID box */}
           <div className="modal_my_profile_box_user_id">
-            <div className="modal_my_profile_div_user_id">ID</div>
+            <div className="modal_my_profile_div_user_id">Email</div>
             <div
               className={
                 emailErrorMessage
@@ -291,6 +301,7 @@ const Modal = ({
                 autoComplete="on"
                 onChange={handleInputValue("email")}
                 autoFocus="ture"
+                placeholder="email"
               ></input>
             </div>
           </div>
@@ -319,10 +330,14 @@ const Modal = ({
                 className="login_box_right_login_form_password_box_input"
                 type="password"
                 onChange={handleInputValue("password")}
+                placeholder="password"
               ></input>
             </div>
           </div>
-
+          {/* //! Error Message */}
+          {errorMessage ? (
+            <div className="modal_my_profile_error_message">{errorMessage}</div>
+          ) : null}
           {/* Sign In box */}
           <div className="modal_my_profile_sign_in_btn_box">
             <button
@@ -358,6 +373,7 @@ const Modal = ({
             </div>
           </div>
           {/* //! Sign Up box */}
+
           <div
             className="modal_my_profile_sign_up_btn_box"
             onClick={handleGoSignUpPage}

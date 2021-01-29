@@ -7,6 +7,7 @@
 .profile_page {
   /* border: 3px solid gray; */
   background-color: #212021;
+  overflow: hidden;
   /* height: 100vh; */
   /* height: 100%; */
   /* margin: 0; */
