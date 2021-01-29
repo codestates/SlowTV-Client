@@ -1,22 +1,15 @@
-/* 네브 바 */
 .nav_page {
-  /* border: 2px solid gray; */
   height: 4.5%;
-  /* background-color: #545254; */
   background-color: #212021;
   border-bottom: 2px solid #545254;
 }
 
 .nav_page_navbar {
-  /* border: 1px solid orange; */
-  /* margin: 3px; */
   width: 100%;
   height: 100%;
 }
 
-/* 로고  */
 .nav_page_logo_box {
-  /* border: 1px solid orange; */
   color: white;
   display: inline;
   height: 3%;
@@ -26,25 +19,17 @@
   left: 2%;
 }
 
-.nav_page_logo {
-}
-
-/* 아이콘 */
 .nav_page_icon_box {
-  /* border: 3px solid orange; */
-  /* margin-right: 13px; */
-  /* width: 1.2%; */
   width: 2%;
   height: 3.2%;
   position: absolute;
   top: 1%;
   right: 2%;
-  /* color: white; */
+
 }
 
 .nav_page_icon {
   background-color: white;
-  /* color: white; */
   opacity: 0.8;
   width: 100%;
   height: 100%;
@@ -55,3 +40,4 @@
   opacity: 1;
   cursor: pointer;
 }
+

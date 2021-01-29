@@ -4,6 +4,7 @@
 const CLICKCATEGORY = "sideRemoteControl/CATEGORY";
 const CLICKREMOTECONTROL = "sideRemoteControl/CLICKREMOTECONTROL";
 const MOVEPAGE = "sideRemoteControl/MOVEPAGE";
+const CLICKGETSTARTED = "sideRemoteControl/CLICKGETSTARTED";
 
 //오리 2
 // 액션 생성 함수 만들기
@@ -11,6 +12,7 @@ const MOVEPAGE = "sideRemoteControl/MOVEPAGE";
 export const clickCategory = (payload) => ({ type: CLICKCATEGORY, payload });
 export const clickRemoteControl = () => ({ type: CLICKREMOTECONTROL });
 export const movePage = (payload) => ({ type: MOVEPAGE, payload });
+export const clickGetStarted = () => ({ type: CLICKGETSTARTED });
 
 //오리 3
 // 초기 상태
@@ -38,6 +40,11 @@ function fakseside(state = initialState, action) {
       return {
         ...state,
         nowPage: action.payload,
+      };
+    case CLICKGETSTARTED:
+      return {
+        ...state,
+        isRemoteControlOn: true,
       };
     default:
       return state;

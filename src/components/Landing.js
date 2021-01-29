@@ -15,10 +15,12 @@ const Landing = ({
   isModalClicked,
   nickname,
   closeModal,
+  clickGetStarted,
 }) => {
   // ! Get Started 버튼 : 컨텐츠로 이동
   const handleGetStarted = () => {
     closeModal();
+    clickGetStarted();
     history.push("/contents");
   };
 
@@ -41,18 +43,12 @@ const Landing = ({
         <div className="landing_page_container">
           <div className="landing_page_introduce_title">Find Your Calm</div>
           <div className="landing_page_introduce_body">
-            If you're tired of your busy daily life, Feel the aesthetics of
+            If you&#39;re tired of your busy daily life, Feel the aesthetics of
             slowness for a moment.
           </div>
           <button className="btn" onClick={handleGetStarted}>
             Get started
           </button>
-          {/* <video autoPlay loop muted>
-            <source src={test2} type="video/mp4"></source>
-            <source
-              type="video/mp4"
-            ></source>
-          </video> */}
         </div>
       )}
     </div>

@@ -3,12 +3,12 @@ import { Link, withRouter } from "react-router-dom";
 import SideRemoteControlContainer from "../../containers/SideRemoteControlContainer";
 import NavContainer from "../../containers/NavContainer";
 import ModalContainer from "../../containers/ModalContainer";
-import "./Profile.css";
 import axios from "axios";
 import google from "../../img/google.png";
 import github from "../../img/github.png";
 import emailIcon from "../../img/email-icon.png";
 import passwordIcon from "../../img/lock.png";
+import "./Profile.css";
 
 const Profile = ({
   history,
@@ -90,7 +90,6 @@ const Profile = ({
     sessionStorage.setItem("name", userInfo.data.userInfo.nickname);
     changeEmail(userInfo.data.userInfo.email);
     changeNickName(userInfo.data.userInfo.nickname);
-    history.push("/contents");
   };
 
   // ! GitHub OAuth URL // ! client id 변수 처리 하기
@@ -356,8 +355,6 @@ const Profile = ({
           </div>
         </div>
       )}
-
-      {/* end */}
     </div>
   );
 };

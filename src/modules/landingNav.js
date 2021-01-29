@@ -18,12 +18,12 @@ function landingNav(state = initialState, action) {
   switch (action.type) {
     case CLICKNAVSIGNINBTN:
       return {
-        // ...state,
+        ...state,
         isClickedNavSignInBtn: true,
       };
     case CLICKNAVSIGNUPBTN:
       return {
-        // ...state,
+        ...state,
         isClickedNavSignInBtn: false,
       };
     default:

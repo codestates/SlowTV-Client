@@ -1,17 +1,16 @@
-// 원래 페이보릿.js
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import SideRemoteControlContainer from "../containers/SideRemoteControlContainer";
 import NavContainer from "../containers/NavContainer";
 import ModalContainer from "../containers/ModalContainer";
 import axios from "axios";
-import "./Favorites.css";
 import outlineLike from "../img/OutlineLike.png";
 import fillLike from "../img/FillLike.png";
 import google from "../img/google.png";
 import github from "../img/github.png";
 import emailIcon from "../img/email-icon.png";
 import passwordIcon from "../img/lock.png";
+import "./Favorites.css";
 
 const Favorites = ({
   history,
@@ -25,7 +24,6 @@ const Favorites = ({
   changeSignUp,
   handleOnClickCategory,
   clickRemoteControl,
-  isRemoteControlOn,
 }) => {
   sessionStorage.setItem("videoData", JSON.stringify(videoData));
 
@@ -94,7 +92,10 @@ const Favorites = ({
     sessionStorage.setItem("name", userInfo.data.userInfo.nickname);
     changeEmail(userInfo.data.userInfo.email);
     changeNickName(userInfo.data.userInfo.nickname);
-    history.push("/contents");
+    const favorites = await axios("https://server.slowtv24.com/favorites", {
+      withCredentials: true,
+    });
+    handleOnClickCategory(favorites.data.userFavorites);
   };
 
   // ! GitHub OAuth URL // ! client id 변수 처리 하기
@@ -112,7 +113,6 @@ const Favorites = ({
 
   // ! 즐겨찾기 수정 후 비디오 새로고침
   const handleGoCategory = async (e) => {
-    // const category = e.target.attributes.value.value;
     try {
       const video = await axios(`https://server.slowtv24.com/favorites`, {
         withCredentials: true,
@@ -162,7 +162,6 @@ const Favorites = ({
         handleGoCategory();
       }
     } else if (!isLoggedIn) {
-      // 얼럿 말고 직접 만들기
       alert("로그인 시 사용 가능합니다 맨 마지막 분기.");
     }
   };
@@ -170,10 +169,6 @@ const Favorites = ({
   // ! videoData mapping
   let videoList = null;
   if (videoData) {
-    // const handleDrag = () => {
-    //   console.log("dragStart");
-    // };
-
     const handleDrag = () => {
       const draggables = document.querySelectorAll("water_page_thumbnail");
       const container = document.querySelectorAll("water_page_container");
@@ -192,7 +187,6 @@ const Favorites = ({
         draggable="true"
         onDrag={handleDrag}
       >
-        {/* {console.log("🚀 ~ file: Favorites.js ~ line 146 ~ video", video)} */}
         <div
           className="water_page_thumbnail__btn_box"
           value={video.id}
@@ -227,20 +221,17 @@ const Favorites = ({
           className="water_page_thumbnail_img"
           src={video.thumbnail}
           alt="undefined thumbnail"
-          // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-          // onClick={getVideoId}
-          // value={video.id}
         ></img>
       </div>
     ));
   }
 
   return (
-    <div className="favorites_page">
+    <div className={isLoggedIn ? "favorites_page" : "favorites_page_guest"}>
       {/* //! 비디오 데이터 없으면 */}
       {!videoData ? (
         isLoggedIn ? (
-          <div className="loaded_favorites_page">
+          <div className="loaded_favorites_page_nothing">
             <NavContainer />
             <SideRemoteControlContainer />
             {isModalClicked ? <ModalContainer /> : <div></div>}
@@ -248,11 +239,11 @@ const Favorites = ({
               className="loaded_favorites_page_nothing_message"
               onClick={clickRemoteControl}
             >
-              You don't have a favorites list.
+              You don&#39;t have a favorites list.
               <p />
-              If you click here, I'll give you a remote control.
+              If you click here, I&#39;ll give you a remote control.
               <p />
-              Let's go add some favorites.
+              Let&#39;s go add some favorites.
             </div>
           </div>
         ) : (
@@ -317,7 +308,7 @@ const Favorites = ({
                   <input
                     className="loaded_favorites_page_guest_sign_in_password"
                     type="password"
-                    // minLength="8"
+                    minLength="8"
                     maxLength="15"
                     onChange={handleInputValue("password")}
                     placeholder="password"

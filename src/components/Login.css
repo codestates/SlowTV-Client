@@ -1,19 +1,10 @@
-/* ! 페이지 전체 */
 .login_page {
-  /* border: 5px solid gray; */
   background-color: #212021;
   width: 100%;
   height: 100%;
 }
 
-/* //? */
-
-/* ! 로그인 - 로그인 박스 전체 ****************************************/
-.login_box {
-  /* border: 3px solid black; */
-  /* border-radius: 3px; */
-  /* background-color: #adacad; */
-  display: flex;
+.login_box {  display: flex;
   justify-content: center;
   height: 100%;
   position: absolute;
@@ -21,89 +12,54 @@
   left: 50%;
   width: 50%;
   height: 64%;
-  /* width의 반만큼 빽 */
   margin-left: -25%;
-  /* height의 반만큼 빽 */
   margin-top: -16%;
-  /* box-shadow: 0px 5px 5px 5px #525151; */
 }
 
-/* //? */
-
-/* //! welcome back 왼쪽 *********************************************/
 .login_box_left_welcome_card {
   position: absolute;
   left: 0%;
   width: 50%;
-  height: 100%;
-
-  /* ! 레지스터에서 로그인 돌아올 때 움직이게 해 줌 */
-  transition: all 0.6s linear;
+  height: 100%;  transition: all 0.6s linear;
   border: 1px solid gray;
   background-color: #adacad;
   border-radius: 3px 0px 0px 3px;
   box-shadow: -5px 5px 5px 5px #525151;
 }
 
-/* ! 로그인 - Welcome Back! 문구 ****************************************/
 .login_box_left_welcome_card_phrase {
-  /* border: 1px solid gray; */
   font-size: 2.3vmax;
   text-align: center;
   margin-top: 10%;
-  /* color: white; */
-  /* height: 10%; */
 }
 
-/*! 로그인 -Welcome Back Card img ****************************************/
-.login_box_left_welcome_card_img_box {
-  /* border: 1px solid gray; */
-  /* border-radius: 100px; */
-  width: 100%;
+.login_box_left_welcome_card_img_box {  width: 100%;
   height: 50%;
   text-align: center;
-
   margin-top: 8%;
 }
 
-.login_box_left_welcome_card_img {
-  /* border: 1px solid gray; */
-  /* border-radius: 1000px; */
-  width: 50%;
+.login_box_left_welcome_card_img {  width: 50%;
   height: 100%;
 }
 
 /*! 로그인 -Welcome card Register btn ****************************************/
 
-/* ! div */
 .login_box_left_welcome_card_register_div {
   height: 10%;
   text-align: center;
-  /* border: 1px solid gray; */
   margin-top: 10%;
 }
-/* ! btn */
+
 .login_box_left_welcome_card_register_btn {
-  font-size: 2vmax;
-  /* 버튼 테투리 */
-  /* border: none; */
-  border: 1px solid gray;
-  border-radius: 3px;
-  /* 세로 */
-  /* height: 2.5rem; */
-  height: 100%;
-  /* 버튼 패딩줘서 글씨 가운데 위치시킴 */
+  font-size: 2vmax;  border: 1px solid gray;
+  border-radius: 3px;  height: 100%;
   padding-left: 20%;
   padding-right: 20%;
-  /* 버튼 배경 색 */
   background: rgb(255, 255, 255);
-  /* 버튼 글자 색 */
   color: rgb(79, 79, 79);
 }
 
-/* //? 로그인 시 오른쪽 페이지*/
-
-/* ! 슬라이드 로그인 - 오른쪽 로그인 폼 ***********************************/
 .login_box_right_login_form {
   position: absolute;
   right: 0%;
@@ -116,9 +72,7 @@
   box-shadow: 5px 5px 5px 5px #525151;
 }
 
-/* ! x 버튼 박스 */
 .login_box_right_login_form_cancel_box {
-  /* border: 1px solid gray; */
   width: 5%;
   height: 5%;
   float: right;
@@ -126,49 +80,35 @@
   margin-right: 2%;
 }
 
-/* ! x 버튼  */
 .login_box_right_login_form_cancel_img {
   width: 4%;
   height: 4%;
   position: absolute;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 타이틀 Login*/
 .login_box_right_login_form_title {
-  /* border: 1px solid gray; */
   margin-top: 10%;
   font-size: 2vmax;
   text-align: center;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 타이틀 박스 */
-.login_box_right_login_form_email_box_title_div {
-  /* border: 2px solid red; */
-  /* pointer-events: none; */
-  margin-top: 5%;
+.login_box_right_login_form_email_box_title_div {  margin-top: 5%;
   height: 15%;
   width: 100%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 타이틀 email*/
 .login_box_right_login_form_email_box_title {
-  /* border: 2px solid blue; */
   width: 80%;
   height: 40%;
-  /* ! 이게 인풋이랑 메세지 간격 정리 해줌  */
   margin-top: 2%;
   margin-left: 10%;
   font-size: 1.2vmax;
 }
 
 .login_box_right_login_form_password_box_title {
-  /* border: 3px solid blue; */
-  /* width: 80%; */
-  /* margin-left: 10%; */
   font-size: 1.2vmax;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 인풋 전체 박스*/
 .login_box_right_login_form_email_box {
   border: 1px solid black;
   background-color: white;
@@ -188,11 +128,7 @@
   border-radius: 5px;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 이메일 아이콘 input*/
-.login_box_right_login_form_email_box_input_icon {
-  /* border: 1px solid red; */
-  /* pointer-events: none; */
-  opacity: 0.5;
+.login_box_right_login_form_email_box_input_icon {  opacity: 0.5;
   margin-top: 2.5%;
   margin-left: 3%;
   margin-right: 0%;
@@ -201,9 +137,7 @@
   height: 50%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 - 인풋 박스 - 인풋태그*/
 .login_box_right_login_form_email_box_input {
-  /* border: 1px solid black; */
   display: inline;
   float: right;
   width: 86%;
@@ -213,61 +147,39 @@
   font-size: 1.2vmax;
   margin-top: 1%;
   border-radius: 3px;
-  /* margin-left: 0; */
 }
 
-/* ! 로그인 - 에러 메시지 */
 .login_box_right_login_form_email_box_error_message {
-  /* border: 1px solid black; */
   width: 78%;
-  /* height: 6%; */
   margin: auto;
   font-size: 1vmax;
   color: #d12929;
 }
-/* ! 로그인 - 에러 없을 때 */
 .login_box_right_login_form_email_box_error_message_hidden {
-  /* border: 1px solid black; */
   width: 78%;
-  /* height: 6%; */
   visibility: hidden;
   margin: auto;
   font-size: 1vmax;
   color: #d12929;
 }
-
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 이메일,패스워드 input*/
-
-/* //? */
-/* //! 패스워드 시작 ******************************************* */
-
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 타이틀 박스 */
 .login_box_right_login_form_password_box_title_div {
-  /* border: 2px solid red; */
   margin-top: 0%;
   height: 15%;
   width: 100%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 타이틀 password*/
 .login_box_right_login_form_password_box_title {
-  /* border: 2px solid blue; */
   width: 80%;
   height: 40%;
-  /* ! 이게 인풋이랑 메세지 간격 정리 해줌  */
   margin-top: 0%;
   margin-left: 10%;
   font-size: 1.2vmax;
 }
 
 .login_box_right_login_form_password_box_title {
-  /* border: 3px solid blue; */
-  /* width: 80%; */
-  /* margin-left: 10%; */
   font-size: 1.2vmax;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 인풋 전체 박스*/
 .login_box_right_login_form_password_box {
   border: 1px solid black;
   background-color: white;
@@ -288,11 +200,7 @@
   border-radius: 5px;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 이메일 아이콘 input*/
-.login_box_right_login_form_password_box_input_icon {
-  /* border: 1px solid red; */
-  /* pointer-events: none; */
-  opacity: 0.5;
+.login_box_right_login_form_password_box_input_icon {  opacity: 0.5;
   margin-top: 2.5%;
   margin-left: 3%;
   margin-right: 0%;
@@ -301,9 +209,7 @@
   height: 50%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 - 인풋 박스 - 인풋태그*/
 .login_box_right_login_form_password_box_input {
-  /* border: 1px solid black; */
   display: inline;
   float: right;
   width: 86%;
@@ -313,12 +219,9 @@
   font-size: 1.2vmax;
   margin-top: 1%;
   border-radius: 3px;
-  /* margin-left: 0; */
 }
 
-/* ! 로그인 - 에러 메시지 */
 .login_box_right_login_form_password_box_error_message {
-  /* border: 1px solid black; */
   width: 78%;
   margin: auto;
   font-size: 1vmax;
@@ -326,17 +229,15 @@
 }
 
 .login_box_right_login_form_password_box_error_message_hidden {
-  /* border: 1px solid black; */
   width: 78%;
   visibility: hidden;
   margin: auto;
   font-size: 1vmax;
   color: #d12929;
 }
+
 .login_box_right_login_form__box_error_message {
-  /* border: 1px solid black; */
   width: 78%;
-  /* visibility: hidden; */
   text-align: center;
   margin: auto;
   margin-top: 3%;
@@ -344,12 +245,7 @@
   color: #d12929;
 }
 
-/* //? */
-/* ! 로그인 - 오른쪽 로그인 폼 sign in************************ */
-
-/* ! 로그인 - 오른쪽 로그인 폼 sign in 박스 */
 .login_box_right_login_form_sign_in_box {
-  /* border: 1px solid gray; */
   text-align: center;
   margin: auto;
   margin-top: 0%;
@@ -357,9 +253,7 @@
   width: 60%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 sign in 버튼 */
 .login_box_right_login_form_sign_in_box_btn {
-  /* font-size: 1vmax; */
   font-size: 1px;
   border-radius: 3px;
   border: 1px solid gray;
@@ -367,66 +261,39 @@
   width: 100%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 */
-.login_box_right_login_form_OAuth_box {
-  /* border: 3px solid gray; */
-  /* font-size: 2vmax; */
-  text-align: center;
+.login_box_right_login_form_OAuth_box {  text-align: center;
   margin: auto;
   margin-top: 6%;
   width: 40%;
   height: 10%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 구글 버튼 */
 .login_box_right_login_form_OAuth_box_google_btn {
-  display: inline;
-  /* font-size: 1vmax; */
-  /* border-radius: 9999px; */
-  /* border: 1px soild red; */
-  /* width: 26%; */
-  /* height: 90%; */
-  margin-right: 5%;
+  display: inline;  margin-right: 5%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 깃허브 버튼 */
 .login_box_right_login_form_OAuth_box_github_btn {
   display: inline;
-  /* font-size: 1.1vmax; */
-  /* border-radius: 9999px; */
-  /* z-index: 99; */
-  /* border: 3px soild red; */
-  /* background-color: black; */
-  /* width: 100%; */
-  /* height: 90%; */
   margin-left: 5%;
 }
 
-/* ! 로그인 - 오른쪽 로그인 폼 OAuth 박스 구글 깃허브 이미지 */
 .login_box_right_login_form_OAuth_box_google_img,
 .login_box_right_login_form_OAuth_box_github_img {
-  /* display: inline; */
-  /* border: 1px soild black; */
-  /* border: 1px soild red; */
   width: 20%;
-  /* height: 60%; */
 }
 
 @media screen and (min-width: 937px) {
-  /* ! 로그인 - 오른쪽 로그인 폼 sign in 박스 */
+
   .login_box_right_login_form_sign_in_box {
-    /* border: 3px solid red; */
     text-align: center;
     margin: auto;
     margin-top: 6%;
     height: 10%;
     width: 60%;
-  }
-
-  /* ! 로그인 - 오른쪽 로그인 폼 sign in 버튼 */
+  }  
+  
   .login_box_right_login_form_sign_in_box_btn {
     font-size: 1.3vmax;
-    /* font-size: 1px; */
     border-radius: 3px;
     border: 1px solid gray;
     height: 100%;
@@ -434,13 +301,7 @@
   }
 }
 
-/* //? 회원기입 ******************************************/
-
-/* ! 회원가입 -회원가입 박스 전체 */
 .sign_in_box {
-  /* border: 1px solid gray; */
-  /* background-color: #adacad; */
-  /* border-radius: 3px; */
   display: flex;
   justify-content: center;
   height: 100%;
@@ -449,16 +310,11 @@
   left: 50%;
   width: 50%;
   height: 64%;
-  /* width의 반만큼 빽 */
   margin-left: -25%;
-  /* height의 반만큼 빽 */
   margin-top: -16%;
 }
 
-/* //? 회원기입 왼쪽 웰컴 카드, ******************************************/
-/* ! 회원가입 - 왼쪽 웰컴 카드 전체 */
 .sign_in_box_left_welcome_card {
-  /* display: inline; */
   border: 1px solid gray;
   background-color: #adacad;
   border-radius: 3px 0px 0px 3px;
@@ -469,105 +325,74 @@
   transform: translateX(-100%);
 }
 
-/* ! 회원가입 -Welcome! 문구 ****************************************/
 .sign_in_box_left_welcome_card_phrase {
-  /* border: 1px solid gray; */
   font-size: 2.3vmax;
   text-align: center;
   margin-top: 10%;
-  /* height: 10%; */
 }
 
-/* ! 회원가입 -Welcome Card img ****************************************/
 .sign_in_box_left_welcome_card_box {
-  /* border: 1px solid gray; */
   width: 100%;
   height: 50%;
   text-align: center;
   margin-top: 8%;
 }
+
 .sign_in_box_left_welcome_card_img {
   width: 70%;
   height: 80%;
   margin-top: 5%;
 }
 
-/* ! 회원가입 - Welcome card login btn ****************************************/
-
-/* ! div */
 .sign_in_box_left_welcome_card_login_div {
   height: 10%;
-  text-align: center;
-  /* border: 1px solid gray; */
-
-  margin-top: 10%;
+  text-align: center;  margin-top: 10%;
 }
-/* ! btn */
+
 .sign_in_box_left_welcome_card_login_btn {
   font-size: 2vmax;
-  border-radius: 3px;
-  /* 버튼 테투리 */
-  /* border: none; */
-  border: 1px solid gray;
-  /* border-radius: 9999px; */
-  /* 세로 */
-  /* height: 2.5rem; */
+  border-radius: 3px;  border: 1px solid gray;
   height: 100%;
-  /* 버튼 패딩줘서 글씨 가운데 위치시킴 */
   padding-left: 20%;
   padding-right: 20%;
-  /* 버튼 배경 색 */
   background: rgb(255, 255, 255);
-  /* 버튼 글자 색 */
   color: rgb(79, 79, 79);
 }
 
-/* //? 회원기입 왼쪽  ******************************************/
-/* ! 회원가입 - 왼쪽 레지스터 폼 */
 .sign_in_box_right_register_form {
   transition: all 0.6s linear;
   transform: translateX(100%);
   border: 1px solid gray;
   background-color: #adacad;
-  /* border-radius: 3px; */
+
   border-radius: 0px 3px 3px 0px;
   box-shadow: 5px 5px 5px 5px #525151;
   width: 50%;
   height: 100%;
 }
 
-/* ! 회원가입 - 왼쪽 회원가입 폼 타이틀 Register*/
 .sign_box_right_register_form_title {
-  /* border: 1px solid gray; */
+
   font-size: 2vmax;
   text-align: center;
-  margin-top: 10%;
-  /* color: white; */
-  /* height: 10%; */
-}
-/* ! 회원가입 - 왼쪽 회원가입 폼 유저네임 박스, 이메일 박스, 비밀번호 박스*/
+  margin-top: 10%;}
 .sign_in_box_right_register_form_username_box,
 .sign_in_box_right_register_form_email_box,
 .sign_in_box_right_register_form_password_box {
-  /* border: 3px solid blue; */
-  /* font-size: 2vmax; */
-  /* text-align: center; */
   margin-top: 5%;
   height: 13%;
   width: 100%;
 }
 
-/* ! 회원가입 - 왼쪽 회원가입 폼 유저네임 박스, 이메일 박스, 비밀번호 박스 타이틀 Username, email, password*/
 .sign_in_box_right_register_form_username_box_title,
 .sign_in_box_right_register_form_email_box_title,
 .sign_in_box_right_register_form_password_box_title {
-  /* border: 1px solid blue; */
+
   width: 80%;
   margin-left: 10%;
   font-size: 1.2vmax;
 }
 
-/* ! 회원가입 - 오른쪽 회원가입 폼 이메일 박스 유저네임, 이메일, 패스워드 input*/
 .sign_in_box_right_register_form_username_box_input,
 .sign_in_box_right_register_form_email_box_input,
 .sign_in_box_right_register_form_password_box_input {
@@ -576,45 +401,32 @@
   margin-left: 10%;
 }
 
-/* ! 회원가입 - 왼쪽 회원가입 폼 sign in 박스 */
-.sign_in_box_right_register_form_register_box {
-  /* border: 1px solid gray; */
-  /* font-size: 2vmax; */
-  text-align: center;
+.sign_in_box_right_register_form_register_box {  text-align: center;
   margin-top: 10%;
   height: 6%;
 }
 
-/* ! 회원가입 - 왼쪽 회원가입 폼 register 버튼 */
 .sign_in_box_right_register_form_register_box_btn {
   font-size: 1.1vmax;
 }
 
-/* ! 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 */
-.sign_in_box_right_register_form_OAuth_box {
-  /* border: 1px solid gray; */
-  /* font-size: 2vmax; */
-  text-align: center;
+.sign_in_box_right_register_form_OAuth_box {  text-align: center;
   margin-top: 6%;
   height: 6%;
 }
 
-/* ! 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 구글 div */
 .sign_in_box_right_register_form_OAuth_box_google_div {
   display: inline;
 }
-/* ! 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 구글 버튼 */
 .sign_in_box_right_register_form_OAuth_box_google_btn {
   font-size: 1vmax;
   height: 100%;
 }
 
-/* ! 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 깃허브 div */
 .sign_in_box_right_register_form_OAuth_box_github_div {
   display: inline;
 }
 
-/* ! 회원가입 - 왼쪽 회원가입 폼 OAuth 박스 깃허브 버튼 */
 .sign_in_box_right_register_form_OAuth_box_github_btn {
   font-size: 1.1vmax;
   height: 100%;

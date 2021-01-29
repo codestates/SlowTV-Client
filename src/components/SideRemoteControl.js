@@ -15,12 +15,6 @@ const SideRemoteControl = ({
   goToAnotherPage,
   movePage,
 }) => {
-  // const [isOn, SetOn] = useState(false);
-
-  // const handleSetOn = () => {
-  // SetOn(!isOn);
-  // };
-
   //! GoHome
   const handleGoHome = () => {
     closeModal();
@@ -35,8 +29,6 @@ const SideRemoteControl = ({
 
   // ! 페이보릿 제외한 영상 카테고리
   const handleGoCategory = async (e) => {
-    // console.log("왜 안 돼 ??");
-    // console.log("왜 안 돼 ??");
     const category = e.target.attributes.value.value;
     if (category === "profile") {
       goToAnotherPage();
@@ -71,10 +63,6 @@ const SideRemoteControl = ({
         const favorites = await axios("https://server.slowtv24.com/favorites", {
           withCredentials: true,
         });
-        // console.log(
-        //   "🚀 ~ file: SideRemoteControl.js ~ line 66 ~ handleGoFavorites ~ favorites",
-        //   favorites
-        //   );
         if (favorites.data.userFavorites) {
           handleOnClickCategory(favorites.data.userFavorites);
           closeModal();

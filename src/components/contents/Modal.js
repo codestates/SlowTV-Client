@@ -1,27 +1,22 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import "./Modal.css";
 import axios from "axios";
 import cancel from "../../img/cancel.png";
 import google from "../../img/google.png";
 import github from "../../img/github.png";
-import SLOW1 from "../../img/SLOW2.jpeg";
 import emailIcon from "../../img/email-icon.png";
 import passwordIcon from "../../img/lock.png";
+import "./Modal.css";
 
 const Modal = ({
-  openModal,
   closeModal,
   isLoggedIn,
   clickSignIn,
   clickLogout,
   changeEmail,
   changeNickName,
-  email,
   nickname,
   handleOnClickCategory,
-  githubAccessToken,
-  googleAccessToken,
   getGithubAccessToken,
   getGoogleAccessToken,
   changeSignUp,
@@ -36,8 +31,7 @@ const Modal = ({
     const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
     const isCategory = url.pathname.split("/")[1];
     const nowPage = url.pathname.split("/")[2];
-    // 여기서 실행해봤자 안 됨.
-    history.push("/");
+    // history.push("/");
   };
   // ! Google OAuth URL // scope는 스페이스로 구분
   const GOOGLE_LOGIN_URL =
@@ -100,7 +94,7 @@ const Modal = ({
           clickSignIn();
           handleGetUserInfo();
           // ! 비디오 데이터 새로 가져오기 추가, 아래 로그아웃과 같은 문제임, 현재 유알엘 그대로 가져오기
-          const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
+          const url = new URL(window.location.href);
           const isCategory = url.pathname.split("/")[1];
           const nowPage = url.pathname.split("/")[2];
 
@@ -112,7 +106,6 @@ const Modal = ({
               }
             );
             handleOnClickCategory(video.data.contents);
-            // closeModal();
           } else if (nowPage === "favorites") {
             const video = await axios(
               `https://server.slowtv24.com/${nowPage}`,
@@ -126,7 +119,6 @@ const Modal = ({
             );
             handleOnClickCategory(video.data.userFavorites);
           }
-          // closeModal();
         }
       }
     } catch (error) {
@@ -136,7 +128,6 @@ const Modal = ({
 
   // ! 유저 정보 업데이트
   const handleGetUserInfo = async () => {
-    // const userInfo = await axios("https://server.slowtv24.com/userinfo", {
     const userInfo = await axios("https://server.slowtv24.com/userinfo", {
       withCredentials: true,
     });
@@ -149,10 +140,7 @@ const Modal = ({
 
   // ! 로그아웃 후 비디오 즐겨찾기 새로고침
   const handleGoCategory = async (e) => {
-    // ! 지금은 Water지만 유알엘 따와서 해당 페이지에 그대로 남아있게 하기
-    // const category = e.target.attributes.value.value;
-    const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
-    // const isCategory = url.pathname.split("/")[1];
+    const url = new URL(window.location.href);
     const nowPage = url.pathname.split("/")[2];
 
     if (nowPage !== "profile" && nowPage !== "favorites") {
@@ -162,7 +150,6 @@ const Modal = ({
           withCredentials: true,
         }
       );
-      // 카테코리 클릭 효과 -> 비디오 업데이트
       handleOnClickCategory(video.data.contents);
     } else if (nowPage === "favorites") {
       handleOnClickCategory(null);
@@ -172,18 +159,12 @@ const Modal = ({
   //! 로그아웃
   const handleLogout = async () => {
     const logout = await axios.post(
-      // "https://server.slowtv24.com/logout",
       "https://server.slowtv24.com/logout",
       null,
       {
         withCredentials: true,
       }
     );
-    console.log(
-      "🚀 ~ file: Modal.js ~ line 86 ~ handleLogout ~ logout",
-      logout
-    );
-    // if (logout !== undefined) {
     clickLogout();
     sessionStorage.clear();
     getGithubAccessToken(null);
@@ -191,7 +172,6 @@ const Modal = ({
     changeEmail(null);
     changeNickName(null);
     handleGoCategory();
-    // }
   };
 
   // ! Sign Up 버튼 클릭시 페이지로 이동
@@ -250,10 +230,7 @@ const Modal = ({
             className="Modal_page_Link"
             to="/contents/profile/update-password"
           >
-            <div
-              className="modal_my_profile_change_password_btn"
-              // onClick={assignChangeNamePage}
-            >
+            <div className="modal_my_profile_change_password_btn">
               Change Password
             </div>
           </Link>
@@ -288,8 +265,6 @@ const Modal = ({
                   : "login_box_right_login_form_email_box"
               }
             >
-              {/* inline */}
-              {/* <div className="login_box_right_login_form_email_box_input_icon_box"> */}
               <img
                 className="login_box_right_login_form_email_box_input_icon"
                 src={emailIcon}
@@ -319,15 +294,11 @@ const Modal = ({
                   : "login_box_right_login_form_password_box"
               }
             >
-              {/* inline */}
-              {/* <div className="login_box_right_login_form_password_box_input_icon_box"> */}
               <img
                 className="login_box_right_login_form_password_box_input_icon"
                 src={passwordIcon}
                 alt="passwordIcon"
               ></img>
-              {/* </div> */}
-              {/* inline */}
               <input
                 className="login_box_right_login_form_password_box_input"
                 type="password"
@@ -380,13 +351,7 @@ const Modal = ({
             className="modal_my_profile_sign_up_btn_box"
             onClick={handleGoSignUpPage}
           >
-            {/* <button
-              className="modal_my_profile_sign_up_btn"
-              onClick={handleGoSignUpPage}
-            >
-              Aren't you a member yet?
-            </button> */}
-            Aren't you a member yet?
+            Aren&#39; t you a member yet?
           </div>
         </div>
       )}

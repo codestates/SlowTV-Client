@@ -1,6 +1,5 @@
-// useEffect : 렌더링될 때 마다 특정 작업 수행
 import React, { useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import SideRemoteControlContainer from "../../containers/SideRemoteControlContainer";
 import NavContainer from "../../containers/NavContainer";
 import ModalContainer from "../../containers/ModalContainer";
@@ -18,13 +17,9 @@ const VideoList = ({
   goToAnotherPage,
   nowPage,
 }) => {
-  console.log("🚀 ~ file: VideoList.js ~ line 21 ~ videoData", videoData);
-
   // ! 새로고침 시 날아가는 거 방지
-  // useEffect(() => {
+
   sessionStorage.setItem("videoData", JSON.stringify(videoData));
-  // sessionStorage.setItem("videoData", JSON.parse(JSON.stringify(videoData));
-  // });
 
   // ! 즐겨찾기 수정 후 비디오 새로고침
   const handleGoCategory = async (e) => {
@@ -34,7 +29,7 @@ const VideoList = ({
         withCredentials: true,
       }
     );
-    handleOnClickCategory(video.data.contents); // videoData 상태 값에 비디오들 넣음
+    handleOnClickCategory(video.data.contents);
   };
 
   // ! 썸네일 클릭 시 비디오 아이디 구하기 -> 비디오 플레이어에서 해당 아이디 영상 재생
@@ -74,7 +69,6 @@ const VideoList = ({
         handleGoCategory();
       }
     } else if (!isLoggedIn) {
-      // 얼럿 말고 직접 만들기
       alert("로그인 시 사용 가능합니다 맨 마지막 분기.");
     }
   };
@@ -82,10 +76,6 @@ const VideoList = ({
   // ! videoData mapping
   let videoList = null;
   if (videoData) {
-    // const handleDrag = () => {
-    //   console.log("dragStart");
-    // };
-
     const handleDrag = () => {
       const draggables = document.querySelectorAll("water_page_thumbnail");
       const container = document.querySelectorAll("water_page_container");
@@ -104,7 +94,6 @@ const VideoList = ({
         draggable="true"
         onDrag={handleDrag}
       >
-        {/* {console.log("🚀 ~ file: Favorites.js ~ line 146 ~ video", video)} */}
         <div
           className="water_page_thumbnail__btn_box"
           value={video.id}
@@ -139,9 +128,6 @@ const VideoList = ({
           className="water_page_thumbnail_img"
           src={video.thumbnail}
           alt="undefined thumbnail"
-          // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
-          // onClick={getVideoId}
-          // value={video.id}
         ></img>
       </div>
     ));

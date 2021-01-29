@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "../components/contents/Modal";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import {
   clickSignIn,
   clickLogout,
@@ -12,39 +12,31 @@ import {
 } from "../modules/login";
 import { clickCategory } from "../modules/sideRemoteControl";
 
-import { openModal, closeModal } from "../modules/modal";
+import { closeModal } from "../modules/modal";
 
 const ModalContainer = ({
   isLoggedIn,
   clickSignIn,
   clickLogout,
-  openModal,
   closeModal,
   changeEmail,
   changeNickName,
-  email,
   nickname,
   handleOnClickCategory,
-  githubAccessToken,
-  googleAccessToken,
   getGithubAccessToken,
   getGoogleAccessToken,
   changeSignUp,
 }) => {
   return (
     <Modal
-      openModal={openModal}
       closeModal={closeModal}
       isLoggedIn={isLoggedIn}
       clickSignIn={clickSignIn}
       clickLogout={clickLogout}
       changeEmail={changeEmail}
       changeNickName={changeNickName}
-      email={email}
       nickname={nickname}
       handleOnClickCategory={handleOnClickCategory}
-      githubAccessToken={githubAccessToken}
-      googleAccessToken={googleAccessToken}
       getGithubAccessToken={getGithubAccessToken}
       getGoogleAccessToken={getGoogleAccessToken}
       changeSignUp={changeSignUp}
@@ -72,9 +64,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeSignUp: () => {
     dispatch(changeSignUp());
-  },
-  openModal: () => {
-    dispatch(openModal());
   },
   closeModal: () => {
     dispatch(closeModal());

@@ -26,6 +26,7 @@ const Login = ({
   email,
   nickname,
   history,
+  clickGetStarted,
 }) => {
   // ! GitHub OAuth URL // ! client id 변수 처리 하기
   const GITHUB_LOGIN_URL =
@@ -106,6 +107,7 @@ const Login = ({
     sessionStorage.setItem("name", userInfo.data.userInfo.nickname);
     changeEmail(userInfo.data.userInfo.email);
     changeNickName(userInfo.data.userInfo.nickname);
+    clickGetStarted();
     history.push("/contents");
   };
 

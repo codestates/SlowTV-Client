@@ -3,19 +3,12 @@
   cursor: pointer;
 }
 
-/* 페이지 전체 **********************************/
 .profile_page {
-  /* border: 3px solid gray; */
   background-color: #212021;
   overflow: hidden;
-  /* height: 100vh; */
-  /* height: 100%; */
-  /* margin: 0; */
-  /* position: relative; */
 }
 
 .profile_page_container {
-  /* border: 0.5px solid red; */
   height: 60%;
   width: 38%;
   float: left;
@@ -23,7 +16,6 @@
   margin-left: 25%;
 }
 
-/* 네모 박스 위 Profile */
 .profile_page_container_title {
   color: white;
   font-size: 2vmax;
@@ -33,13 +25,9 @@
   border: 0.5px solid gray;
   height: 90%;
   width: 100%;
-  /* float: left; */
   margin-top: 2%;
-  /* margin-left: 15%; */
-  /* background-color: gray; */
 }
 
-/* ! ID:유저 아이디 *******************************/
 .profile_page_box_user_id {
   border-bottom: 1px solid gray;
   width: 60%;
@@ -52,12 +40,10 @@
 
 .profile_page_current_user_id {
   display: inline;
-  /* border: 1px solid gray; */
 }
 
 .profile_page_current_user_id_value {
   display: inline;
-  /* border: 1px solid gray; */
 }
 /* 유저 이름 *******************************/
 .profile_page_box_username,
@@ -73,12 +59,10 @@
 
 .profile_page_current_username {
   display: inline;
-  /* border: 1px solid gray; */
 }
 
 .profile_page_current_username_value {
   display: inline;
-  /* border: 1px solid gray; */
 }
 
 /* 유저 비밀번호 *******************************/
@@ -102,20 +86,14 @@
 
 .profile_page_change_user_password {
   display: inline;
-  /* border: 1px solid gray; */
 }
 
 .profile_page_change_user_password_value {
   display: inline;
-  /* border: 1px solid gray; */
   -webkit-text-security: disc;
-  /* -webkit-user-select: text; */
-  /* -webkit-appearance: textfield; */
 }
 
 .profile_page_box_logout_btn {
-  /* border: 1px solid gray; */
-  /* height: 100%; */
   margin-top: 18%;
   margin-left: 78%;
 }
@@ -125,14 +103,10 @@
 }
 
 .loaded_favorites_page_guest_sign_in_email_box_error_message {
-  /* border: 1px solid black; */
   width: 80%;
   height: 8%;
   margin: auto;
   margin-top: 4%;
   font-size: 0.6vmax;
   color: white;
-  /* position: absolute; */
-  /* left: 10%; */
-  /* top: 30; */
 }

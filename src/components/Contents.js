@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
-
+import React, { useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import SideRemoteControlContainer from "../containers/SideRemoteControlContainer";
 import NavContainer from "../containers/NavContainer";
 import ModalContainer from "../containers/ModalContainer";
 import slowTvLogo1 from "../img/SLOW1.jpeg";
-import "./Contents.css";
 import axios from "axios";
+import "./Contents.css";
 
 const Contents = ({
   isModalClicked,
   isContentsPage,
   goToContentsPage,
-  isClickedSignInBtn,
-  changeSignIn,
-  changeSignUp,
   clickSignIn,
-  isLoggedIn,
   githubAccessToken,
   googleAccessToken,
   getGithubAccessToken,
   getGoogleAccessToken,
   changeNickName,
   changeEmail,
-  // changePassword,
   email,
   nickname,
+  clickGetStarted,
   history,
 }) => {
   // 슬라이드 이미지 누르면 클래스 이름 변경을 통해 css적용이 바뀌고 순서 변경이 되게 만드는 함수
@@ -73,6 +68,7 @@ const Contents = ({
     const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
     const authorizationCode = url.searchParams.get("code"); // 주소의 쿼리스트링에 있는 값을 가져오기 위해 사용
     if (authorizationCode) {
+      // clickGetStarted();
       getAccessToken(authorizationCode);
     }
   }, []);
@@ -82,7 +78,6 @@ const Contents = ({
     // ! Github 길이 20, 리팩토링 필요함
     if (authorizationCode.length === 20) {
       const accessToken = await axios.post(
-        // "https://server.slowtv24.com/callbackgit",
         "https://server.slowtv24.com/callback-git",
         {
           authorizationCode,
@@ -93,6 +88,7 @@ const Contents = ({
       );
       if (accessToken) {
         clickSignIn();
+        clickGetStarted();
         getGithubAccessToken(accessToken.data.accessToken);
       }
     }
@@ -110,6 +106,7 @@ const Contents = ({
       );
       if (accessToken) {
         clickSignIn();
+        clickGetStarted();
         getGoogleAccessToken(accessToken.data.accessToken);
       }
     }
@@ -117,7 +114,6 @@ const Contents = ({
 
   // ! 3. 엑세스 토큰으로 정보 받아오기
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     // ! Github
     if (githubAccessToken !== null) {
@@ -131,7 +127,6 @@ const Contents = ({
       changeEmail(githubUserInfo.data.login);
       changeNickName(githubUserInfo.data.name);
       //! 로그인 페이지에서 로그인한 경우만 컨텐츠로 보내기, 나머지는 현재 페이지에 남아있게 하기
-      // history.push("/contents");
     } else if (googleAccessToken !== null) {
       // ! Google
       const googleUserInfo = await axios(
@@ -151,7 +146,6 @@ const Contents = ({
   }, [githubAccessToken, googleAccessToken]);
 
   // ! 4. 소셜도 세션 아이디 얻기 위해 서버로 이메일, 닉네임 전송
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     if (githubAccessToken || googleAccessToken) {
       const getSession = await axios.post(
@@ -165,7 +159,6 @@ const Contents = ({
         }
       );
       // ! 로그인 페이지에서 로그인한 게 아니면 해당 페이지 유지하도록 리팩토링
-      history.push("/contents");
     }
   }, [email, nickname]);
 
@@ -207,7 +200,6 @@ const Contents = ({
               className="contents_page_img"
               value="snow"
               onClick={handleOnChange}
-              // src="https://images.unsplash.com/photo-1476108621677-3c620901b5e7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8c25vd3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               src="https://images.unsplash.com/photo-1543751737-d7cf492060cd?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mzh8fHNub3d8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               alt="Snow"
             ></img>
@@ -224,7 +216,6 @@ const Contents = ({
               className="contents_page_img"
               value="fire"
               onClick={handleOnChange}
-              // src="https://images.unsplash.com/photo-1538487865197-679f89c6fb0b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDd8fGNhbXBmaXJlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               src="https://images.unsplash.com/photo-1534246357846-40b500934c14?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGZpcmV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               alt="Fire"
             ></img>
@@ -241,7 +232,6 @@ const Contents = ({
               className="contents_page_img"
               value="water"
               onClick={handleOnChange}
-              // src="https://images.unsplash.com/photo-1433740944490-b669cb8b1c44?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fHdhdGVyfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               src="https://images.unsplash.com/photo-1457195740896-7f345efef228?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8d2F0ZXJ8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               alt="Water"
             ></img>
@@ -256,11 +246,9 @@ const Contents = ({
                 : "contents_page_div_img_ready"
             }
           >
-            {/* <div className="contents_page_div_img_five"> */}
             <img
               className="contents_page_img"
               value="logo"
-              // onClick={handleOnClick}
               onClick={handleOnChange}
               src={slowTvLogo1}
               alt="Slow TV"

@@ -13,6 +13,7 @@ import {
   changeEmail,
   // changePassword,
 } from "../modules/login";
+import { clickGetStarted } from "../modules/sideRemoteControl";
 
 const LoginContainers = ({
   isClickedSignInBtn,
@@ -28,7 +29,7 @@ const LoginContainers = ({
   changeEmail,
   email,
   nickname,
-  // changePassword,
+  clickGetStarted,
 }) => {
   return (
     <Login
@@ -45,7 +46,7 @@ const LoginContainers = ({
       changeEmail={changeEmail}
       email={email}
       nickname={nickname}
-      // changePassword={changePassword}
+      clickGetStarted={clickGetStarted}
     />
   );
 };
@@ -82,9 +83,9 @@ const mapDispatchToProps = (dispatch) => ({
   changeNickName: (nickname) => {
     dispatch(changeNickName(nickname));
   },
-  // changePassword: (password) => {
-  //   dispatch(changePassword(password));
-  // },
+  clickGetStarted: () => {
+    dispatch(clickGetStarted());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainers);

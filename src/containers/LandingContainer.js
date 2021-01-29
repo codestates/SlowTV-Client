@@ -2,12 +2,14 @@ import React from "react";
 import Landing from "../components/Landing";
 import { connect } from "react-redux";
 import { closeModal } from "../modules/modal";
+import { clickGetStarted } from "../modules/sideRemoteControl";
 
 const LandingContainer = ({
   isLoggedIn,
   isModalClicked,
   nickname,
   closeModal,
+  clickGetStarted,
 }) => {
   return (
     <Landing
@@ -15,6 +17,7 @@ const LandingContainer = ({
       isModalClicked={isModalClicked}
       nickname={nickname}
       closeModal={closeModal}
+      clickGetStarted={clickGetStarted}
     />
   );
 };
@@ -28,6 +31,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   closeModal: () => {
     dispatch(closeModal());
+  },
+  clickGetStarted: () => {
+    dispatch(clickGetStarted());
   },
 });
 

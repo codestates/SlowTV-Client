@@ -2,17 +2,15 @@
   text-decoration: none;
   color: white;
 }
-/* 네브 바 */
 .landing_nav_page_navbar_page {
-  /* border-bottom: 2px solid #545254; */
+
   border-bottom: 2px solid #302f30;
   margin: 0;
-  /* background-color: #302f30; */
+
   height: 5%;
   color: white;
 }
 
-/* 로고 네브바 */
 .landing_nav_page_navbar {
   width: 100%;
   height: 90%;
@@ -28,7 +26,7 @@
 .landing_nav_page_navbar_Slow {
   font-weight: 400;
   font-size: 1.7vmax;
-  /* letter-spacing: 1vmax; */
+
   letter-spacing: 3px;
   text-shadow: 2px 2px 1px gray;
 }
@@ -42,9 +40,8 @@
   font-weight: 400;
 }
 
-/* 로그인 */
 .landing_nav_page_Sign_In {
-  /* border: 3px solid orange; */
+
   margin-right: 1%;
   margin-top: 0.3%;
   float: right;
@@ -53,9 +50,8 @@
   color: #ebe8e8;
 }
 
-/* 회원가입 */
 .landing_nav_page_Sign_Up {
-  /* border: 3px solid orange; */
+
   margin-right: 4%;
   margin-top: 0.3%;
   float: right;

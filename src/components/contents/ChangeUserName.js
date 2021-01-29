@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import NavContainer from "../../containers/NavContainer";
 import SideRemoteControlContainer from "../../containers/SideRemoteControlContainer";
 import ModalContainer from "../../containers/ModalContainer";
-import "./ChangeUserName.css";
 import cancel from "../../img/cancel.png";
 import axios from "axios";
+import "./ChangeUserName.css";
 
 const ChangeUserName = ({
   history,
@@ -28,25 +28,14 @@ const ChangeUserName = ({
 
   const handleUpdateBtn = async () => {
     if (isLoggedIn === true) {
-      console.log(
-        "🚀 ~ file: ChangeUserName.js ~ line 48 ~ handleUpdateBtn ~ newName",
-        newName
-      );
       const updateName = await axios.post(
-        // "https://mayweather24.com/edit-profile",
         "https://server.slowtv24.com/edit-profile",
         {
           nickname: newName,
-          // email: null,
-          // password: null,
         },
         {
           withCredentials: true,
         }
-      );
-      console.log(
-        "🚀 ~ file: ChangeUserName.js ~ line 25 ~ handleInputValue ~ updateName",
-        updateName.data.updateSuccess.nickname
       );
       changeNickName(updateName.data.updateSuccess.nickname);
       history.goBack();
@@ -64,7 +53,6 @@ const ChangeUserName = ({
         <div>go login</div>
       ) : (
         <div className="change_name_page_container">
-          {/* // !title */}
           <div className="change_name_page_title">
             <div className="change_name_page_back_btn" onClick={handleGoBack}>
               <img
@@ -75,26 +63,21 @@ const ChangeUserName = ({
             </div>
             <div className="change_name_page_title_value">Change Name</div>
           </div>
-          {/* 이름 바꾸는 아래 네모칸 전체 */}
+
           <div className="change_name_page_box">
-            {/* //! Current Name box  */}
             <div className="change_name_page_current_name_box">
-              {/* //? current name: */}
               <div className="change_name_page_current_name_box_title">
                 Current name :
               </div>
-              {/* //? current name value */}
               <div className="change_name_page_current_name_value">
                 {nickname}
               </div>
             </div>
-            {/* //! New Name box */}
             <div className="change_name_page_new_name_box">
-              {/* //? Old name: */}
               <div className="change_name_page_new_name_box_title">
                 New name :
               </div>
-              {/* //? input */}
+
               <div className="change_name_page_new_name_input_box">
                 <input
                   className="change_name_page_new_name_input"
@@ -102,7 +85,7 @@ const ChangeUserName = ({
                 ></input>
               </div>
             </div>
-            {/* Update Btn */}
+
             <div className="change_name_page_update_div">
               <button
                 className="change_name_page_update_btn"
@@ -112,7 +95,6 @@ const ChangeUserName = ({
               </button>
             </div>
           </div>
-          {/* //!  패스워드 변경 끝 */}
         </div>
       )}
     </div>

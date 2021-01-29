@@ -12,6 +12,7 @@ import {
   changeEmail,
   // changePassword,
 } from "../modules/login";
+import { clickGetStarted } from "../modules/sideRemoteControl";
 
 const ContentsContainer = ({
   isModalClicked,
@@ -30,6 +31,7 @@ const ContentsContainer = ({
   changeEmail,
   email,
   nickname,
+  clickGetStarted,
 }) => {
   return (
     <Contents
@@ -49,6 +51,7 @@ const ContentsContainer = ({
       changeEmail={changeEmail}
       email={email}
       nickname={nickname}
+      clickGetStarted={clickGetStarted}
     />
   );
 };
@@ -89,6 +92,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeNickName: (nickname) => {
     dispatch(changeNickName(nickname));
+  },
+  clickGetStarted: () => {
+    dispatch(clickGetStarted());
   },
 });
 
