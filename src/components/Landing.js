@@ -6,6 +6,8 @@ import NavContainer from "../containers/NavContainer";
 import ModalContainer from "../containers/ModalContainer";
 import { Link, withRouter } from "react-router-dom";
 import "./Landing.css";
+import testVideo from "../img/test.mp4";
+import test2 from "../img/test2.mp4";
 
 const Landing = ({
   history,
@@ -45,6 +47,12 @@ const Landing = ({
           <button className="btn" onClick={handleGetStarted}>
             Get started
           </button>
+          {/* <video autoPlay loop muted>
+            <source src={test2} type="video/mp4"></source>
+            <source
+              type="video/mp4"
+            ></source>
+          </video> */}
         </div>
       )}
     </div>

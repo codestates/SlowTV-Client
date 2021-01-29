@@ -333,6 +333,16 @@
   font-size: 1vmax;
   color: #d12929;
 }
+.login_box_right_login_form__box_error_message {
+  /* border: 1px solid black; */
+  width: 78%;
+  /* visibility: hidden; */
+  text-align: center;
+  margin: auto;
+  margin-top: 3%;
+  font-size: 1vmax;
+  color: #d12929;
+}
 
 /* //? */
 /* ! 로그인 - 오른쪽 로그인 폼 sign in************************ */

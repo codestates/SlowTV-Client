@@ -18,6 +18,14 @@ const VideoList = ({
   goToAnotherPage,
   nowPage,
 }) => {
+  console.log("🚀 ~ file: VideoList.js ~ line 21 ~ videoData", videoData);
+
+  // ! 새로고침 시 날아가는 거 방지
+  // useEffect(() => {
+  sessionStorage.setItem("videoData", JSON.stringify(videoData));
+  // sessionStorage.setItem("videoData", JSON.parse(JSON.stringify(videoData));
+  // });
+
   // ! 즐겨찾기 수정 후 비디오 새로고침
   const handleGoCategory = async (e) => {
     const video = await axios(
@@ -41,7 +49,7 @@ const VideoList = ({
       // ! 추가
       const video = videoData.filter((data) => data.id === Number(id));
       if (isAdded === "undefined") {
-        const water = await axios.post(
+        const addFavorites = await axios.post(
           "https://server.slowtv24.com/add-favorite",
           {
             link: video[0].contentlink,
@@ -54,7 +62,7 @@ const VideoList = ({
         handleGoCategory();
       } else if (isLoggedIn && isAdded) {
         // ! 제거
-        const favorites = await axios.post(
+        const deleteFavorites = await axios.post(
           "https://server.slowtv24.com/delete-favorite",
           {
             link: video[0].contentlink,
@@ -103,7 +111,11 @@ const VideoList = ({
           onClick={getVideoData}
         >
           <div
-            className="water_page_thumbnail__btn"
+            className={
+              video.isFavorite
+                ? "water_page_thumbnail__btn_like"
+                : "water_page_thumbnail__btn"
+            }
             value={`${video.id} ${video.isFavorite}`}
           >
             {video.isFavorite ? (

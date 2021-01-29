@@ -59,31 +59,32 @@ const SideRemoteControl = ({
 
   // ! 페이보릿 카테고리
   const handleGoFavorites = async (e) => {
-    goToAnotherPage();
-    // ! 게스트인 경우, 페이보릿 아무 것도 없음
-    const category = e.target.attributes.value.value;
-    if (!isLoggedIn) {
+    try {
+      goToAnotherPage();
+      // ! 게스트인 경우, 페이보릿 아무 것도 없음
+      const category = e.target.attributes.value.value;
+      if (!isLoggedIn) {
+        handleOnClickCategory(null);
+        closeModal();
+        history.push(`/contents/favorites`);
+      } else {
+        const favorites = await axios("https://server.slowtv24.com/favorites", {
+          withCredentials: true,
+        });
+        // console.log(
+        //   "🚀 ~ file: SideRemoteControl.js ~ line 66 ~ handleGoFavorites ~ favorites",
+        //   favorites
+        //   );
+        if (favorites.data.userFavorites) {
+          handleOnClickCategory(favorites.data.userFavorites);
+          closeModal();
+          history.push("/contents/favorites");
+        }
+      }
+    } catch (error) {
       handleOnClickCategory(null);
       closeModal();
-      history.push(`/contents/favorites`);
-    } else {
-      // ! 로그인한 경우
-      console.log("여기서 문제 발생 왜?");
-      const favorites = await axios("https://server.slowtv24.com/favorites", {
-        withCredentials: true,
-      });
-      console.log(
-        "🚀 ~ file: SideRemoteControl.js ~ line 66 ~ handleGoFavorites ~ favorites",
-        favorites
-      );
-      if (favorites.data.userFavorites) {
-        handleOnClickCategory(favorites.data.userFavorites);
-        history.push("/contents/favorites");
-      } else {
-        handleOnClickCategory(null);
-        history.push("/contents/favorites");
-      }
-      closeModal();
+      history.push("/contents/favorites");
     }
   };
 

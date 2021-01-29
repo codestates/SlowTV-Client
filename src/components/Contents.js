@@ -1,11 +1,33 @@
 import React, { useState, useEffect } from "react";
+import { Link, withRouter } from "react-router-dom";
+
 import SideRemoteControlContainer from "../containers/SideRemoteControlContainer";
 import NavContainer from "../containers/NavContainer";
 import ModalContainer from "../containers/ModalContainer";
 import slowTvLogo1 from "../img/SLOW1.jpeg";
 import "./Contents.css";
+import axios from "axios";
 
-const Contents = ({ isModalClicked, isContentsPage, goToContentsPage }) => {
+const Contents = ({
+  isModalClicked,
+  isContentsPage,
+  goToContentsPage,
+  isClickedSignInBtn,
+  changeSignIn,
+  changeSignUp,
+  clickSignIn,
+  isLoggedIn,
+  githubAccessToken,
+  googleAccessToken,
+  getGithubAccessToken,
+  getGoogleAccessToken,
+  changeNickName,
+  changeEmail,
+  // changePassword,
+  email,
+  nickname,
+  history,
+}) => {
   // 슬라이드 이미지 누르면 클래스 이름 변경을 통해 css적용이 바뀌고 순서 변경이 되게 만드는 함수
   const handleOnChange = (e) => {
     // 카드 순서
@@ -45,6 +67,107 @@ const Contents = ({ isModalClicked, isContentsPage, goToContentsPage }) => {
   useEffect(() => {
     goToContentsPage();
   });
+
+  // ! 1. GET Authorization Cdoe
+  useEffect(() => {
+    const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
+    const authorizationCode = url.searchParams.get("code"); // 주소의 쿼리스트링에 있는 값을 가져오기 위해 사용
+    if (authorizationCode) {
+      getAccessToken(authorizationCode);
+    }
+  }, []);
+
+  // ! 2. GET Github, Google Access Token
+  const getAccessToken = async (authorizationCode) => {
+    // ! Github 길이 20, 리팩토링 필요함
+    if (authorizationCode.length === 20) {
+      const accessToken = await axios.post(
+        // "https://server.slowtv24.com/callbackgit",
+        "https://server.slowtv24.com/callback-git",
+        {
+          authorizationCode,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      if (accessToken) {
+        clickSignIn();
+        getGithubAccessToken(accessToken.data.accessToken);
+      }
+    }
+    // ! Google 길이 20 넘음
+    else {
+      const accessToken = await axios.post(
+        // "https://server.slowtv24.com/callbackgoogle",
+        "https://server.slowtv24.com/callback-google",
+        {
+          authorizationCode,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      if (accessToken) {
+        clickSignIn();
+        getGoogleAccessToken(accessToken.data.accessToken);
+      }
+    }
+  };
+
+  // ! 3. 엑세스 토큰으로 정보 받아오기
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    // ! Github
+    if (githubAccessToken !== null) {
+      const githubUserInfo = await axios("https://api.github.com/user", {
+        headers: {
+          authorization: `token ${githubAccessToken}`,
+        },
+      });
+      sessionStorage.setItem("email", githubUserInfo.data.login);
+      sessionStorage.setItem("name", githubUserInfo.data.name);
+      changeEmail(githubUserInfo.data.login);
+      changeNickName(githubUserInfo.data.name);
+      //! 로그인 페이지에서 로그인한 경우만 컨텐츠로 보내기, 나머지는 현재 페이지에 남아있게 하기
+      // history.push("/contents");
+    } else if (googleAccessToken !== null) {
+      // ! Google
+      const googleUserInfo = await axios(
+        "https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
+        {
+          headers: {
+            Authorization: `Bearer ${googleAccessToken}`,
+          },
+        }
+      );
+      sessionStorage.setItem("email", googleUserInfo.data.email);
+      sessionStorage.setItem("name", googleUserInfo.data.name);
+      changeEmail(googleUserInfo.data.email);
+      changeNickName(googleUserInfo.data.name);
+      //! 로그인 페이지에서 로그인한 경우만 컨텐츠로 보내기, 나머지는 현재 페이지에 남아있게 하기
+    }
+  }, [githubAccessToken, googleAccessToken]);
+
+  // ! 4. 소셜도 세션 아이디 얻기 위해 서버로 이메일, 닉네임 전송
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    if (githubAccessToken || googleAccessToken) {
+      const getSession = await axios.post(
+        "https://server.slowtv24.com/social-login",
+        {
+          email,
+          nickname,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      // ! 로그인 페이지에서 로그인한 게 아니면 해당 페이지 유지하도록 리팩토링
+      history.push("/contents");
+    }
+  }, [email, nickname]);
 
   return (
     <div className="contents_page">
@@ -190,4 +313,4 @@ const Contents = ({ isModalClicked, isContentsPage, goToContentsPage }) => {
   );
 };
 
-export default Contents;
+export default withRouter(Contents);

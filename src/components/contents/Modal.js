@@ -41,11 +41,10 @@ const Modal = ({
   };
   // ! Google OAuth URL // scope는 스페이스로 구분
   const GOOGLE_LOGIN_URL =
-    "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/login&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
+    "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/contents&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
   const googleLoginHandler = () => {
     window.location.assign(GOOGLE_LOGIN_URL);
   };
-
   // ! 모달창 로그인 시 인풋
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
@@ -84,65 +83,67 @@ const Modal = ({
 
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
-    if (emailErrorMessage === null && passwordErrorMessage === null) {
-      const signIn = await axios.post(
-        "https://server.slowtv24.com/login",
-        {
-          email: emailInputValue,
-          password: passwordInputValue,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-
-      // console.log(signIn);
-      // if (signIn === undefined) {
-      //   setErrorMessage("Please check your ID or password.");
-      // }
-
-      if (signIn.data !== undefined) {
-        clickSignIn();
-        handleGetUserInfo();
-        // ! 비디오 데이터 새로 가져오기 추가, 아래 로그아웃과 같은 문제임, 현재 유알엘 그대로 가져오기
-        const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
-        const isCategory = url.pathname.split("/")[1];
-        const nowPage = url.pathname.split("/")[2];
-
-        if (nowPage !== "profile" && nowPage !== "favorites") {
-          const video = await axios(
-            `https://server.slowtv24.com/category/${nowPage}`,
-            {
-              withCredentials: true,
-            }
-          );
-          handleOnClickCategory(video.data.contents);
-          // closeModal();
-        } else if (nowPage === "favorites") {
-          const video = await axios(`https://server.slowtv24.com/${nowPage}`, {
+    try {
+      if (emailErrorMessage === null && passwordErrorMessage === null) {
+        const signIn = await axios.post(
+          "https://server.slowtv24.com/login",
+          {
+            email: emailInputValue,
+            password: passwordInputValue,
+          },
+          {
             withCredentials: true,
-          });
-          console.log(
-            "🚀 ~ file: Modal.js ~ line 91 ~ clickSignInBtn ~ video",
-            video
-          );
-          handleOnClickCategory(video.data.userFavorites);
+          }
+        );
+
+        if (signIn.data !== undefined) {
+          clickSignIn();
+          handleGetUserInfo();
+          // ! 비디오 데이터 새로 가져오기 추가, 아래 로그아웃과 같은 문제임, 현재 유알엘 그대로 가져오기
+          const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
+          const isCategory = url.pathname.split("/")[1];
+          const nowPage = url.pathname.split("/")[2];
+
+          if (nowPage !== "profile" && nowPage !== "favorites") {
+            const video = await axios(
+              `https://server.slowtv24.com/category/${nowPage}`,
+              {
+                withCredentials: true,
+              }
+            );
+            handleOnClickCategory(video.data.contents);
+            // closeModal();
+          } else if (nowPage === "favorites") {
+            const video = await axios(
+              `https://server.slowtv24.com/${nowPage}`,
+              {
+                withCredentials: true,
+              }
+            );
+            console.log(
+              "🚀 ~ file: Modal.js ~ line 91 ~ clickSignInBtn ~ video",
+              video
+            );
+            handleOnClickCategory(video.data.userFavorites);
+          }
+          // closeModal();
         }
-        // closeModal();
       }
-    } else {
-      setErrorMessage("Please check your ID or password.");
+    } catch (error) {
+      setErrorMessage("Please check your ID or password");
     }
   };
 
   // ! 유저 정보 업데이트
   const handleGetUserInfo = async () => {
     // const userInfo = await axios("https://server.slowtv24.com/userinfo", {
-    const userInfoData = await axios("https://server.slowtv24.com/userinfo", {
+    const userInfo = await axios("https://server.slowtv24.com/userinfo", {
       withCredentials: true,
     });
-    changeEmail(userInfoData.data.userInfo.email);
-    changeNickName(userInfoData.data.userInfo.nickname);
+    sessionStorage.setItem("email", userInfo.data.userInfo.email);
+    sessionStorage.setItem("name", userInfo.data.userInfo.nickname);
+    changeEmail(userInfo.data.userInfo.email);
+    changeNickName(userInfo.data.userInfo.nickname);
     closeModal();
   };
 
@@ -184,6 +185,7 @@ const Modal = ({
     );
     // if (logout !== undefined) {
     clickLogout();
+    sessionStorage.clear();
     getGithubAccessToken(null);
     getGoogleAccessToken(null);
     changeEmail(null);

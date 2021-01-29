@@ -111,6 +111,22 @@ body {
   left: 86%;
   /* visibility: hidden; */
 }
+
+.water_page_thumbnail__btn_like {
+  z-index: 9;
+  border-radius: 50%;
+  background-color: white;
+  /* background-color: red; */
+  opacity: 0.7;
+  color: black;
+  position: absolute;
+  font-size: 1vmax;
+  width: 10%;
+  height: 13%;
+  top: 80%;
+  left: 86%;
+}
+
 .water_page_thumbnail__btn:hover {
   z-index: 9;
   border-radius: 50%;

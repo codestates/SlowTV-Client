@@ -27,6 +27,8 @@ const Favorites = ({
   clickRemoteControl,
   isRemoteControlOn,
 }) => {
+  sessionStorage.setItem("videoData", JSON.stringify(videoData));
+
   // ! Sign Up 버튼 클릭시 페이지로 이동
   const handleGoSignUpPage = () => {
     changeSignUp();
@@ -37,11 +39,26 @@ const Favorites = ({
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
 
+  //! 인풋 핸들링
   const handleInputValue = (key) => (e) => {
     if (key === "email") {
-      setEmailInputValue(e.target.value);
+      const emailValue = e.target.value.split("@");
+      if (emailValue.length !== 2) {
+        setEmailErrorMessage("Invalid email format");
+      } else {
+        setEmailErrorMessage(null);
+        setEmailInputValue(e.target.value);
+        console.log("emailInputValue값은?", emailInputValue);
+      }
     } else if (key === "password") {
-      setPasswordInputValue(e.target.value);
+      console.log(e.target.value.length);
+      if (e.target.value.length < 8) {
+        setPasswordErrorMessage("You must enter between 8 and 15 character");
+      } else {
+        setPasswordErrorMessage(null);
+        setPasswordInputValue(e.target.value);
+        console.log("passwordInputValue값은?", passwordInputValue);
+      }
     }
   };
 
@@ -51,19 +68,21 @@ const Favorites = ({
 
   // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
-    const signIn = await axios.post(
-      "https://server.slowtv24.com/login",
-      {
-        email: emailInputValue,
-        password: passwordInputValue,
-      },
-      {
-        withCredentials: true,
+    if (emailErrorMessage === null && passwordErrorMessage === null) {
+      const signIn = await axios.post(
+        "https://server.slowtv24.com/login",
+        {
+          email: emailInputValue,
+          password: passwordInputValue,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      if (signIn.data !== undefined) {
+        clickSignIn();
+        handleGetUserInfo();
       }
-    );
-    if (signIn.data !== undefined) {
-      clickSignIn();
-      handleGetUserInfo();
     }
   };
 
@@ -71,6 +90,8 @@ const Favorites = ({
     const userInfo = await axios("https://server.slowtv24.com/userinfo", {
       withCredentials: true,
     });
+    sessionStorage.setItem("email", userInfo.data.userInfo.email);
+    sessionStorage.setItem("name", userInfo.data.userInfo.nickname);
     changeEmail(userInfo.data.userInfo.email);
     changeNickName(userInfo.data.userInfo.nickname);
     history.push("/contents");
@@ -84,7 +105,7 @@ const Favorites = ({
   };
   // ! Google OAuth URL // scope는 스페이스로 구분
   const GOOGLE_LOGIN_URL =
-    "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/login&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
+    "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/contents&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
   const googleLoginHandler = () => {
     window.location.assign(GOOGLE_LOGIN_URL);
   };
@@ -92,13 +113,14 @@ const Favorites = ({
   // ! 즐겨찾기 수정 후 비디오 새로고침
   const handleGoCategory = async (e) => {
     // const category = e.target.attributes.value.value;
-
-    const video = await axios(`https://server.slowtv24.com/favorites`, {
-      withCredentials: true,
-    });
-    if (video) {
-      handleOnClickCategory(video.data.userFavorites);
-    } else {
+    try {
+      const video = await axios(`https://server.slowtv24.com/favorites`, {
+        withCredentials: true,
+      });
+      if (video) {
+        handleOnClickCategory(video.data.userFavorites);
+      }
+    } catch (error) {
       handleOnClickCategory(null);
     }
   };
@@ -148,9 +170,13 @@ const Favorites = ({
   // ! videoData mapping
   let videoList = null;
   if (videoData) {
+    // const handleDrag = () => {
+    //   console.log("dragStart");
+    // };
+
     const handleDrag = () => {
-      const draggables = document.querySelectorAll("favorites_page_thumbnail");
-      const container = document.querySelectorAll("favorites_page_container");
+      const draggables = document.querySelectorAll("water_page_thumbnail");
+      const container = document.querySelectorAll("water_page_container");
 
       draggables.forEach((draggable) => {
         draggable.addEventListner("dragstart", () => {
@@ -161,19 +187,23 @@ const Favorites = ({
 
     videoList = videoData.map((video) => (
       <div
-        className="favorites_page_thumbnail"
+        className="water_page_thumbnail"
         key={video.id}
         draggable="true"
         onDrag={handleDrag}
       >
         {/* {console.log("🚀 ~ file: Favorites.js ~ line 146 ~ video", video)} */}
         <div
-          className="favorites_page_thumbnail__btn_box"
+          className="water_page_thumbnail__btn_box"
           value={video.id}
           onClick={getVideoData}
         >
           <div
-            className="favorites_page_thumbnail__btn"
+            className={
+              video.isFavorite
+                ? "water_page_thumbnail__btn_like"
+                : "water_page_thumbnail__btn"
+            }
             value={`${video.id} ${video.isFavorite}`}
           >
             {video.isFavorite ? (
@@ -194,7 +224,7 @@ const Favorites = ({
           </div>
         </div>
         <img
-          className="favorites_page_thumbnail_img"
+          className="water_page_thumbnail_img"
           src={video.thumbnail}
           alt="undefined thumbnail"
           // ! 버튼이 추가되면서 이미지에서 클릭 안 됨. -> btn_box로 이동
@@ -250,7 +280,13 @@ const Favorites = ({
 
               <div className="loaded_favorites_page_guest_sign_in_box">
                 {/* //! email */}
-                <div className="loaded_favorites_page_guest_sign_in_email_box">
+                <div
+                  className={
+                    emailErrorMessage
+                      ? "loaded_favorites_page_guest_sign_in_email_box_error"
+                      : "loaded_favorites_page_guest_sign_in_email_box"
+                  }
+                >
                   <img
                     className="loaded_favorites_page_guest_sign_in_email_box_icon"
                     src={emailIcon}
@@ -266,7 +302,13 @@ const Favorites = ({
                   ></input>
                 </div>
                 {/* //! password */}
-                <div className="loaded_favorites_page_guest_sign_in_password_box">
+                <div
+                  className={
+                    passwordErrorMessage
+                      ? "loaded_favorites_page_guest_sign_in_password_box_error"
+                      : "loaded_favorites_page_guest_sign_in_password_box"
+                  }
+                >
                   <img
                     className="loaded_favorites_page_guest_sign_in_password_box_icon"
                     src={passwordIcon}
