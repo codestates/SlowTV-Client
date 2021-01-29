@@ -34,8 +34,8 @@
   /* border: 3px solid orange; */
   /* margin-right: 13px; */
   /* width: 1.2%; */
-  width: 1.2%;
-  height: 2.4%;
+  width: 2%;
+  height: 3.2%;
   position: absolute;
   top: 1%;
   right: 2%;
@@ -45,7 +45,13 @@
 .nav_page_icon {
   background-color: white;
   /* color: white; */
+  opacity: 0.8;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 9999px;
+}
+
+.nav_page_icon:hover {
+  opacity: 1;
+  cursor: pointer;
 }

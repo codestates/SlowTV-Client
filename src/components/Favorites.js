@@ -11,7 +11,7 @@ import fillLike from "../img/FillLike.png";
 import google from "../img/google.png";
 import github from "../img/github.png";
 import emailIcon from "../img/email-icon.png";
-import lock from "../img/lock.png";
+import passwordIcon from "../img/lock.png";
 
 const Favorites = ({
   history,
@@ -233,34 +233,52 @@ const Favorites = ({
 
             <div className="loaded_favorites_page">
               <div className="loaded_favorites_page_guest_message">
-                <div>Please log in and use it.</div>
+                <div className="loaded_favorites_page_guest_message_first">
+                  Please log in and use it.
+                </div>
                 <p></p>
-                Slow TV helps you experience
-                <br></br>
-                the aesthetics of slowness,
-                <br></br>
-                tired of your busy daily life.
+                <div className="loaded_favorites_page_guest_message_seconde">
+                  Slow TV helps you experience
+                </div>
+                <div className="loaded_favorites_page_guest_message_seconde">
+                  the aesthetics of slowness,
+                </div>
+                <div className="loaded_favorites_page_guest_message_seconde">
+                  tired of your busy daily life.
+                </div>
               </div>
 
               <div className="loaded_favorites_page_guest_sign_in_box">
                 {/* //! email */}
                 <div className="loaded_favorites_page_guest_sign_in_email_box">
+                  <img
+                    className="loaded_favorites_page_guest_sign_in_email_box_icon"
+                    src={emailIcon}
+                    alt="emailIcon"
+                  ></img>
                   <input
                     className="loaded_favorites_page_guest_sign_in_email_input"
                     type="email"
                     autoComplete="on"
                     onChange={handleInputValue("email")}
                     autoFocus="ture"
+                    placeholder="email"
                   ></input>
                 </div>
                 {/* //! password */}
                 <div className="loaded_favorites_page_guest_sign_in_password_box">
+                  <img
+                    className="loaded_favorites_page_guest_sign_in_password_box_icon"
+                    src={passwordIcon}
+                    alt="passwordIcon"
+                  ></img>
                   <input
                     className="loaded_favorites_page_guest_sign_in_password"
                     type="password"
                     // minLength="8"
                     maxLength="15"
                     onChange={handleInputValue("password")}
+                    placeholder="password"
                   ></input>
                 </div>
                 {/* //! sign in */}

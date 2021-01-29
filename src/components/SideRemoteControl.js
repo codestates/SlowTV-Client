@@ -99,11 +99,11 @@ const SideRemoteControl = ({
         {/* On OR Off */}
         {isRemoteControlOn ? (
           <div className="list_item" onClick={clickRemoteControl}>
-            On
+            <div className="list_item_font">On</div>
           </div>
         ) : (
           <div className="list_item2" onClick={clickRemoteControl}>
-            Off
+            <div className="list_item_font">Off</div>
           </div>
         )}
         {/* Home OR Contents */}
@@ -112,14 +112,14 @@ const SideRemoteControl = ({
             className={isRemoteControlOn ? "list_item" : "list_item2"}
             onClick={handleGoHome}
           >
-            Home
+            <div className="list_item_font">Home</div>
           </div>
         ) : (
           <div
             className={isRemoteControlOn ? "list_item" : "list_item2"}
             onClick={handleGoContents}
           >
-            Contents
+            <div className="list_item_font">Contents</div>
           </div>
         )}
         {/* Water */}
@@ -128,7 +128,9 @@ const SideRemoteControl = ({
           value="water"
           onClick={handleGoCategory}
         >
-          Water
+          <div className="list_item_font" value="water">
+            Water
+          </div>
         </div>
         {/* Fire */}
         <div
@@ -136,7 +138,9 @@ const SideRemoteControl = ({
           value="fire"
           onClick={handleGoCategory}
         >
-          Fire
+          <div className="list_item_font" value="fire">
+            Fire
+          </div>
         </div>
         {/* Sonw */}
         <div
@@ -144,7 +148,9 @@ const SideRemoteControl = ({
           value="snow"
           onClick={handleGoCategory}
         >
-          Snow
+          <div className="list_item_font" value="snow">
+            Snow
+          </div>
         </div>
         {/* Grass */}
         <div
@@ -152,7 +158,9 @@ const SideRemoteControl = ({
           value="grass"
           onClick={handleGoCategory}
         >
-          Grass
+          <div className="list_item_font" value="grass">
+            Grass
+          </div>
         </div>
         {/* Favorites */}
         <div
@@ -160,7 +168,9 @@ const SideRemoteControl = ({
           value="favorites"
           onClick={handleGoFavorites}
         >
-          Favorites
+          <div className="list_item_font" value="favorites">
+            Favorites
+          </div>
         </div>
         {/* Profile */}
         <div
@@ -168,7 +178,9 @@ const SideRemoteControl = ({
           value="profile"
           onClick={handleGoCategory}
         >
-          Profile
+          <div className="list_item_font" value="profile">
+            Profile
+          </div>
         </div>
       </div>
     </div>

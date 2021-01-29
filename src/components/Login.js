@@ -319,6 +319,7 @@ const Login = ({
                   autoComplete="on"
                   onChange={handleInputValue("email")}
                   autoFocus="ture"
+                  placeholder="email"
                 ></input>
               </div>
             </div>
@@ -358,6 +359,7 @@ const Login = ({
                   className="login_box_right_login_form_password_box_input"
                   type="password"
                   onChange={handleInputValue("password")}
+                  placeholder="password"
                 ></input>
               </div>
             </div>
@@ -425,7 +427,7 @@ const Login = ({
             {/* //! Username */}
             <div className="login_box_right_login_form_email_box_title_div">
               <div className="login_box_right_login_form_email_box_title">
-                Username
+                Name
               </div>
               {/* //! email icon */}
               <div className="login_box_right_login_form_email_box">
@@ -440,10 +442,11 @@ const Login = ({
                 {/* inline */}
                 <input
                   className="login_box_right_login_form_email_box_input"
-                  type="email"
+                  type="text"
                   autoComplete="on"
                   onChange={handleInputValue("username")}
                   autoFocus="ture"
+                  placeholder="name"
                 ></input>
               </div>
             </div>
@@ -475,6 +478,7 @@ const Login = ({
                   autoComplete="on"
                   onChange={handleInputValue("email")}
                   autoFocus="ture"
+                  placeholder="email"
                 ></input>
               </div>
             </div>
@@ -491,7 +495,7 @@ const Login = ({
             {/* //! PW ***********************************************/}
             <div className="login_box_right_login_form_password_box_title_div">
               <div className="login_box_right_login_form_password_box_title">
-                password
+                Password
               </div>
               {/* //! password icon */}
               <div
@@ -514,6 +518,7 @@ const Login = ({
                   className="login_box_right_login_form_password_box_input"
                   type="password"
                   onChange={handleInputValue("password")}
+                  placeholder="password"
                 ></input>
               </div>
             </div>

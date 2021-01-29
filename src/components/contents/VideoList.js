@@ -150,7 +150,6 @@ const VideoList = ({
           {isModalClicked ? <ModalContainer /> : <div></div>}
           {/* 썸네일 컨테이너 */}
           <div className="water_page_container">
-            {/* thumbnail x 12 */}
             <div className="water_page_small_size_lists">{videoList}</div>
           </div>
           {/* 썸네일 컨테이너 끝 */}

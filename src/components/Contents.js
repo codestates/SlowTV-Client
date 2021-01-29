@@ -68,7 +68,7 @@ const Contents = ({ isModalClicked, isContentsPage, goToContentsPage }) => {
               className="contents_page_img"
               value="grass"
               onClick={handleOnChange}
-              src="https://images.unsplash.com/photo-1438786657495-640937046d18?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8Z3Jhc3N8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              src="https://images.unsplash.com/photo-1477554193778-9562c28588c0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8cGxhbnRzfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               alt="Grass"
             ></img>
           </div>
@@ -84,7 +84,8 @@ const Contents = ({ isModalClicked, isContentsPage, goToContentsPage }) => {
               className="contents_page_img"
               value="snow"
               onClick={handleOnChange}
-              src="https://images.unsplash.com/photo-1476108621677-3c620901b5e7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8c25vd3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              // src="https://images.unsplash.com/photo-1476108621677-3c620901b5e7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8c25vd3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              src="https://images.unsplash.com/photo-1543751737-d7cf492060cd?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mzh8fHNub3d8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               alt="Snow"
             ></img>
           </div>
@@ -100,7 +101,8 @@ const Contents = ({ isModalClicked, isContentsPage, goToContentsPage }) => {
               className="contents_page_img"
               value="fire"
               onClick={handleOnChange}
-              src="https://images.unsplash.com/photo-1538487865197-679f89c6fb0b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDd8fGNhbXBmaXJlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              // src="https://images.unsplash.com/photo-1538487865197-679f89c6fb0b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDd8fGNhbXBmaXJlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              src="https://images.unsplash.com/photo-1534246357846-40b500934c14?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FtcGZpcmV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               alt="Fire"
             ></img>
           </div>
@@ -116,7 +118,8 @@ const Contents = ({ isModalClicked, isContentsPage, goToContentsPage }) => {
               className="contents_page_img"
               value="water"
               onClick={handleOnChange}
-              src="https://images.unsplash.com/photo-1433740944490-b669cb8b1c44?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fHdhdGVyfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              // src="https://images.unsplash.com/photo-1433740944490-b669cb8b1c44?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fHdhdGVyfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              src="https://images.unsplash.com/photo-1457195740896-7f345efef228?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8d2F0ZXJ8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
               alt="Water"
             ></img>
             {/* SLOW TV; */}

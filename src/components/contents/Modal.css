@@ -12,8 +12,8 @@
   top: 10%;
   left: 40%;
   z-index: 999;
-  background-color: hsl(300, 1%, 33%);
-  /* background-color: lightgray; */
+  background-color: #adacad;
+  box-shadow: 0px 5px 10px 5px #525151;
   /* display: none; */
 }
 /* 모달창 */
@@ -31,7 +31,7 @@
   /* position: absolute; */
   /* right: 100px; */
   border: none;
-  background-color: #545254;
+  background-color: #adacad;
   /* color: white; */
   /* font-size: 1.5vmax; */
   margin-top: 3%;
@@ -131,7 +131,8 @@
   align-items: center;
   margin-top: 7%;
   height: 10%;
-  font-size: 2.3vmax;
+  font-size: 2vmax;
+  font-weight: 500;
 }
 
 /* ID 박스 *************************************/
@@ -201,6 +202,7 @@
   width: 100%;
   height: 100%;
   font-size: 1.3vmax;
+  border-radius: 5px;
   /* margin: auto; */
   /* 세로 중앙 정렬, 다른 정식 방뻐 찾아보기 */
   /* line-height: 230%; */
@@ -265,5 +267,17 @@
   height: 8%;
   font-size: 1.3vmax;
   text-align: center;
+  font-weight: 300;
+  cursor: pointer;
   /* color: lightgray; */
+}
+.modal_my_profile_sign_up_btn_box:hover {
+  font-weight: 400;
+}
+
+.modal_my_profile_error_message {
+  font-size: 1vmax;
+  font-weight: 600;
+  /* color: #d12929; */
+  text-align: center;
 }

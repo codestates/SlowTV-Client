@@ -25,13 +25,12 @@ const Nav = ({
   };
 
   return (
-    <div className="nav_page">
-      <div className="nav_page_navbar">
-        {/* Slow TV logo */}
-        <div className="nav_page_logo_box">
-          <span className="nav_page_logo" onClick={handleGoHome}>
-            SLOW<span className="nav_page_tv_in_logo">TV</span>
-          </span>
+    <div className="landing_nav_page_navbar_page">
+      {/* Slow TV logo */}
+      <div className="landing_nav_page_navbar">
+        <div className="landing_nav_page_navbar_text" onClick={handleGoHome}>
+          <span className="landing_nav_page_navbar_Slow">Slow</span>
+          <span className="landing_nav_page_navbar_TV">TV</span>
         </div>
         {/* 랜딩 페이지에서만 이거 나오고 렌딩 아니면 아이콘으로 대체, 너무 회원 유도 버튼이 있는게 페이지가 별로처럼 보임*/}
         {isLoggedIn ? (

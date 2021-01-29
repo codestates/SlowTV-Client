@@ -144,6 +144,7 @@
 /* ! 로그인 - 오른쪽 로그인 폼 이메일 타이틀 박스 */
 .login_box_right_login_form_email_box_title_div {
   /* border: 2px solid red; */
+  /* pointer-events: none; */
   margin-top: 5%;
   height: 15%;
   width: 100%;
@@ -175,28 +176,29 @@
   height: 40%;
   margin-left: 10%;
   font-size: 1.2vmax;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 .login_box_right_login_form_email_box_error {
-  border: 1.5px solid #d12929;
+  border: 2px solid #d12929;
   background-color: white;
   width: 80%;
   height: 40%;
   margin-left: 10%;
   font-size: 1.2vmax;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 /* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 이메일 아이콘 input*/
 .login_box_right_login_form_email_box_input_icon {
   /* border: 1px solid red; */
+  /* pointer-events: none; */
   opacity: 0.5;
-  margin-top: 1.5%;
-  margin-left: 2%;
+  margin-top: 2.5%;
+  margin-left: 3%;
   margin-right: 0%;
   padding-right: 0%;
   width: 5%;
-  height: 70%;
+  height: 50%;
 }
 
 /* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 - 인풋 박스 - 인풋태그*/
@@ -208,7 +210,7 @@
   height: 68%;
   border: none;
   outline: none;
-  font-size: 1.5vmax;
+  font-size: 1.2vmax;
   margin-top: 1%;
   border-radius: 3px;
   /* margin-left: 0; */
@@ -273,29 +275,30 @@
   height: 40%;
   margin-left: 10%;
   font-size: 1.2vmax;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .login_box_right_login_form_password_box_error {
-  border: 1.5px solid #d12929;
+  border: 2px solid #d12929;
   background-color: white;
   width: 80%;
   height: 40%;
   margin-left: 10%;
   font-size: 1.2vmax;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 /* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 이메일 아이콘 input*/
 .login_box_right_login_form_password_box_input_icon {
   /* border: 1px solid red; */
+  /* pointer-events: none; */
   opacity: 0.5;
-  margin-top: 1.5%;
-  margin-left: 2%;
+  margin-top: 2.5%;
+  margin-left: 3%;
   margin-right: 0%;
   padding-right: 0%;
   width: 5%;
-  height: 70%;
+  height: 50%;
 }
 
 /* ! 로그인 - 오른쪽 로그인 폼 이메일 박스 - 인풋 박스 - 인풋태그*/
@@ -307,7 +310,7 @@
   height: 68%;
   border: none;
   outline: none;
-  font-size: 1.5vmax;
+  font-size: 1.2vmax;
   margin-top: 1%;
   border-radius: 3px;
   /* margin-left: 0; */
