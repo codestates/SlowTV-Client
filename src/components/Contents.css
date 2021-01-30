@@ -110,7 +110,7 @@ body > #root > div {
   width: 70%;
   left: 35%;
   border-left: none; 
-    transform: rotateY(45deg);
+  transform: rotateY(45deg);
   transition: all ease 1s;
   z-index: 5;
   height: 360px;

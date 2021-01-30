@@ -15,12 +15,13 @@
   width: 100%;
   height: 90%;
   margin-left: 2%;
-  margin-top: 0.3%;
+  margin-top: 0.4%;
 }
 
 .landing_nav_page_navbar_text {
   display: inline;
   cursor: pointer;
+  /* font-style: italic; */
 }
 
 .landing_nav_page_navbar_Slow {

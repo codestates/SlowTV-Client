@@ -289,9 +289,10 @@ const Contents = ({
           {/* contents_page_div_img_five 텍스트*/}
           <div className="contents_page_div_text_five">
             <div className="contents_page_text">
-              Sleep more, <p></p>
+              Slow TV <br></br> slow tv
+              {/* Sleep more, <p></p>
               Stress less,<p></p>
-              Live better.
+              Live better. */}
             </div>
           </div>
         </div>

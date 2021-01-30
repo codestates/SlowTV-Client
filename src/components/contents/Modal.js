@@ -6,6 +6,7 @@ import google from "../../img/google.png";
 import github from "../../img/github.png";
 import emailIcon from "../../img/email-icon.png";
 import passwordIcon from "../../img/lock.png";
+import meditation from "../../img/meditation.png";
 import "./Modal.css";
 
 const Modal = ({
@@ -211,8 +212,7 @@ const Modal = ({
           <div className="modal_my_profile_div_user_img">
             <img
               className="modal_my_profile_user_img"
-              src={github}
-              // src={SLOW1}
+              src={meditation}
               alt="user_img"
             ></img>
           </div>

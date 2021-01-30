@@ -9,6 +9,8 @@ import emailIcon from "../img/email-icon.png";
 import passwordIcon from "../img/lock.png";
 import cancel from "../img/cancel.png";
 import user from "../img/user.png";
+import welcome from "../img/welcome.png";
+import welcomeBack from "../img/welcome-back.png";
 
 const Login = ({
   isClickedSignInBtn,
@@ -179,7 +181,8 @@ const Login = ({
             <div className="login_box_left_welcome_card_img_box">
               <img
                 className="login_box_left_welcome_card_img"
-                src={github}
+                // src={github}
+                src={welcome}
                 alt="Welcome back img"
               ></img>
             </div>
@@ -302,7 +305,7 @@ const Login = ({
             {/* //! Sign in */}
             <div className="login_box_right_login_form_sign_in_box">
               <button
-                className="login_box_right_login_form_sign_in_box_btn"
+                className="login_box_right_login_form_sign_in_box_btn2"
                 onClick={clickSignInBtn}
               >
                 Sign in
@@ -371,7 +374,7 @@ const Login = ({
                   type="text"
                   autoComplete="on"
                   onChange={handleInputValue("username")}
-                  autoFocus="ture"
+                  autoFocus="on"
                   placeholder="name"
                 ></input>
               </div>
@@ -403,7 +406,7 @@ const Login = ({
                   type="email"
                   autoComplete="on"
                   onChange={handleInputValue("email")}
-                  autoFocus="ture"
+                  // autoFocus="ture"
                   placeholder="email"
                 ></input>
               </div>
@@ -462,7 +465,7 @@ const Login = ({
             {/* //! Register */}
             <div className="login_box_right_login_form_sign_in_box">
               <button
-                className="login_box_right_login_form_sign_in_box_btn"
+                className="login_box_right_login_form_sign_in_box_btn2"
                 onClick={clickSignUp}
               >
                 Register
@@ -478,7 +481,8 @@ const Login = ({
             <div className="sign_in_box_left_welcome_card_box">
               <img
                 className="sign_in_box_left_welcome_card_img"
-                src={google}
+                // src={google}
+                src={welcomeBack}
                 alt="Welcome back img"
               ></img>
             </div>

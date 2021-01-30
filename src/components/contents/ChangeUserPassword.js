@@ -88,7 +88,9 @@ const ChangeUserPassword = ({
               <div className="change_password_page_old_name_input_box">
                 <input
                   className="change_password_page_old_name_input"
+                  autoFocus="on"
                   onChange={handleInputValue("prevPassword")}
+                  type="password"
                 ></input>
               </div>
             </div>
@@ -100,6 +102,7 @@ const ChangeUserPassword = ({
                 <input
                   className="change_password_page_new_name_input"
                   onChange={handleInputValue("newPassword")}
+                  type="password"
                 ></input>
               </div>
             </div>
@@ -111,6 +114,7 @@ const ChangeUserPassword = ({
                 <input
                   className="change_password_page_confirm_name_input"
                   onChange={handleInputValue("confirmPassword")}
+                  type="password"
                 ></input>
               </div>
             </div>

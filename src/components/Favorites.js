@@ -239,11 +239,15 @@ const Favorites = ({
               className="loaded_favorites_page_nothing_message"
               onClick={clickRemoteControl}
             >
-              You don&#39;t have a favorites list.
-              <p />
-              If you click here, I&#39;ll give you a remote control.
-              <p />
-              Let&#39;s go add some favorites.
+              <div className="loaded_favorites_page_nothing_message_first">
+                You don&#39;t have a favorites list.
+              </div>
+              <div className="loaded_favorites_page_nothing_message_second">
+                If you click here, I&#39;ll give you a remote control.
+              </div>
+              <div className="loaded_favorites_page_nothing_message_third">
+                Let&#39;s go add some favorites.
+              </div>
             </div>
           </div>
         ) : (
@@ -258,13 +262,13 @@ const Favorites = ({
                   Please log in and use it.
                 </div>
                 <p></p>
-                <div className="loaded_favorites_page_guest_message_seconde">
+                <div className="loaded_favorites_page_guest_message_second">
                   Slow TV helps you experience
                 </div>
-                <div className="loaded_favorites_page_guest_message_seconde">
+                <div className="loaded_favorites_page_guest_message_third">
                   the aesthetics of slowness,
                 </div>
-                <div className="loaded_favorites_page_guest_message_seconde">
+                <div className="loaded_favorites_page_guest_message_fourth">
                   tired of your busy daily life.
                 </div>
               </div>
@@ -369,7 +373,7 @@ const Favorites = ({
           <SideRemoteControlContainer />
           {isModalClicked ? <ModalContainer /> : <div></div>}
           {/* 썸네일 컨테이너 */}
-          <div className="favorites_page_container">
+          <div className="water_page_container">
             {/* thumbnail x 12 */}
             <div className="water_page_small_size_lists">{videoList}</div>
           </div>

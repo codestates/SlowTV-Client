@@ -233,6 +233,8 @@ const Profile = ({
               </Link>
             )}
 
+            {/* // ! change user img */}
+
             {/* // !Logout Btn */}
             <div className="profile_page_box_logout_btn">
               <button
@@ -251,13 +253,13 @@ const Profile = ({
               Please log in and use it.
             </div>
             <p></p>
-            <div className="loaded_favorites_page_guest_message_seconde">
+            <div className="loaded_favorites_page_guest_message_second">
               Slow TV helps you experience
             </div>
-            <div className="loaded_favorites_page_guest_message_seconde">
+            <div className="loaded_favorites_page_guest_message_third">
               the aesthetics of slowness,
             </div>
-            <div className="loaded_favorites_page_guest_message_seconde">
+            <div className="loaded_favorites_page_guest_message_fourth">
               tired of your busy daily life.
             </div>
           </div>

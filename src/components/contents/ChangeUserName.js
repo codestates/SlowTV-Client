@@ -82,6 +82,7 @@ const ChangeUserName = ({
                 <input
                   className="change_name_page_new_name_input"
                   onChange={handleInputValue}
+                  autoFocus="on"
                 ></input>
               </div>
             </div>
