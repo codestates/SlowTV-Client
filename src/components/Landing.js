@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-// 비로그인 시
+import React from "react";
 import LandingNavContainers from "../containers/LandingNavContainers";
-// 로그인 시
 import NavContainer from "../containers/NavContainer";
 import ModalContainer from "../containers/ModalContainer";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import video1 from "../img/fireplace.mov";
+import video2 from "../img/snowtown.mov";
+import video3 from "../img/sunsetbeach.mov";
+import backgrd1 from "../img/backgrd1.jpg";
 import "./Landing.css";
-import testVideo from "../img/test.mp4";
-import test2 from "../img/test2.mp4";
 
 const Landing = ({
   history,
@@ -15,44 +15,141 @@ const Landing = ({
   isModalClicked,
   nickname,
   closeModal,
-  clickGetStarted,
 }) => {
-  // ! Get Started 버튼 : 컨텐츠로 이동
   const handleGetStarted = () => {
     closeModal();
-    clickGetStarted();
     history.push("/contents");
   };
 
   return (
     <div className="landing_page">
-      {isLoggedIn ? <NavContainer /> : <LandingNavContainers />}
-      {isModalClicked ? <ModalContainer /> : <div></div>}
-      {/* body */}
-      {nickname ? (
-        <div className="landing_page_container">
-          <div className="landing_page_introduce_title">Hi {nickname}</div>
-          <div className="landing_page_introduce_body">
-            유저인 경우 소개말 다르게
+      <div className="landing_page_top">
+        {isLoggedIn ? <NavContainer /> : <LandingNavContainers />}
+        {isModalClicked ? <ModalContainer /> : <div></div>}
+        {nickname ? (
+          <div className="landing_page_top_text_box">
+            <div className="landing_page_top_text_box_frist">
+              Hi, {nickname}!
+            </div>
+            <div className="landing_page_top_text_box_second">
+              Welcome Back to SlowTV
+            </div>
+            <button
+              className="landing_page_top_text_box_third"
+              onClick={handleGetStarted}
+            >
+              Get started
+            </button>
           </div>
-          <button className="btn" onClick={handleGetStarted}>
+        ) : (
+          <div className="landing_page_top_text_box">
+            <div className="landing_page_top_text_box_frist">
+              Find your calm
+            </div>
+            <div className="landing_page_top_text_box_second">
+              Experience the aesthetics of slowness for a moment.
+            </div>
+
+            <button
+              className="landing_page_top_text_box_third"
+              onClick={handleGetStarted}
+            >
+              Get started
+            </button>
+          </div>
+        )}
+      </div>
+      <div className="landing_page_middle">
+        <div className="landing_page_middle_first_video_container">
+          <div className="landing_page_middle_first_video_container_text">
+            <div className="landing_page_middle_first_video_container_text_first_verb">
+              Fire Fire Fire Fire
+            </div>
+            Take a seat and listen to the crackling <br />
+            bonfire sounds.
+          </div>
+          <video
+            className="landing_page_middle_first_video_container_video"
+            autoPlay
+            muted
+            loop
+          >
+            <source
+              src={video1}
+              type="video/mp4"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              title="video"
+            />
+          </video>
+        </div>
+        <div className="landing_page_middle_second_video_container">
+          <video
+            className="landing_page_middle_second_video_container_video"
+            autoPlay
+            muted
+            loop
+          >
+            <source
+              src={video2}
+              type="video/mp4"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              title="video"
+            />
+          </video>
+          <div className="landing_page_middle_second_video_container_text">
+            Enjoy our exclusive collection of nature videos.
+          </div>
+        </div>
+        <div className="landing_page_middle_third_video_container">
+          <div className="landing_page_middle_third_video_container_text">
+            Watch anywhere, relax anytime here on SlowTV.
+          </div>
+          <video
+            className="landing_page_middle_third_video_container_video"
+            autoPlay
+            muted
+            loop
+          >
+            <source
+              src={video3}
+              type="video/mp4"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              title="video"
+            />
+          </video>
+        </div>
+      </div>
+      {/* //! bottom */}
+      <div
+        className={
+          isLoggedIn ? "landing_page_bottom_none" : "landing_page_bottom"
+        }
+      >
+        <div className="landing_page_bottom_text_box">
+          <div className="landing_page_bottom_text_div">
+            <div className="landing_page_bottom_text_box_frist">
+              Find your calm
+            </div>
+            <div className="landing_page_bottom_text_box_second">
+              Experience the aesthetics of slowness for a moment.
+            </div>
+          </div>
+
+          <button
+            className="landing_page_bottom_text_box_third"
+            onClick={handleGetStarted}
+          >
             Get started
           </button>
         </div>
-      ) : (
-        <div className="landing_page_container">
-          <div className="landing_page_introduce_title">Find Your Calm</div>
-          <div className="landing_page_introduce_body">
-            If you&#39;re tired of your busy daily life, Feel the aesthetics of
-            slowness for a moment.
-          </div>
-          <button className="btn" onClick={handleGetStarted}>
-            Get started
-          </button>
+        <div className="landing_page_bottom_footer">
+          Copyright © 2021 YouTube. All rights reserved
         </div>
-      )}
+      </div>
     </div>
   );
 };
-
 export default withRouter(Landing);

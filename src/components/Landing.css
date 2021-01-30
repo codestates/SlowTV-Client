@@ -1,12 +1,213 @@
 .landing_page {
-  background-color: #212021;
+  width: 100%;
+  height: 100%;
+  background-color: white;
 }
 
-/* 타이틀 */
-.landing_page_introduce_title {
+.landing_nav_page_navbar{
+  /* border-bottom: 2px solid #545254; */
+  border-bottom: 2px solid black;
+}
+
+.landing_page_top {
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/backgrd2.jpg");
+  background-size: cover;
+  background-position: center;
+  /* opacity: 0.8; */
+}
+.landing_page_top_text_box {
+  position: absolute;
+  /* border:3px solid red; */
+  width: 31%;
+  height: 30%;
+  top:40%;
+  left:8%;
+}
+
+.landing_page_top_text_box_frist {
+  /* border:3px solid blue; */
+  width: 100%;
+  height: 25%;
+  color:white;
+  font-size: 3.4vmax;
+  /* font-style: italic; */
+  font-weight: 350;
+  /* font-weight: 330; */
+}
+
+.landing_page_top_text_box_second {
+  /* border:3px solid green; */
+  width: 100%;
+  height: 35%;
+  color: white;
+  font-size: 2vmax;
+  /* font-style: italic; */
+  font-weight: 330;
+  /* font-weight: 330; */
+}
+/* Get started 버튼 */
+.landing_page_top_text_box_third {
+  /* border:3px solid green; */
+  margin-top: 3%;
+  border: none;
+  outline: none;
+  border-radius:9999px;
+  width: 70%;
+  height: 25%;
+  font-size: 1.3vmax;
+}
+.landing_page_top_text_box_third:hover {
+  /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); */
+  transform: scale(1.03);
+  transition: .5s;
+}
+/* Landing Middle */
+.landing_page_middle {
+  background-color: black;
+  /* height: 100%; */
+  /* border: 3px solid red; */
+  border-top: 3px solid #474547;
+  /* border-bottom: 3px solid #474547; */
+  /* color: #EAF8F6; */
+  /* display: inline-grid; */
+  /* grid-template-columns: auto; */
+  /* grid-template-rows: auto auto auto; */
+  /* padding: 20px; */
+}
+/* 비디오 1 */
+.landing_page_middle_first_video_container,
+.landing_page_middle_third_video_container {
+  /* border: 3px solid blue; */
+  /* border-top: 3px solid #474547; */
+  border-bottom: 3px solid #474547;
+  display: grid;
+  height: 20em;
+  grid-template-columns: 50% 50%;
+  
+}
+
+.landing_page_middle_second_video_container{
+  /* border: 3px solid blue; */
+  border-bottom: 3px solid #474547;
+  display: grid;
+  height: 20em;
+  grid-template-columns: 50% 50%;
+  
+}
+
+.landing_page_middle_first_video_container_text,
+.landing_page_middle_third_video_container_text {  
+  /* border: 1px solid white; */
+  color:white;
+  position: relative;
+  top: 15%;
+  left: 15%;
+  width: 80%;
+  height: 60%;
+  font-size: 2vmax;
+}
+
+.landing_page_middle_second_video_container_text{
+   /* border: 1px solid white; */
+   color:white;
+   position: relative;
+   top: 15%;
+   left:  10%;
+   width: 80%;
+   height: 60%;
+   font-size: 2vmax;
+}
+
+
+.landing_page_middle_first_video_container_text_first_verb{
+  font-size: 3vmax;
+  font-weight: 500;
+  margin-right: 3%;
+  margin-bottom: 3%;
+  
+}
+
+.landing_page_middle_first_video_container_video,
+.landing_page_middle_third_video_container_video {
+  /* float: right; */
+  /* display: inline; */
+  /* border: 1px solid white; */
+  width: 100%;
+  height: 80%;;
+}
+
+.landing_page_middle_second_video_container_video{
+  width: 100%;
+  height: 80%;
+  
+}
+
+.landing_page_bottom_none{
+  display: none;
+}
+
+.landing_page_bottom {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/backgrd1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  box-shadow:inset 0 0 0 2000px rgba(31, 30, 30, 0.3);
+  opacity: .7;
+}
+
+.landing_page_bottom_text_box{
+  /* border: 3px solid red; */
+  text-align: center;
+  height: 100%;
+  
+}
+
+.landing_page_bottom_text_div{
+  /* border: 3px solid blue; */
+  position: relative;
+  text-align: center;
+  height: 30%;
+  top: 20% ;
+}
+
+.landing_page_bottom_text_box_frist{
+  font-size: 2vmax;
   color: white;
 }
-/* 소개글  */
-.landing_page_introduce_body {
+
+.landing_page_bottom_text_box_second{
+  font-size: 2vmax;
   color: white;
+}
+
+.landing_page_bottom_text_box_third{
+  position: relative;
+  top: 35%;
+  border: none;
+  outline: none;
+  border-radius:9999px;
+  width: 25%;
+  height: 5%;
+  font-size: 1.3vmax;
+  text-align: center;
+  
+}
+
+.landing_page_bottom_footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3%;
+  /* border: 1px solid green; */
+  background-color: #E9E9E9;
+  opacity: 0.7;
+  padding-top: 1%;
+  padding-left: 1%;
+  font-size: 1vmax;
 }

@@ -3,10 +3,10 @@
   color: white;
 }
 .landing_nav_page_navbar_page {
-
-  border-bottom: 2px solid #302f30;
+  /* border-bottom: 2px solid #302f30; */
+  background-color: black;
+  opacity: 0.4;
   margin: 0;
-
   height: 5%;
   color: white;
 }
@@ -16,6 +16,7 @@
   height: 90%;
   margin-left: 2%;
   margin-top: 0.4%;
+  position: fixed;
 }
 
 .landing_nav_page_navbar_text {
