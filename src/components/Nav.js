@@ -1,79 +1,43 @@
-import React from "react";
-import { Route } from "react-router-dom";
+import React, { useState } from "react";
+
+import { Link, withRouter } from "react-router-dom";
+
 import "./Nav.css";
-import logo from "../tvlogo.png";
-import Login from "./Login";
-import Logout from "./Logout";
-import axios from "axios";
+import user from "../img/user.png";
+import user2 from "../img/user2.png";
 
-class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isModalOpen: false,
-    };
-  }
-
-  handleModalOpen = () => {
-    this.setState({ isModalOpen: true });
+const Nav = ({
+  history,
+  isLoggedIn,
+  closeModal,
+  handleOnClickModal,
+  toggleModal,
+}) => {
+  const handleGoHome = () => {
+    closeModal();
+    history.push("/");
   };
 
-  handleModalClose= () => {
-    this.setState({ isModalOpen: false })
-  }
-
-  render() {
-    return (
-      <div className="navbar">
-        <div className="nav-wrapper">
-          <div className="nav-logo">
-            <img src={logo} alt="logo" className="logo-img" />
-            <span className="nav-head">SlowTV</span>
-          </div>
-          <div className="nav-btns">
-            {this.props.isLoggedin === false ? (
-              <div>
-                <span className="nav-register-btn">Register</span>
-                <button type="button" onClick={this.handleModalOpen}>Login</button>
-                {/* <Login
-                  isOpen={this.state.isModalOpen}
-                  handleResponseSuccess={this.props.handleResponseSuccess}
-                  handleLoggedin={this.props.handleLoggedin}
-                /> */}
-                <Login
-                  isOpen={this.state.isModalOpen}
-                  handleModalClose={this.handleModalClose}
-                  handleResponseSuccess={this.props.handleResponseSuccess}
-                  handleGetUserInfo={this.props.handleGetUserInfo}
-                  isLoggedin={this.props.isLoggedin}
-                  // handleLoggedin={props.handleLoggedin}
-                  // handleGetUserInfoSocial={this.props.handleGetUserInfoSocial}
-                  email={this.props.email}
-                  nickname={this.props.nickname}
-                />
-              </div>
-            ) : (
-                <div>
-                  <button
-                    className="NavLogoutBTN"
-                    onClick={this.props.handleLogoutModalOpen}
-                  >
-                    Logout
-                </button>
-                  <Logout
-                    // open={this.props.isLoggedin}
-                    open={this.props.isLogoutModalOpen}
-                    handleLogoutModalClose={this.props.handleLogoutModalClose}
-                    handleLogout={this.props.handleLogout}
-                  ></Logout>
-                </div>
-              )}
-          </div>
+  return (
+    <div className="landing_nav_page_navbar_page">
+      <div className="landing_nav_page_navbar">
+        <div className="landing_nav_page_navbar_text" onClick={handleGoHome}>
+          <span className="landing_nav_page_navbar_Slow">Slow</span>
+          <span className="landing_nav_page_navbar_TV">TV</span>
         </div>
+
+        {isLoggedIn ? (
+          <span className="nav_page_icon_box" onClick={toggleModal}>
+            <img className="nav_page_icon" src={user} alt="profile"></img>
+          </span>
+        ) : (
+          <span className="nav_page_icon_box" onClick={toggleModal}>
+            <img className="nav_page_icon" src={user} alt="profile"></img>
+          </span>
+        )}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default Nav;
-
+export default withRouter(Nav);

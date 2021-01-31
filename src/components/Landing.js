@@ -1,119 +1,223 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Nav from "./Nav";
+import React, { useEffect, useState } from "react";
+import LandingNavContainers from "../containers/LandingNavContainers";
+import NavContainer from "../containers/NavContainer";
+import ModalContainer from "../containers/ModalContainer";
+import { withRouter } from "react-router-dom";
+import video1 from "../img/fireplace.mov";
+import video2 from "../img/snowtown.mov";
+import video3 from "../img/sunsetbeach.mov";
 import "./Landing.css";
-import Login from "./Login"
+const Landing = ({
+  history,
+  isLoggedIn,
+  isModalClicked,
+  nickname,
+  closeModal,
+}) => {
+  const [position, setPosition] = useState(0);
+  function onScroll() {
+    setPosition(window.scrollY);
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
-const LandingPage = (props) => {
+  function handleScrollR(num, position) {
+    if (num < position) {
+      return position;
+    }
+  }
+
+  function handleScrollL(num, position) {
+    if (num > position) {
+      return position;
+    }
+  }
+  const handleGetStarted = () => {
+    closeModal();
+    history.push("/contents");
+  };
   return (
-    <div className="landing-page">
-      <div className="nav-container">
-        <div className="overlay">
-          {/* <Nav
-            handleResponseSuccess={props.handleResponseSuccess}
-            isLoggedin={props.isLoggedin}
-            // handleLoggedin={props.handleLoggedin}
-            handleGetUserInfo={props.handleGetUserInfo}
-            handleGetUserInfoSocial={props.handleGetUserInfoSocial}
-            email={props.email}
-            nickname={props.nickname}
-
-            handleLogout={props.handleLogout}
-            handleLogoutModalOpen={props.handleLogoutModalOpen}
-            handleLogoutModalClose={props.handleLogoutModalClose}
-            isLogoutModalOpen={props.isLogoutModalOpen}
-            handleOpenLogin={props.handleOpenLogin}
-          /> */}
-          <>
-            <Link className="start-link" to="/contents">
-              Get Started
-            </Link>
-            <div className="inner">
-              <h2 className="msg-title">{props.nickname === "" ? ("Welcome to SlowTV") : (`Hi, ${props.nickname}`)}!</h2>
-              <h3 className="msg-intro1">
-                Exclusive collection of nature videos
-              </h3>
-              <h3 className="msg-intro2">Watch anywhere. Relax anytime.</h3>
+    <div className="landing_page">
+      <div className="landing_page_top">
+        {isLoggedIn ? <NavContainer /> : <LandingNavContainers />}
+        {isModalClicked ? <ModalContainer /> : <div></div>}
+        {nickname ? (
+          <div className="landing_page_top_text_box">
+            <div
+              className="landing_page_top_text_box_frist"
+              style={{ transform: `translateY(${position / 12}px)` }}
+            >
+              Hi, {nickname}!
             </div>
-            <Nav
-            handleResponseSuccess={props.handleResponseSuccess}
-            isLoggedin={props.isLoggedin}
-            // handleLoggedin={props.handleLoggedin}
-            handleGetUserInfo={props.handleGetUserInfo}
-            handleGetUserInfoSocial={props.handleGetUserInfoSocial}
-            email={props.email}
-            nickname={props.nickname}
-
-            handleLogout={props.handleLogout}
-            handleLogoutModalOpen={props.handleLogoutModalOpen}
-            handleLogoutModalClose={props.handleLogoutModalClose}
-            isLogoutModalOpen={props.isLogoutModalOpen}
-            handleOpenLogin={props.handleOpenLogin}
-          />
-          </>
+            <div
+              className="landing_page_top_text_box_second"
+              style={{ transform: `translateY(${position / 12}px)` }}
+            >
+              Welcome Back to SlowTV
+            </div>
+            <button
+              className="landing_page_top_text_box_third"
+              onClick={handleGetStarted}
+            >
+              Get started
+            </button>
+          </div>
+        ) : (
+          <div className="landing_page_top_text_box">
+            <div
+              className="landing_page_top_text_box_frist"
+              style={{ transform: `translateY(${position / 12}px)` }}
+            >
+              Find your calm
+            </div>
+            <div
+              className="landing_page_top_text_box_second"
+              style={{ transform: `translateY(${position / 12}px)` }}
+            >
+              Experience the aesthetics of slowness for a moment.
+            </div>
+            <button
+              className="landing_page_top_text_box_third"
+              onClick={handleGetStarted}
+            >
+              Get started
+            </button>
+          </div>
+        )}
+      </div>
+      <div className="landing_page_middle">
+        <div className="landing_page_middle_first_video_container">
+          <div className="landing_page_middle_first_video_container_text">
+            <div
+              className="landing_page_middle_first_video_container_text_first_phrase"
+              style={{ transform: `translateY(${position / 50}px)` }}
+            >
+              Sounds For Relaxing
+            </div>
+            <div className="landing_page_middle_first_video_container_text_second_phrase">
+              Take a seat and listen <br /> to the crackling bonfire sounds.
+            </div>
+          </div>
+          <video
+            className="landing_page_middle_first_video_container_video"
+            style={{
+              transform: `translateX(${handleScrollR(
+                20,
+                -position / 4 + 150
+              )}px)`,
+            }}
+            autoPlay
+            muted
+            loop
+          >
+            <source
+              src={video1}
+              type="video/mp4"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              title="video"
+            />
+          </video>
+        </div>
+        <div className="landing_page_middle_second_video_container">
+          <video
+            className="landing_page_middle_second_video_container_video"
+            style={{
+              transform: `translateX(${handleScrollL(
+                -65,
+                position / 2 - 400
+              )}px)`,
+            }}
+            autoPlay
+            muted
+            loop
+          >
+            <source
+              src={video2}
+              type="video/mp4"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              title="video"
+            />
+          </video>
+          <div className="landing_page_middle_second_video_container">
+            <div
+              className="landing_page_middle_second_video_container_text"
+              style={{ transform: `translateY(${position / 50}px)` }}
+            >
+              <div className="landing_page_middle_second_video_container_text_first_phrase">
+                Non-stimulating video
+              </div>
+              <div className="landing_page_middle_second_video_container_text_second_phrase">
+                Enjoy our exclusive collection <br />
+                of nature videos.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="landing_page_middle_third_video_container">
+          <div className="landing_page_middle_third_video_container_text">
+            <div className="landing_page_middle_third_video_container_text_first_phrase">
+              When you need a break
+            </div>
+            <div className="landing_page_middle_third_video_container_text_second_phrase">
+              Watch anywhere, relax anytime
+              <br />
+              here on SlowTV.
+            </div>
+          </div>
+          <video
+            className="landing_page_middle_third_video_container_video"
+            style={{
+              transform: `translateX(${handleScrollR(
+                15,
+                -position / 3 + 400
+              )}px)`,
+            }}
+            autoPlay
+            muted
+            loop
+          >
+            <source
+              src={video3}
+              type="video/mp4"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              title="video"
+            />
+          </video>
         </div>
       </div>
 
-      <div className="landing-home">
-        <div></div>
-      </div>
-
-      <div className="landing-middle">
-        <div className="video1-container">
-          <div className="video1-text">
-            Enjoy in your room, listening to the sound of waves and the relaxing
-            crackling bonfire sounds.
+      <div className="landing_page_bottom">
+        <div className="landing_page_bottom_text_box">
+          <div className="landing_page_bottom_text_div">
+            <div className="landing_page_bottom_text_box_frist">
+              Find your calm
+            </div>
+            <div
+              className="landing_page_bottom_text_box_second"
+              style={{ transform: `translateY(${position / 50}px)` }}
+            >
+              Experience the aesthetics of slowness for a moment.
+            </div>
           </div>
-          <iframe
-            className="video1"
-            src="https://drive.google.com/file/d/1HrF1a8Gw4QI2GYEyVHrPNyafwi10zaxP/preview"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            title="video"
-          />
+          <button
+            className="landing_page_bottom_text_box_third"
+            onClick={handleGetStarted}
+          >
+            Get started
+          </button>
         </div>
-        <div className="video2-container">
-          <iframe
-            className="video2"
-            src="https://drive.google.com/file/d/1a1o7aFcOYbnROTmSHjdYvG6Ii5HLh3Mw/preview"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            title="video"
-          />
-          <div className="video2-text">
-            What do you listen to on the way to work every morning?
-          </div>
+        <div className="landing_page_bottom_footer">
+          Copyright © 2021 YouTube. All rights reserved
         </div>
-        <div className="video3-container">
-          <div className="video2-text">
-            What do you listen to on the way to work every morning?
-          </div>
-          <iframe
-            className="video3"
-            src="https://drive.google.com/file/d/1a1o7aFcOYbnROTmSHjdYvG6Ii5HLh3Mw/preview"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            title="video"
-          />
-        </div>
-
-        {/* <LandingVideos />
-        <video className="landing-video1"></video> */}
-      </div>
-
-      <div className="landing-bottom">
-        <div></div>
       </div>
     </div>
   );
 };
-
-// const LandingVideos = () => {
-//   return (
-//     <div className="landing_video">
-//       <video src="https://drive.google.com/file/d/1a1o7aFcOYbnROTmSHjdYvG6Ii5HLh3Mw/preview" type="video/mp4" />
-//     </div>
-//   )
-// }
-
-export default LandingPage;
+export default withRouter(Landing);

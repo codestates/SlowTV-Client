@@ -1,50 +1,273 @@
-.fav-page {
-    background: rgb(29, 7, 39);
-    height: 100vh;
-    width: 100%;
+.favorites_page {
+  /* background-color: #212021; */
+  width: 100%;
+  height: 100%;
 }
 
-.fav-video-checkbox {
-    -webkit-transform: scale(2); /* Safari and Chrome */
-    -o-transform: scale(2); /* Opera */
-    transform: scale(2);
-    padding: 20px;
+.favorites_page_guest {
+  background-color: #212021;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-.fav-thumbnail-img {
-    width: 300px;
-    height: 220px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition-property: width, height;
-    transition-duration: 1s, 1s;
+.loaded_favorites_page {
+  width: 100%;
+  height: 100%;
 }
 
-.fav-thumbnail-img:hover {
-    border: 3px solid pink;
+.loaded_favorites_page_nothing {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
-.fav-thumbnail-title {
-    border: 1px solid rgb(29, 7, 39);
-    display: flexbox;
+
+.loaded_favorites_page_nothing_message {
+  margin-top: 3%;
+  margin-left: 3%;
+  color: white;
+  font-size: 2vmax;
 }
 
-.fav-remove-btn {
-    /* border: none; */
-    /* width: 32px; */
-    /* height: 32px; */
-    /* background-color: #eee; */
-    transition: all ease-in-out 0.2s;
-    cursor: pointer;
+.loaded_favorites_page_nothing_message_first{
+  font-size: 3vmax;
+  font-weight: 400;
+  font-style: italic;
 }
 
-/* .fav-remove-btn:hover {
-    border: 1px solid #888;
-    background-color: #ddd;
-} */
-/* 
-@media screen and (min-width: 1400px) {
-    .fav-thumbnail-list {
+.loaded_favorites_page_nothing_message_second{
+  margin-top: 2% ;
+  margin-left: 1%;
+  font-size: 1.7vmax;
+  font-weight: 330;
+}
 
-    }
-} */
+.loaded_favorites_page_nothing_message_third{
+  margin-top: 0.5% ;
+  margin-left: 1%;
+  font-size: 1.7vmax;
+  font-weight: 330;
+}
+
+.loaded_favorites_page_guest_message {
+  float: left;
+  margin-top: 10%;
+  margin-left: 15%;
+  color: white;
+  width: 30%;
+}
+.loaded_favorites_page_guest_message_first {
+  font-size: 3vmax;
+  font-weight: 400;
+  font-style: italic;
+}
+.loaded_favorites_page_guest_message_second {
+  font-size: 1.7vmax;
+  font-weight: 330;
+  margin-left: 1%;
+}
+
+.loaded_favorites_page_guest_message_third,
+.loaded_favorites_page_guest_message_fourth{
+  margin-top: 2% ;
+  margin-left: 1%;
+  font-size: 1.7vmax;
+  font-weight: 330;
+}
+
+
+.loaded_favorites_page_guest_sign_in_box {
+  border: 3px solid gray;
+  border-radius: 5px;
+  float: right;
+  position: relative;
+  width: 20%;
+  height: 40%;
+  right: 18%;
+  margin-top: 8%;
+  margin-right: 10%;
+}
+
+
+
+
+.loaded_favorites_page_guest_sign_in_email_box,
+.loaded_favorites_page_guest_sign_in_password_box {
+  margin-left: 4.5%;
+  margin-top: 4%;
+  width: 90%;
+  height: 13%;
+  border: 1px solid black;
+  background-color: white;
+  font-size: 1.2vmax;
+  border-radius: 5px;
+}
+
+.loaded_favorites_page_guest_sign_in_email_box_error,
+.loaded_favorites_page_guest_sign_in_password_box_error {
+  margin-left: 4.5%;
+  margin-top: 4%;
+  width: 90%;
+  height: 13%;
+  border: 2px solid #d12929;
+  background-color: white;
+  font-size: 1.2vmax;
+  border-radius: 5px;
+}
+
+.loaded_favorites_page_guest_sign_in_sign_in_box {
+  margin-left: 3%;
+  margin-top: 4%;
+  width: 90%;
+  height: 13%;
+  border: 1px solid black;
+  font-size: 1.2vmax;
+  border-radius: 5px;
+}
+
+
+.loaded_favorites_page_guest_sign_in_social_box {
+  margin-top: 8%;
+  width: 30%;
+  height: 10%;
+}
+
+
+.loaded_favorites_page_guest_sign_in_social_google_box {
+  display: inline;
+  width: 46%;
+  height: 100%;
+  
+}
+
+.loaded_favorites_page_guest_sign_in_social_github_box {
+  display: inline;
+  width: 46%;
+  height: 100%;
+}
+
+
+.loaded_favorites_page_guest_sign_in_box_hr {
+  margin-top: 10%;
+  border: 1px solid gray;
+}
+
+
+.loaded_favorites_page_guest_sign_in_sign_up_box {
+  margin-left: 23%;
+  margin-top: 6%;
+  width: 63%;
+  height: 13%;
+}
+
+
+
+.loaded_favorites_page_guest_sign_in_email_input,
+.loaded_favorites_page_guest_sign_in_password {
+  display: inline;
+  float: right;
+  width: 86%;
+  height: 68%;
+  border: none;
+  outline: none;
+  font-size: 1.2vmax;
+  margin-top: 1%;
+  border-radius: 3px;
+}
+
+
+.loaded_favorites_page_guest_sign_in_btn {
+  border-radius: 5px;
+  margin-left: 1%;
+  margin-top: 5%;
+  width: 98%;
+  height: 90%;
+  font-size: 1.2vmax;
+}
+
+
+.loaded_favorites_page_guest_sign_in_social_google_btn {
+  width: 46%;
+  margin-right: 2%;
+  height: 100%;
+  border-radius: 10px;
+}
+.loaded_favorites_page_guest_sign_in_social_github_btn {
+  width: 46%;
+  margin-left: 2%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.loaded_favorites_page_guest_sign_in_social_google_img,
+.loaded_favorites_page_guest_sign_in_social_githu_img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.loaded_favorites_page_guest_sign_up_btn {
+  border-radius: 5px;
+  font-size: 1vmax;
+  width: 90%;
+  height: 90%;
+}
+
+
+@media screen and (min-width: 1200px) {
+  .loaded_favorites_page_guest_sign_in_email_box,
+  .loaded_favorites_page_guest_sign_in_password_box,
+  .loaded_favorites_page_guest_sign_in_sign_in_box {
+    margin: auto;
+    margin-top: 4%;
+    width: 90%;
+    height: 13%;
+    border: 1px solid black;
+    font-size: 1.2vmax;
+    border-radius: 5px;
+  }
+
+  .loaded_favorites_page_guest_sign_in_email_box_error,
+  .loaded_favorites_page_guest_sign_in_password_box_error {
+    margin: auto;
+    margin-top: 4%;
+    width: 90%;
+    height: 13%;
+    border: 2px solid #d12929;
+    background-color: white;
+    font-size: 1.2vmax;
+    border-radius: 5px;
+  }
+}
+
+
+
+.favorites_login_box_right_login_form_OAuth_box {
+  margin: auto;
+  text-align: center;
+  width: 40%;
+  height: 7%;
+  margin-top: 8%;
+}
+
+
+.loaded_favorites_page_guest_sign_in_email_box_icon {
+  opacity: 0.5;
+  margin-top: 3%;
+  margin-left: 3%;
+  margin-right: 0%;
+  padding-right: 0%;
+  width: 5%;
+  height: 50%;
+}
+
+.loaded_favorites_page_guest_sign_in_password_box_icon {
+  opacity: 0.5;
+  margin-top: 3.4%;
+  margin-left: 3%;
+  margin-right: 0%;
+  padding-right: 0%;
+  width: 5%;
+  height: 50%;
+}

@@ -1,297 +1,451 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
+import LandingNavConatiner from "../containers/LandingNavContainers";
 import "./Login.css";
 import axios from "axios";
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      reconfirmPassword:"",
-      nickname: "",
-      errorMessage: "",
-      githubAccessToken: "",
-      googleAccessToken: "",
-      isBtnClicked: false
-    };
-    this.handleInputValue = this.handleInputValue.bind(this);
-    //this.githubLoginHandler = this.githubLoginHandler(this); //<- 여기서 바인드 하면 /undefined 로 이동하면서 흰화면 나옴 그래서 아래에서직접 바인드 처리
-    this.GITHUB_LOGIN_URL = "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
-    this.GOOGLE_LOGIN_URL = "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/login&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com"
-  }
-  // SlowTV 서버로 authorization code 를 보내주고 토큰을 받으면  state 를 바꿔주는 함수------------------------------------------------------------------------------------------
-  getAccessToken = async (authorizationCode) => {
-  let resgithub = await axios.post('https://server.slowtv24.com/callback-git',{ authorizationCode })
-  let githubT = resgithub.data.accessToken
-  if(githubT){
-    console.log('깃헙 엑세스토큰 가져오기 성공')
-    this.setState({
-      githubAccessToken:githubT
-    })
-    this.handleGetUserInfoSocial()
-  }
-  let resgoogle = await axios.post('https://server.slowtv24.com/callback-google',{ authorizationCode })
-  let googleT = resgoogle.data.accessToken
-  if (googleT) {
-    this.setState({ 
-      googleAccessToken: googleT,
-    })
-    this.handleGetUserInfoSocial()
-  }
-}
+import google from "../img/google.png";
+import github from "../img/github.png";
+import emailIcon from "../img/email-icon.png";
+import passwordIcon from "../img/lock.png";
+import cancel from "../img/cancel.png";
+import user from "../img/user.png";
+import welcome from "../img/welcome.png";
+import welcomeBack from "../img/welcome-back.png";
 
-  // 소셜로그인시 유저정보를 가져오는 함수(구글만 진행/ 상태 끌어올리기 못한 상태)----------------------------------------------------------------------------------
-  handleGetUserInfoSocial = () => {
-    if(this.state.googleAccessToken) {
-      console.log('구글 유저정보 가져오기 start')
-    axios.get(
-      `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${this.state.googleAccessToken}`
-    )
-      .then((res) => {
-        console.log('엑세스 토큰으로 받아온 유저정보', res)
-        return axios.post(
-          "https://server.slowtv24.com/social-login",
-          { email: res.data.email, nickname: res.data.name },
-          { withCredentials: true }
-        )
-      }).then((res) => {
-        console.log('소셜로그인 API로 온 응답(세션포함)', res)
-        this.props.handleResponseSuccess();
-        console.log('소셜로그인시 this.props', this.props)
-        this.props.handleGetUserInfo()
-        this.props.history.push("/contents");
-      })
-    } else {
-      console.log('깃헙 유저정보 가져오기 start')
-      axios.get('https://api.github.com/user', {
-        headers: {
-          authorization: `token ${this.state.githubAccessToken}`,
-        }
-      })
-      .then((res)=> {
-        console.log('깃헙 유저 정보', res.data.login, res.data.html_url)
-        return axios.post(
-          "https://server.slowtv24.com/social-login",
-          { email: res.data.html_url, nickname: res.data.login },
-          { withCredentials: true }
-        )
-      }).then((res) => {
-        console.log('소셜로그인 API로 온 응답(세션포함)', res)
-        this.props.handleResponseSuccess();
-        console.log('소셜로그인시 this.props', this.props)
-        this.props.handleGetUserInfo()
-        this.props.history.push("/contents");
-      })
-    }
-  }
-
-  // 소셜로그인 버튼을 눌렀을 때 실행될  첫번째 함수 (사용자 동의를 구하는 페이지로 리디렉션)------------------------------------------------------------------------------------------
-  handleGetGithubAuthorizationCode() {
-    window.location.assign(this.GITHUB_LOGIN_URL);
-  }
-  handleGetGoogleAuthorizationCode() {
-    window.location.assign(this.GOOGLE_LOGIN_URL);
-  }
-  //input에 들어가는 text 갱신 함수------------------------------------------------------------------------------------------
-  handleInputValue = (key) => (e) => {
-    this.setState({ [key]: e.target.value });
+const Login = ({
+  isClickedSignInBtn,
+  changeSignIn,
+  changeSignUp,
+  clickSignIn,
+  changeNickName,
+  changeEmail,
+  history,
+  clickGetStarted,
+}) => {
+  const GITHUB_LOGIN_URL =
+    "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
+  const githubLoginHandler = () => {
+    window.location.assign(GITHUB_LOGIN_URL);
   };
-  // 로그인 요청 함수------------------------------------------------------------------------------------------
-  handleLogin = () => {
-    const { email, password } = this.state;
-    if (!this.state.email || !this.state.password) {
-      this.setState({
-        errorMessage: "Please check your email and password again.",
-      });
-    } else {
-      axios
-        .post(
+
+  const GOOGLE_LOGIN_URL =
+    "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/contents&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
+  const googleLoginHandler = () => {
+    window.location.assign(GOOGLE_LOGIN_URL);
+  };
+
+  const [refresh, setRefresh] = useState("");
+  const [emailInputValue, setEmailInputValue] = useState(null);
+  const [passwordInputValue, setPasswordInputValue] = useState(null);
+  const [usernameInputValue, setUsernameInputValue] = useState(null);
+
+  const handleInputValue = (key) => (e) => {
+    if (key === "email") {
+      const emailValue = e.target.value.split("@");
+      if (emailValue.length !== 2) {
+        setEmailErrorMessage("Invalid email format");
+      } else {
+        setEmailErrorMessage(null);
+        setEmailInputValue(e.target.value);
+        console.log("emailInputValue값은?", emailInputValue);
+      }
+    } else if (key === "password") {
+      console.log(e.target.value.length);
+      if (e.target.value.length < 8) {
+        setPasswordErrorMessage("You must enter between 8 and 15 character");
+      } else {
+        setPasswordErrorMessage(null);
+        setPasswordInputValue(e.target.value);
+        console.log("passwordInputValue값은?", passwordInputValue);
+      }
+    } else if (key === "username") {
+      setUsernameInputValue(e.target.value);
+      console.log("usernameInputValue값은?", usernameInputValue);
+    }
+  };
+
+  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const handleChangeSignInBtn = () => {
+    setEmailErrorMessage(null);
+    setPasswordErrorMessage(null);
+    changeSignIn();
+  };
+
+  const handleChangeSignUpBtn = () => {
+    setEmailErrorMessage(null);
+    setPasswordErrorMessage(null);
+    changeSignUp();
+  };
+
+  const handleGetUserInfo = async () => {
+    const userInfo = await axios("https://server.slowtv24.com/userinfo", {
+      withCredentials: true,
+    });
+    sessionStorage.setItem("email", userInfo.data.userInfo.email);
+    sessionStorage.setItem("name", userInfo.data.userInfo.nickname);
+    changeEmail(userInfo.data.userInfo.email);
+    changeNickName(userInfo.data.userInfo.nickname);
+    clickGetStarted();
+    history.push("/contents");
+  };
+
+  const clickSignInBtn = async () => {
+    try {
+      if (
+        emailErrorMessage === null &&
+        passwordErrorMessage === null &&
+        emailInputValue !== null
+      ) {
+        const signIn = await axios.post(
           "https://server.slowtv24.com/login",
-          { email: email, password: password },
-          { withCredentials: true }
-        )
-        .then((res) => {
-          console.log("login post res>>>", res);
-          console.log('일반로그인시 this.props', this.props)
-          this.props.handleResponseSuccess(); // isLoggedin: true
-          this.props.handleGetUserInfo(); // email, nickname
-          this.props.history.push("/contents"); // 컨텐츠 페이지로 이동
-        });
+          {
+            email: emailInputValue,
+            password: passwordInputValue,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        if (signIn.data !== undefined) {
+          clickSignIn();
+          handleGetUserInfo();
+        }
+      }
+    } catch (error) {
+      console.log("ererer");
+      setErrorMessage("Please check your ID or password");
     }
   };
-  // 회원가입 요청 함수------------------------------------------------------------------------------------------
-  handleSignUp = () => {
-    const { email, nickname, password, reconfirmPassword } = this.state;
-    if (!email || !password || !nickname || !reconfirmPassword) {
-      this.setState({
-        errorMessage: "You must fill in all blanks to proceed.",
-      });
-    } else {
-      if(  password === reconfirmPassword) {
-      axios
-        .post(
-          "https://server.slowtv24.com/signup",
-          { email: email, password: password, nickname: nickname },
-          { withCredentials: true }
-        )
-        .then((res) => {
-          this.handleisBtnClickedLogin()
-        });
-    } else {
-      this.setState({
-        errorMessage: "Reconfirmation password mismatch",
-      });
-    }
-  }
+
+  const clickSignUp = async () => {
+    const signUp = await axios.post(
+      "https://server.slowtv24.com/signup",
+      {
+        nickname: usernameInputValue,
+        email: emailInputValue,
+        password: passwordInputValue,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+    handleChangeSignInBtn();
   };
-  // 회원가입 -> 로그인 화면 전환 ------------------------------------------------------------------------------------------
-  handleisBtnClickedLogin = () => {
-    this.setState({
-      isBtnClicked: false
-    })
-  }
-  // 로그인 -> 회원가입 화면 전환------------------------------------------------------------------------------------------
-  handleisBtnClickedSignup = () => {
-    this.setState({
-      isBtnClicked: true
-    })
-  }
 
-  //로그인 창 닫기 버튼 클릭시------------------------------------------------------------------------------------------
+  const handleGoBack = () => {
+    history.goBack();
+  };
 
-  // 렌딩이 끝난뒤 주소뒤에  authorization code가 붙어 있다면 그 값을 인자로  Access Token 을 받아오는 함수 실행
-  componentDidMount() {
-    const url = new URL(window.location.href)
-    const authorizationCode = url.searchParams.get('code')
-    console.log('어써리제이션코드', authorizationCode)
-    if (authorizationCode) {
-      this.getAccessToken(authorizationCode)
-    }
-  }
-  render() {
-    return (
-      <div>
-        {this.props.isOpen === false ? (
-          <></>
-        ) : (<div>
-          {this.state.isBtnClicked === false ? (
-            <div>
-{/*----------------------------------------------------- 로그인 페이지 */}
-                <div className="login">
-                  <div className="login-half left">
-{/* 로그인 헤드라인 & 닫기 버튼*/}
-                    <button className='loginClose' type="button" onClick={this.props.handleModalClose}>
-                      X
-                    </button>
-                  <h1 className= "loginHead">Login</h1>
-{/* 이메일 입력창 */}
-                  <input 
-                    className="loginInput"
-                    type="text"
-                    placeholder="Email"
-                    onChange={this.handleInputValue("email")}
-                  />
-                  <div>{/*줄바꿈을 위해서 추가*/}</div> 
-{/* 패스워드 입력창 */}
-                  <input className="loginInput"
-                    type="password"
-                    placeholder="Password"
-                    onChange={this.handleInputValue("password")}
-                    />
-                  <div>{/*줄바꿈을 위해서 추가*/}</div> 
-{/* 로그인 버튼 */}
-                  <button className='loginBtn' type="button" onClick={this.handleLogin}>
-                    Login
+  return (
+    <div className="login_page">
+      <LandingNavConatiner />
+      {isClickedSignInBtn ? (
+        <div className="login_box">
+          <div className="login_box_left_welcome_card">
+            <div className="login_box_left_welcome_card_phrase">
+              Welcome Back!
+            </div>
+
+            <div className="login_box_left_welcome_card_img_box">
+              <img
+                className="login_box_left_welcome_card_img"
+                src={welcome}
+                alt="Welcome back img"
+              ></img>
+            </div>
+
+            <div className="login_box_left_welcome_card_register_div">
+              <button
+                className="login_box_left_welcome_card_register_btn"
+                onClick={handleChangeSignUpBtn}
+              >
+                Register
               </button>
-                </div>
-                {/* <span className="bar bar-top"></span> */}
-                {/* <span className="login-or">OR</span> */}
-                {/* <span className="bar bar-bottom"></span> */}
-                <div className="login-half right">
-{/* 깃헙 소셜로그인 버튼 */}
-                  <button 
-                    className='loginBtn'
-                    onClick={this.handleGetGithubAuthorizationCode.bind(this)}>
-                    Login with GitHub
-                </button>
-{/* 구글 소셜로그인 버튼 */}
-                  <button className='loginBtn'
-                    onClick={this.handleGetGoogleAuthorizationCode.bind(this)}>
-                    Login with Gmail
-                </button>
-{/* 회원가입 권유 문구 */}
-                <div className='signupRecommend'>Not a member?</div>
-{/* 회원 가입하러가기 버튼 */}
-                  <button className='signupBtnLogin'
-                    onClick={this.handleisBtnClickedSignup}>
-                    Signup
-                </button>
-                <div>{this.state.errorMessage}</div>
-                </div>
+            </div>
+          </div>
+
+          <div className="login_box_right_login_form">
+            <div
+              className="login_box_right_login_form_cancel_box"
+              onClick={handleGoBack}
+            >
+              <img
+                className="login_box_right_login_form_cancel_img"
+                src={cancel}
+                alt="cancel"
+              ></img>
+            </div>
+            <div className="login_box_right_login_form_title">Login</div>
+
+            <div className="login_box_right_login_form_email_box_title_div">
+              <div className="login_box_right_login_form_email_box_title">
+                Email
+              </div>
+
+              <div
+                className={
+                  emailErrorMessage
+                    ? "login_box_right_login_form_email_box_error"
+                    : "login_box_right_login_form_email_box"
+                }
+              >
+                <img
+                  className="login_box_right_login_form_email_box_input_icon"
+                  src={emailIcon}
+                  alt="emailIcon"
+                ></img>
+
+                <input
+                  className="login_box_right_login_form_email_box_input"
+                  type="email"
+                  autoComplete="on"
+                  onChange={handleInputValue("email")}
+                  autoFocus="ture"
+                  placeholder="email"
+                ></input>
               </div>
             </div>
-          ) : (<div>
-{/* -----------------------------------------------------회원가입 페이지 */}
-            <div className="login">
-              <div className="login-half left">
-              <button className='loginClose' type="button" onClick={this.props.handleModalClose}>
-                    X
-              </button>
-              <h1 className= "signupHead">Signup</h1>
-{/* 이메일 입력창 */}
-                <input className="signupInput"
-                  type="text"
-                  placeholder="Email"
-                  onChange={this.handleInputValue("email")}
-                />
-                <div>{/*줄바꿈을 위해서 추가*/}</div> 
-{/* 닉네임 입력창 */}
-                <input className="signupInput"
-                  type="text"
-                  placeholder="Nickname"
-                  onChange={this.handleInputValue("nickname")}
-                />
-                <div>{/*줄바꿈을 위해서 추가*/}</div> 
-{/* 비밀번호 입력창 */}
-                <input className="signupInput"
-                  type="password"
-                  placeholder="Password"
-                  onChange={this.handleInputValue("password")}
-                />
-                <div>{/*줄바꿈을 위해서 추가*/}</div> 
-{/* 비밀번호 재입력창 */}
-                <input className="signupInput"
-                  type="password"
-                  placeholder="Confirm password"
-                  onChange={this.handleInputValue("reconfirmPassword")}
-                />
-{/* 회원가입 버튼 */}
-                <button className='signupBtn' type="button" onClick={this.handleSignUp}>
-                  signUp
-              </button>
+
+            <div
+              className={
+                emailErrorMessage
+                  ? "login_box_right_login_form_email_box_error_message"
+                  : "login_box_right_login_form_email_box_error_message_hidden"
+              }
+            >
+              Invalid email format
+            </div>
+
+            <div className="login_box_right_login_form_password_box_title_div">
+              <div className="login_box_right_login_form_password_box_title">
+                password
               </div>
-              {/* <span className="bar bar-top"></span> */}
-              {/* <span className="login-or">OR</span> */}
-              {/* <span className="bar bar-bottom"></span> */}
-              <div className="login-half right">
-{/*로그인  환영 문구 */}
-<div className='loginRecommend'>Wellcome!</div>
-{/* 로그인 화면가기 버튼 */}
-                <button className='loginInSignup' type="button"
-                  onClick={this.handleisBtnClickedLogin}>
-                  Login
-                </button>
-{/* 유효성 검사 문구 */}
-                <div>{this.state.errorMessage}</div>
+
+              <div
+                className={
+                  passwordErrorMessage
+                    ? "login_box_right_login_form_password_box_error"
+                    : "login_box_right_login_form_password_box"
+                }
+              >
+                <img
+                  className="login_box_right_login_form_password_box_input_icon"
+                  src={passwordIcon}
+                  alt="passwordIcon"
+                ></img>
+
+                <input
+                  className="login_box_right_login_form_password_box_input"
+                  type="password"
+                  onChange={handleInputValue("password")}
+                  placeholder="password"
+                ></input>
+              </div>
+            </div>
+
+            <div
+              className={
+                passwordErrorMessage
+                  ? "login_box_right_login_form_password_box_error_message"
+                  : "login_box_right_login_form_password_box_error_message_hidden"
+              }
+            >
+              You must enter between 8 and 15 character
+            </div>
+
+            <div
+              className={
+                errorMessage
+                  ? "login_box_right_login_form__box_error_message"
+                  : "login_box_right_login_form__box_error_message_hidden"
+              }
+            >
+              {errorMessage}
+            </div>
+
+            <div className="login_box_right_login_form_sign_in_box">
+              <button
+                className="login_box_right_login_form_sign_in_box_btn2"
+                onClick={clickSignInBtn}
+              >
+                Sign in
+              </button>
+            </div>
+
+            <div className="login_box_right_login_form_OAuth_box">
+              <div
+                className="login_box_right_login_form_OAuth_box_google_btn"
+                onClick={googleLoginHandler}
+              >
+                <img
+                  className="login_box_right_login_form_OAuth_box_google_img"
+                  src={google}
+                  alt="google"
+                ></img>
+              </div>
+
+              <div
+                className="login_box_right_login_form_OAuth_box_github_btn"
+                onClick={githubLoginHandler}
+              >
+                <img
+                  className="login_box_right_login_form_OAuth_box_github_img"
+                  src={github}
+                  alt="github"
+                ></img>
               </div>
             </div>
           </div>
-            )
-          } </div>
-          )}
-      </div>
-    );
-  }
-}
+        </div>
+      ) : (
+        <div className="sign_in_box">
+          <div className="sign_in_box_right_register_form">
+            <div
+              className="login_box_right_login_form_cancel_box"
+              onClick={handleGoBack}
+            >
+              <img
+                className="login_box_right_login_form_cancel_img"
+                src={cancel}
+                alt="cancel"
+              ></img>
+            </div>
+            <div className="sign_box_right_register_form_title">Register</div>
+
+            <div className="login_box_right_login_form_email_box_title_div">
+              <div className="login_box_right_login_form_email_box_title">
+                Name
+              </div>
+
+              <div className="login_box_right_login_form_email_box">
+                <img
+                  className="login_box_right_login_form_email_box_input_icon"
+                  src={user}
+                  alt="user"
+                ></img>
+
+                <input
+                  className="login_box_right_login_form_email_box_input"
+                  type="text"
+                  autoComplete="on"
+                  onChange={handleInputValue("username")}
+                  autoFocus="on"
+                  placeholder="name"
+                ></input>
+              </div>
+            </div>
+
+            <div className="login_box_right_login_form_email_box_title_div">
+              <div className="login_box_right_login_form_email_box_title">
+                Email
+              </div>
+
+              <div
+                className={
+                  emailErrorMessage
+                    ? "login_box_right_login_form_email_box_error"
+                    : "login_box_right_login_form_email_box"
+                }
+              >
+                <img
+                  className="login_box_right_login_form_email_box_input_icon"
+                  src={emailIcon}
+                  alt="emailIcon"
+                ></img>
+
+                <input
+                  className="login_box_right_login_form_email_box_input"
+                  type="email"
+                  autoComplete="on"
+                  onChange={handleInputValue("email")}
+                  placeholder="email"
+                ></input>
+              </div>
+            </div>
+
+            <div
+              className={
+                emailErrorMessage
+                  ? "login_box_right_login_form_email_box_error_message"
+                  : "login_box_right_login_form_email_box_error_message_hidden"
+              }
+            >
+              Invalid email format
+            </div>
+
+            <div className="login_box_right_login_form_password_box_title_div">
+              <div className="login_box_right_login_form_password_box_title">
+                Password
+              </div>
+
+              <div
+                className={
+                  passwordErrorMessage
+                    ? "login_box_right_login_form_password_box_error"
+                    : "login_box_right_login_form_password_box"
+                }
+              >
+                <img
+                  className="login_box_right_login_form_password_box_input_icon"
+                  src={passwordIcon}
+                  alt="passwordIcon"
+                ></img>
+
+                <input
+                  className="login_box_right_login_form_password_box_input"
+                  type="password"
+                  onChange={handleInputValue("password")}
+                  placeholder="password"
+                ></input>
+              </div>
+            </div>
+
+            <div
+              className={
+                passwordErrorMessage
+                  ? "login_box_right_login_form_password_box_error_message"
+                  : "login_box_right_login_form_password_box_error_message_hidden"
+              }
+            >
+              You must enter between 8 and 15 character
+            </div>
+
+            <div className="login_box_right_login_form_sign_in_box">
+              <button
+                className="login_box_right_login_form_sign_in_box_btn2"
+                onClick={clickSignUp}
+              >
+                Register
+              </button>
+            </div>
+          </div>
+          <div className="sign_in_box_left_welcome_card">
+            <div className="sign_in_box_left_welcome_card_phrase">Welcome!</div>
+
+            <div className="sign_in_box_left_welcome_card_box">
+              <img
+                className="sign_in_box_left_welcome_card_img"
+                src={welcomeBack}
+                alt="Welcome back img"
+              ></img>
+            </div>
+
+            <div className="sign_in_box_left_welcome_card_login_div">
+              <button
+                className="sign_in_box_left_welcome_card_login_btn"
+                onClick={handleChangeSignInBtn}
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default withRouter(Login);

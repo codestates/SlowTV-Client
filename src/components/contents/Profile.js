@@ -1,277 +1,347 @@
-// Profile.js 하던거
-// 리듀서에서 가져온 props를 ChangeUsername, ChangePassword로 보내기
-
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-// import Side from "../Side";
-import FakeSide from "../Fake/FakeSide";
-import FakeNav from "../Fake/FakeNav";
+import SideRemoteControlContainer from "../../containers/SideRemoteControlContainer";
+import NavContainer from "../../containers/NavContainer";
+import ModalContainer from "../../containers/ModalContainer";
+import axios from "axios";
+import google from "../../img/google.png";
+import github from "../../img/github.png";
+import emailIcon from "../../img/email-icon.png";
+import passwordIcon from "../../img/lock.png";
 import "./Profile.css";
-// import ChangeUsername from "./ChangeUsername";
 
 const Profile = ({
-  // name,
-  // password,
-  // hadleOnChangeName,
-  // hadleOnChangePassword,
-  handleOnClickNameBtn,
-  handleOnClickPasswordBtn,
-  isClickedChangeNameBtn,
-  isClickedChangePasswordBtn,
+  history,
+  email,
+  nickname,
+  isModalClicked,
+  isLoggedIn,
+  clickLogout,
+  githubAccessToken,
+  googleAccessToken,
+  clickSignIn,
+  changeNickName,
+  changeEmail,
+  changeSignUp,
 }) => {
-  // console.log("🚀 ~ file: Profile.js ~ line 21 ~ password", password);
-  // console.log("🚀 ~ file: Profile.js ~ line 21 ~ name", name);
-  // const [isClickedUBtn, setIsClickedUBtn] = useState(false);
-  // const [isClickedPWBtn, setIsClickedPWBtn] = useState(false);
-  // const handleOnClickUBtn = () => {
-  //   setIsClickedPWBtn(false);
-  //   setIsClickedUBtn(!isClickedUBtn);
-  // };
-  // const handleOnClickPWbtn = () => {
-  //   setIsClickedUBtn(false);
-  //   setIsClickedPWBtn(!isClickedPWBtn);
-  // };
-
-  // New name
-  const [newNameInputValue, setNewNameInputValue] = useState("");
-  // Old PW
-  const [oldPasswordInputValue, setOldPasswordInputValue] = useState("");
-  // New PW
-  const [newPasswordInputValue, setNewPasswordInputValue] = useState("");
-  // Confirm PW
-  const [confirmPasswordInputValue, setConfirmPasswordInputValue] = useState(
-    ""
-  );
-
-  // ! change username
-  // 1. 인풋 벨류 받아서 셋스테이트 하기
-  const handleNameInputValue = (key) => (e) => {
-    setNewNameInputValue({ [key]: e.target.value }); // 객체 리터럴, 객체에 동적으로 속성 추가 가능, [변수] ex)[key] 가 속성명(키)이 되어줌.
-    // 예전 문법에선 obj[key] 이렇게 객체 바깥에서 해야 했다면, ES2015 문법에서는 객체 리터럴 안에 동적 속성을 선언해도 됨.
-    // key에 email이 들어가면 email에 e.target.value 값이 들어감
-  };
-  // ! 2. 네트워크 요청할 값 스테이트를 비구조화
-  const { newUsername } = newNameInputValue;
-
-  //! 3. 폼에서 update 버튼 누르면 axios 보내고 바뀐 유저네임 값도 받음
-  const handleChangeUsername = (e) => {
-    console.log(
-      "🚀 ~ file: Profile.js ~ line 46 ~ handleChangeUsername ~ username",
-      newUsername
-    );
-    // axios.post/유저네임 바꾸는 api
-    // axios.get/유저네임 받기
-    // setState 유저 네임
-    e.preventDefault();
+  const handleGoSignUpPage = () => {
+    changeSignUp();
+    history.push("/login");
   };
 
-  // ! change PW
-  //! 1.인풋 벨류 받아서 셋스테이트 하기
-  //  1. old
-  const handleOldPasswordInputValue = (key) => (e) => {
-    setOldPasswordInputValue({ [key]: e.target.value }); // 객체 리터럴, 객체에 동적으로 속성 추가 가능, [변수] ex)[key] 가 속성명(키)이 되어줌.
-    // 예전 문법에선 obj[key] 이렇게 객체 바깥에서 해야 했다면, ES2015 문법에서는 객체 리터럴 안에 동적 속성을 선언해도 됨.
-    // key에 email이 들어가면 email에 e.target.value 값이 들어감
-  };
-  //  1. new
-  const handleNewPasswordInputValue = (key) => (e) => {
-    setNewPasswordInputValue({ [key]: e.target.value }); // 객체 리터럴, 객체에 동적으로 속성 추가 가능, [변수] ex)[key] 가 속성명(키)이 되어줌.
-    // 예전 문법에선 obj[key] 이렇게 객체 바깥에서 해야 했다면, ES2015 문법에서는 객체 리터럴 안에 동적 속성을 선언해도 됨.
-    // key에 email이 들어가면 email에 e.target.value 값이 들어감
-  };
-  //  1. confirm
-  const handleConfirmPasswordInputValue = (key) => (e) => {
-    setConfirmPasswordInputValue({ [key]: e.target.value }); // 객체 리터럴, 객체에 동적으로 속성 추가 가능, [변수] ex)[key] 가 속성명(키)이 되어줌.
-    // 예전 문법에선 obj[key] 이렇게 객체 바깥에서 해야 했다면, ES2015 문법에서는 객체 리터럴 안에 동적 속성을 선언해도 됨.
-    // key에 email이 들어가면 email에 e.target.value 값이 들어감
-  };
+  const [emailInputValue, setEmailInputValue] = useState(null);
+  const [passwordInputValue, setPasswordInputValue] = useState(null);
 
-  // ! 2. 네트워크 요청할 값 스테이트를 비구조화
-  const { oldPassword } = oldPasswordInputValue;
-  const { newPassword } = newPasswordInputValue;
-  const { confirmPassword } = confirmPasswordInputValue;
-
-  // ! 3. 폼에서 update 버튼 누르면 axios 보내고 바뀐 유저네임 값도 받음
-  const handleUpdatePassword = (e) => {
-    console.log(
-      "🚀 ~ file: Profile.js ~ line 46 ~ handleChangeUsername ~ username",
-      oldPassword
-    );
-    console.log(
-      "🚀 ~ file: Profile.js ~ line 40 ~ newPasswordInputValue",
-      newPassword
-    );
-    console.log(
-      "🚀 ~ file: Profile.js ~ line 43 ~ confirmPasswordInputValue",
-      confirmPassword
-    );
-    if (newPassword === confirmPassword) {
-      console.log("비밀번호 일치 확인");
-      // axios.post/비밀번호 바꾸는 api
-      // 로그아웃 시키거나 안시키거나
+  const handleInputValue = (key) => (e) => {
+    if (key === "email") {
+      const emailValue = e.target.value.split("@");
+      if (emailValue.length !== 2) {
+        setEmailErrorMessage("Invalid email format");
+      } else {
+        setEmailErrorMessage(null);
+        setEmailInputValue(e.target.value);
+        console.log("emailInputValue값은?", emailInputValue);
+      }
+    } else if (key === "password") {
+      console.log(e.target.value.length);
+      if (e.target.value.length < 8) {
+        setPasswordErrorMessage("You must enter between 8 and 15 character");
+      } else {
+        setPasswordErrorMessage(null);
+        setPasswordInputValue(e.target.value);
+        console.log("passwordInputValue값은?", passwordInputValue);
+      }
     }
-
-    e.preventDefault();
   };
 
-  // ! 비밀번호 일치 확인
-  // 1. 이전 비밀번호가 맞는지 -> 서버에서
-  // 2. new 와 cofirm이 일치하는지 -> 클라이언트에서
+  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
+
+  const clickSignInBtn = async () => {
+    if (
+      emailErrorMessage === null &&
+      passwordErrorMessage === null &&
+      emailInputValue !== null
+    ) {
+      const signIn = await axios.post(
+        "https://server.slowtv24.com/login",
+        {
+          email: emailInputValue,
+          password: passwordInputValue,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      if (signIn.data !== undefined) {
+        clickSignIn();
+        handleGetUserInfo();
+      }
+    }
+  };
+
+  const handleGetUserInfo = async () => {
+    const userInfo = await axios("https://server.slowtv24.com/userinfo", {
+      withCredentials: true,
+    });
+    sessionStorage.setItem("email", userInfo.data.userInfo.email);
+    sessionStorage.setItem("name", userInfo.data.userInfo.nickname);
+    changeEmail(userInfo.data.userInfo.email);
+    changeNickName(userInfo.data.userInfo.nickname);
+  };
+
+  const GITHUB_LOGIN_URL =
+    "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
+  const githubLoginHandler = () => {
+    window.location.assign(GITHUB_LOGIN_URL);
+  };
+
+  const GOOGLE_LOGIN_URL =
+    "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/contents&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
+  const googleLoginHandler = () => {
+    window.location.assign(GOOGLE_LOGIN_URL);
+  };
+
+  const handleLogouttttt = async () => {
+    try {
+      console.log("logout");
+      const logout = await axios.post(
+        "https://server.slowtv24.com/logout",
+        null,
+        {
+          withCredentials: true,
+        }
+      );
+      sessionStorage.clear();
+      changeEmail(null);
+      changeNickName(null);
+      clickLogout();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const messageForSocial = () => {
+    alert("You can't change your profile at social login.");
+  };
 
   return (
-    <div className="profile-page">
-      <FakeNav />
-      {/* <Side /> */}
-      <FakeSide />
+    <div className="profile_page">
+      <NavContainer />
+      <SideRemoteControlContainer />
+      {isModalClicked ? <ModalContainer /> : <div></div>}
 
-      <div className="test-profile-page">
-        {/* 모달 버튼 큰 틀*******************************************************/}
-        <div className="div-modal-btn-list">
-          <div className="title-profile">Profile</div>
+      {isLoggedIn ? (
+        <div className="profile_page_container">
+          <div className="profile_page_container_title">Profile</div>
+          <div className="profile_page_inner_container">
+            <div className="profile_page_box_user_id">
+              <div className="profile_page_current_user_id">ID :</div>
+              <div className="profile_page_current_user_id_value">{email}</div>
+            </div>
+            {githubAccessToken || googleAccessToken ? (
+              <div
+                className="profile_page_box_social_username"
+                value="update-username"
+                onClick={messageForSocial}
+              >
+                <div
+                  className="profile_page_current_username"
+                  value="update-username"
+                >
+                  Current Username :
+                </div>
+                <div
+                  className="profile_page_current_username_value"
+                  value="update-username"
+                >
+                  {nickname}
+                </div>
+              </div>
+            ) : (
+              <Link
+                className="Profile_Link"
+                to="/contents/profile/update-username"
+              >
+                <div
+                  className="profile_page_box_username"
+                  value="update-username"
+                >
+                  <div
+                    className="profile_page_current_username"
+                    value="update-username"
+                  >
+                    Current Username :
+                  </div>
+                  <div
+                    className="profile_page_current_username_value"
+                    value="update-username"
+                  >
+                    {nickname}
+                  </div>
+                </div>
+              </Link>
+            )}
 
-          {/* Username 네모 칸********************************************************/}
-          <div className="div-modal-btn">
-            <div className="div-modal-btn-text" onClick={handleOnClickNameBtn}>
-              Username
+            {githubAccessToken || googleAccessToken ? (
+              <div
+                className="profile_page_box_social_user_password"
+                value="update-password"
+                onClick={messageForSocial}
+              >
+                <div
+                  className="profile_page_change_user_password"
+                  value="update-password"
+                >
+                  New Password :
+                </div>
+                <div
+                  className="profile_page_change_user_password_value"
+                  value="update-password"
+                >
+                  12345678
+                </div>
+              </div>
+            ) : (
+              <Link
+                className="Profile_Link"
+                to="/contents/profile/update-password"
+              >
+                <div
+                  className="profile_page_box_user_password"
+                  value="update-password"
+                >
+                  <div
+                    className="profile_page_change_user_password"
+                    value="update-password"
+                  >
+                    New Password :
+                  </div>
+                  <div
+                    className="profile_page_change_user_password_value"
+                    value="update-password"
+                  >
+                    12345678
+                  </div>
+                </div>
+              </Link>
+            )}
+
+            <div className="profile_page_box_logout_btn">
+              <button
+                className="profile_page_logout_btn"
+                onClick={handleLogouttttt}
+              >
+                Logout
+              </button>
             </div>
-          </div>
-          {/* Password 네모 칸********************************************************/}
-          <div className="div-modal-btn">
-            <div
-              className="div-modal-btn-text"
-              onClick={handleOnClickPasswordBtn}
-            >
-              Password
-            </div>
-          </div>
-          {/* Background 네모 칸 ********************************************************/}
-          <div className="div-modal-btn">
-            <div
-              className="div-modal-btn-text"
-              onClick={handleOnClickPasswordBtn}
-            >
-              ex Backgoround
-            </div>
-          </div>
-          {/* Language 네모 칸 ********************************************************/}
-          <div className="div-modal-btn">
-            <div
-              className="div-modal-btn-text"
-              onClick={handleOnClickPasswordBtn}
-            >
-              ex Dark mode
-            </div>
-          </div>
-          {/* Logout 네모 칸 ********************************************************/}
-          <div className="div-modal-btn">
-            <div
-              className="div-modal-btn-text"
-              onClick={handleOnClickPasswordBtn}
-            >
-              ex Logout
-            </div>
-          </div>
-          {/* Logged in user ********************************************************/}
-          <div className="logged-in-user">
-            Logged in as: kimcoding@icloud.com
-            {/* 이름은 동적 셋팅 */}
           </div>
         </div>
-        {isClickedChangeNameBtn ? (
-          // 이름 변경 버튼 클릭 했을 때 *******************************************************
-          <div className="div-open-change-name">
-            {/* <div className="open-change-name"> */}
-            <button onClick={handleOnClickNameBtn}>x</button>
-            <div className="div-current-username">
-              <div className="current-username">Current Username :</div>
-              <div className="current-username">Coding Kim</div>
+      ) : (
+        <div className="loaded_favorites_page">
+          <div className="loaded_favorites_page_guest_message">
+            <div className="loaded_favorites_page_guest_message_first">
+              Please log in and use it.
             </div>
-            <form
-              className="form-new-user-name"
-              onSubmit={handleChangeUsername}
+            <p></p>
+            <div className="loaded_favorites_page_guest_message_second">
+              Slow TV helps you experience
+            </div>
+            <div className="loaded_favorites_page_guest_message_third">
+              the aesthetics of slowness,
+            </div>
+            <div className="loaded_favorites_page_guest_message_fourth">
+              tired of your busy daily life.
+            </div>
+          </div>
+
+          <div className="loaded_favorites_page_guest_sign_in_box">
+            <div
+              className={
+                emailErrorMessage
+                  ? "loaded_favorites_page_guest_sign_in_email_box_error"
+                  : "loaded_favorites_page_guest_sign_in_email_box"
+              }
             >
-              <div className="div-new-user-name">
-                <label className="label-new-user-name" htmlFor="new-user-name">
-                  New Username
-                </label>
-                <input
-                  id="new-user-name"
-                  type="text"
-                  onChange={handleNameInputValue("newUsername")}
-                  autoFocus
-                  required
-                ></input>
-                <button className="update-btn" onSubmit={handleChangeUsername}>
-                  Update
-                </button>
-              </div>
-            </form>
-            {/* </div> */}
-          </div>
-        ) : (
-          <div></div>
-        )}
-        {isClickedChangePasswordBtn ? (
-          // 비밀번호 변경 버튼 클릭 했을 때 *******************************************************
-          <div>
-            <div className="div-open-change-password">
-              {/*  비밀번호 변경 모달 끄는 버튼 ********************************************************/}
-              <button className="" onClick={handleOnClickPasswordBtn}>
-                x
-              </button>
-              {/* 비밀번호 변경 폼 **************************************************************/}
-              <form
-                className="form-change-password"
-                onSubmit={handleUpdatePassword}
+              <img
+                className="loaded_favorites_page_guest_sign_in_email_box_icon"
+                src={emailIcon}
+                alt="emailIcon"
+              ></img>
+              <input
+                className="loaded_favorites_page_guest_sign_in_email_input"
+                type="email"
+                autoComplete="on"
+                onChange={handleInputValue("email")}
+                autoFocus="ture"
+                placeholder="email"
+              ></input>
+            </div>
+            <div
+              className={
+                passwordErrorMessage
+                  ? "loaded_favorites_page_guest_sign_in_password_box_error"
+                  : "loaded_favorites_page_guest_sign_in_password_box"
+              }
+            >
+              <img
+                className="loaded_favorites_page_guest_sign_in_password_box_icon"
+                src={passwordIcon}
+                alt="passwordIcon"
+              ></img>
+              <input
+                className="loaded_favorites_page_guest_sign_in_password"
+                type="password"
+                // minLength="8"
+                maxLength="15"
+                onChange={handleInputValue("password")}
+                placeholder="password"
+              ></input>
+            </div>
+            <div className="loaded_favorites_page_guest_sign_in_sign_in_box">
+              <button
+                className="loaded_favorites_page_guest_sign_in_btn"
+                onClick={clickSignInBtn}
               >
-                <div className="form-change-password"></div>
-                {/* //! 이전 비밀번호 ********************************************************/}
-                <div className="div-old-user-password">
-                  <label htmlFor="old-user-password">Old Password </label>
-                  <input
-                    id="old-user-password"
-                    type="password"
-                    onChange={handleOldPasswordInputValue("oldPassword")}
-                  ></input>
-                </div>
-                {/* //! 바꿀 비밀번호 ********************************************************/}
-                <div className="div-new-user-password">
-                  <label htmlFor="new-user-password">New Password </label>
-                  <input
-                    id="new-user-password"
-                    type="password"
-                    onChange={handleNewPasswordInputValue("newPassword")}
-                  ></input>
-                </div>
-                {/* //! 바꿀 비밀번호 확인 ********************************************************/}
-                <div className="div-confirm-user-password">
-                  <label htmlFor="confirm-user-password">
-                    Confirm Password
-                  </label>
-                  <input
-                    id="confirm-user-password"
-                    type="password"
-                    onChange={handleConfirmPasswordInputValue(
-                      "confirmPassword"
-                    )}
-                  ></input>
-                </div>
-                {/* //! 업데이트 버튼 ********************************************************/}
-                <div className="div-update-btn">
-                  <button
-                    className="update-btn"
-                    onSubmit={handleUpdatePassword}
-                  >
-                    Update
-                  </button>
-                </div>
-              </form>
+                Sign In
+              </button>
+            </div>
+            <div className="favorites_login_box_right_login_form_OAuth_box">
+              {/* // ?Google */}
+              <div
+                className="login_box_right_login_form_OAuth_box_google_btn"
+                onClick={googleLoginHandler}
+              >
+                <img
+                  className="login_box_right_login_form_OAuth_box_google_img"
+                  src={google}
+                  alt="google"
+                ></img>
+              </div>
+              {/* //? Github */}
+              <div
+                className="login_box_right_login_form_OAuth_box_github_btn"
+                onClick={githubLoginHandler}
+              >
+                <img
+                  className="login_box_right_login_form_OAuth_box_github_img"
+                  src={github}
+                  alt="github"
+                ></img>
+              </div>
+            </div>
+            <div className="loaded_favorites_page_guest_sign_in_box_hr"></div>
+            <div className="loaded_favorites_page_guest_sign_in_sign_up_box">
+              <button
+                className="loaded_favorites_page_guest_sign_up_btn"
+                onClick={handleGoSignUpPage}
+              >
+                Sign Up
+              </button>
             </div>
           </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
