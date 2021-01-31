@@ -7,6 +7,8 @@ import {
   changeSignUp,
   changeNickName,
   changeEmail,
+  getGithubAccessToken,
+  getGoogleAccessToken,
 } from "../modules/login";
 
 const ProfileContainer = ({
@@ -21,6 +23,8 @@ const ProfileContainer = ({
   changeNickName,
   changeEmail,
   changeSignUp,
+  getGithubAccessToken,
+  getGoogleAccessToken,
 }) => {
   return (
     <Profile
@@ -35,6 +39,8 @@ const ProfileContainer = ({
       changeNickName={changeNickName}
       changeEmail={changeEmail}
       changeSignUp={changeSignUp}
+      getGithubAccessToken={getGithubAccessToken}
+      getGoogleAccessToken={getGoogleAccessToken}
     />
   );
 };
@@ -63,6 +69,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeSignUp: () => {
     dispatch(changeSignUp());
+  },
+  getGithubAccessToken: (accessToken) => {
+    dispatch(getGithubAccessToken(accessToken));
+  },
+  getGoogleAccessToken: (accessToken) => {
+    dispatch(getGoogleAccessToken(accessToken));
   },
 });
 
