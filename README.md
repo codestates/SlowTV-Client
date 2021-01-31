@@ -7,13 +7,14 @@
 Homepage Link: "https://www.slowtv24.com"
 
 ## Stack
-![](https://images.velog.io/images/rhdgoehe2/post/2f90576c-8bfa-460d-b2db-262a03bf599d/BDAE3ECB-FF04-40D7-8F01-87C157AEA674.tiff)
-
-## Schema design
-![](https://images.velog.io/images/rhdgoehe2/post/80e837a5-652b-4802-809d-d9ecb117f961/CC346947-6455-4C3A-9481-8457B9DA5D4B.jpeg)
+![](https://images.velog.io/images/rhdgoehe2/post/85a49d69-3b86-4e56-8a19-7162d31f86a3/0A340F1F-00A4-4BDD-BA47-18F232ABF4A5.jpeg)
 
 ## Wireframe & Workflow
 https://miro.com/welcomeonboard/9iWvTr0aEate2WF9yIXhuBeGUY97stR0slrp1MpO7xGh3MqIpo8D6IXvm3Eiy5TF
+
+![](https://images.velog.io/images/rhdgoehe2/post/33c3bf53-f1a1-439c-9907-fff3dfd29959/A2387B8A-BA2E-443E-B99E-611EBA97D6DD.jpeg)
+
+![](https://images.velog.io/images/rhdgoehe2/post/cff5f5db-3bd8-4990-b462-c110608e9220/BA6ED9FE-3622-4D78-A983-D3C8BF4E8961.jpeg)
 
 ##  API 문서
 https://app.gitbook.com/@r-s-c-final-project/s/slowtv-api/
