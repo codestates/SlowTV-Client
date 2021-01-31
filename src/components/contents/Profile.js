@@ -23,6 +23,8 @@ const Profile = ({
   changeNickName,
   changeEmail,
   changeSignUp,
+  getGithubAccessToken,
+  getGoogleAccessToken,
 }) => {
   const handleGoSignUpPage = () => {
     changeSignUp();
@@ -102,23 +104,20 @@ const Profile = ({
     window.location.assign(GOOGLE_LOGIN_URL);
   };
 
-  const handleLogouttttt = async () => {
-    try {
-      console.log("logout");
-      const logout = await axios.post(
-        "https://server.slowtv24.com/logout",
-        null,
-        {
-          withCredentials: true,
-        }
-      );
-      sessionStorage.clear();
-      changeEmail(null);
-      changeNickName(null);
-      clickLogout();
-    } catch (error) {
-      console.log(error);
-    }
+  const handleLogout = async () => {
+    const logout = await axios.post(
+      "https://server.slowtv24.com/logout",
+      null,
+      {
+        withCredentials: true,
+      }
+    );
+    clickLogout();
+    sessionStorage.clear();
+    getGithubAccessToken(null);
+    getGoogleAccessToken(null);
+    changeEmail(null);
+    changeNickName(null);
   };
 
   const messageForSocial = () => {
@@ -230,7 +229,7 @@ const Profile = ({
             <div className="profile_page_box_logout_btn">
               <button
                 className="profile_page_logout_btn"
-                onClick={handleLogouttttt}
+                onClick={handleLogout}
               >
                 Logout
               </button>

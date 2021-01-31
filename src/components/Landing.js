@@ -24,17 +24,15 @@ const Landing = ({
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
-  // 오른쪽& 아래에서 날라오기
+
   function handleScrollR(num, position) {
     if (num < position) {
-      // console.log('스크롤 값(R)', position)
       return position;
     }
   }
-  // 왼쪽 & 위에서에서 날라오기
+
   function handleScrollL(num, position) {
     if (num > position) {
-      // console.log('스크롤 값(L)', position)
       return position;
     }
   }
@@ -194,12 +192,7 @@ const Landing = ({
           </video>
         </div>
       </div>
-      {/* //! bottom */}
-      {/* <div
-        className={
-          isLoggedIn ? "landing_page_bottom_none" : "landing_page_bottom"
-        }
-      > */}
+
       <div className="landing_page_bottom">
         <div className="landing_page_bottom_text_box">
           <div className="landing_page_bottom_text_div">

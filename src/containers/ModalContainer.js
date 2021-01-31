@@ -55,7 +55,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   clickSignIn: () => {
-    // console.log("a");
     dispatch(clickSignIn());
   },
   clickLogout: () => {
