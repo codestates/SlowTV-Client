@@ -1,0 +1,67 @@
+.landingNav_Link {
+  text-decoration: none;
+  color: white;
+}
+.landing_nav_page_navbar_page {
+  background-color: black;
+  opacity: 0.4;
+  margin: 0;
+  height: 5%;
+  color: white;
+}
+
+.landing_nav_page_navbar {
+  width: 100%;
+  height: 5%;
+  margin-left: 2%;
+  margin-top: 0.4%;
+  position: fixed;
+  /* border: 3px solid red; */
+}
+
+.landing_nav_page_navbar_text {
+  display: inline;
+  cursor: pointer;
+}
+
+.landing_nav_page_navbar_Slow {
+  font-weight: 400;
+  font-size: 1.7vmax;
+
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 1px gray;
+}
+.landing_nav_page_navbar_TV {
+  font-weight: 300;
+  margin-left: 5px;
+  font-size: 1.7vmax;
+  color: #bfbbbb;
+}
+.landing_nav_page_navbar_TV:hover {
+  font-weight: 400;
+}
+
+.landing_nav_page_Sign_In {
+
+  margin-right: 1%;
+  margin-top: 0.3%;
+  float: right;
+  font-weight: 400;
+  font-size: 1.3vmax;
+  color: #ebe8e8;
+}
+
+.landing_nav_page_Sign_Up {
+
+  margin-right: 4%;
+  margin-top: 0.3%;
+  float: right;
+  font-weight: 400;
+  font-size: 1.3vmax;
+  color: #ebe8e8;
+}
+
+.landing_nav_page_Sign_In:hover,
+.landing_nav_page_Sign_Up:hover {
+  color: white;
+}

@@ -1,17 +1,434 @@
-.login {
-    border: 1px solid gray;
-    padding: 10px;
-    position: fixed;
-    width: 400px;
-    height: 300px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-200px, -150px);
-  }
+.login_page {
+  /* background-color: #212021; */
+  width: 100%;
+  height: 100%;
+}
+
+.login_box {  display: flex;
+  justify-content: center;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 64%;
+  margin-left: -25%;
+  margin-top: -16%;
+}
+
+.login_box_left_welcome_card {
+  position: absolute;
+  left: 0%;
+  width: 50%;
+  height: 100%;  transition: all 0.6s linear;
+  border: 1px solid gray;
+  background-color: #adacad;
+  border-radius: 3px 0px 0px 3px;
+  box-shadow: -5px 5px 5px 5px #525151;
+}
+
+.login_box_left_welcome_card_phrase {
+  font-size: 2.3vmax;
+  text-align: center;
+  margin-top: 10%;
+}
+
+.login_box_left_welcome_card_img_box {  width: 100%;
+  height: 50%;
+  text-align: center;
+  margin-top: 6%;
+}
+
+.login_box_left_welcome_card_img {  width: 50%;
+  height: 100%;
+}
+
+/*! 로그인 -Welcome card Register btn ****************************************/
+
+.login_box_left_welcome_card_register_div {
+  height: 10%;
+  text-align: center;
+  margin-top: 10%;
+}
+
+.login_box_left_welcome_card_register_btn {
+  border: 1px solid gray;
+  font-size: 1.3vmax;  
+  border-radius: 10px;
+  height: 100%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background: rgb(255, 255, 255)
+}
+
+.login_box_right_login_form {
+  position: absolute;
+  right: 0%;
+  width: 50%;
+  height: 100%;
+  transition: all 0.6s linear;
+  border: 1px solid gray;
+  background-color: #adacad;
+  border-radius: 0px 3px 3px 0px;
+  box-shadow: 5px 5px 5px 5px #525151;
+}
+
+.login_box_right_login_form_cancel_box {
+  width: 5%;
+  height: 5%;
+  float: right;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+.login_box_right_login_form_cancel_img {
+  width: 4%;
+  height: 4%;
+  position: absolute;
+}
+
+.login_box_right_login_form_title {
+  margin-top: 10%;
+  font-size: 2vmax;
+  text-align: center;
+}
+
+.login_box_right_login_form_email_box_title_div {  margin-top: 5%;
+  height: 15%;
+  width: 100%;
+}
+
+.login_box_right_login_form_email_box_title {
+  width: 80%;
+  height: 40%;
+  margin-top: 2%;
+  margin-left: 10%;
+  font-size: 1.2vmax;
+}
+
+.login_box_right_login_form_password_box_title {
+  font-size: 1.2vmax;
+}
+
+.login_box_right_login_form_email_box {
+  border: 1px solid black;
+  background-color: white;
+  width: 80%;
+  height: 40%;
+  margin-left: 10%;
+  font-size: 1.2vmax;
+  border-radius: 5px;
+}
+.login_box_right_login_form_email_box_error {
+  border: 2px solid #d12929;
+  background-color: white;
+  width: 80%;
+  height: 40%;
+  margin-left: 10%;
+  font-size: 1.2vmax;
+  border-radius: 5px;
+}
+
+.login_box_right_login_form_email_box_input_icon {  opacity: 0.5;
+  margin-top: 2.5%;
+  margin-left: 3%;
+  margin-right: 0%;
+  padding-right: 0%;
+  width: 5%;
+  height: 50%;
+}
+
+.login_box_right_login_form_email_box_input {
+  display: inline;
+  float: right;
+  width: 86%;
+  height: 68%;
+  border: none;
+  outline: none;
+  font-size: 1.2vmax;
+  margin-top: 1%;
+  border-radius: 3px;
+}
+
+.login_box_right_login_form_email_box_error_message {
+  width: 78%;
+  margin: auto;
+  font-size: 1vmax;
+  color: #d12929;
+}
+.login_box_right_login_form_email_box_error_message_hidden {
+  width: 78%;
+  visibility: hidden;
+  margin: auto;
+  font-size: 1vmax;
+  color: #d12929;
+}
+.login_box_right_login_form_password_box_title_div {
+  margin-top: 0%;
+  height: 15%;
+  width: 100%;
+}
+
+.login_box_right_login_form_password_box_title {
+  width: 80%;
+  height: 40%;
+  margin-top: 0%;
+  margin-left: 10%;
+  font-size: 1.2vmax;
+}
+
+.login_box_right_login_form_password_box_title {
+  font-size: 1.2vmax;
+}
+
+.login_box_right_login_form_password_box {
+  border: 1px solid black;
+  background-color: white;
+  width: 80%;
+  height: 40%;
+  margin-left: 10%;
+  font-size: 1.2vmax;
+  border-radius: 5px;
+}
+
+.login_box_right_login_form_password_box_error {
+  border: 2px solid #d12929;
+  background-color: white;
+  width: 80%;
+  height: 40%;
+  margin-left: 10%;
+  font-size: 1.2vmax;
+  border-radius: 5px;
+}
+
+.login_box_right_login_form_password_box_input_icon {  opacity: 0.5;
+  margin-top: 2.5%;
+  margin-left: 3%;
+  margin-right: 0%;
+  padding-right: 0%;
+  width: 5%;
+  height: 50%;
+}
+
+.login_box_right_login_form_password_box_input {
+  display: inline;
+  float: right;
+  width: 86%;
+  height: 68%;
+  border: none;
+  outline: none;
+  font-size: 1.2vmax;
+  margin-top: 1%;
+  border-radius: 3px;
+}
+
+.login_box_right_login_form_password_box_error_message {
+  width: 78%;
+  margin: auto;
+  font-size: 1vmax;
+  color: #d12929;
+}
+
+.login_box_right_login_form_password_box_error_message_hidden {
+  width: 78%;
+  visibility: hidden;
+  margin: auto;
+  font-size: 1vmax;
+  color: #d12929;
+}
+
+.login_box_right_login_form__box_error_message {
+  width: 78%;
+  text-align: center;
+  margin: auto;
+  margin-top: 3%;
+  font-size: 1vmax;
+  color: #d12929;
+}
+
+.login_box_right_login_form_sign_in_box {
+  text-align: center;
+  margin: auto;
+  margin-top: 0%;
+  height: 10%;
+  width: 60%;
   
-  .bar {
-    width: 41%;
-    height: 2px;
-    position: absolute;
-    background: gray;
+}
+
+.login_box_right_login_form_sign_in_box_btn2 {
+  border: 1px solid gray;
+  height: 100%;
+  width: 100%;
+  font-size: 1.3vmax;  
+  border-radius: 10px;
+  background: rgb(255, 255, 255)
+}
+
+.login_box_right_login_form_OAuth_box {  text-align: center;
+  margin: auto;
+  margin-top: 6%;
+  width: 40%;
+  height: 10%;
+}
+
+.login_box_right_login_form_OAuth_box_google_btn {
+  display: inline;  margin-right: 5%;
+}
+
+.login_box_right_login_form_OAuth_box_github_btn {
+  display: inline;
+  margin-left: 5%;
+}
+
+.login_box_right_login_form_OAuth_box_google_img,
+.login_box_right_login_form_OAuth_box_github_img {
+  width: 20%;
+}
+
+@media screen and (min-width: 937px) {
+
+  .login_box_right_login_form_sign_in_box {
+    text-align: center;
+    margin: auto;
+    margin-top: 6%;
+    height: 10%;
+    width: 60%;
+  }  
+  
+  .login_box_right_login_form_sign_in_box_btn {
+    font-size: 1.3vmax;
+    border-radius: 3px;
+    border: 1px solid gray;
+    height: 100%;
+    width: 100%;
   }
+}
+
+.sign_in_box {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 64%;
+  margin-left: -25%;
+  margin-top: -16%;
+}
+
+.sign_in_box_left_welcome_card {
+  border: 1px solid gray;
+  background-color: #adacad;
+  border-radius: 3px 0px 0px 3px;
+  box-shadow: -5px 5px 5px 5px #525151;
+  width: 50%;
+  height: 100%;
+  transition: all 0.6s linear;
+  transform: translateX(-100%);
+}
+
+.sign_in_box_left_welcome_card_phrase {
+  font-size: 2.3vmax;
+  text-align: center;
+  margin-top: 10%;
+}
+
+.sign_in_box_left_welcome_card_box {
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  margin-top: 8%;
+}
+
+.sign_in_box_left_welcome_card_img {
+  width: 70%;
+  height: 80%;
+  margin-top: 5%;
+}
+
+.sign_in_box_left_welcome_card_login_div {
+  height: 10%;
+  text-align: center;  margin-top: 10%;
+}
+
+.sign_in_box_left_welcome_card_login_btn {
+  border: 1px solid gray;
+  font-size: 1.3vmax;  
+  border-radius: 10px;
+  height: 100%;
+  width: 70%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background: rgb(255, 255, 255)
+}
+
+.sign_in_box_right_register_form {
+  transition: all 0.6s linear;
+  transform: translateX(100%);
+  border: 1px solid gray;
+  background-color: #adacad;
+  border-radius: 0px 3px 3px 0px;
+  box-shadow: 5px 5px 5px 5px #525151;
+  width: 50%;
+  height: 100%;
+}
+
+.sign_box_right_register_form_title {
+  font-size: 2vmax;
+  text-align: center;
+  margin-top: 10%;}
+.sign_in_box_right_register_form_username_box,
+.sign_in_box_right_register_form_email_box,
+.sign_in_box_right_register_form_password_box {
+  margin-top: 5%;
+  height: 13%;
+  width: 100%;
+}
+
+.sign_in_box_right_register_form_username_box_title,
+.sign_in_box_right_register_form_email_box_title,
+.sign_in_box_right_register_form_password_box_title {
+  width: 80%;
+  margin-left: 10%;
+  font-size: 1.2vmax;
+}
+
+.sign_in_box_right_register_form_username_box_input,
+.sign_in_box_right_register_form_email_box_input,
+.sign_in_box_right_register_form_password_box_input {
+  width: 78%;
+  height: 30%;
+  margin-left: 10%;
+}
+
+.sign_in_box_right_register_form_register_box {  text-align: center;
+  margin-top: 10%;
+  height: 6%;
+}
+
+.sign_in_box_right_register_form_register_box_btn {
+  font-size: 1.1vmax;
+}
+
+.sign_in_box_right_register_form_OAuth_box {  text-align: center;
+  margin-top: 6%;
+  height: 6%;
+}
+
+.sign_in_box_right_register_form_OAuth_box_google_div {
+  display: inline;
+}
+.sign_in_box_right_register_form_OAuth_box_google_btn {
+  font-size: 1vmax;
+  height: 100%;
+}
+
+.sign_in_box_right_register_form_OAuth_box_github_div {
+  display: inline;
+}
+
+.sign_in_box_right_register_form_OAuth_box_github_btn {
+  font-size: 1.1vmax;
+  height: 100%;
+}

@@ -1,14 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { applyMiddleware, createStore } from "redux";
+import rootReducer from "./modules";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createLogger } from "redux-logger";
+import ReduxThunk from "redux-thunk";
+import {
+  clickSignIn,
+  clickLogout,
+  changeEmail,
+  changeNickName,
+} from "./modules/login";
+import { clickCategory } from "./modules/sideRemoteControl";
+
+const logger = createLogger();
+
+const store = createStore(rootReducer, applyMiddleware(logger, ReduxThunk));
+
+const email = window.sessionStorage.getItem("email");
+const name = window.sessionStorage.getItem("name");
+
+if (email) {
+  store.dispatch(clickSignIn());
+  store.dispatch(changeEmail(email));
+  store.dispatch(changeNickName(name));
+}
+
+let video = window.sessionStorage.getItem("videoData");
+
+if (video) {
+  store.dispatch(clickCategory(JSON.parse(video)));
+}
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Provider store={store}>
     <App />
-  </BrowserRouter>,
+  </Provider>,
   document.getElementById("root")
 );
 

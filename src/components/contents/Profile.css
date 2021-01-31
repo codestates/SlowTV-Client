@@ -1,0 +1,138 @@
+.Profile_Link {
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.profile_page {
+  background-color: #212021;
+  overflow: hidden;
+}
+
+.profile_page_container {
+  height: 60%;
+  width: 38%;
+  float: left;
+  margin-top: 5%;
+  margin-left: 25%;
+}
+
+.profile_page_container_title {
+  color: white;
+  font-size: 2vmax;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.profile_page_inner_container {
+  border: 1px solid gray;
+  background-color: #adacad;
+  border-radius: 5px;
+  box-shadow: 0px 3px 10px 3px #525151;
+  height: 90%;
+  width: 100%;
+  margin-top: 2%;
+}
+
+.profile_page_box_user_id {
+  border-bottom: 1px solid gray;
+  width: 70%;
+  height: 10%;
+  margin-top: 10%;
+  margin-left: 10%;
+  /* color: white; */
+  font-size: 1.5vmax;
+}
+
+.profile_page_current_user_id {
+  display: inline;
+  font-weight: 330;
+  font-size: 1.1vmax;
+  margin-right: 2%;
+}
+
+.profile_page_current_user_id_value {
+  display: inline;
+  font-size: 1.9vmax;
+  font-weight: 400;
+}
+
+.profile_page_box_username,
+.profile_page_box_social_username {
+  border-bottom: 1px solid gray;
+  width: 70%;
+  height: 10%;
+  margin-top: 5%;
+  margin-left: 10%;
+  color: black;
+  font-size: 1.5vmax;
+}
+
+.profile_page_current_username {
+  display: inline;
+  font-weight: 330;
+  font-size: 1.1vmax;
+  margin-right: 2%;
+}
+
+.profile_page_current_username_value {
+  display: inline;
+  font-size: 1.9vmax;
+  font-weight: 400;
+}
+
+
+.profile_page_box_user_password,
+.profile_page_box_social_user_password {
+  border-bottom: 1px solid gray;
+  width: 70%;
+  height: 10%;
+  margin-top: 5%;
+  margin-left: 10%;
+  color: black;
+  font-size: 1.5vmax;
+}
+
+.profile_page_box_username:hover,
+.profile_page_box_user_password:hover {
+  transition: all ease 0.5s;
+  font-size: 1.6vmax;
+}
+
+.profile_page_change_user_password {
+  display: inline;
+  font-weight: 330;
+  font-size: 1.1vmax;
+}
+
+.profile_page_change_user_password_value {
+  display: inline;
+  -webkit-text-security: disc;
+  font-weight: 400;
+  font-size: 1.7vmax
+}
+
+.profile_page_box_logout_btn {
+  margin-top: 18%;
+  margin-left: 78%;
+  width: 15%;
+  height:7%;
+  border: 1px solid gray;
+}
+.profile_page_logout_btn {
+  width: 100%;
+  height: 100%;
+  font-size: 1.2vmax;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.loaded_favorites_page_guest_sign_in_email_box_error_message {
+  width: 80%;
+  height: 8%;
+  margin: auto;
+  margin-top: 4%;
+  font-size: 0.6vmax;
+  color: white;
+}

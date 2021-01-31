@@ -1,42 +1,187 @@
-.below_navbar {
-    display: grid;
-    grid-template-columns: 40px 50px auto 50px 40px;
-    grid-template-rows: 25% 100px auto;
+.landing_page {
+  width: 100%;
+  height: 100%;
+  /* background-color: white; */
 }
 
-/* .landing_home .landing_bottom {
-    width: 1200px;
-    height: 800px;
-    background-repeat: no-repeat;
-    background-attachment:fixed;
-    background-size: 100% auto;
-} */
 
-.start_btn {
-    grid-column-start: 2;
-    grid-column-end: five;
-    grid-row-start:row1-start;
-    grid-row-end: 3;
-    border-radius: 50px;
-    background: gray;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    width: 200px;
-    height: 130px;
-    text-align: center;
+.landing_page_top {
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/backgrd2.jpg");
+  background-size: cover;
+  background-position: center;
+
+}
+.landing_page_top_text_box {
+  position: absolute;
+  width: 31%;
+  height: 30%;
+  top:40%;
+  left:8%;
 }
 
-.start_link {
-    text-decoration: none;
-    border-radius: 50px;
-    background: gray;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    grid-column-start: 2;
-    grid-column-end: five;
-    grid-row-start:row1-start;
-    grid-row-end: 3;
-    /* width: 200px;링크는 사이즈가 안먹히나..    height: 140px; */
+.landing_page_top_text_box_frist {
+  width: 100%;
+  height: 25%;
+  color:white;
+  font-size: 3.4vmax;
+  font-weight: 350;
+}
+
+.landing_page_top_text_box_second {
+  width: 100%;
+  height: 35%;
+  color: white;
+  font-size: 2vmax;
+  font-weight: 330;
+
+}
+.landing_page_top_text_box_third{
+  margin-top: 3%;
+  border: none;
+  outline: none;
+  border-radius:9999px;
+  width: 65%;
+  height: 23%;
+  font-size: 1.3vmax;
+  cursor: pointer;
+}
+.landing_page_top_text_box_third:hover{
+  transform: scale(1.03);
+  transition: .5s;
+}
+.landing_page_middle {
+  background-color: black;
+  border-bottom: 3px solid #474547;
+}
+
+.landing_page_middle_first_video_container,
+.landing_page_middle_third_video_container {
+  border-top: 0.3em solid #474547;
+  border-bottom: 0.3em solid #474547;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 23.3vmax;
+}
+
+.landing_page_middle_second_video_container{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 23.3vmax;
+}
+
+.landing_page_middle_first_video_container_text,
+.landing_page_middle_third_video_container_text {  
+  color:white;
+  position: relative;
+  top: 15%;
+  left: 32%;
+  width: 80%;
+  height: 60%;
+  font-size: 2vmax;
+}
+
+.landing_page_middle_second_video_container_text{
+   color:white;
+   position: relative;
+   top: 15%;
+   left:  10%;
+   width: 150%;
+   height: 60%;
+   font-size: 2vmax;
+}
+
+
+.landing_page_middle_first_video_container_text_first_phrase,
+.landing_page_middle_second_video_container_text_first_phrase,
+.landing_page_middle_third_video_container_text_first_phrase{
+  font-size: 2.8vmax;
+  font-weight: 500;
+  margin-bottom: 3%;
+  margin-right: 20%;
+}
+
+.landing_page_middle_first_video_container_text_second_phrase,
+.landing_page_middle_second_video_container_text_second_phrase,
+.landing_page_middle_third_video_container_text_second_phrase{
+  font-weight: 340;
+}
+
+.landing_page_middle_first_video_container_video,
+.landing_page_middle_third_video_container_video {
+  margin-top: 3.7%;
+  width: 80%;
+  height: 80%;;
+}
+
+.landing_page_middle_second_video_container_video{
+  margin-top: 3.7%;
+  width: 80%;
+  height: 80%;
+  position: relative;
+  left: 24%;
+}
+
+.landing_page_bottom_none{
+  display: none;
+}
+
+.landing_page_bottom {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/backgrd1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  box-shadow:inset 0 0 0 2000px rgba(31, 30, 30, 0.3);
+  opacity: .7;
+}
+
+.landing_page_bottom_text_box{
+  text-align: center;
+  height: 100%;
+}
+
+.landing_page_bottom_text_div{
+  position: relative;
+  text-align: center;
+  height: 30%;
+  top: 20% ;
+}
+
+.landing_page_bottom_text_box_frist{
+  font-size: 3vmax;
+  color: white;
+}
+
+.landing_page_bottom_text_box_second{
+  font-size: 2vmax;
+  color: white;
+}
+
+.landing_page_bottom_text_box_third{
+  position: relative;
+  top: 35%;
+  border: none;
+  outline: none;
+  border-radius:9999px;
+  width: 25%;
+  height: 8%;
+  font-size: 1.4vmax;
+  text-align: center;
+}
+
+.landing_page_bottom_footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3%;
+  background-color: #E9E9E9;
+  opacity: 0.7;
+  padding-top: 1%;
+  padding-left: 1%;
+  font-size: 1vmax;
 }
