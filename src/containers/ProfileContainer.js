@@ -53,7 +53,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(clickLogout());
   },
   clickSignIn: () => {
-    // console.log("a");
     dispatch(clickSignIn());
   },
   changeEmail: (email) => {

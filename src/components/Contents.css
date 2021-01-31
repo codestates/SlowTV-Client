@@ -3,7 +3,7 @@ body > #root > div {
 }
 
 .contents_page {
-  background-color: #212021;
+  /* background-color: #212021; */
   overflow: hidden;
 }
 
@@ -12,6 +12,7 @@ body > #root > div {
   height: 100%;
   width: 80%;
   float: left;
+ 
 }
 
 
@@ -19,7 +20,7 @@ body > #root > div {
   float: left;
   width: 80%;
   height: 100%;
-  perspective: 3000px;
+  perspective: 100vmax;
 }
 
 
@@ -44,7 +45,7 @@ body > #root > div {
   height: 15%;
   position: absolute;
   top: 39%;
-  left: 4.3%;
+  left: 4.8%;
 }
 
 .contents_page_div_img_two {
@@ -58,7 +59,7 @@ body > #root > div {
   height: 25%;
   position: absolute;
   top: 34%;
-  left: 5%;
+  left: 6%;
 }
 
 
@@ -73,7 +74,7 @@ body > #root > div {
   height: 35%;
   position: absolute;
   top: 28%;
-  left: 6%;
+  left: 8%;
 }
 
 
@@ -88,7 +89,7 @@ body > #root > div {
   height: 45%;
   position: absolute;
   top: 23%;
-  left: 9%;
+  left: 11%;
 }
 
 
@@ -166,7 +167,6 @@ body > #root > div {
 
 .contents_page_div_text_four {
   background-color: #212021;
-  transition: all ease 1s;
   z-index: 4;
   width: 35%;
   height: 40%;
@@ -179,26 +179,40 @@ body > #root > div {
 
 .contents_page_div_text_five {
   background-color: #212021;
-  transition: all ease 3s;
   z-index: 5;
-  width: 35%;
+  width: 40%;
   height: 40%;
   position: absolute;
   top: 20%;
   left: 78%;
-}
-
-.contents_page_text {
   animation-direction: left; 
-  background-color: #212021;
   color: white;
   font-size: 2vmax;
   margin: 10px 0 0 10px;
   white-space: nowrap;
   overflow: hidden;
-  width: 90%;
-  height: 90%;
-  animation: type 3.5s steps(60, end);
+  animation: type 3.5s steps(60, end); 
+}
+
+.contents_page_text_first_phrase {
+font-size: 2vmax;
+font-weight: 600;
+}
+
+.contents_page_text_second_phrase{
+  height: 100%;
+  margin-top: 7%;
+  font-size: 1.5vmax;
+  font-weight: 300;
+  line-height: 2vmax;
+}
+
+.contents_page_text_third_phrase{
+  height: 100%;
+  margin-top: 2%;
+  font-size: 1.5vmax;
+  font-weight: 300;
+  line-height: 2vmax;
 }
 
 @keyframes type {
@@ -216,21 +230,3 @@ body > #root > div {
   }
 }
 
-@media screen and (max-width: 1024px) {
-
-}
-
-
-@media screen and (max-height: 529px) {
-
-}
-
-
-@media screen and (min-width: 1200px) {
-
-}
-
-
-@media screen and (min-width: 1400px) {
-  
-}

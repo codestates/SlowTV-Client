@@ -15,12 +15,10 @@ const SignUp = ({ history }) => {
         <p />
         <div className="second-phrase">Create your account</div>
         <p />
-        {/* username */}
         <label htmlFor="user-name">Username *</label>
         <input id="user-name" type="text"></input>
         <label htmlFor="user-id">ID *</label>
         <input id="user-id" type="text"></input>
-        {/* Password */}
         <label htmlFor="user-password">Password *</label>
         <input
           id="user-password"

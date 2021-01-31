@@ -23,29 +23,25 @@ const Modal = ({
   changeSignUp,
   history,
 }) => {
-  // ! 소셜 로그인
-  // ! GitHub OAuth URL // ! client id 변수 처리 하기
   const GITHUB_LOGIN_URL =
     "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
   const githubLoginHandler = () => {
     window.location.assign(GITHUB_LOGIN_URL);
-    const url = new URL(window.location.href); // 현재 페이지의 href (URL) 반환, 현재 주소에 ?code=[authorization code] 있음
+    const url = new URL(window.location.href);
     const isCategory = url.pathname.split("/")[1];
     const nowPage = url.pathname.split("/")[2];
-    // history.push("/");
   };
-  // ! Google OAuth URL // scope는 스페이스로 구분
+
   const GOOGLE_LOGIN_URL =
     "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/contents&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
   const googleLoginHandler = () => {
     window.location.assign(GOOGLE_LOGIN_URL);
   };
-  // ! 모달창 로그인 시 인풋
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
-  const [usernameInputValue, setUsernameInputValue] = useState("");
 
-  //! 인풋 핸들링
+  const [emailInputValue, setEmailInputValue] = useState(null);
+  const [passwordInputValue, setPasswordInputValue] = useState(null);
+  const [usernameInputValue, setUsernameInputValue] = useState(null);
+
   const handleInputValue = (key) => (e) => {
     if (key === "email") {
       const emailValue = e.target.value.split("@");
@@ -71,15 +67,17 @@ const Modal = ({
     }
   };
 
-  // ! 일반 로그인 유효성 검사
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
     try {
-      if (emailErrorMessage === null && passwordErrorMessage === null) {
+      if (
+        emailErrorMessage === null &&
+        passwordErrorMessage === null &&
+        emailInputValue !== null
+      ) {
         const signIn = await axios.post(
           "https://server.slowtv24.com/login",
           {
@@ -94,7 +92,7 @@ const Modal = ({
         if (signIn.data !== undefined) {
           clickSignIn();
           handleGetUserInfo();
-          // ! 비디오 데이터 새로 가져오기 추가, 아래 로그아웃과 같은 문제임, 현재 유알엘 그대로 가져오기
+
           const url = new URL(window.location.href);
           const isCategory = url.pathname.split("/")[1];
           const nowPage = url.pathname.split("/")[2];
@@ -127,7 +125,6 @@ const Modal = ({
     }
   };
 
-  // ! 유저 정보 업데이트
   const handleGetUserInfo = async () => {
     const userInfo = await axios("https://server.slowtv24.com/userinfo", {
       withCredentials: true,
@@ -139,7 +136,6 @@ const Modal = ({
     closeModal();
   };
 
-  // ! 로그아웃 후 비디오 즐겨찾기 새로고침
   const handleGoCategory = async (e) => {
     const url = new URL(window.location.href);
     const nowPage = url.pathname.split("/")[2];
@@ -157,7 +153,6 @@ const Modal = ({
     }
   };
 
-  //! 로그아웃
   const handleLogout = async () => {
     const logout = await axios.post(
       "https://server.slowtv24.com/logout",
@@ -175,7 +170,6 @@ const Modal = ({
     handleGoCategory();
   };
 
-  // ! Sign Up 버튼 클릭시 페이지로 이동
   const handleGoSignUpPage = () => {
     changeSignUp();
     history.push("/login");
@@ -183,12 +177,8 @@ const Modal = ({
 
   return (
     <div className="modal">
-      {/* 프로필 모달 */}
-      {/* //! 로그인 유저 */}
       {isLoggedIn ? (
-        // ! 로그인 시 모달창 아이콘 클릭
         <div className="modal_is_logged_in">
-          {/* //! 모달창 종료 버튼 */}
           <div className="modal_is_logged_in_close_btn_box">
             <button
               className="modal_is_logged_in_close_btn"
@@ -201,14 +191,13 @@ const Modal = ({
               ></img>
             </button>
           </div>
-          {/* // ! 유저 이름 */}
+
           {nickname ? (
             <div className="modal_my_profile_username">Hi, {nickname}</div>
           ) : (
             <div></div>
           )}
 
-          {/* //! 유저 이미지 */}
           <div className="modal_my_profile_div_user_img">
             <img
               className="modal_my_profile_user_img"
@@ -216,7 +205,7 @@ const Modal = ({
               alt="user_img"
             ></img>
           </div>
-          {/* 이름 변경 버튼 */}
+
           <Link
             className="Modal_page_Link"
             to="/contents/profile/update-username"
@@ -225,7 +214,7 @@ const Modal = ({
               Change Name
             </div>
           </Link>
-          {/* 비밀번호 변경 버튼 */}
+
           <Link
             className="Modal_page_Link"
             to="/contents/profile/update-password"
@@ -239,9 +228,7 @@ const Modal = ({
           </div>
         </div>
       ) : (
-        // !비회원이 모달 클릭한 경우
         <div className="modal_is_not_logged_in">
-          {/* //! 모달창 종료 버튼 */}
           <div className="modal_is_not_logged_in_close_btn_box">
             <button
               className="modal_is_not_logged_in_close_btn"
@@ -255,7 +242,7 @@ const Modal = ({
             </button>
           </div>
           <div className="modal_my_profile_greeting">Welcome Slow TV</div>
-          {/* ID box */}
+
           <div className="modal_my_profile_box_user_id">
             <div className="modal_my_profile_div_user_id">Email</div>
             <div
@@ -270,8 +257,7 @@ const Modal = ({
                 src={emailIcon}
                 alt="emailIcon"
               ></img>
-              {/* </div> */}
-              {/* inline */}
+
               <input
                 className="login_box_right_login_form_email_box_input"
                 type="email"
@@ -283,10 +269,9 @@ const Modal = ({
             </div>
           </div>
 
-          {/* PW box */}
           <div className="modal_my_profile_box_user_password">
             <div className="modal_my_profile_div_user_password">Password</div>
-            {/* // */}
+
             <div
               className={
                 passwordErrorMessage
@@ -307,11 +292,11 @@ const Modal = ({
               ></input>
             </div>
           </div>
-          {/* //! Error Message */}
+
           {errorMessage ? (
             <div className="modal_my_profile_error_message">{errorMessage}</div>
           ) : null}
-          {/* Sign In box */}
+
           <div className="modal_my_profile_sign_in_btn_box">
             <button
               className="modal_my_profile_sign_in_btn"
@@ -320,9 +305,8 @@ const Modal = ({
               Sign In
             </button>
           </div>
-          {/* //! OAuth */}
+
           <div className="login_box_right_login_form_OAuth_box">
-            {/* // ?Google */}
             <div
               className="login_box_right_login_form_OAuth_box_google_btn"
               onClick={googleLoginHandler}
@@ -333,7 +317,7 @@ const Modal = ({
                 alt="google"
               ></img>
             </div>
-            {/* //? Github */}
+
             <div
               className="login_box_right_login_form_OAuth_box_github_btn"
               onClick={githubLoginHandler}
@@ -345,7 +329,6 @@ const Modal = ({
               ></img>
             </div>
           </div>
-          {/* //! Sign Up box */}
 
           <div
             className="modal_my_profile_sign_up_btn_box"

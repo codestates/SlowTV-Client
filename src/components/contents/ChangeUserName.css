@@ -1,6 +1,7 @@
 .change_name_page {
-  background-color: #212021;
+  /* background-color: #212021; */
   overflow: hidden;
+  /* z-index: 999; */
 }
 
 .change_name_page_container {

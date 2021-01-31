@@ -17,40 +17,28 @@ const Login = ({
   changeSignIn,
   changeSignUp,
   clickSignIn,
-  isLoggedIn,
-  githubAccessToken,
-  googleAccessToken,
-  getGithubAccessToken,
-  getGoogleAccessToken,
   changeNickName,
   changeEmail,
-  // changePassword,
-  email,
-  nickname,
   history,
   clickGetStarted,
 }) => {
-  // ! GitHub OAuth URL // ! client id 변수 처리 하기
   const GITHUB_LOGIN_URL =
     "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
   const githubLoginHandler = () => {
     window.location.assign(GITHUB_LOGIN_URL);
   };
-  // ! Google OAuth URL // scope는 스페이스로 구분
+
   const GOOGLE_LOGIN_URL =
     "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/contents&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
   const googleLoginHandler = () => {
     window.location.assign(GOOGLE_LOGIN_URL);
   };
 
-  // 회원가입 버튼 누르고 새로고침 안되서 임시용
   const [refresh, setRefresh] = useState("");
+  const [emailInputValue, setEmailInputValue] = useState(null);
+  const [passwordInputValue, setPasswordInputValue] = useState(null);
+  const [usernameInputValue, setUsernameInputValue] = useState(null);
 
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
-  const [usernameInputValue, setUsernameInputValue] = useState("");
-
-  //! 인풋 핸들링
   const handleInputValue = (key) => (e) => {
     if (key === "email") {
       const emailValue = e.target.value.split("@");
@@ -76,15 +64,9 @@ const Login = ({
     }
   };
 
-  // ! 일반 로그인 유효성 검사
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(
-    // "Please check your ID or password"
-    null
-  );
-
-  //! 로그인 - 회원가입 전환 시 에러 메시지 초기화
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChangeSignInBtn = () => {
     setEmailErrorMessage(null);
@@ -98,9 +80,6 @@ const Login = ({
     changeSignUp();
   };
 
-  // ! 유저 정보 등록
-
-  // !일반 로그인
   const handleGetUserInfo = async () => {
     const userInfo = await axios("https://server.slowtv24.com/userinfo", {
       withCredentials: true,
@@ -113,10 +92,13 @@ const Login = ({
     history.push("/contents");
   };
 
-  // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
     try {
-      if (emailErrorMessage === null && passwordErrorMessage === null) {
+      if (
+        emailErrorMessage === null &&
+        passwordErrorMessage === null &&
+        emailInputValue !== null
+      ) {
         const signIn = await axios.post(
           "https://server.slowtv24.com/login",
           {
@@ -130,7 +112,6 @@ const Login = ({
         if (signIn.data !== undefined) {
           clickSignIn();
           handleGetUserInfo();
-          // localStorage.setItem("email", emailInputValue);
         }
       }
     } catch (error) {
@@ -139,7 +120,6 @@ const Login = ({
     }
   };
 
-  // ! 회원가입
   const clickSignUp = async () => {
     const signUp = await axios.post(
       "https://server.slowtv24.com/signup",
@@ -152,14 +132,7 @@ const Login = ({
         withCredentials: true,
       }
     );
-    console.log(
-      "🚀 ~ file: Login.js ~ line 214 ~ clickSignUp ~ signUp",
-      signUp
-    );
-    // setRefresh("registered");
-    // history.push("/login");
     handleChangeSignInBtn();
-    // changeSignIn();
   };
 
   const handleGoBack = () => {
@@ -171,33 +144,29 @@ const Login = ({
       <LandingNavConatiner />
       {isClickedSignInBtn ? (
         <div className="login_box">
-          {/* //! 로그인 할 때 - welcome back 왼쪽 *************************/}
           <div className="login_box_left_welcome_card">
-            {/* //! Welcome Back! */}
             <div className="login_box_left_welcome_card_phrase">
               Welcome Back!
             </div>
-            {/* //! 이미지 */}
+
             <div className="login_box_left_welcome_card_img_box">
               <img
                 className="login_box_left_welcome_card_img"
-                // src={github}
                 src={welcome}
                 alt="Welcome back img"
               ></img>
             </div>
-            {/* //! 회원가입 이동 버튼 */}
+
             <div className="login_box_left_welcome_card_register_div">
               <button
                 className="login_box_left_welcome_card_register_btn"
-                // onClick={changeSignUp}
                 onClick={handleChangeSignUpBtn}
               >
                 Register
               </button>
             </div>
           </div>
-          {/* //! 로그인할 때 - login form 오른쪽 ************************/}
+
           <div className="login_box_right_login_form">
             <div
               className="login_box_right_login_form_cancel_box"
@@ -210,12 +179,12 @@ const Login = ({
               ></img>
             </div>
             <div className="login_box_right_login_form_title">Login</div>
-            {/* //! email */}
+
             <div className="login_box_right_login_form_email_box_title_div">
               <div className="login_box_right_login_form_email_box_title">
                 Email
               </div>
-              {/* //! email icon */}
+
               <div
                 className={
                   emailErrorMessage
@@ -223,15 +192,12 @@ const Login = ({
                     : "login_box_right_login_form_email_box"
                 }
               >
-                {/* inline */}
-                {/* <div className="login_box_right_login_form_email_box_input_icon_box"> */}
                 <img
                   className="login_box_right_login_form_email_box_input_icon"
                   src={emailIcon}
                   alt="emailIcon"
                 ></img>
-                {/* </div> */}
-                {/* inline */}
+
                 <input
                   className="login_box_right_login_form_email_box_input"
                   type="email"
@@ -242,7 +208,7 @@ const Login = ({
                 ></input>
               </div>
             </div>
-            {/* // ! email error message */}
+
             <div
               className={
                 emailErrorMessage
@@ -252,12 +218,12 @@ const Login = ({
             >
               Invalid email format
             </div>
-            {/* //! PW ***********************************************/}
+
             <div className="login_box_right_login_form_password_box_title_div">
               <div className="login_box_right_login_form_password_box_title">
                 password
               </div>
-              {/* //! password icon */}
+
               <div
                 className={
                   passwordErrorMessage
@@ -265,15 +231,12 @@ const Login = ({
                     : "login_box_right_login_form_password_box"
                 }
               >
-                {/* inline */}
-                {/* <div className="login_box_right_login_form_password_box_input_icon_box"> */}
                 <img
                   className="login_box_right_login_form_password_box_input_icon"
                   src={passwordIcon}
                   alt="passwordIcon"
                 ></img>
-                {/* </div> */}
-                {/* inline */}
+
                 <input
                   className="login_box_right_login_form_password_box_input"
                   type="password"
@@ -282,7 +245,7 @@ const Login = ({
                 ></input>
               </div>
             </div>
-            {/* // ! password error message */}
+
             <div
               className={
                 passwordErrorMessage
@@ -292,7 +255,7 @@ const Login = ({
             >
               You must enter between 8 and 15 character
             </div>
-            {/* //! sign in error */}
+
             <div
               className={
                 errorMessage
@@ -302,7 +265,7 @@ const Login = ({
             >
               {errorMessage}
             </div>
-            {/* //! Sign in */}
+
             <div className="login_box_right_login_form_sign_in_box">
               <button
                 className="login_box_right_login_form_sign_in_box_btn2"
@@ -311,9 +274,8 @@ const Login = ({
                 Sign in
               </button>
             </div>
-            {/* //! OAuth */}
+
             <div className="login_box_right_login_form_OAuth_box">
-              {/* // ?Google */}
               <div
                 className="login_box_right_login_form_OAuth_box_google_btn"
                 onClick={googleLoginHandler}
@@ -324,7 +286,7 @@ const Login = ({
                   alt="google"
                 ></img>
               </div>
-              {/* //? Github */}
+
               <div
                 className="login_box_right_login_form_OAuth_box_github_btn"
                 onClick={githubLoginHandler}
@@ -340,7 +302,6 @@ const Login = ({
         </div>
       ) : (
         <div className="sign_in_box">
-          {/* // ! register form 오른쪽 **************************************/}
           <div className="sign_in_box_right_register_form">
             <div
               className="login_box_right_login_form_cancel_box"
@@ -353,22 +314,19 @@ const Login = ({
               ></img>
             </div>
             <div className="sign_box_right_register_form_title">Register</div>
-            {/* //! Username */}
+
             <div className="login_box_right_login_form_email_box_title_div">
               <div className="login_box_right_login_form_email_box_title">
                 Name
               </div>
-              {/* //! email icon */}
+
               <div className="login_box_right_login_form_email_box">
-                {/* inline */}
-                {/* <div className="login_box_right_login_form_email_box_input_icon_box"> */}
                 <img
                   className="login_box_right_login_form_email_box_input_icon"
                   src={user}
                   alt="user"
                 ></img>
-                {/* </div> */}
-                {/* inline */}
+
                 <input
                   className="login_box_right_login_form_email_box_input"
                   type="text"
@@ -379,12 +337,12 @@ const Login = ({
                 ></input>
               </div>
             </div>
-            {/* //! email */}
+
             <div className="login_box_right_login_form_email_box_title_div">
               <div className="login_box_right_login_form_email_box_title">
                 Email
               </div>
-              {/* //! email icon */}
+
               <div
                 className={
                   emailErrorMessage
@@ -392,26 +350,22 @@ const Login = ({
                     : "login_box_right_login_form_email_box"
                 }
               >
-                {/* inline */}
-                {/* <div className="login_box_right_login_form_email_box_input_icon_box"> */}
                 <img
                   className="login_box_right_login_form_email_box_input_icon"
                   src={emailIcon}
                   alt="emailIcon"
                 ></img>
-                {/* </div> */}
-                {/* inline */}
+
                 <input
                   className="login_box_right_login_form_email_box_input"
                   type="email"
                   autoComplete="on"
                   onChange={handleInputValue("email")}
-                  // autoFocus="ture"
                   placeholder="email"
                 ></input>
               </div>
             </div>
-            {/* // ! email error message */}
+
             <div
               className={
                 emailErrorMessage
@@ -421,12 +375,12 @@ const Login = ({
             >
               Invalid email format
             </div>
-            {/* //! PW ***********************************************/}
+
             <div className="login_box_right_login_form_password_box_title_div">
               <div className="login_box_right_login_form_password_box_title">
                 Password
               </div>
-              {/* //! password icon */}
+
               <div
                 className={
                   passwordErrorMessage
@@ -434,15 +388,12 @@ const Login = ({
                     : "login_box_right_login_form_password_box"
                 }
               >
-                {/* inline */}
-                {/* <div className="login_box_right_login_form_password_box_input_icon_box"> */}
                 <img
                   className="login_box_right_login_form_password_box_input_icon"
                   src={passwordIcon}
                   alt="passwordIcon"
                 ></img>
-                {/* </div> */}
-                {/* inline */}
+
                 <input
                   className="login_box_right_login_form_password_box_input"
                   type="password"
@@ -451,7 +402,7 @@ const Login = ({
                 ></input>
               </div>
             </div>
-            {/* // ! password error message */}
+
             <div
               className={
                 passwordErrorMessage
@@ -462,7 +413,6 @@ const Login = ({
               You must enter between 8 and 15 character
             </div>
 
-            {/* //! Register */}
             <div className="login_box_right_login_form_sign_in_box">
               <button
                 className="login_box_right_login_form_sign_in_box_btn2"
@@ -471,22 +421,18 @@ const Login = ({
                 Register
               </button>
             </div>
-
-            {/* //! welcome card 왼쪽 ***************************************/}
           </div>
           <div className="sign_in_box_left_welcome_card">
-            {/* //? Welcome! */}
             <div className="sign_in_box_left_welcome_card_phrase">Welcome!</div>
-            {/* //? 이미지 */}
+
             <div className="sign_in_box_left_welcome_card_box">
               <img
                 className="sign_in_box_left_welcome_card_img"
-                // src={google}
                 src={welcomeBack}
                 alt="Welcome back img"
               ></img>
             </div>
-            {/* //? 로그인으로 이동 버튼 */}
+
             <div className="sign_in_box_left_welcome_card_login_div">
               <button
                 className="sign_in_box_left_welcome_card_login_btn"

@@ -8,19 +8,18 @@ const LandingNav = ({ history, changeSignIn, changeSignUp }) => {
   };
   return (
     <div className="landing_nav_page_navbar_page">
-      {/* Slow TV logo */}
       <div className="landing_nav_page_navbar">
         <div className="landing_nav_page_navbar_text" onClick={handleGoHome}>
           <span className="landing_nav_page_navbar_Slow">Slow</span>
           <span className="landing_nav_page_navbar_TV">TV</span>
         </div>
-        {/* Sign Up */}
+
         <Link to="login" className="landingNav_Link">
           <span className="landing_nav_page_Sign_Up" onClick={changeSignUp}>
             Sign Up
           </span>
         </Link>
-        {/* Sign In */}
+
         <Link to="login" className="landingNav_Link">
           <span className="landing_nav_page_Sign_In" onClick={changeSignIn}>
             Sign In

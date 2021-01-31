@@ -11,7 +11,6 @@ import {
   changeSignUp,
   changeNickName,
   changeEmail,
-  // changePassword,
 } from "../modules/login";
 
 const FavoritesContainer = ({
@@ -53,8 +52,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   clickThumbnail: (id) => {
-    // 각 영상 아이디 얻어냄
-    // console.log("🚀 ~ file: ContentsContainer.js ~ line 23 ~ id", id);
     dispatch(clickThumbnail(id));
     props.history.push("/watch");
   },
@@ -62,7 +59,6 @@ const mapDispatchToProps = (dispatch, props) => ({
     dispatch(clickCategory(category));
   },
   clickSignIn: () => {
-    // console.log("a");
     dispatch(clickSignIn());
   },
   changeEmail: (email) => {

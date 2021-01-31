@@ -24,17 +24,14 @@ const Profile = ({
   changeEmail,
   changeSignUp,
 }) => {
-  // ! Sign Up 버튼 클릭시 페이지로 이동
   const handleGoSignUpPage = () => {
     changeSignUp();
     history.push("/login");
   };
 
-  //! 게스트 -> 일반 로그인
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
+  const [emailInputValue, setEmailInputValue] = useState(null);
+  const [passwordInputValue, setPasswordInputValue] = useState(null);
 
-  //! 인풋 핸들링
   const handleInputValue = (key) => (e) => {
     if (key === "email") {
       const emailValue = e.target.value.split("@");
@@ -57,13 +54,15 @@ const Profile = ({
     }
   };
 
-  // ! 일반 로그인 유효성 검사
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
 
-  // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
-    if (emailErrorMessage === null && passwordErrorMessage === null) {
+    if (
+      emailErrorMessage === null &&
+      passwordErrorMessage === null &&
+      emailInputValue !== null
+    ) {
       const signIn = await axios.post(
         "https://server.slowtv24.com/login",
         {
@@ -81,7 +80,6 @@ const Profile = ({
     }
   };
 
-  // ! 로그인 후 유저정보 상태 값에 넣기
   const handleGetUserInfo = async () => {
     const userInfo = await axios("https://server.slowtv24.com/userinfo", {
       withCredentials: true,
@@ -92,22 +90,21 @@ const Profile = ({
     changeNickName(userInfo.data.userInfo.nickname);
   };
 
-  // ! GitHub OAuth URL // ! client id 변수 처리 하기
   const GITHUB_LOGIN_URL =
     "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
   const githubLoginHandler = () => {
     window.location.assign(GITHUB_LOGIN_URL);
   };
-  // ! Google OAuth URL // scope는 스페이스로 구분
+
   const GOOGLE_LOGIN_URL =
     "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/contents&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
   const googleLoginHandler = () => {
     window.location.assign(GOOGLE_LOGIN_URL);
   };
 
-  // ! 로그아웃
-  const handleLogout = async () => {
+  const handleLogouttttt = async () => {
     try {
+      console.log("logout");
       const logout = await axios.post(
         "https://server.slowtv24.com/logout",
         null,
@@ -133,12 +130,11 @@ const Profile = ({
       <NavContainer />
       <SideRemoteControlContainer />
       {isModalClicked ? <ModalContainer /> : <div></div>}
-      {/* 프로필 시작 */}
+
       {isLoggedIn ? (
         <div className="profile_page_container">
           <div className="profile_page_container_title">Profile</div>
           <div className="profile_page_inner_container">
-            {/* //! User ID */}
             <div className="profile_page_box_user_id">
               <div className="profile_page_current_user_id">ID :</div>
               <div className="profile_page_current_user_id_value">{email}</div>
@@ -163,7 +159,6 @@ const Profile = ({
                 </div>
               </div>
             ) : (
-              // {/* //! User naem */}
               <Link
                 className="Profile_Link"
                 to="/contents/profile/update-username"
@@ -188,7 +183,6 @@ const Profile = ({
               </Link>
             )}
 
-            {/* // ! User PW */}
             {githubAccessToken || googleAccessToken ? (
               <div
                 className="profile_page_box_social_user_password"
@@ -233,13 +227,10 @@ const Profile = ({
               </Link>
             )}
 
-            {/* // ! change user img */}
-
-            {/* // !Logout Btn */}
             <div className="profile_page_box_logout_btn">
               <button
                 className="profile_page_logout_btn"
-                onClick={handleLogout}
+                onClick={handleLogouttttt}
               >
                 Logout
               </button>
@@ -265,7 +256,6 @@ const Profile = ({
           </div>
 
           <div className="loaded_favorites_page_guest_sign_in_box">
-            {/* //! email */}
             <div
               className={
                 emailErrorMessage
@@ -287,7 +277,6 @@ const Profile = ({
                 placeholder="email"
               ></input>
             </div>
-            {/* //! password */}
             <div
               className={
                 passwordErrorMessage
@@ -309,7 +298,6 @@ const Profile = ({
                 placeholder="password"
               ></input>
             </div>
-            {/* //! sign in */}
             <div className="loaded_favorites_page_guest_sign_in_sign_in_box">
               <button
                 className="loaded_favorites_page_guest_sign_in_btn"
@@ -318,7 +306,6 @@ const Profile = ({
                 Sign In
               </button>
             </div>
-            {/* //! OAuth */}
             <div className="favorites_login_box_right_login_form_OAuth_box">
               {/* // ?Google */}
               <div
@@ -343,9 +330,7 @@ const Profile = ({
                 ></img>
               </div>
             </div>
-            {/* //! hr */}
             <div className="loaded_favorites_page_guest_sign_in_box_hr"></div>
-            {/* //! sign up */}
             <div className="loaded_favorites_page_guest_sign_in_sign_up_box">
               <button
                 className="loaded_favorites_page_guest_sign_up_btn"

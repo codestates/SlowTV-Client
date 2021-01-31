@@ -1,11 +1,12 @@
 .Profile_Link {
   text-decoration: none;
   cursor: pointer;
+  z-index: 999;
 }
 
 .profile_page {
   background-color: #212021;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .profile_page_container {
@@ -28,7 +29,6 @@
   background-color: #adacad;
   border-radius: 5px;
   box-shadow: 0px 3px 10px 3px #525151;
-
   height: 90%;
   width: 100%;
   margin-top: 2%;
@@ -55,10 +55,8 @@
   display: inline;
   font-size: 1.9vmax;
   font-weight: 400;
-  
-  /* border: 1px solid gray; */
 }
-/* 유저 이름 *******************************/
+
 .profile_page_box_username,
 .profile_page_box_social_username {
   border-bottom: 1px solid gray;
@@ -83,7 +81,6 @@
   font-weight: 400;
 }
 
-/* 유저 비밀번호 *******************************/
 
 .profile_page_box_user_password,
 .profile_page_box_social_user_password {
@@ -120,6 +117,7 @@
   margin-left: 78%;
   width: 15%;
   height:7%;
+  border: 1px solid gray;
 }
 .profile_page_logout_btn {
   width: 100%;

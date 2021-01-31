@@ -17,11 +17,8 @@ const VideoList = ({
   goToAnotherPage,
   nowPage,
 }) => {
-  // ! 새로고침 시 날아가는 거 방지
-
   sessionStorage.setItem("videoData", JSON.stringify(videoData));
 
-  // ! 즐겨찾기 수정 후 비디오 새로고침
   const handleGoCategory = async (e) => {
     const video = await axios(
       `https://server.slowtv24.com/category/${nowPage}`,
@@ -32,7 +29,6 @@ const VideoList = ({
     handleOnClickCategory(video.data.contents);
   };
 
-  // ! 썸네일 클릭 시 비디오 아이디 구하기 -> 비디오 플레이어에서 해당 아이디 영상 재생
   const getVideoData = async (e) => {
     const videoId = e.target.attributes.value.value;
     const id = videoId.split(" ")[0];
@@ -41,7 +37,6 @@ const VideoList = ({
     if (!isAdded) {
       clickThumbnail(id);
     } else if (isLoggedIn && isAdded) {
-      // ! 추가
       const video = videoData.filter((data) => data.id === Number(id));
       if (isAdded === "undefined") {
         const addFavorites = await axios.post(
@@ -56,7 +51,6 @@ const VideoList = ({
 
         handleGoCategory();
       } else if (isLoggedIn && isAdded) {
-        // ! 제거
         const deleteFavorites = await axios.post(
           "https://server.slowtv24.com/delete-favorite",
           {
@@ -73,7 +67,6 @@ const VideoList = ({
     }
   };
 
-  // ! videoData mapping
   let videoList = null;
   if (videoData) {
     const handleDrag = () => {
@@ -142,15 +135,13 @@ const VideoList = ({
         <div className="loading_water_page">loding...</div>
       ) : (
         <div className="loaded_water_page">
-          {/* <Nav /> */}
           <NavContainer />
           <SideRemoteControlContainer />
           {isModalClicked ? <ModalContainer /> : <div></div>}
-          {/* 썸네일 컨테이너 */}
+
           <div className="water_page_container">
             <div className="water_page_small_size_lists">{videoList}</div>
           </div>
-          {/* 썸네일 컨테이너 끝 */}
         </div>
       )}
     </div>

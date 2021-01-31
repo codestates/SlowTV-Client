@@ -27,17 +27,14 @@ const Favorites = ({
 }) => {
   sessionStorage.setItem("videoData", JSON.stringify(videoData));
 
-  // ! Sign Up 버튼 클릭시 페이지로 이동
   const handleGoSignUpPage = () => {
     changeSignUp();
     history.push("/login");
   };
 
-  //! 게스트 -> 일반 로그인
-  const [emailInputValue, setEmailInputValue] = useState("");
-  const [passwordInputValue, setPasswordInputValue] = useState("");
+  const [emailInputValue, setEmailInputValue] = useState(null);
+  const [passwordInputValue, setPasswordInputValue] = useState(null);
 
-  //! 인풋 핸들링
   const handleInputValue = (key) => (e) => {
     if (key === "email") {
       const emailValue = e.target.value.split("@");
@@ -60,13 +57,15 @@ const Favorites = ({
     }
   };
 
-  // ! 일반 로그인 유효성 검사
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
 
-  // ! 로그인 버튼 클릭 -> isLoggedIn : true
   const clickSignInBtn = async () => {
-    if (emailErrorMessage === null && passwordErrorMessage === null) {
+    if (
+      emailErrorMessage === null &&
+      passwordErrorMessage === null &&
+      emailInputValue !== null
+    ) {
       const signIn = await axios.post(
         "https://server.slowtv24.com/login",
         {
@@ -98,20 +97,18 @@ const Favorites = ({
     handleOnClickCategory(favorites.data.userFavorites);
   };
 
-  // ! GitHub OAuth URL // ! client id 변수 처리 하기
   const GITHUB_LOGIN_URL =
     "https://github.com/login/oauth/authorize?client_id=1193d67b72770285bd45";
   const githubLoginHandler = () => {
     window.location.assign(GITHUB_LOGIN_URL);
   };
-  // ! Google OAuth URL // scope는 스페이스로 구분
+
   const GOOGLE_LOGIN_URL =
     "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=https://localhost:3000/contents&client_id=242040920697-frojb1pu8dc0gcpvcll2kdh0h152br8c.apps.googleusercontent.com";
   const googleLoginHandler = () => {
     window.location.assign(GOOGLE_LOGIN_URL);
   };
 
-  // ! 즐겨찾기 수정 후 비디오 새로고침
   const handleGoCategory = async (e) => {
     try {
       const video = await axios(`https://server.slowtv24.com/favorites`, {
@@ -125,17 +122,14 @@ const Favorites = ({
     }
   };
 
-  // ! 썸네일 클릭 시 비디오 아이디 구하기 -> 비디오 플레이어에서 해당 아이디 영상 재생
   const getVideoData = async (e) => {
-    const videoId = e.target.attributes.value.value; // ! 제거 시 여기서 에러
+    const videoId = e.target.attributes.value.value;
     const id = videoId.split(" ")[0];
     const isAdded = videoId.split(" ")[1];
 
-    // ! 썸네일 클릭 시 -> 영상 재생
     if (!isAdded) {
       clickThumbnail(id);
     } else if (isLoggedIn && isAdded) {
-      // ! 추가
       const video = videoData.filter((data) => data.id === Number(id));
       if (isAdded === "undefined") {
         const favorites = await axios.post(
@@ -149,7 +143,6 @@ const Favorites = ({
         );
         handleGoCategory();
       } else if (isLoggedIn && isAdded) {
-        // ! 제거
         const favorites = await axios.post(
           "https://server.slowtv24.com/delete-favorite",
           {
@@ -166,7 +159,6 @@ const Favorites = ({
     }
   };
 
-  // ! videoData mapping
   let videoList = null;
   if (videoData) {
     const handleDrag = () => {
@@ -228,7 +220,6 @@ const Favorites = ({
 
   return (
     <div className={isLoggedIn ? "favorites_page" : "favorites_page_guest"}>
-      {/* //! 비디오 데이터 없으면 */}
       {!videoData ? (
         isLoggedIn ? (
           <div className="loaded_favorites_page_nothing">
@@ -274,7 +265,6 @@ const Favorites = ({
               </div>
 
               <div className="loaded_favorites_page_guest_sign_in_box">
-                {/* //! email */}
                 <div
                   className={
                     emailErrorMessage
@@ -296,7 +286,7 @@ const Favorites = ({
                     placeholder="email"
                   ></input>
                 </div>
-                {/* //! password */}
+
                 <div
                   className={
                     passwordErrorMessage
@@ -318,7 +308,7 @@ const Favorites = ({
                     placeholder="password"
                   ></input>
                 </div>
-                {/* //! sign in */}
+
                 <div className="loaded_favorites_page_guest_sign_in_sign_in_box">
                   <button
                     className="loaded_favorites_page_guest_sign_in_btn"
@@ -327,7 +317,7 @@ const Favorites = ({
                     Sign In
                   </button>
                 </div>
-                {/* //! OAuth */}
+
                 <div className="favorites_login_box_right_login_form_OAuth_box">
                   {/* // ?Google */}
                   <div
@@ -352,9 +342,9 @@ const Favorites = ({
                     ></img>
                   </div>
                 </div>
-                {/* //! hr */}
+
                 <div className="loaded_favorites_page_guest_sign_in_box_hr"></div>
-                {/* //! sign up */}
+
                 <div className="loaded_favorites_page_guest_sign_in_sign_up_box">
                   <button
                     className="loaded_favorites_page_guest_sign_up_btn"

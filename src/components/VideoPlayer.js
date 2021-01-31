@@ -1,5 +1,3 @@
-// 새로고침해도 상태 가지고 있게 만들기
-
 import React from "react";
 import "./VideoPlayer.css";
 
@@ -8,7 +6,11 @@ const VideoPlayer = ({ id, videoData }) => {
 
   return (
     <div className="video-player">
-      <iframe className="player" src={video[0].contentlink}></iframe>
+      <iframe
+        className="player"
+        src={video[0].contentlink}
+        allowFullScreen
+      ></iframe>
     </div>
   );
 };

@@ -19,7 +19,6 @@ const SideRemoteControlContainer = ({
   isContentsPage,
   goToAnotherPage,
   movePage,
-  // nowPage,
 }) => {
   return (
     <SideRemoteControl
@@ -32,7 +31,6 @@ const SideRemoteControlContainer = ({
       isContentsPage={isContentsPage}
       goToAnotherPage={goToAnotherPage}
       movePage={movePage}
-      // nowPage={nowPage}
     />
   );
 };
@@ -42,7 +40,6 @@ const mapStateToProps = (state) => ({
   isLoggedIn: state.login.isLoggedIn,
   isRemoteControlOn: state.sideRemoteControl.isRemoteControlOn,
   isContentsPage: state.contents.isContentsPage,
-  // nowPage: state.sideRemoteControl.nowPage,
 });
 
 const mapDispatchToProps = (dispatch) => ({

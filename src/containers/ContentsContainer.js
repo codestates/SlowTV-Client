@@ -10,7 +10,6 @@ import {
   getGoogleAccessToken,
   changeNickName,
   changeEmail,
-  // changePassword,
 } from "../modules/login";
 import { clickGetStarted } from "../modules/sideRemoteControl";
 
