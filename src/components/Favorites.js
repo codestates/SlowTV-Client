@@ -155,7 +155,7 @@ const Favorites = ({
         handleGoCategory();
       }
     } else if (!isLoggedIn) {
-      alert("로그인 시 사용 가능합니다 맨 마지막 분기.");
+      alert("Available when logging in.");
     }
   };
 
