@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import LandingNavConatiner from "../containers/LandingNavContainers";
 import "./Login.css";
 import axios from "axios";
