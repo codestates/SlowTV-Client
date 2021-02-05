@@ -2,7 +2,16 @@
 
 ## Project introduction
 
-#### slowTV는 가치있는 휴식을 위해 정적인 영상들을 제공하는 웹 서비스 입니다.
+**유튜브를 보다가 알고리즘에 따라서 추천되는 영상들을 이유없이 계속 시청한 경험이 한번쯤은 있을 겁니다.**
+
+**시청하는 동안 휴식을 가진다 생각하지만 막상 그렇게 시간을 가지고 나면 자극적인 영상들이 머리속에 남아**
+
+**휴식한 것 같지 않은 느낌이 들 때가 있죠.**
+
+![](https://images.velog.io/images/rhdgoehe2/post/18462fb0-ac63-4ddc-86cb-fb92b398ad8a/D90681B1-69D9-4BF8-9734-DA2B6F5046DA.jpeg)
+
+### SlowTV는 가치있는 휴식을 위해 정적인 영상들을 제공하는 웹 서비스 입니다.
+### SlowTV is a web application that provides videos with nature sounds. Users may relax their minds and bodies watching our carefully selected videos.
 
 Homepage Link: "https://www.slowtv24.com"
 
@@ -11,6 +20,8 @@ Homepage Link: "https://www.slowtv24.com"
 
 ## Wireframe & Workflow
 https://miro.com/welcomeonboard/9iWvTr0aEate2WF9yIXhuBeGUY97stR0slrp1MpO7xGh3MqIpo8D6IXvm3Eiy5TF
+
+![](https://images.velog.io/images/rhdgoehe2/post/3e43fc15-fcd5-44e6-aee0-c942dbb62505/860FF67C-3232-4306-964E-82DDEF090D23.jpeg)
 
 ![](https://images.velog.io/images/rhdgoehe2/post/33c3bf53-f1a1-439c-9907-fff3dfd29959/A2387B8A-BA2E-443E-B99E-611EBA97D6DD.jpeg)
 
