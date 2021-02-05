@@ -10,7 +10,8 @@
 
 ![](https://images.velog.io/images/rhdgoehe2/post/18462fb0-ac63-4ddc-86cb-fb92b398ad8a/D90681B1-69D9-4BF8-9734-DA2B6F5046DA.jpeg)
 
-### slowTV는 가치있는 휴식을 위해 정적인 영상들을 제공하는 웹 서비스 입니다.
+### SlowTV는 가치있는 휴식을 위해 정적인 영상들을 제공하는 웹 서비스 입니다.
+### SlowTV is a web application that provides videos with nature sounds. Users may relax their minds and bodies watching our carefully selected videos.
 
 Homepage Link: "https://www.slowtv24.com"
 
